@@ -1,0 +1,34 @@
+﻿#liCom > a {
+    color: #979797;
+    font-weight: bold;
+}
+
+.rate-base-layer {
+    color: #aaa;
+}
+
+.rate-hover-layer {
+    color: orange;
+}
+
+.rate{
+    font-size:25pt;
+    float:left;
+}
+
+.btnComparte{
+    float:right;
+}
+
+.selElec, .inNombre, .txExp{
+    margin-bottom: 1rem;
+}
+
+#dvTestimonios{
+    color:#000000;
+}
+
+#Trate {
+    float: right;
+    margin-right: 2rem;
+}

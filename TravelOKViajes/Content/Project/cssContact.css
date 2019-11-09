@@ -1,0 +1,29 @@
+﻿#liCon {
+    border-top-style: solid;
+}
+
+.mapouter {
+    float: left;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.dvFlexContact {
+    background-color: #222222;
+    color: #ffffff;
+    opacity: .9;
+    border-radius: 0.3rem;
+}
+
+#dvAdd {
+    margin-left: 10%;
+    margin-top: 2rem;
+    font-family: sans-serif;
+}
+
+.htitle {
+    color: #ffffff;
+    font-size: 85pt;
+    font-weight: bold;
+    font-family: Verdana, Geneva, sans-serif;
+}

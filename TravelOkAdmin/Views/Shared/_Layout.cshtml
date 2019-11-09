@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - TravelOK</title>
+    <script src="~/Scripts/Project/jQuery/jquery-3.4.1.js"></script>
+    <link href="~/Content/Project/Bootstrap/bootstrap-grid.css" rel="stylesheet" />
+    <link href="~/Content/Project/Bootstrap/bootstrap-reboot.css" rel="stylesheet" />
+    <link href="~/Content/Project/Bootstrap/bootstrap.css" rel="stylesheet" />
+
+    <script src="~/Scripts/Project/Bootstrap/bootstrap.bundle.js"></script>
+    <script src="~/Scripts/Project/Bootstrap/bootstrap.js"></script>
+    <script src="~/Scripts/Project/list.min.js"></script>
+    <script src="~/Scripts/Project/sweetalert2.all.min.js"></script>
+    <script src="~/Scripts/Project/jsMensajes.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ulnav">
+                <li id="liInd" class="nav-item active">
+                    <a class="nav-link linini" href='@Url.Action("Index", "Home")'>
+                    </a>
+                </li>
+                <li id="liExp" class="nav-item">
+                    @Html.ActionLink("Agregar Actividad", "Actividades", "Home")
+                </li>
+                <li id="liDest" class="nav-item">
+                    @Html.ActionLink("Destinos", "Index", "Destinos")
+                </li>
+                <li id="liSal" class="nav-item">
+                    @Html.ActionLink("Salidas", "Index", "Salidas")
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Travel Ok</p>
+        </footer>
+    </div>
+    <link href="~/Content/Project/cssGeneral.css" rel="stylesheet" />
+    <script src="~/Scripts/Project/jsLayout.js"></script>
+</body>
+</html>

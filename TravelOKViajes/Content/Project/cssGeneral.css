@@ -1,0 +1,330 @@
+﻿.car1 {
+    display: none !important;
+}
+
+#imLogo {
+    width: 60px;
+    float: left;
+}
+
+#imLetra {
+    width: 150px;
+}
+
+.titular {
+    float: left;
+    font-size: 20pt;
+    padding: 0px;
+    margin-top: .6rem;
+    margin-left: -2rem;
+}
+
+.iconitem{
+    width:30px;
+    height:40px;
+    padding-bottom:0.9rem;
+}
+
+.navbar {
+    margin-top: 4rem;
+    background-color: #070038 !important;
+}
+
+.nav-item{
+    color:#ffffff !important;
+    font-size:15pt;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+.ulnav li {
+    display: block;
+}
+
+.dvnav {
+    background-color: #020039;
+}
+
+
+#pclear {
+    clear: both;
+}
+
+
+
+#liQui > a {
+    width: 13rem;
+}
+
+.linini {
+    width: 9rem;
+    height: 3rem;
+    background-image: url('../../Img/Logos/logoChicoLargo.png');
+    background-size: contain;
+    margin-top: 0.3rem;
+}
+
+#awp {
+    background-image: url('../../Img/iconos/wp.png');
+}
+
+#afb {
+    background-image: url('../../Img/iconos/fb.png');
+}
+
+#aig {
+    background-image: url('../../Img/iconos/ig.png');
+}
+
+#awp, #afb, #aig {
+    height: 2rem;
+    width: 2rem;
+    float: right;
+    background-size: cover;
+}
+
+
+#ulIcons {
+    width: 15rem;
+    padding: 0px;
+    height: 5rem;
+    margin: 0px;
+}
+
+#liIcons{
+    float:right;
+}
+
+#ulIcons li {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    padding-top: 1rem;
+}
+
+#dvEncabezado {
+    position: inherit;
+    top: -10rem;
+    left: -11rem;
+}
+
+#liCom {
+    border-right-style: solid;
+    padding-right: 2rem;
+}
+
+.ulBar {
+    float: right;
+    height:3rem;
+}
+
+#dvBarra {
+    background-color: #ffffff;
+    position:absolute;
+    top:0px;
+    width:100%;
+    margin: 0px;
+    padding: 0px;
+    height: 4rem;
+}
+
+.ulBar li{
+    
+    display:inline-block;
+    margin-right:2rem;
+    padding-bottom:0.5rem;
+}
+
+#ulFooter li{
+    display:inline-block;
+    margin-right:5%;
+   
+}
+
+#liAviso, #liTer{
+    float:right;
+}
+
+#ulFooter {
+    background-color: #ffffff;
+    margin: 0px;
+}
+
+#ulFooter > li > a{
+    font-style: unset;
+    color: #070038;
+    text-decoration: none;
+    font-size: 18pt;
+}
+
+.ulBar > li > a {
+    font-style: unset;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 22pt;
+}
+
+#liInd{
+    float:left;
+}
+
+#dvTitular {
+    font-size: 78pt;
+    position: inherit;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    margin-top: -18rem;
+}
+@font-face {
+    font-family: 'Cocomat Light-trial';
+    src: url('../../fonts/Cocomat Light-trial.ttf') format('truetype');
+}
+
+body {
+    /*background-image: linear-gradient(to left bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    font-family: "Cocomat Light-trial";*/
+    font-family: Gill Sans MT,Segoe UI,Arial;
+    color: #070038;
+}
+#dvEncuesta, #dvReserva {
+    font-weight:bold;
+}
+
+#dvReserva {
+    position: fixed;
+    z-index: 1000;
+    cursor: pointer;
+    margin-top: 14.5rem;
+    margin-left: 1.5rem;
+    color: #000000;
+}
+
+#dvFondox {
+    position: fixed;
+    z-index: 1000;
+    cursor: pointer;
+    margin-top: 15rem;
+    width: 158px;
+    height: 107px;
+    background-color: #ffffff;    
+    border-radius: 0.5rem;
+    margin-left: -1rem;
+    opacity: 0.5;
+}
+
+#dvImRes {
+    background-image: url('../../Img/Logos/SoloLogoChico.png');
+    height: 83px;
+}
+
+
+.btn{
+    cursor:pointer;
+}
+
+#dvEncuesta {
+    position: fixed;
+    z-index: 1000;
+    cursor: pointer;
+    margin-top: 21.5rem;
+    margin-left: 1.5rem;
+    color: #000000;
+}
+
+#dvFondo2 {
+    position: fixed;
+    z-index: 1000;
+    cursor: pointer;
+    margin-top: 22rem;
+    width: 158px;
+    height: 107px;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    margin-left: -1rem;
+    opacity: 0.5;
+}
+
+#dvImEnc {
+    background-image: url('../../Img/Logos/SoloLogoChico.png');
+    height: 83px;
+}
+@media (max-width: 1370px) {
+    
+    #ulFooter li {
+        margin-right: 3%;
+    }
+
+    #ulFooter li a{
+        font-size: 14pt;
+    }
+
+    .iconitem {
+        width: 25px;
+        height: 24px;
+        padding-bottom: 0.3rem;
+    }
+
+
+    .ulBar > li > a {
+        font-size: 14pt;
+    }
+
+    .ulBar {
+        height: 2rem;
+    }
+}
+
+@media (max-width: 991px) {
+    #ulFooter > li > a {
+        font-size: 10pt;
+    }
+}
+
+
+@media (max-width: 712px) {
+    #liAviso, #liTer {
+        width: 100%;
+    }
+    #ulFooter > li > a {
+        font-size: 14pt;
+    }
+
+    #ulFooter {
+        text-align: center;
+        height: 8rem;
+    }
+}
+
+@media (max-width: 503px) {
+    .ulnav{
+        margin:0 auto;
+        padding:0px;
+    }
+    #liInd{
+        float:none;
+    }
+    .ulnav > li > .linini {
+        margin: 0 auto;
+    }
+    .navbar-toggler {
+        z-index: 2;
+    }
+
+    #liIcons {
+        float: none;
+        padding-top: 0.8rem;
+        height: 4rem;
+    }
+    #ulIcons {
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+@media (max-width: 450px) {
+    .car1 {
+        display: none;
+    }
+
+}

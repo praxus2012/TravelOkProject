@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "TravelInicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center mt-3">Bienvenido a Travel OK</h2>
+<h2 class="text-center mt-3">INICIA SESION | REGISTRATE</h2>
+<h2 class="text-center mt-3">PARA CONTINUAR</h2>   
+<div class="container">
+    <div class="row">
+        <input type="text" placeholder="Usuario" class="form-control mb-3 mt-5" />
+        <input type="password" placeholder="Contraseña" class="form-control mb-5 mt-5" />
+        <div class="btn btn-primary col-12 mb-3">Iniciar Sesión</div>
+        <div>¿Aún no formas parte de esta gran comunidad?</div>
+        @Html.ActionLink("Registrarse", "TravelRegistro", "Logueo", new { @class = "nav-item nav-link" }, null)
+
+        <div class="row mb-4 d-flex justify-content-end">
+        <div class="btn">
+            Al confirmar, aceptas nuestros Términos y condiciones
+        </div>
+    </div>
+    </div>
+</div>

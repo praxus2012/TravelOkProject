@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Comunidad";
+}
+<link href="~/Content/Project/cssComunidad.css" rel="stylesheet" />
+
+<div class="container dvllenado col-12">
+    <div><h1>Cuéntanos, ¿Cómo te fue?</h1></div>
+    <div>
+        <select class="selElec form-control" id="selDestinos">
+            <option value="0">¿A dónde fuimos?</option>
+        </select>
+        <input placeholder="¿Quien soy?" class="inNombre form-control" />
+        <textarea class="form-control txExp" placeholder="¿Cómo la pasamos?" rows="3"></textarea>
+        <input type="file" id="inArchivo"/>
+        <div class="rate" data-rate-value=5></div>
+        <button id="btnComparte" class="btn btn-primary col-3 btnComparte">Compartir</button>
+    </div>
+</div>
+<p id="pclear"></p>
+<div id="dvTestimonios">
+</div>
+<input type="hidden" id="urlInicioComunidad" value="@Url.Action("InicioComunidad","Home")" />
+<input type="hidden" id="urlInsertaComunidad" value="@Url.Action("InsertaComunidad","Home")" />
+<script src="~/Scripts/Project/libs/rater.js"></script>
+<script src="~/Scripts/Project/jsComunidad.js"></script>

@@ -1,0 +1,162 @@
+﻿#imLogo {
+    width: 60px;
+    float: left;
+}
+
+#imLetra {
+    width: 150px;
+}
+
+.titular {
+    float: left;
+    font-size: 20pt;
+    padding: 0px;
+    margin-top: .6rem;
+    margin-left: -2rem;
+}
+
+.navbar-nav {
+    font-size: 15pt;
+    margin-top: 0.3rem;
+}
+
+.navbar {
+    color: #ffffff !important;
+    z-index: 1;
+    background-color: #1A2944 !important;
+}
+
+li a {
+}
+
+.dvnav {
+    background-color: #020039;
+}
+
+.ulnav li {
+    margin-right: 2rem;
+    margin-top: 1rem;
+}
+
+.ulnav {
+    float: none;
+    margin: 0 auto !important;
+}
+
+#pclear {
+    clear: both;
+}
+
+
+.nav-link {
+    color: #ffffff !important;
+    font-weight: bold;
+    font-size: 17pt;
+    cursor:pointer;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: #C7C7C7 !important;
+    border-color: #C7C7C7;
+}
+
+.linini {
+    width: 10rem;
+    height: 4rem;
+    background-image: url('../../Img/Logos/logoChicoLargoBlanco.png');
+}
+
+.linini:hover {
+    background-image: url('../../Img/Logos/logoChicoLargo.png');
+}
+
+#dvEncabezado {
+    position: inherit;
+    top: -10rem;
+    left: -11rem;
+}
+
+
+#dvTitular {
+    font-size: 78pt;
+    position: inherit;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-family: 'trench100free';
+    margin-top: -18rem;
+}
+@font-face {
+    font-family: 'trench100free';
+    src: url('../Fonts/trench100free.otf') format('opentype');
+}
+
+body {
+    background-color: #C7C7C7;
+    color:#000000;
+}
+
+#dvEncuesta, #dvReserva {
+    font-weight:bold;
+}
+
+#dvReserva {
+    position: fixed;
+    z-index: 1000;
+    cursor: pointer;
+    margin-top: 14.5rem;
+    margin-left: 1.5rem;
+    color: #000000;
+}
+
+#dvFondox {
+    position: fixed;
+    z-index: 1000;
+    cursor: pointer;
+    margin-top: 15rem;
+    width: 158px;
+    height: 107px;
+    background-color: #ffffff;    
+    border-radius: 0.5rem;
+    margin-left: -1rem;
+    opacity: 0.5;
+}
+
+#dvImRes {
+    background-image: url('../../Img/Logos/SoloLogoChico.png');
+    height: 83px;
+}
+
+
+
+
+#dvEncuesta {
+    position: fixed;
+    z-index: 1000;
+    cursor: pointer;
+    margin-top: 21.5rem;
+    margin-left: 1.5rem;
+    color: #000000;
+}
+
+#dvFondo2 {
+    position: fixed;
+    z-index: 1000;
+    cursor: pointer;
+    margin-top: 22rem;
+    width: 158px;
+    height: 107px;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    margin-left: -1rem;
+    opacity: 0.5;
+}
+
+#dvImEnc {
+    background-image: url('../../Img/Logos/SoloLogoChico.png');
+    height: 83px;
+}

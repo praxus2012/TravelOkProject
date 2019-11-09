@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ca044f4ba553468e805ba566b009242a" Name="Diagram1">
+        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Usuario" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Destino" Width="1.5" PointX="3.75" PointY="2.625" />
+        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Experiencias" Width="1.5" PointX="6" PointY="1.125" />
+        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Salida" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Costo" Width="1.5" PointX="6" PointY="4.125" />
+        <AssociationConnector Association="TravelOKViajesModel.FK__TO_Experi__IdDes__5165187F" />
+        <AssociationConnector Association="TravelOKViajesModel.FK_TO_Costo_TO_Destino" />
+        <EntityTypeShape EntityType="TravelOKViajesModel.TOA_Usuario" Width="1.5" PointX="9.375" PointY="1.125" />
+        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Blog" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="TravelOKViajesModel.TO_DetalleDestinos" Width="1.5" PointX="6" PointY="7" />
+        <AssociationConnector Association="TravelOKViajesModel.FK_DetDestinos_Destinos" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

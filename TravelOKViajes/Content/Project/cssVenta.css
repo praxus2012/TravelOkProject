@@ -1,0 +1,100 @@
+﻿body {
+    background-color:#0094ff;
+}
+
+#dvAutobus{
+    width:55rem;
+    margin:0 auto;
+    height:20.5rem;
+    border-style:solid;
+    border-radius:0.5em;
+}
+
+#ulPrimerAsiento {
+    width: 80px;
+    height: 240px;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 5rem;
+    float: left;
+    margin-left: 17rem;
+}
+
+#ulPrimerAsiento li{
+    display:block;
+    height: 80px;
+    width:80px;
+}
+
+#ulPrimerAsiento li {
+    background-image: url('../../Img/Asientos/ALibre.jpg');
+    background-size:contain;
+}
+
+#ulIzq>li {
+    display: inline;
+}
+
+
+#ulIzq,#ulIzq>li>ul,#ulAtras,#ulArriba{
+    margin:0px;
+    padding:0px;
+}
+
+#ulIzq {
+    height: 160px;
+    margin-top: 10rem;
+    width: 400px;
+    margin-left: 23rem;
+}
+
+#ulIzq>li>ul>li {
+    display: block;
+    height: 80px;
+    width: 80px;
+    background-image: url('../../Img/Asientos/ALibre.jpg');
+    background-size:contain;
+}
+
+#ulIzq > li > ul {
+    width: 80px;
+    height: 160px;
+    float: left;
+    margin-left: 1rem;
+}
+
+#ulAtras {
+    float: right;
+    height: 320px;
+    width: 80px;
+    margin-top: -19.95rem;
+    margin-right: 1rem;
+}
+
+#ulAtras li{
+    height: 80px;
+    width: 80px;
+    display:block;
+    background-image: url('../../Img/Asientos/ALibre.jpg');
+    background-size:contain;
+}
+
+#ulArriba {
+    height: 80px;
+    width: 400px;
+    margin-left: 23rem;
+    margin-top: -19.95rem;
+}
+
+li{
+    cursor:pointer;
+}
+
+#ulArriba li {
+    height: 80px;
+    width: 80px;
+    margin-left:0.8rem;
+    display: inline-block;
+    background-image: url('../../Img/Asientos/ALibre.jpg');
+    background-size: contain;
+}

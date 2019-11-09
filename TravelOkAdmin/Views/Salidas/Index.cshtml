@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Actualizacion de salidas</h2>
+<form>
+    <input class="form-control" id="inSalida" placeholder="Escribe de donde salimos." />
+    <div id="btnAgregarSal" class="btn btn-primary">Agregar Salida</div>
+
+    <input class="form-control" id="inEliminaCiudad" placeholder="Escribe la ciudad que deseas eliminar." />
+    <div id="btnEliminaCiudad" class="btn btn-primary">Eliminar Ciudad</div>
+</form>
+
+<script src="~/Scripts/Project/jsSalida.js"></script>
+<link href="~/Content/Project/cssSalida.css" rel="stylesheet" />
+
+<input type="hidden" id="urlSalidaInserta" value="@Url.Action("InsertaSalida","Salidas")" />
+<input type="hidden" id="urlSalidaEliminaId" value="@Url.Action("EliminaSalidaId","Salidas")" />

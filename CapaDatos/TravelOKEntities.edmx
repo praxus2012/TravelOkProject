@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TravelOKViajesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TO_Blog">
+          <Key>
+            <PropertyRef Name="IdBlog" />
+          </Key>
+          <Property Name="IdBlog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nvTitulo" Type="nvarchar" MaxLength="250" />
+          <Property Name="nvTexto" Type="nvarchar(max)" />
+          <Property Name="imgBlog" Type="varbinary(max)" />
+          <Property Name="dtFechaSubida" Type="datetime" />
+          <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TravelOKViajes.dbo.TO_Costo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="TO_Costo">
+          <Key>
+            <PropertyRef Name="Id_Destino" />
+          </Key>
+          <Property Name="CostoLugar" Type="money" />
+          <Property Name="Id_Destino" Type="int" Nullable="false" />
+          <Property Name="TipoPersona" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="TO_Destino">
+          <Key>
+            <PropertyRef Name="IdViaje" />
+          </Key>
+          <Property Name="IdViaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Destino" Type="nvarchar" MaxLength="250" />
+          <Property Name="nvTitulo" Type="nvarchar" MaxLength="50" />
+          <Property Name="nvSubt" Type="nvarchar" MaxLength="50" />
+          <Property Name="nvDesc" Type="nvarchar" MaxLength="500" />
+          <Property Name="nvRutaImg" Type="nvarchar" MaxLength="150" />
+          <Property Name="bPrincipal" Type="bit" />
+          <Property Name="bActivo" Type="bit" />
+        </EntityType>
+        <EntityType Name="TO_DetalleDestinos">
+          <Key>
+            <PropertyRef Name="Id_Detalle" />
+          </Key>
+          <Property Name="Id_Detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Destino" Type="int" Nullable="false" />
+          <Property Name="nvRutaArchivo" Type="nvarchar" MaxLength="300" />
+          <Property Name="nvDescripcion" Type="nvarchar" MaxLength="300" />
+          <Property Name="dtFechaAlta" Type="datetime" />
+          <Property Name="bActivo" Type="bit" />
+        </EntityType>
+        <EntityType Name="TO_Experiencias">
+          <Key>
+            <PropertyRef Name="IdExp" />
+          </Key>
+          <Property Name="IdExp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="450" />
+          <Property Name="Testimonio" Type="varchar(max)" />
+          <Property Name="IdDestino" Type="int" Nullable="false" />
+          <Property Name="ActivityDate" Type="date" />
+          <Property Name="Calificacion" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ImgDestino" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TO_Salida">
+          <Key>
+            <PropertyRef Name="IdSalida" />
+          </Key>
+          <Property Name="IdSalida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TO_Usuario">
+          <Key>
+            <PropertyRef Name="Usuario" />
+          </Key>
+          <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contra" Type="varchar" MaxLength="50" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" />
+          <Property Name="ApePat" Type="varchar" MaxLength="250" />
+          <Property Name="ApeMat" Type="varchar" MaxLength="250" />
+          <Property Name="FechaContrat" Type="date" />
+        </EntityType>
+        <EntityType Name="TOA_Usuario">
+          <Key>
+            <PropertyRef Name="nvUsuario" />
+          </Key>
+          <Property Name="nvUsuario" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="nvContraseña" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="nvNombre" Type="nvarchar" MaxLength="60" />
+          <Property Name="nvApPat" Type="nvarchar" MaxLength="60" />
+          <Property Name="nvApMat" Type="nvarchar" MaxLength="60" />
+          <Property Name="nvCorreo" Type="nvarchar" MaxLength="250" />
+          <Property Name="dtFecNac" Type="date" />
+          <Property Name="dtFecReg" Type="datetime" />
+          <Property Name="dtFecAct" Type="datetime" />
+          <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <Association Name="FK__TO_Experi__IdDes__5AEE82B9">
+          <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
+          <End Role="TO_Experiencias" Type="Self.TO_Experiencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Destino">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Experiencias">
+              <PropertyRef Name="IdDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetDestinos_Destinos">
+          <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
+          <End Role="TO_DetalleDestinos" Type="Self.TO_DetalleDestinos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Destino">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_DetalleDestinos">
+              <PropertyRef Name="Id_Destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Costo_TO_Destino">
+          <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
+          <End Role="TO_Costo" Type="Self.TO_Costo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Destino">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Costo">
+              <PropertyRef Name="Id_Destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spdEliminaSalida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nvSalida" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spdEliminaSalidaId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idSalida" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spiAgregaImDestinosC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Destino" Type="int" Mode="In" />
+          <Parameter Name="nvRutaArchivo" Type="nvarchar" Mode="In" />
+          <Parameter Name="nvDescripcion" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spiInsertaDestino" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nvDestino" Type="nvarchar" Mode="In" />
+          <Parameter Name="nvTitulo" Type="nvarchar" Mode="In" />
+          <Parameter Name="nvSubt" Type="nvarchar" Mode="In" />
+          <Parameter Name="nvDesc" Type="nvarchar" Mode="In" />
+          <Parameter Name="bPrincipal" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="spiInsertaDetalleDestino" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idDestino" Type="int" Mode="In" />
+          <Parameter Name="nvRuta" Type="nvarchar" Mode="In" />
+          <Parameter Name="nvDescripción" Type="nvarchar" Mode="In" />
+          <Parameter Name="bActivo" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="spiInsertaSalida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nvSalida" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spInsertaComunidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Testimonio" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IdViaje" Type="int" Mode="In" />
+          <Parameter Name="Calificacion" Type="decimal" Mode="In" />
+          <Parameter Name="ImgDestino" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="spObtieneComunidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spsObtieneCarrusel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Destino" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spsObtieneDestinoDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idViaje" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spsObtieneDestinosImg" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spVerificaUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nvUsu" Type="nvarchar" Mode="In" />
+          <Parameter Name="nvCont" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="TravelOKViajesModelStoreContainer">
+          <EntitySet Name="TO_Blog" EntityType="Self.TO_Blog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TO_Destino" EntityType="Self.TO_Destino" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TO_DetalleDestinos" EntityType="Self.TO_DetalleDestinos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TO_Experiencias" EntityType="Self.TO_Experiencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TO_Salida" EntityType="Self.TO_Salida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TO_Usuario" EntityType="Self.TO_Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOA_Usuario" EntityType="Self.TOA_Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TO_Costo" EntityType="Self.TO_Costo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TO_Costo].[CostoLugar] AS [CostoLugar], 
+    [TO_Costo].[Id_Destino] AS [Id_Destino], 
+    [TO_Costo].[TipoPersona] AS [TipoPersona]
+    FROM [dbo].[TO_Costo] AS [TO_Costo]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__TO_Experi__IdDes__5AEE82B9" Association="Self.FK__TO_Experi__IdDes__5AEE82B9">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Experiencias" EntitySet="TO_Experiencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetDestinos_Destinos" Association="Self.FK_DetDestinos_Destinos">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_DetalleDestinos" EntitySet="TO_DetalleDestinos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Destino" Association="Self.FK_TO_Costo_TO_Destino">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TravelOKViajesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TO_Usuario">
+          <Key>
+            <PropertyRef Name="Usuario" />
+          </Key>
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ApePat" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ApeMat" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FechaContrat" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="TravelOKViajesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TO_Usuario" EntityType="Self.TO_Usuario" />
+          <EntitySet Name="TO_Destino" EntityType="TravelOKViajesModel.TO_Destino" />
+          <EntitySet Name="TO_Experiencias" EntityType="TravelOKViajesModel.TO_Experiencias" />
+          <EntitySet Name="TO_Salida" EntityType="TravelOKViajesModel.TO_Salida" />
+          <EntitySet Name="TO_Costo" EntityType="TravelOKViajesModel.TO_Costo" />
+          <AssociationSet Name="FK__TO_Experi__IdDes__5165187F" Association="TravelOKViajesModel.FK__TO_Experi__IdDes__5165187F">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Experiencias" EntitySet="TO_Experiencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Destino" Association="TravelOKViajesModel.FK_TO_Costo_TO_Destino">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <FunctionImport Name="spInsertaComunidad">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Testimonio" Mode="In" Type="String" />
+            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
+            <Parameter Name="Calificacion" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="spObtieneComunidad" ReturnType="Collection(TravelOKViajesModel.spObtieneComunidad_Result)" />
+          <EntitySet Name="TOA_Usuario" EntityType="TravelOKViajesModel.TOA_Usuario" />
+          <FunctionImport Name="spVerificaUsuario" ReturnType="Collection(TravelOKViajesModel.spVerificaUsuario_Result)">
+            <Parameter Name="nvUsu" Mode="In" Type="String" />
+            <Parameter Name="nvCont" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spiInsertaDestino">
+          <Parameter Name="nvDestino" Mode="In" Type="String" />
+            <Parameter Name="nvTitulo" Mode="In" Type="String" />
+            <Parameter Name="nvSubt" Mode="In" Type="String" />
+            <Parameter Name="nvDesc" Mode="In" Type="String" />
+            <Parameter Name="bPrincipal" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="spiInsertaSalida">
+          <Parameter Name="nvSalida" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="TO_Blog" EntityType="TravelOKViajesModel.TO_Blog" />
+          <FunctionImport Name="spdEliminaSalida">
+          <Parameter Name="nvSalida" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spdEliminaSalidaId">
+          <Parameter Name="idSalida" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spiAgregaImDestinosC">
+            <Parameter Name="Id_Destino" Mode="In" Type="Int32" />
+            <Parameter Name="nvRutaArchivo" Mode="In" Type="String" />
+            <Parameter Name="nvDescripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spsObtieneDestinosImg" ReturnType="Collection(TravelOKViajesModel.spsObtieneDestinosImg_Result)" />
+          <FunctionImport Name="spsObtieneDestinoDet" ReturnType="Collection(TravelOKViajesModel.spsObtieneDestinoDet_Result)">
+          <Parameter Name="idViaje" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spsObtieneCarrusel" ReturnType="Collection(TravelOKViajesModel.spsObtieneCarrusel_Result)">
+          <Parameter Name="Id_Destino" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="TO_DetalleDestinos" EntityType="TravelOKViajesModel.TO_DetalleDestinos" />
+          <AssociationSet Name="FK_DetDestinos_Destinos" Association="TravelOKViajesModel.FK_DetDestinos_Destinos">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_DetalleDestinos" EntitySet="TO_DetalleDestinos" />
+          </AssociationSet>
+          <FunctionImport Name="spInsertaComunidad1">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Testimonio" Mode="In" Type="String" />
+            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
+            <Parameter Name="Calificacion" Mode="In" Type="Decimal" />
+            <Parameter Name="ImgDestino" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="spiInsertaDestino1">
+            <Parameter Name="nvDestino" Mode="In" Type="String" />
+            <Parameter Name="nvTitulo" Mode="In" Type="String" />
+            <Parameter Name="nvSubt" Mode="In" Type="String" />
+            <Parameter Name="nvDesc" Mode="In" Type="String" />
+            <Parameter Name="bPrincipal" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="spiInsertaDetalleDestino">
+            <Parameter Name="idDestino" Mode="In" Type="Int32" />
+            <Parameter Name="nvRuta" Mode="In" Type="String" />
+            <Parameter Name="nvDescripción" Mode="In" Type="String" />
+            <Parameter Name="bActivo" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="spInsertaComunidad2">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Testimonio" Mode="In" Type="String" />
+            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
+            <Parameter Name="Calificacion" Mode="In" Type="Decimal" />
+            <Parameter Name="ImgDestino" Mode="In" Type="Binary" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="TO_Destino">
+          <Key>
+            <PropertyRef Name="IdViaje" />
+          </Key>
+          <Property Name="IdViaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Destino" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TO_Experiencias" Relationship="TravelOKViajesModel.FK__TO_Experi__IdDes__5165187F" FromRole="TO_Destino" ToRole="TO_Experiencias" />
+          <NavigationProperty Name="TO_Costo" Relationship="TravelOKViajesModel.FK_TO_Costo_TO_Destino" FromRole="TO_Destino" ToRole="TO_Costo" />
+          <Property Name="bPrincipal" Type="Boolean" />
+          <Property Name="nvTitulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nvSubt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nvDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="nvRutaImg" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="bActivo" Type="Boolean" />
+          <NavigationProperty Name="TO_DetalleDestinos" Relationship="TravelOKViajesModel.FK_DetDestinos_Destinos" FromRole="TO_Destino" ToRole="TO_DetalleDestinos" />
+        </EntityType>
+        <EntityType Name="TO_Experiencias">
+          <Key>
+            <PropertyRef Name="IdExp" />
+          </Key>
+          <Property Name="IdExp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+          <Property Name="Testimonio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdDestino" Type="Int32" Nullable="false" />
+          <Property Name="ActivityDate" Type="DateTime" Precision="0" />
+          <Property Name="Calificacion" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="TO_Destino" Relationship="TravelOKViajesModel.FK__TO_Experi__IdDes__5165187F" FromRole="TO_Experiencias" ToRole="TO_Destino" />
+          <Property Name="ImgDestino" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TO_Salida">
+          <Key>
+            <PropertyRef Name="IdSalida" />
+          </Key>
+          <Property Name="IdSalida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ciudad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TO_Costo">
+          <Key>
+            <PropertyRef Name="Id_Destino" />
+          </Key>
+          <Property Name="CostoLugar" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Id_Destino" Type="Int32" Nullable="false" />
+          <Property Name="TipoPersona" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="TO_Destino" Relationship="TravelOKViajesModel.FK_TO_Costo_TO_Destino" FromRole="TO_Costo" ToRole="TO_Destino" />
+        </EntityType>
+        <Association Name="FK__TO_Experi__IdDes__5165187F">
+          <End Type="TravelOKViajesModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
+          <End Type="TravelOKViajesModel.TO_Experiencias" Role="TO_Experiencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Destino">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Experiencias">
+              <PropertyRef Name="IdDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Costo_TO_Destino">
+          <End Type="TravelOKViajesModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
+          <End Type="TravelOKViajesModel.TO_Costo" Role="TO_Costo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Destino">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Costo">
+              <PropertyRef Name="Id_Destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="spObtieneComunidad_Result">
+          <Property Type="Int32" Name="IdExp" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="450" />
+          <Property Type="String" Name="Testimonio" Nullable="true" />
+          <Property Type="Decimal" Name="Calificacion" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="IdDestino" Nullable="false" />
+          <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ActivityDate" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <EntityType Name="TOA_Usuario">
+          <Key>
+            <PropertyRef Name="nvUsuario" />
+          </Key>
+          <Property Name="nvUsuario" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="nvContraseña" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="nvNombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="nvApPat" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="nvApMat" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="nvCorreo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="dtFecNac" Type="DateTime" Precision="0" />
+          <Property Name="dtFecReg" Type="DateTime" Precision="3" />
+          <Property Name="dtFecAct" Type="DateTime" Precision="3" />
+          <Property Name="Activo" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="spVerificaUsuario_Result">
+          <Property Type="String" Name="nvUsuario" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="nvContraseña" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="nvNombre" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="nvApPat" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="nvApMat" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="nvCorreo" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="dtFecNac" Nullable="true" />
+          <Property Type="DateTime" Name="dtFecReg" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="dtFecAct" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Activo" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="TO_Blog">
+          <Key>
+            <PropertyRef Name="IdBlog" />
+          </Key>
+          <Property Name="IdBlog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nvTitulo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="nvTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="imgBlog" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="dtFechaSubida" Type="DateTime" Precision="3" />
+          <Property Name="Activo" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="spsObtieneDestinosImg_Result">
+          <Property Type="Int32" Name="idViaje" Nullable="false" />
+          <Property Type="String" Name="sTitulo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sSubTit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sDescrip" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="sRutaImg" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="spsObtieneDestinoDet_Result">
+          <Property Type="Int32" Name="idViaje" Nullable="false" />
+          <Property Type="String" Name="sTitulo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sSubTit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sDescrip" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="sRutaImg" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="spsObtieneCarrusel_Result">
+          <Property Type="Int32" Name="Id_Detalle" Nullable="false" />
+          <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="nvRutaArchivo" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <EntityType Name="TO_DetalleDestinos">
+          <Key>
+            <PropertyRef Name="Id_Detalle" />
+          </Key>
+          <Property Name="Id_Detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Destino" Type="Int32" Nullable="false" />
+          <Property Name="nvRutaArchivo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="nvDescripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="dtFechaAlta" Type="DateTime" Precision="3" />
+          <Property Name="bActivo" Type="Boolean" />
+          <NavigationProperty Name="TO_Destino" Relationship="TravelOKViajesModel.FK_DetDestinos_Destinos" FromRole="TO_DetalleDestinos" ToRole="TO_Destino" />
+        </EntityType>
+        <Association Name="FK_DetDestinos_Destinos">
+          <End Type="TravelOKViajesModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
+          <End Type="TravelOKViajesModel.TO_DetalleDestinos" Role="TO_DetalleDestinos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Destino">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_DetalleDestinos">
+              <PropertyRef Name="Id_Destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TravelOKViajesModelStoreContainer" CdmEntityContainer="TravelOKViajesEntities">
+          <EntitySetMapping Name="TO_Usuario">
+            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Usuario">
+              <MappingFragment StoreEntitySet="TO_Usuario">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Contra" ColumnName="Contra" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApePat" ColumnName="ApePat" />
+                <ScalarProperty Name="ApeMat" ColumnName="ApeMat" />
+                <ScalarProperty Name="FechaContrat" ColumnName="FechaContrat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Destino">
+            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Destino">
+              <MappingFragment StoreEntitySet="TO_Destino">
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="nvRutaImg" ColumnName="nvRutaImg" />
+                <ScalarProperty Name="nvDesc" ColumnName="nvDesc" />
+                <ScalarProperty Name="nvSubt" ColumnName="nvSubt" />
+                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
+                <ScalarProperty Name="bPrincipal" ColumnName="bPrincipal" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Experiencias">
+            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Experiencias">
+              <MappingFragment StoreEntitySet="TO_Experiencias">
+                <ScalarProperty Name="ImgDestino" ColumnName="ImgDestino" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
+                <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
+                <ScalarProperty Name="Testimonio" ColumnName="Testimonio" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdExp" ColumnName="IdExp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Salida">
+            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Salida">
+              <MappingFragment StoreEntitySet="TO_Salida">
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Costo">
+            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Costo">
+              <MappingFragment StoreEntitySet="TO_Costo">
+                <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
+                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
+                <ScalarProperty Name="CostoLugar" ColumnName="CostoLugar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spObtieneComunidad" FunctionName="TravelOKViajesModel.Store.spObtieneComunidad">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKViajesModel.spObtieneComunidad_Result">
+                <ScalarProperty Name="IdExp" ColumnName="IdExp" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Testimonio" ColumnName="Testimonio" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="TOA_Usuario">
+            <EntityTypeMapping TypeName="TravelOKViajesModel.TOA_Usuario">
+              <MappingFragment StoreEntitySet="TOA_Usuario">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="dtFecAct" ColumnName="dtFecAct" />
+                <ScalarProperty Name="dtFecReg" ColumnName="dtFecReg" />
+                <ScalarProperty Name="dtFecNac" ColumnName="dtFecNac" />
+                <ScalarProperty Name="nvCorreo" ColumnName="nvCorreo" />
+                <ScalarProperty Name="nvApMat" ColumnName="nvApMat" />
+                <ScalarProperty Name="nvApPat" ColumnName="nvApPat" />
+                <ScalarProperty Name="nvNombre" ColumnName="nvNombre" />
+                <ScalarProperty Name="nvContraseña" ColumnName="nvContraseña" />
+                <ScalarProperty Name="nvUsuario" ColumnName="nvUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spVerificaUsuario" FunctionName="TravelOKViajesModel.Store.spVerificaUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKViajesModel.spVerificaUsuario_Result">
+                <ScalarProperty Name="nvUsuario" ColumnName="nvUsuario" />
+                <ScalarProperty Name="nvContraseña" ColumnName="nvContraseña" />
+                <ScalarProperty Name="nvNombre" ColumnName="nvNombre" />
+                <ScalarProperty Name="nvApPat" ColumnName="nvApPat" />
+                <ScalarProperty Name="nvApMat" ColumnName="nvApMat" />
+                <ScalarProperty Name="nvCorreo" ColumnName="nvCorreo" />
+                <ScalarProperty Name="dtFecNac" ColumnName="dtFecNac" />
+                <ScalarProperty Name="dtFecReg" ColumnName="dtFecReg" />
+                <ScalarProperty Name="dtFecAct" ColumnName="dtFecAct" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spiInsertaSalida" FunctionName="TravelOKViajesModel.Store.spiInsertaSalida" />
+          <EntitySetMapping Name="TO_Blog">
+            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Blog">
+              <MappingFragment StoreEntitySet="TO_Blog">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
+                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
+                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
+                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
+                <ScalarProperty Name="IdBlog" ColumnName="IdBlog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spdEliminaSalida" FunctionName="TravelOKViajesModel.Store.spdEliminaSalida" />
+          <FunctionImportMapping FunctionImportName="spdEliminaSalidaId" FunctionName="TravelOKViajesModel.Store.spdEliminaSalidaId" />
+          <FunctionImportMapping FunctionImportName="spiAgregaImDestinosC" FunctionName="TravelOKViajesModel.Store.spiAgregaImDestinosC" />
+          <FunctionImportMapping FunctionImportName="spsObtieneDestinosImg" FunctionName="TravelOKViajesModel.Store.spsObtieneDestinosImg">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKViajesModel.spsObtieneDestinosImg_Result">
+                <ScalarProperty Name="idViaje" ColumnName="idViaje" />
+                <ScalarProperty Name="sTitulo" ColumnName="sTitulo" />
+                <ScalarProperty Name="sSubTit" ColumnName="sSubTit" />
+                <ScalarProperty Name="sDescrip" ColumnName="sDescrip" />
+                <ScalarProperty Name="sRutaImg" ColumnName="sRutaImg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spsObtieneDestinoDet" FunctionName="TravelOKViajesModel.Store.spsObtieneDestinoDet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKViajesModel.spsObtieneDestinoDet_Result">
+                <ScalarProperty Name="idViaje" ColumnName="idViaje" />
+                <ScalarProperty Name="sTitulo" ColumnName="sTitulo" />
+                <ScalarProperty Name="sSubTit" ColumnName="sSubTit" />
+                <ScalarProperty Name="sDescrip" ColumnName="sDescrip" />
+                <ScalarProperty Name="sRutaImg" ColumnName="sRutaImg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spsObtieneCarrusel" FunctionName="TravelOKViajesModel.Store.spsObtieneCarrusel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKViajesModel.spsObtieneCarrusel_Result">
+                <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="nvRutaArchivo" ColumnName="nvRutaArchivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="TO_DetalleDestinos">
+            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_DetalleDestinos">
+              <MappingFragment StoreEntitySet="TO_DetalleDestinos">
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="dtFechaAlta" ColumnName="dtFechaAlta" />
+                <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
+                <ScalarProperty Name="nvRutaArchivo" ColumnName="nvRutaArchivo" />
+                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
+                <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spiInsertaDestino1" FunctionName="TravelOKViajesModel.Store.spiInsertaDestino" />
+          <FunctionImportMapping FunctionImportName="spiInsertaDetalleDestino" FunctionName="TravelOKViajesModel.Store.spiInsertaDetalleDestino" />
+          <FunctionImportMapping FunctionImportName="spInsertaComunidad2" FunctionName="TravelOKViajesModel.Store.spInsertaComunidad" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

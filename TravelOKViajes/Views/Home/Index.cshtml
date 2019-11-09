@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<link href="~/Content/Project/cssHome.css" rel="stylesheet" />
+<script src="~/Scripts/Project/jsHome.js"></script>
+
+<!--<img id="imLogo1" src="~/Img/letras3.png" />-->
+<div id="dvBar" class="col-12">
+    <div id="ulMen" class="container col-12">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <select class="form-control" id="selSalida">
+                    <option value="0">¿De dónde salimos?</option>
+                </select>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <select class="form-control" id="selDestinos">
+                    <option value="0">¿A dónde vámos?</option>
+                </select>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <select class="form-control" id="selFechas">
+                    <option value="0">Fechas</option>
+                </select>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <button class="btn btselec col-12">¡INICIAR RESERVA!</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="urlInicialHome" value="@Url.Action("InicialHome","Home")" />
+<input type="hidden" id="urlInicialVenta" value="@Url.Action("InicialVenta","Venta")" />

@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "ExperienciaTravel";
+}
+
+<h2 class="d-flex justify-content-center titDest m-auto">Vive tu experiencia Travel Ok</h2>
+<link href="~/Content/Project/cssExperienciaTravel.css" rel="stylesheet" />
+@**@
+
+<div class="container dvExp">
+    <div class="row dvValues bd-example">
+
+    </div>
+    <!-- /content -->
+    <!--Carrusel Dinamico-->
+    <div class="modal fade col-12" id="modal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modalDialog" role="document">
+            <div class="modal-content modalContent">
+                <div class="modal-header modal-header-success">
+                    <h5 class="modal-title" id="exampleModalLabel">Vive una experiencia Travel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container col-12">
+                        <div class="car col-6">
+                            <div id="carouselExampleIndicators" class="carousel slide h-100" data-ride="carousel">
+                                <ol class="carousel-indicators"></ol>
+                                <div class="carousel-inner">
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="dvText col-6 h-100">
+                            <div class="m-auto">
+                                <h1 class="mb-1 mt-5 hTitmodal"></h1>
+                                <h2 class="mb-2 hSubTmodal"></h2>
+                                <div id="dvInfo" class="mb-2">
+                                </div>
+                                <div class="col-12 d-flex justify-content-around mb-2">
+                                    <div class="btn text-white">Itinerario</div>
+                                    <div class="btn text-white">Guia de Viaje</div>
+                                    <div class="btn text-white">Recomendaciones</div>
+                                    <div class="btn text-white">RESERVA AHORA</div>
+                                </div>
+                                <div id="dvBarBaja" class="d-flex justify-content-around col-12">
+                                    <div class="col-6">
+                                        <div id="dvAnu1">
+                                            ¿QUIÉRES REALIZAR EL VIAJE DE TUS SUEÑOS?
+                                        </div>
+                                        <div id="dvAnu2">
+                                            Envíanos un mensaje y un asesor resolverá !TODAS TUS DUDAS¡
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div id="wbtn">
+                                            Mándanos un whatsapp
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fin Carrusel Dinamico-->
+</div>
+
+<!-- /container -->
+<script src="~/Scripts/Project/jsDestinos.js"></script>
+<input type="hidden" id="urlInicioDestinos" value="@Url.Action("InicioDestinos","Home")" />
+<input type="hidden" id="urlObtieneCarrDestino" value="@Url.Action("ObtieneCarrDestino","Home")" />

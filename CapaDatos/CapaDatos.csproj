@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{090F3BE9-2A65-4FA1-9AAD-387FBBBCA09B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CapaDatos</RootNamespace>
+    <AssemblyName>CapaDatos</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\TravelOKViajes\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\TravelOKViajes\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Administrador\CDA_CarruselDEstino.cs" />
+    <Compile Include="Administrador\CDA_Destinos.cs" />
+    <Compile Include="Administrador\CDA_Salidas.cs" />
+    <Compile Include="CD_Comunidad.cs" />
+    <Compile Include="CD_Destinos.cs" />
+    <Compile Include="CD_Salida.cs" />
+    <Compile Include="Administrador\CDA_Usuario.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="spObtieneComunidad_Result.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spsObtieneCarrusel_Result.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spsObtieneDestinoDet_Result.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spsObtieneDestinosImg_Result.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spVerificaUsuario_Result.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TOA_Usuario.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TO_Blog.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TO_Costo.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TO_Destino.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TO_DetalleDestinos.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TO_Experiencias.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TO_Salida.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TO_Usuario.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TravelOKEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TravelOKEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TravelOKEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TravelOKEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TravelOKEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="TravelOkQAModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TravelOkQAModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TravelOkQAModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TravelOkQAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TravelOkQAModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TravelOkQAModel.edmx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="TravelOKEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TravelOKEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TravelOKEntities.edmx.diagram">
+      <DependentUpon>TravelOKEntities.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="TravelOkQAModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TravelOkQAModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TravelOkQAModel.edmx.diagram">
+      <DependentUpon>TravelOkQAModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaModelo\CapaModelo.csproj">
+      <Project>{AF307F7B-DBFB-4FAD-BEA0-043CBC9FEC27}</Project>
+      <Name>CapaModelo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TravelOKEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TravelOKEntities.edmx</DependentUpon>
+      <LastGenOutput>TravelOKEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TravelOKEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TravelOKEntities.edmx</DependentUpon>
+      <LastGenOutput>TravelOKEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="TravelOkQAModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TravelOkQAModel.edmx</DependentUpon>
+      <LastGenOutput>TravelOkQAModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TravelOkQAModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TravelOkQAModel.edmx</DependentUpon>
+      <LastGenOutput>TravelOkQAModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,66 @@
+﻿#imagenCargando {
+    visibility: hidden;
+    height: 3rem;
+}
+
+body {
+    background-image: url('../../Img/4.jpg');
+}
+
+.dvLogeo {
+    border: 3px solid white;
+    border-radius: .4rem;
+    height: 29rem;
+    width: 28rem;
+    margin: 0 auto;
+}
+
+.secSuperior {
+    text-align: center;
+    color: white;
+    height: 5rem;
+}
+
+.secCentral {
+    display: block;
+    margin: 0 auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.ulCampLogeo li {
+    display: block;
+    margin-top: 11%;
+}
+
+.ulCampLogeo {
+    padding: 0px;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 13%;
+    text-align: center;
+}
+
+#hBienv {
+    color: white;
+    margin-bottom: 15%;
+}
+
+#btnIniciarSesion {
+    border: 2px solid #a9d9d0;
+    background: white;
+    color: teal;
+}
+
+#logoPrincipal {
+    display: block;
+    float: left;
+    width: 15%;
+    margin-right: 5%;
+}
+
+h1 {
+    display: block;
+    float: left;
+    width: 60%;
+}

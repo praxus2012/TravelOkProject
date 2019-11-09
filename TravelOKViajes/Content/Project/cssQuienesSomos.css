@@ -1,0 +1,47 @@
+﻿#liQui {
+    border-top-style: solid;
+}
+.dvEmpresa {
+    border-radius: 0.5rem;
+    opacity: 0.9;
+    font-size: 23pt;
+    text-align: left;
+}
+
+body {
+   background-color: #ffffff;
+}
+
+.dvQuien {
+    opacity: 0.8;
+    font-size: 23pt;
+    text-align: justify;
+    margin-top:2rem;
+    margin-bottom:3rem;
+}
+
+li {
+    display: block;
+}
+
+#carouselExampleControls {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+#ulVal{
+    margin:0px;
+    padding:0px;
+}
+
+#dvTitQuien{
+    margin-top:2%;
+}
+
+.card-group{
+    font-size:17pt;
+}
+
+.card-title{
+    font-size:2.25rem;
+}
