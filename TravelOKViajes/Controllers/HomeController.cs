@@ -13,6 +13,10 @@ namespace TravelOKViajes.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Prueba de Git hub
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
