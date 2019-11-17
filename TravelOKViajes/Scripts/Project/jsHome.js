@@ -82,6 +82,6 @@ function LlamaIniciarVenta(detVenta) {
 }
 function successIniciaVenta(data) {
     if (data.Exito) {
-        window.location.href = '/Venta/Index';
+        window.location.href = '/Venta/SeleccionVenta';
     }
 }

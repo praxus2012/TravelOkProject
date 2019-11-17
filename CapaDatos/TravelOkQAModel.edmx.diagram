@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="41a18d08b2614a97a64bd68171b22ccb" Name="Diagram1">
-        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Destino" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Experiencias" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Salida" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Usuario" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Costo" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <AssociationConnector Association="DB_A4B5D6_TravelokkModel.FK__TO_Experi__IdDes__5165187F" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Destino" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Blog" Width="1.5" PointX="5.375" PointY="6.75" />
-        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TOA_Usuario" Width="1.5" PointX="7.375" PointY="6.75" />
-        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_DetalleDestinos" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Blog" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Destino" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_DetalleDestinos" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Experiencias" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Salida" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Usuario" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TOA_Usuario" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Costo" Width="1.5" PointX="3" PointY="7.625" />
+        <AssociationConnector Association="DB_A4B5D6_TravelokkModel.FK__TO_Experi__IdDes__5AEE82B9" />
         <AssociationConnector Association="DB_A4B5D6_TravelokkModel.FK_DetDestinos_Destinos" />
+        <AssociationConnector Association="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Destino" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

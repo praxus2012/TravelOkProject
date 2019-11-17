@@ -19,11 +19,34 @@ namespace TravelOKViajes.Controllers
         }
 
         [HttpPost]
-        public ActionResult InicialVenta(clsVentaDet detVenta)
+        public ActionResult InicialVenta(cmVentaDet detVenta)
         {
+            /*if (Session["Activo"] == null)
+            {
+                RedirectToAction("Index", "Login");
+            }
+            return View();*/
+            /*return RedirectToAction("SeleccionVenta");*/
             var resultado = new JObject();            
             resultado["Exito"] = true;
             return Content(resultado.ToString());
+        }
+
+        public ActionResult DetalleVenta()
+        {
+            return View();
+        }
+        public ActionResult SeleccionVenta()
+        {
+            /*if (Session["Activo"] == null)
+            {
+                RedirectToAction("Index", "Login");
+            }
+            return View();*/
+            return View();/*
+            var resultado = new JObject();            
+            resultado["Exito"] = true;
+            return Content(resultado.ToString());*/
         }
 
         // GET: Venta/Details/5

@@ -399,6 +399,7 @@
     <Content Include="Img\thumbs\Selva Maya.png" />
     <Content Include="Img\thumbs\Tepoztlán.png" />
     <Content Include="Img\thumbs\Villa Iluminada.png" />
+    <Content Include="Img\Ventas\Salidas.PNG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Project\Bootstrap\bootstrap-grid.css.map" />
@@ -472,6 +473,8 @@
     <Content Include="Views\Home\Terminos.cshtml" />
     <Content Include="Views\Logueo\TravelInicio.cshtml" />
     <Content Include="Views\Logueo\TravelRegistro.cshtml" />
+    <Content Include="Views\Venta\SeleccionVenta.cshtml" />
+    <Content Include="Views\Venta\DetalleVenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

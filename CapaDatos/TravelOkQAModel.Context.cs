@@ -27,16 +27,16 @@ namespace CapaDatos
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<TO_Blog> TO_Blog { get; set; }
         public virtual DbSet<TO_Destino> TO_Destino { get; set; }
+        public virtual DbSet<TO_DetalleDestinos> TO_DetalleDestinos { get; set; }
         public virtual DbSet<TO_Experiencias> TO_Experiencias { get; set; }
         public virtual DbSet<TO_Salida> TO_Salida { get; set; }
         public virtual DbSet<TO_Usuario> TO_Usuario { get; set; }
-        public virtual DbSet<TO_Costo> TO_Costo { get; set; }
-        public virtual DbSet<TO_Blog> TO_Blog { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
-        public virtual DbSet<TO_DetalleDestinos> TO_DetalleDestinos { get; set; }
+        public virtual DbSet<TO_Costo> TO_Costo { get; set; }
     
-        public virtual int spInsertaComunidad(string nombre, string testimonio, Nullable<int> idViaje, Nullable<decimal> calificacion)
+        public virtual int spInsertaComunidad(string nombre, string testimonio, Nullable<int> idViaje, Nullable<decimal> calificacion, byte[] imgDestino)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("Nombre", nombre) :
@@ -54,7 +54,11 @@ namespace CapaDatos
                 new ObjectParameter("Calificacion", calificacion) :
                 new ObjectParameter("Calificacion", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertaComunidad", nombreParameter, testimonioParameter, idViajeParameter, calificacionParameter);
+            var imgDestinoParameter = imgDestino != null ?
+                new ObjectParameter("ImgDestino", imgDestino) :
+                new ObjectParameter("ImgDestino", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertaComunidad", nombreParameter, testimonioParameter, idViajeParameter, calificacionParameter, imgDestinoParameter);
         }
     
         public virtual ObjectResult<spObtieneComunidad_Result> spObtieneComunidad()
@@ -97,13 +101,29 @@ namespace CapaDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiAgregaImDestinosC", id_DestinoParameter, nvRutaArchivoParameter, nvDescripcionParameter);
         }
     
-        public virtual int spiInsertaDestino(string nvDestino)
+        public virtual int spiInsertaDestino(string nvDestino, string nvTitulo, string nvSubt, string nvDesc, Nullable<bool> bPrincipal)
         {
             var nvDestinoParameter = nvDestino != null ?
                 new ObjectParameter("nvDestino", nvDestino) :
                 new ObjectParameter("nvDestino", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaDestino", nvDestinoParameter);
+            var nvTituloParameter = nvTitulo != null ?
+                new ObjectParameter("nvTitulo", nvTitulo) :
+                new ObjectParameter("nvTitulo", typeof(string));
+    
+            var nvSubtParameter = nvSubt != null ?
+                new ObjectParameter("nvSubt", nvSubt) :
+                new ObjectParameter("nvSubt", typeof(string));
+    
+            var nvDescParameter = nvDesc != null ?
+                new ObjectParameter("nvDesc", nvDesc) :
+                new ObjectParameter("nvDesc", typeof(string));
+    
+            var bPrincipalParameter = bPrincipal.HasValue ?
+                new ObjectParameter("bPrincipal", bPrincipal) :
+                new ObjectParameter("bPrincipal", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaDestino", nvDestinoParameter, nvTituloParameter, nvSubtParameter, nvDescParameter, bPrincipalParameter);
         }
     
         public virtual int spiInsertaSalida(string nvSalida)
@@ -149,6 +169,44 @@ namespace CapaDatos
                 new ObjectParameter("Id_Destino", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtieneCarrusel_Result>("spsObtieneCarrusel", id_DestinoParameter);
+        }
+    
+        public virtual int spiAgregaBlog(string nvTitulo, string nvTexto, byte[] imgBlog)
+        {
+            var nvTituloParameter = nvTitulo != null ?
+                new ObjectParameter("nvTitulo", nvTitulo) :
+                new ObjectParameter("nvTitulo", typeof(string));
+    
+            var nvTextoParameter = nvTexto != null ?
+                new ObjectParameter("nvTexto", nvTexto) :
+                new ObjectParameter("nvTexto", typeof(string));
+    
+            var imgBlogParameter = imgBlog != null ?
+                new ObjectParameter("imgBlog", imgBlog) :
+                new ObjectParameter("imgBlog", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiAgregaBlog", nvTituloParameter, nvTextoParameter, imgBlogParameter);
+        }
+    
+        public virtual int spiInsertaDetalleDestino(Nullable<int> idDestino, string nvRuta, string nvDescripción, Nullable<bool> bActivo)
+        {
+            var idDestinoParameter = idDestino.HasValue ?
+                new ObjectParameter("idDestino", idDestino) :
+                new ObjectParameter("idDestino", typeof(int));
+    
+            var nvRutaParameter = nvRuta != null ?
+                new ObjectParameter("nvRuta", nvRuta) :
+                new ObjectParameter("nvRuta", typeof(string));
+    
+            var nvDescripciónParameter = nvDescripción != null ?
+                new ObjectParameter("nvDescripción", nvDescripción) :
+                new ObjectParameter("nvDescripción", typeof(string));
+    
+            var bActivoParameter = bActivo.HasValue ?
+                new ObjectParameter("bActivo", bActivo) :
+                new ObjectParameter("bActivo", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaDetalleDestino", idDestinoParameter, nvRutaParameter, nvDescripciónParameter, bActivoParameter);
         }
     }
 }
