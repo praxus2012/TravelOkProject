@@ -97,5 +97,11 @@ namespace TravelOKViajes.Controllers
                 return View();
             }
         }
+
+        //  [HttpPost]
+        public ActionResult ConfirmaVenta()
+        {
+            return View();
+        }
     }
 }
