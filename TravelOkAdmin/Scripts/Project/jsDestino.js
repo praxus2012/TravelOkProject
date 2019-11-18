@@ -43,21 +43,21 @@ function successObtieneDestinos(data) {
 $(document).on('click', '#btnInsertaDestino', function (e) {
 
     if ($('#chActivo').is(':checked')) {
-        CHECADO = 1;              
+        CHECADO = 1;
     }
     else {
-        CHECADO = 0;     
+        CHECADO = 0;
     }
 
-    
+
     if ($('#inDestino').val() != '') {
         var CDestino = {
             sDestino: $('#inDestino').val(),
             sTitulo: $('#inTitulo').val(),
             sSubTit: $('#inSubtitulo').val(),
             sDescrip: $('#inDescripcion').val(),
-            bPrincipal: CHECADO      
-         
+            bPrincipal: CHECADO
+
 
         };
         LLamaInsertaDestino(CDestino);
@@ -96,29 +96,29 @@ function SuccessLlamadaInsertaDestino(data) {
     }
 }
 
-$(document).on('click', '#btnInsertaDetDestino', function (e) {  
+$(document).on('click', '#btnInsertaDetDestino', function (e) {
 
-      if ($('#chActivoDetDest').is(':checked')) {
-           CHECADO_det = 1;
-       }
-       else {
-           CHECADO_det = 0;
-       }
-
-
-      if ($('#selDestinos2').val() != '') {
-           var CDetDestino = {
-               iDestino: $('#selDestinos2').val(),
-               sRutaImg: $('#inFotoDetDestino').val(),
-               sDescripcion: $('#inDescDetDestino').val(),
-               bActivo: CHECADO_det
+    if ($('#chActivoDetDest').is(':checked')) {
+        CHECADO_det = 1;
+    }
+    else {
+        CHECADO_det = 0;
+    }
 
 
-           };
-          LLamaInsertaDetDestino(CDetDestino);
-       } else {
-           MensajeAdvertencia('No ha llenado los campos requeridos');
-       }
+    if ($('#selDestinos2').val() != '') {
+        var CDetDestino = {
+            iDestino: $('#selDestinos2').val(),
+            sRutaImg: $('#inFotoDetDestino').val(),
+            sDescripcion: $('#inDescDetDestino').val(),
+            bActivo: CHECADO_det
+
+
+        };
+        LLamaInsertaDetDestino(CDetDestino);
+    } else {
+        MensajeAdvertencia('No ha llenado los campos requeridos');
+    }
 });
 
 
@@ -140,11 +140,11 @@ function LLamaInsertaDetDestino(CDetDestino) {
 
 function SuccessLlamadaInsertaDetDestino(data) {
     if (data.Exito) {
-        MensajeExito('Se ha agregado el detalle destino correctamente');       
+        MensajeExito('Se ha agregado el detalle destino correctamente');
 
         $('#selDestinos2').val('');
         $('#inFotoDetDestino').val('');
-        $('#inDescDetDestino').val('');       
+        $('#inDescDetDestino').val('');
         $("#chActivoDetDest").prop("checked", false);
         CHECADO = 0;
     } else {

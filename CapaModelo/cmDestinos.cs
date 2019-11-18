@@ -17,3 +17,4 @@ namespace CapaModelo
         public bool bPrincipal { get; set; }
     }
 }
+

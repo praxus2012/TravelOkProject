@@ -9,10 +9,12 @@ namespace CapaDatos.Administrador
     public class CDA_Salidas
     {
 
+
+
         public bool bEliminaSalidaId(int idSalida)
         {
-            using(var contexto= new TravelOKViajesEntities())//local
-            //using (var contexto = new TravelOKEntitiesQA())//QA
+            //using (var contexto = new TravelOKViajesEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
                 {
@@ -22,7 +24,7 @@ namespace CapaDatos.Administrador
                     }
                     return false;
                 }
-                catch(Exception x)
+                catch (Exception x)
                 {
                     throw x;
                 }
@@ -31,8 +33,8 @@ namespace CapaDatos.Administrador
 
         public bool bEliminaSalidaCiudad(string sCiudad)
         {
-            using (var contexto = new TravelOKViajesEntities())//local
-            //using (var contexto = new TravelOKEntitiesQA())//QA
+            //using (var contexto = new TravelOKViajesEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
                 {
@@ -51,8 +53,8 @@ namespace CapaDatos.Administrador
         }
         public bool bInsertaSalida(string sSalida)
         {
-            using (var contexto = new TravelOKViajesEntities())//local
-            //using (var contexto = new TravelOKEntitiesQA())//QA
+            //using (var contexto = new TravelOKViajesEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
                 {
@@ -62,6 +64,7 @@ namespace CapaDatos.Administrador
                 }
                 catch (Exception x)
                 {
+                    x.GetHashCode();
                     return false;
                 }
             }

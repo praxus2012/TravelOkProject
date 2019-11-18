@@ -13,8 +13,8 @@ namespace CapaDatos
         {
             try
             {
-                using (var contexto = new TravelOKViajesEntities())//local
-                //using (var contexto = new TravelOKEntitiesQA())//QA
+                //using (var contexto = new TravelOKViajesEntities())//local
+                using (var contexto = new TravelOKEntitiesQA())//QA
                 {
                     TOA_Usuario Tuser = new TOA_Usuario();
                     Tuser = (from Tu in contexto.spVerificaUsuario(user.nvUsuario, user.nvContraseña)

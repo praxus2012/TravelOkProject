@@ -11,17 +11,19 @@ namespace CapaDatos.Administrador
     {
         public bool bInsertaDestino(cmDestinos CDestino)
         {
-            using (var contexto = new TravelOKViajesEntities())//local
-            //using (var contexto = new TravelOKEntitiesQA())//QA
+            //using (var contexto = new TravelOKViajesEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
                 {
                     if (contexto.spiInsertaDestino(CDestino.sDestino, CDestino.sTitulo, CDestino.sSubTit, CDestino.sDescrip, CDestino.bPrincipal) == -1)
+
                         return true;
                     return false;
                 }
                 catch (Exception x)
                 {
+                    x.GetHashCode();
                     return false;
                 }
             }

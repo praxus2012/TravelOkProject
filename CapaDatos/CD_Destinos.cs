@@ -18,7 +18,7 @@ namespace CapaDatos
                 lsDestinos = contexto.TO_Destino.ToList();
             }
             return lsDestinos;
-        }
+        } 
 
         public List<cmDestinos> lsObtieneImgDestinos()
         {

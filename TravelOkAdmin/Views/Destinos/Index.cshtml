@@ -4,81 +4,81 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <div id="accordion">
-        <div class="card">
-            <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Destinos
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
-                    <h2>Inserción destino</h2>
-                    <form class="form-group">
-                        <div id="dinDestino">Destino</div>
-                        <input type="text" id="inDestino" class="form-control" placeholder="Escribe nuestro destino." />
-                        <div id="dinTitulo">Título</div>
-                        <input type="text" id="inTitulo" class="form-control" placeholder="Escribe el titulo." />
-                        <div id="dinSubtitulo">Subtitulo</div>
-                        <input type="text" id="inSubtitulo" class="form-control" placeholder="Escribe el subtitulo." />
-                        <div id="dinDescripcion">Descripción</div>
-                        <input type="text" id="inDescripcion" class="form-control" placeholder="Escribe la descripcion." />
-                        <div id="dvPantalla" class="dvTexto">Mostrar en pantalla principal?</div>
-                        <label class="switch">
-                            <input type="checkbox" id="chActivo">
-                            <span class="slider round"></span>
-                        </label>
-                        <div class="clr"></div>
-                        <div id="btnInsertaDestino" class="btn btn-primary">Inserta Destino</div>
-                    </form>
-                    <h2>Eliminar destino</h2>
-
-                    <form class="form-group">
-                        <select class="form-control" id="selDestinos">
-                            <option value="0">¿Selecciona el destino a eliminar?</option>
-                        </select>
-                        <div id="btnEliminaDestino" class="btn btn-primary">Elimina Destino</div>
-                    </form>
-                </div>
-            </div>
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Destinos
+                </button>
+            </h5>
         </div>
-        <div class="card">
-            <div class="card-header" id="headingTwo">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Carrusel
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body">
-                    <h2>Carrusel</h2>
-                    <form class="form-group">
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <h2>Inserción destino</h2>
+                <form class="form-group">
+                    <div id="dinDestino">Destino</div>
+                    <input type="text" id="inDestino" class="form-control" placeholder="Escribe nuestro destino." />
+                    <div id="dinTitulo">Título</div>
+                    <input type="text" id="inTitulo" class="form-control" placeholder="Escribe el titulo." />
+                    <div id="dinSubtitulo">Subtitulo</div>
+                    <input type="text" id="inSubtitulo" class="form-control" placeholder="Escribe el subtitulo." />
+                    <div id="dinDescripcion">Descripción</div>
+                    <input type="text" id="inDescripcion" class="form-control" placeholder="Escribe la descripcion." />
+                    <div id="dvPantalla" class="dvTexto">Mostrar en pantalla principal?</div>
+                    <label class="switch">
+                        <input type="checkbox" id="chActivo">
+                        <span class="slider round"></span>
+                    </label>
+                    <div class="clr"></div>
+                    <div id="btnInsertaDestino" class="btn btn-primary">Inserta Destino</div>
+                </form>
+                <h2>Eliminar destino</h2>
 
-                        <div id="disDDestino">Selecciona el destino</div>
-
-                        <select class="form-control" id="selDestinos2">
-                            <option value="0">Selecciona el destino</option>
-                        </select>
-
-                        <div id="idsFoto">Nombre de la foto</div>
-                        <input type="text" id="inFotoDetDestino" class="form-control" placeholder="Escribe nombre de la foto." />
-                        <div id="dsDescrip">Descripción</div>
-                        <input type="text" id="inDescDetDestino" class="form-control" placeholder="Escribe descripción de la foto." />
-                        <div id="dvPantallaDetDest" class="dvTexto">Mostrar en pantalla la foto?</div>
-                        <label class="switch">
-                            <input type="checkbox" id="chActivoDetDest">
-                            <span class="slider round"></span>
-                        </label>
-                        <div class="clr"></div>
-                        <div id="btnInsertaDetDestino" class="btn btn-primary">Inserta DetalleDestino</div>
-                    </form>
-                </div>
+                <form class="form-group">
+                    <select class="form-control" id="selDestinos">
+                        <option value="0">¿Selecciona el destino a eliminar?</option>
+                    </select>
+                    <div id="btnEliminaDestino" class="btn btn-primary">Elimina Destino</div>
+                </form>
             </div>
         </div>
     </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Carrusel
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                <h2>Carrusel</h2>
+                <form class="form-group">
+
+                    <div id="disDDestino">Selecciona el destino</div>
+
+                    <select class="form-control" id="selDestinos2">
+                        <option value="0">Selecciona el destino</option>
+                    </select>
+
+                    <div id="idsFoto">Nombre de la foto</div>
+                    <input type="text" id="inFotoDetDestino" class="form-control" placeholder="Escribe nombre de la foto." />
+                    <div id="dsDescrip">Descripción</div>
+                    <input type="text" id="inDescDetDestino" class="form-control" placeholder="Escribe descripción de la foto." />
+                    <div id="dvPantallaDetDest" class="dvTexto">Mostrar en pantalla la foto?</div>
+                    <label class="switch">
+                        <input type="checkbox" id="chActivoDetDest">
+                        <span class="slider round"></span>
+                    </label>
+                    <div class="clr"></div>
+                    <div id="btnInsertaDetDestino" class="btn btn-primary">Inserta DetalleDestino</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="~/Scripts/Project/jsDestino.js"></script>
 <link href="~/Content/Project/cssDestino.css" rel="stylesheet" />
