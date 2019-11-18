@@ -11,8 +11,8 @@ namespace CapaDatos.Administrador
     {
         public bool bInsertaDestino(cmDestinos CDestino)
         {
-            using (var contexto = new TravelOKViajesEntities())//local
-                                                               // using (var contexto = new TravelOKEntitiesQA())//QA
+            //using (var contexto = new TravelOKViajesEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
                 {

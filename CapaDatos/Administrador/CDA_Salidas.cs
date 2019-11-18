@@ -11,8 +11,8 @@ namespace CapaDatos.Administrador
 
         public bool bEliminaSalidaId(int idSalida)
         {
-            using(var contexto= new TravelOKViajesEntities())//local
-            //using (var contexto = new TravelOKEntitiesQA())//QA
+            //using(var contexto= new TravelOKViajesEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
                 {
@@ -31,8 +31,8 @@ namespace CapaDatos.Administrador
 
         public bool bEliminaSalidaCiudad(string sCiudad)
         {
-            using (var contexto = new TravelOKViajesEntities())//local
-            //using (var contexto = new TravelOKEntitiesQA())//QA
+            //using (var contexto = new TravelOKViajesEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
                 {
@@ -51,8 +51,8 @@ namespace CapaDatos.Administrador
         }
         public bool bInsertaSalida(string sSalida)
         {
-            using (var contexto = new TravelOKViajesEntities())//local
-            //using (var contexto = new TravelOKEntitiesQA())//QA
+            //using (var contexto = new TravelOKViajesEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
                 {
