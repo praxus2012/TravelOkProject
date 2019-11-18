@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -8,13 +7,17 @@
 <form>
     <input class="form-control" id="inSalida" placeholder="Escribe de donde salimos." />
     <div id="btnAgregarSal" class="btn btn-primary">Agregar Salida</div>
-
-    <input class="form-control" id="inEliminaCiudad" placeholder="Escribe la ciudad que deseas eliminar." />
+</form>
+<form class="form-group">
+    <select class="form-control" id="selSalida">
+        <option value="0">Seleccione la Salida que deseas eliminar</option>
+    </select>
     <div id="btnEliminaCiudad" class="btn btn-primary">Eliminar Ciudad</div>
 </form>
 
 <script src="~/Scripts/Project/jsSalida.js"></script>
 <link href="~/Content/Project/cssSalida.css" rel="stylesheet" />
 
+<input type="hidden" id="urlDestinoInicial" value="@Url.Action("ObtieneSaalidas","Salidas")" />
 <input type="hidden" id="urlSalidaInserta" value="@Url.Action("InsertaSalida","Salidas")" />
 <input type="hidden" id="urlSalidaEliminaId" value="@Url.Action("EliminaSalidaId","Salidas")" />

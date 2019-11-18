@@ -1,4 +1,5 @@
-﻿using CapaDatos.Administrador;
+﻿using CapaDatos;
+using CapaDatos.Administrador;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,34 @@ namespace TravelOkAdmin.Controllers
             return View();
         }
 
+        public ActionResult ObtieneSaalidas()
+        {
+
+
+            var resultado = new JObject();
+            CD_Salida cdSalida = new CD_Salida();
+            List<TO_Salida> lsSalidas = new List<TO_Salida>();
+            lsSalidas = cdSalida.lsObtieneSalidas();
+            if (lsSalidas.Count > 0)
+            {
+                JToken arSalidas = new JArray(from d in lsSalidas
+                                              select new JObject(
+                                                 new JProperty("Salida", d.IdSalida),
+                                                 new JProperty("Ciudad", d.Ciudad)
+                                               ));
+                resultado["LsSalidas"] = arSalidas;
+                resultado["Exito"] = true;
+            }
+            return Content(resultado.ToString());
+        }
+
         public ActionResult EliminaSalidaId(int idSalida)
         {
             var resultado = new JObject();
             CDA_Salidas cdaSalida = new CDA_Salidas();
             if (cdaSalida.bEliminaSalidaId(idSalida))
             {
-                resultado["Exito"] = true;               
+                resultado["Exito"] = true;
             }
             else
             {
@@ -36,7 +58,8 @@ namespace TravelOkAdmin.Controllers
         {
             var resultado = new JObject();
             CDA_Salidas cdaSalida = new CDA_Salidas();
-            if (cdaSalida.bEliminaSalidaCiudad(sCiudad)) {
+            if (cdaSalida.bEliminaSalidaCiudad(sCiudad))
+            {
                 resultado["Exito"] = true;
             }
             else
