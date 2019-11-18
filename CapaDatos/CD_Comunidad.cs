@@ -12,12 +12,12 @@ namespace CapaDatos
         public bool bInsertaComunidad(cmComunidad datosCom)
         {
             bool bInsertado = false;
-            using (var contexto = new TravelOKViajesEntities())//local
-            //using (var contexto = new TravelOKEntitiesQA())//QA
+            //using (var contexto = new TravelOKViajesEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
                 {
-                    if (contexto.spInsertaComunidad(datosCom.sNombre, datosCom.sTestimonio, datosCom.IdViaje, datosCom.iCalificacion) == -1)
+                    if (contexto.spInsertaComunidad(datosCom.sNombre, datosCom.sTestimonio, datosCom.IdViaje, datosCom.iCalificacion, datosCom.ImgDestino) == -1)
                         bInsertado = true;
                 }catch(Exception x)
                 {
@@ -30,8 +30,8 @@ namespace CapaDatos
         public List<cmComunidad> lsObtieneComunidad()
         {
             List<cmComunidad> lsComunidad = new List<cmComunidad>();
-            using(var contexto = new TravelOKViajesEntities())//Local
-            //using (var contexto = new TravelOKEntitiesQA())//QA
+            //using(var contexto = new TravelOKViajesEntities())//Local
+            using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 lsComunidad = (from tblComunidad in contexto.spObtieneComunidad()
                                select new cmComunidad

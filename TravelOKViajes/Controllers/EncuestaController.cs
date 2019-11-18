@@ -9,6 +9,8 @@ namespace TravelOKViajes.Controllers
     public class EncuestaController : Controller
     {
         // GET: Encuesta
+		//prueba Git
+		//prueba dos
         public ActionResult Index()
         {
             return View();

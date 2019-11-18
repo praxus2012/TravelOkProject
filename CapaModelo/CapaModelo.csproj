@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="cmComunidad.cs" />
-    <Compile Include="clsVentaDet.cs" />
+    <Compile Include="cmVentaDet.cs" />
     <Compile Include="cmCarruselDestino.cs" />
     <Compile Include="cmDestinos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

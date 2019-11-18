@@ -23,17 +23,17 @@ namespace CapaDatos
     
         public int IdViaje { get; set; }
         public string Destino { get; set; }
-        public Nullable<bool> bPrincipal { get; set; }
         public string nvTitulo { get; set; }
         public string nvSubt { get; set; }
         public string nvDesc { get; set; }
         public string nvRutaImg { get; set; }
+        public Nullable<bool> bPrincipal { get; set; }
         public Nullable<bool> bActivo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TO_Experiencias> TO_Experiencias { get; set; }
-        public virtual TO_Costo TO_Costo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TO_DetalleDestinos> TO_DetalleDestinos { get; set; }
+        public virtual TO_Costo TO_Costo { get; set; }
     }
 }
