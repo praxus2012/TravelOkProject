@@ -35,6 +35,7 @@ namespace CapaDatos
         public virtual DbSet<TO_Usuario> TO_Usuario { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Costo> TO_Costo { get; set; }
+        public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
     
         public virtual int spInsertaComunidad(string nombre, string testimonio, Nullable<int> idViaje, Nullable<decimal> calificacion, byte[] imgDestino)
         {
@@ -207,6 +208,33 @@ namespace CapaDatos
                 new ObjectParameter("bActivo", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaDetalleDestino", idDestinoParameter, nvRutaParameter, nvDescripciónParameter, bActivoParameter);
+        }
+    
+        public virtual ObjectResult<spsObtFechaViajes_Result> spsObtFechaViajes(Nullable<int> idSalida, Nullable<int> idDestino)
+        {
+            var idSalidaParameter = idSalida.HasValue ?
+                new ObjectParameter("IdSalida", idSalida) :
+                new ObjectParameter("IdSalida", typeof(int));
+    
+            var idDestinoParameter = idDestino.HasValue ?
+                new ObjectParameter("IdDestino", idDestino) :
+                new ObjectParameter("IdDestino", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtFechaViajes_Result>("spsObtFechaViajes", idSalidaParameter, idDestinoParameter);
+        }
+    
+        public virtual ObjectResult<spsObtLugarDestinoViajes_Result> spsObtLugarDestinoViajes(Nullable<int> idSalida)
+        {
+            var idSalidaParameter = idSalida.HasValue ?
+                new ObjectParameter("IdSalida", idSalida) :
+                new ObjectParameter("IdSalida", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtLugarDestinoViajes_Result>("spsObtLugarDestinoViajes", idSalidaParameter);
+        }
+    
+        public virtual ObjectResult<spsObtLugarSalidaViajes_Result> spsObtLugarSalidaViajes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtLugarSalidaViajes_Result>("spsObtLugarSalidaViajes");
         }
     }
 }

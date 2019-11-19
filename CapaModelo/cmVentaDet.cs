@@ -8,8 +8,11 @@ namespace CapaModelo
 {
     public class cmVentaDet
     {
+        public int idVenta { get; set; }
         public int idSalida { get; set; }
+        public string sSalida { get; set; }
         public int idDestino { get; set; }
-        public string sFecha { get; set; }
+        public string sDestino { get; set; }
+        public DateTime? dtFecha { get; set; }
     }
 }

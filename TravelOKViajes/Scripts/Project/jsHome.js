@@ -3,6 +3,7 @@
         valueNames: ['dropdown-item-name']
     };
     ObtieneDestinos();
+    ActivaCombo();
     var hackerList = new List('dropdown-sorted-list', options);
 });
 
@@ -26,19 +27,6 @@ function ObtieneDestinos() {
 function successObtieneDestinos(data) {
     if (data.Exito) {
         var valact = 0;
-        $.each(data.LsDestinos, function (i) {
-            $.each(data.LsDestinos[i], function (key, val) {
-                if ($.isNumeric(val))
-                    valact = val;
-                else {
-                    $('#selDestinos')
-                        .append($("<option></option>")
-                            .attr("value", valact)
-                            .text(val));
-                }
-            });
-        });
-        valact = 0;
         $.each(data.LsSalidas, function (i) {
             $.each(data.LsSalidas[i], function (key, val) {
                 if ($.isNumeric(val))
@@ -83,5 +71,76 @@ function LlamaIniciarVenta(detVenta) {
 function successIniciaVenta(data) {
     if (data.Exito) {
         window.location.href = '/Venta/SeleccionVenta';
+    }
+}
+
+
+
+function LlamaRecupDestVta(detVenta) {
+    var url = $('#urlRecuperaDestinos').val();
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: JSON.stringify({ detVenta }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        success: successRecupDestVta,
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
+            alert('test');
+        }
+    });
+}
+function successRecupDestVta(data) {
+    if (data.Exito) {
+        $.each(data.LsDestinos, function (i) {
+            $('#selDestinos')
+                .append($("<option></option>")
+                    .attr("value", data.LsDestinos[i].IdDest)
+                    .text(data.LsDestinos[i].Destino));
+        });
+    }
+}
+
+function ActivaCombo() {
+    $('#selDestinos').change(function () {
+        var detVenta = {
+            idDestino: $('#selDestinos').val(),
+            idSalida: $('#selSalida').val()
+        };
+        LlamaRecupFechVta(detVenta);
+    });
+
+    $('#selSalida').change(function () {
+        var detVenta = {
+            idSalida: $('#selSalida').val()
+        };
+        LlamaRecupDestVta(detVenta);
+    });
+}
+
+function LlamaRecupFechVta(detVenta) {
+    var url = $('#urlRecuperaFechas').val();
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: JSON.stringify({ detVenta }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        success: successRecupFechVta,
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
+            alert('Error de datos');
+        }
+    });
+}
+function successRecupFechVta(data) {
+    if (data.Exito) {
+        $.each(data.LsFechaVta, function (i) {
+            $('#selFechas')
+                .append($("<option></option>")
+                    .attr("value", data.LsFechaVta[i].IdVenta)
+                    .text(data.LsFechaVta[i].dtFecha));
+        });
     }
 }

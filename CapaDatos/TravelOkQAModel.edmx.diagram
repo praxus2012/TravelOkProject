@@ -16,6 +16,9 @@
         <AssociationConnector Association="DB_A4B5D6_TravelokkModel.FK__TO_Experi__IdDes__5AEE82B9" />
         <AssociationConnector Association="DB_A4B5D6_TravelokkModel.FK_DetDestinos_Destinos" />
         <AssociationConnector Association="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Destino" />
+        <EntityTypeShape EntityType="DB_A4B5D6_TravelokkModel.TO_Viajes" Width="1.5" PointX="8" PointY="5.375" />
+        <AssociationConnector Association="DB_A4B5D6_TravelokkModel.FK_TO_Viajes_TO_Destino" />
+        <AssociationConnector Association="DB_A4B5D6_TravelokkModel.FK_TO_Viajes_TO_Salida" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

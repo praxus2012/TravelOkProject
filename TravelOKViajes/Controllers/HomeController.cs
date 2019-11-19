@@ -34,30 +34,19 @@ namespace TravelOKViajes.Controllers
             var resultado = new JObject();
             try
             {
-                CD_Destinos cdDestino = new CD_Destinos();
-                List<TO_Destino> lsDestinos = new List<TO_Destino>();
-                lsDestinos = cdDestino.lsObtieneDestinos();
-                if (lsDestinos.Count > 0)
+                CD_Viajes cdViaje = new CD_Viajes();
+                List<cmVentaDet> lsVentaDetSal = new List<cmVentaDet>();
+                lsVentaDetSal = cdViaje.fnlsRecuperaSalida();
+
+                if (lsVentaDetSal.Count > 0)
                 {
-                    JToken arDestinos = new JArray(from d in lsDestinos
-                                                   select new JObject(
-                                                      new JProperty("Viaje", d.IdViaje),
-                                                      new JProperty("Destino", d.Destino)
-                                                    ));
-                    resultado["LsDestinos"] = arDestinos;
-                    resultado["Exito"] = true;
-                }
-                CD_Salida cdSalida = new CD_Salida();
-                List<TO_Salida> lsSalida = new List<TO_Salida>();
-                lsSalida = cdSalida.lsObtieneSalidas();
-                if (lsSalida.Count > 0)
-                {
-                    JToken arSalidas = new JArray(from d in lsSalida
+                    JToken arSalidas = new JArray(from d in lsVentaDetSal
                                                   select new JObject(
-                                                      new JProperty("Salida", d.IdSalida),
-                                                      new JProperty("Ciudad", d.Ciudad)
+                                                      new JProperty("Salida", d.idSalida),
+                                                      new JProperty("Ciudad", d.sSalida)
                                                     ));
                     resultado["LsSalidas"] = arSalidas;
+                    resultado["Exito"] = true;
                 }
             }
             catch(Exception x)
@@ -68,6 +57,65 @@ namespace TravelOKViajes.Controllers
 
         }
         //Termina HOME
+
+        //Inicial Home
+        [HttpPost]
+        public ActionResult RecuperaDestinosVen(cmVentaDet detVenta)
+        {
+            var resultado = new JObject();
+            try
+            {
+                CD_Viajes cdViaje = new CD_Viajes();
+                List<cmVentaDet> lsVentaDetDes = new List<cmVentaDet>();
+                lsVentaDetDes = cdViaje.fnlsRecuperaDestino(detVenta);
+
+                if (lsVentaDetDes.Count > 0)
+                {
+                    JToken arDestinos = new JArray(from d in lsVentaDetDes
+                                                   select new JObject(
+                                                      new JProperty("IdDest", d.idDestino),
+                                                      new JProperty("Destino", d.sDestino)
+                                                    ));
+                    resultado["LsDestinos"] = arDestinos;
+                    resultado["Exito"] = true;
+                }
+            }
+            catch (Exception x)
+            {
+                resultado["Exito"] = false;
+            }
+            return Content(resultado.ToString());
+
+        }
+
+        [HttpPost]
+        public ActionResult RecuperaFechasVen(cmVentaDet detVenta)
+        {
+            var resultado = new JObject();
+            try
+            {
+                CD_Viajes cdViaje = new CD_Viajes();
+                List<cmVentaDet> lsVentaDetFec = new List<cmVentaDet>();
+                lsVentaDetFec = cdViaje.fnlsRecuperaFechaVen(detVenta);
+
+                if (lsVentaDetFec.Count > 0)
+                {
+                    JToken arFecDest = new JArray(from d in lsVentaDetFec
+                                                   select new JObject(
+                                                      new JProperty("IdVenta", d.idVenta),
+                                                      new JProperty("dtFecha", d.dtFecha)
+                                                    ));
+                    resultado["LsFechaVta"] = arFecDest;
+                    resultado["Exito"] = true;
+                }
+            }
+            catch (Exception x)
+            {
+                resultado["Exito"] = false;
+            }
+            return Content(resultado.ToString());
+
+        }
 
         public ActionResult Contact()
         {
