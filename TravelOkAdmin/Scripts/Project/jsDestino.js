@@ -4,7 +4,7 @@
 
 var CHECADO = 0;
 function Inicial() {
-    ObtieneDestinos();
+    ObtieneDestinos(); 
 }
 
 function ObtieneDestinos() {
