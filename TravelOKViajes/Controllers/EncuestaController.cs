@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaDatos;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,9 +16,35 @@ namespace TravelOKViajes.Controllers
             return View();
         }
 
-        // GET: Encuesta/Details/5
+		// GET: Encuesta/Details/5
 		/// Crearndo
-        public ActionResult Details(int id)
+		/// 
+		public ActionResult InicialEncuesta()
+		{
+			var resultado = new JObject();
+			try
+			{
+				CD_Destinos cdDestino = new CD_Destinos();
+				List<TO_Destino> lsDestinos = new List<TO_Destino>();
+				lsDestinos = cdDestino.lsObtieneDestinos();
+				if (lsDestinos.Count > 0)
+				{
+					JToken arDestinos = new JArray(from d in lsDestinos
+												   select new JObject(
+													  new JProperty("Viaje", d.IdViaje),
+													  new JProperty("Destino", d.Destino)
+													));
+					resultado["LsDestinos"] = arDestinos;
+					resultado["Exito"] = true;
+				}
+			}
+			catch (Exception x)
+			{
+				resultado["Exito"] = false;
+			}
+			return Content(resultado.ToString());
+		}
+		public ActionResult Details(int id)
         {
             return View();
         }
