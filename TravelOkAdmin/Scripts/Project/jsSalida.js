@@ -45,6 +45,7 @@ $(document).on('click', '#btnAgregarSal', function (e) {
     }
 });
 
+
 $(document).on('click', '#btnEliminaCiudad', function (e) {
     if ($('#selSalida').val() === "") {
         MensajeAdvertencia("No has ingresado una salida");
@@ -81,6 +82,8 @@ function SuccessLlamadaEliminaSalidaId(data) {
     }
 
 }
+
+
 function LlamaInsertaSalida(sSalida) {
     var url = $('#urlSalidaInserta').val();
     $.ajax({

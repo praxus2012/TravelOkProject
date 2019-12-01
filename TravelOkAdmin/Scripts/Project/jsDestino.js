@@ -96,6 +96,47 @@ function SuccessLlamadaInsertaDestino(data) {
     }
 }
 
+
+$(document).on('click', '#btnEliminaDestino', function (e) {
+    if ($('#selDestinos').val() === "") {
+        MensajeAdvertencia("No has ingresado un Destino");
+    } else {
+        var idDest = $('#selDestinos').val();
+        LLamaEliminaDestinoId(idDest);
+    }
+});
+
+function LLamaEliminaDestinoId(idDestino) {
+    var url = $('#urlDestinoElimina').val();
+    $.ajax({
+        url: url,
+        data: JSON.stringify({ idDestino }),
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        success: SuccessLlamadaEliminaDestinoId,
+        Advertencia: function (xmlHttpRequest, textStatus, errorThrown) {
+            alert("error ", data.Mensaje, "verificar info");
+        }
+    });
+}
+
+function SuccessLlamadaEliminaDestinoId(data) {
+    if (data.Exito) {
+        MensajeExito('Se ha eliminado correctamente');
+        $('#selDestinos').empty();
+        ObtieneDestinos();
+        // $('#selSalida').val(0);
+    } else {
+        MensajeAdvertencia('Ha ocurrido un error');
+    }
+
+}
+
+
+
+
 $(document).on('click', '#btnInsertaDetDestino', function (e) {
 
     if ($('#chActivoDetDest').is(':checked')) {
