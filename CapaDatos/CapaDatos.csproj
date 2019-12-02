@@ -63,6 +63,9 @@
     <Compile Include="spObtieneComunidad_Result.cs">
       <DependentUpon>TravelOkQAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="spsObtFechaViajes_Result.cs">
+      <DependentUpon>TravelOkQAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="spsObtieneCarrusel_Result.cs">
       <DependentUpon>TravelOkQAModel.tt</DependentUpon>
     </Compile>
@@ -70,6 +73,12 @@
       <DependentUpon>TravelOkQAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="spsObtieneDestinosImg_Result.cs">
+      <DependentUpon>TravelOkQAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spsObtLugarDestinoViajes_Result.cs">
+      <DependentUpon>TravelOkQAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spsObtLugarSalidaViajes_Result.cs">
       <DependentUpon>TravelOkQAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="spVerificaUsuario_Result.cs">
@@ -93,10 +102,16 @@
     <Compile Include="TO_Experiencias.cs">
       <DependentUpon>TravelOkQAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TO_Habitaciones.cs">
+      <DependentUpon>TravelOkQAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TO_Salida.cs">
       <DependentUpon>TravelOkQAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_Usuario.cs">
+      <DependentUpon>TravelOkQAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TO_Viajes.cs">
       <DependentUpon>TravelOkQAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TravelOKEntities.Context.cs">

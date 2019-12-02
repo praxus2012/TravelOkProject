@@ -38,7 +38,7 @@ namespace CapaDatos.Administrador
             {
                 try
                 {
-                    if (contexto.[spdEliminaDestinoId](idDestino) == -1)
+                    if (contexto.spdEliminaDestinoId(idDestino) == -1)
                     {
                         return true;
                     }
