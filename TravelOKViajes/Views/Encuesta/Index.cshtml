@@ -12,6 +12,16 @@
             Tour: <label id="lbTour"></label> Fecha <label id="lbFecha"></label>
         </div>
         <div class="col-12">
+            <div class="Text mt-0">
+                <div>
+                    <form class="form-group">
+                        <select class="form-control" id="selDestinos">
+                            <option value="0">Selecciona el destino a Evaluar</option>
+                        </select>
+                        @*<div sid="btnEliminaDestino" class="btn btn-primary">Elimina Destino</div>*@
+                    </form>
+                </div>
+            </div>
             <div class="Text">
                 ¿Cómo valorarías la atención online de la página de Facebook a la hora de solicitar informes el viaje?
             </div>
@@ -375,3 +385,6 @@
 </div>
 
 <link href="~/Content/Project/cssEncuesta.css" rel="stylesheet" />
+<script src="~/Scripts/Project/jsEncuesta.js"></script>
+<input type="hidden" id="urlDestinoInicial" value="@Url.Action("InicialEncuesta","Encuesta")" />
+<input type="hidden" id="urlEnviarEncuesta" value="@Url.Action("InicialEncuesta","Encuesta")" />

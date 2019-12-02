@@ -70,15 +70,17 @@ function successObtieneDestinosDet(data) {
             if (i === 0) {
                 $('.carousel-indicators').append('<li data-target="#carouselExampleIndicators" data-slide-to="' + contador + '" class="active"></li>');
                 $('.carousel-inner').append('<div class="carousel-item active">' +
-                    '<div class= "d-block Im-' + data.LsCarrDestinos[i]['Id_Detalle'] + '"></div>' +
+                    '<div class= "d-block Im-' + data.LsCarrDestinos[i]['iDestino'] + '"></div>' +
                     '</div>');
-                $('.Im-' + data.LsCarrDestinos[i]['Id_Detalle']).css('background-image', 'url("../../Img/ImgDestDetalle/' + data.LsCarrDestinos[i]['sDestino'] + '/' + data.LsCarrDestinos[i]['sRutaImg']+'")');
+                $('.Im-' + data.LsCarrDestinos[i]['iDestino']).css('background-image', 'url("../../Img/ImgDestDetalle/' + data.LsCarrDestinos[i]['sDescripcion'] + '/' + data.LsCarrDestinos[i]['sRutaImg']+'")');
             } else {
                 $('.carousel-indicators').append('<li data-target="#carouselExampleIndicators" data-slide-to="' + contador + '"></li>');
                 $('.carousel-inner').append('<div class="carousel-item">' +
-                    '<div class= "d-block Im-' + data.LsCarrDestinos[i]['Id_Detalle'] + '"></div>' +
+                    '<div class= "d-block Im-' + data.LsCarrDestinos[i]['iDestino'] + '"></div>' +
                     '</div>');
-                $('.Im-' + data.LsCarrDestinos[i]['Id_Detalle']).css('background-image', 'url("../../Img/ImgDestDetalle/' + data.LsCarrDestinos[i]['sDestino'] + '/' + data.LsCarrDestinos[i]['sRutaImg'] + '")');
+                $('.Im-' + data.LsCarrDestinos[i]['iDestino']).css('background-image', 'url("../../Img/ImgDestDetalle/' + data.LsCarrDestinos[i]['sDescripcion'] + '/' + data.LsCarrDestinos[i]['sRutaImg'] + '")');
+                var value = data.LsCarrDestinos[i]['sRutaImg'];
+                console.log(value);
             }
             contador++;
         });

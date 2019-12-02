@@ -58,6 +58,7 @@
     <Compile Include="CD_Destinos.cs" />
     <Compile Include="CD_Salida.cs" />
     <Compile Include="Administrador\CDA_Usuario.cs" />
+    <Compile Include="CD_Viajes.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="spObtieneComunidad_Result.cs">

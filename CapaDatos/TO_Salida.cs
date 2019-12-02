@@ -14,19 +14,7 @@ namespace CapaDatos
     
     public partial class TO_Salida
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TO_Salida()
-        {
-            this.TO_Costo = new HashSet<TO_Costo>();
-            this.TO_Viajes = new HashSet<TO_Viajes>();
-        }
-    
         public int IdSalida { get; set; }
         public string Ciudad { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TO_Costo> TO_Costo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TO_Viajes> TO_Viajes { get; set; }
     }
 }
