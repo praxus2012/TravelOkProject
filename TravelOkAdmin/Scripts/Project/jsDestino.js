@@ -33,7 +33,7 @@ function successObtieneDestinos(data) {
             $('#selDestinos2')
                 .append($("<option></option>")
                     .attr("value", data.LsDestinos[i].Viaje)
-                    .text(data.LsDestinos[i].Destino));
+                    .text(data.LsDestinos[i].Destino));            
         });
     } else {
         MensajeError('Ha ocurrido un error inesperado');

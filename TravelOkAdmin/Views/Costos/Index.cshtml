@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Costos</h2>
+
+<form class="form-group">
+
+    <div id="diCosto">Costo</div>
+    <input class="form-control" id="inCosto" placeholder="costo de la habitación" />
+
+    <div id="diDestino">Destino</div>
+    <select class="form-control" id="selDestinosCost">
+        <option value="0">Selecciona el destino</option>
+    </select>
+
+    <div id="diSalida">Salida</div>
+    <select class="form-control" id="selSalida">
+        <option value="0">Seleccione la Salida </option>
+    </select>
+
+    <div id="disDDestino">Habitación</div>
+    <select class="form-control" id="selHab">
+        <option value="0">Seleccione la Habitación </option>
+    </select>
+
+    <div id="disDDestino">Persona</div>
+
+    <div id="btnInsertaCosto" class="btn btn-primary">Insertar</div>
+</form>
+
+
+<script src="~/Scripts/Project/jsCostos.js"></script>
+
+<link href="~/Content/Project/cssSalida.css" rel="stylesheet" />
+
+<input type="hidden" id="urlDestinoInicial" value="@Url.Action("InicialDestinos","Destinos")" />
