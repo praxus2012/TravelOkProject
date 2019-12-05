@@ -194,7 +194,7 @@
     <Content Include="Scripts\Project\jsSalida.js" />
     <Content Include="Scripts\Project\libs\classie.js" />
     <Content Include="Scripts\Project\libs\imagesloaded.pkgd.min.js" />
-    <Content Include="Scripts\Project\libs\jsCostos.js" />
+    <Content Include="Scripts\Project\jsCostos.js" />
     <Content Include="Scripts\Project\libs\main.js" />
     <Content Include="Scripts\Project\libs\masonry.pkgd.min.js" />
     <Content Include="Scripts\Project\libs\modernizr-custom.js" />
