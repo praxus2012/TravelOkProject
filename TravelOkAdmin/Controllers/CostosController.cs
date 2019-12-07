@@ -40,12 +40,12 @@ namespace TravelOkAdmin.Controllers
         }
 
 
-        public ActionResult InsertaCostos(cmCostos CCostos)
+        public ActionResult InsertaCostos(cmCostos CCosto)
         {
             var resultado = new JObject();
 
             CDA_Costos cdaCostos = new CDA_Costos();
-            if (cdaCostos.bInsertaCosto(CCostos))
+            if (cdaCostos.bInsertaCosto(CCosto))
                 resultado["Exito"] = true;
             else
                 resultado["Exito"] = false;

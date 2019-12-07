@@ -111,7 +111,7 @@ $(document).on('click', '#btnInsertaCosto', function (e) {
             IdDestino: $('#selDestinosCost').val(),
             IdSalida: $('#selSalidaCost').val(),
             IdHabitación: $('#selHabitaciones').val(),
-            sTipoPersona: $('#selPersona').val(),
+            sTipoPersona: $('#selPersona option:selected').text(),
             
         };
         LLamaInsertaCosto(CCosto);
