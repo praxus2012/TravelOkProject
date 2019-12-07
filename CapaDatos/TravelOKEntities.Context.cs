@@ -27,14 +27,16 @@ namespace CapaDatos
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<TO_Usuario> TO_Usuario { get; set; }
-        public virtual DbSet<TO_Destino> TO_Destino { get; set; }
-        public virtual DbSet<TO_Experiencias> TO_Experiencias { get; set; }
-        public virtual DbSet<TO_Salida> TO_Salida { get; set; }
-        public virtual DbSet<TO_Costo> TO_Costo { get; set; }
-        public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Blog> TO_Blog { get; set; }
+        public virtual DbSet<TO_Destino> TO_Destino { get; set; }
         public virtual DbSet<TO_DetalleDestinos> TO_DetalleDestinos { get; set; }
+        public virtual DbSet<TO_Experiencias> TO_Experiencias { get; set; }
+        public virtual DbSet<TO_Habitaciones> TO_Habitaciones { get; set; }
+        public virtual DbSet<TO_Salida> TO_Salida { get; set; }
+        public virtual DbSet<TO_Usuario> TO_Usuario { get; set; }
+        public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
+        public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
+        public virtual DbSet<TO_Costo> TO_Costo { get; set; }
     
         public virtual int spInsertaComunidad(string nombre, string testimonio, Nullable<int> idViaje, Nullable<decimal> calificacion)
         {
@@ -261,6 +263,89 @@ namespace CapaDatos
                 new ObjectParameter("ImgDestino", typeof(byte[]));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertaComunidad2", nombreParameter, testimonioParameter, idViajeParameter, calificacionParameter, imgDestinoParameter);
+        }
+    
+        public virtual int spdEliminaDestinoId(Nullable<int> idDestino)
+        {
+            var idDestinoParameter = idDestino.HasValue ?
+                new ObjectParameter("idDestino", idDestino) :
+                new ObjectParameter("idDestino", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spdEliminaDestinoId", idDestinoParameter);
+        }
+    
+        public virtual int spiAgregaBlog(string nvTitulo, string nvTexto, byte[] imgBlog)
+        {
+            var nvTituloParameter = nvTitulo != null ?
+                new ObjectParameter("nvTitulo", nvTitulo) :
+                new ObjectParameter("nvTitulo", typeof(string));
+    
+            var nvTextoParameter = nvTexto != null ?
+                new ObjectParameter("nvTexto", nvTexto) :
+                new ObjectParameter("nvTexto", typeof(string));
+    
+            var imgBlogParameter = imgBlog != null ?
+                new ObjectParameter("imgBlog", imgBlog) :
+                new ObjectParameter("imgBlog", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiAgregaBlog", nvTituloParameter, nvTextoParameter, imgBlogParameter);
+        }
+    
+        public virtual int spiInsertaCosto(Nullable<decimal> moCosto, Nullable<int> inDestino, Nullable<int> inSalida, Nullable<int> inHabitac, string nvTipoPer)
+        {
+            var moCostoParameter = moCosto.HasValue ?
+                new ObjectParameter("moCosto", moCosto) :
+                new ObjectParameter("moCosto", typeof(decimal));
+    
+            var inDestinoParameter = inDestino.HasValue ?
+                new ObjectParameter("inDestino", inDestino) :
+                new ObjectParameter("inDestino", typeof(int));
+    
+            var inSalidaParameter = inSalida.HasValue ?
+                new ObjectParameter("inSalida", inSalida) :
+                new ObjectParameter("inSalida", typeof(int));
+    
+            var inHabitacParameter = inHabitac.HasValue ?
+                new ObjectParameter("inHabitac", inHabitac) :
+                new ObjectParameter("inHabitac", typeof(int));
+    
+            var nvTipoPerParameter = nvTipoPer != null ?
+                new ObjectParameter("nvTipoPer", nvTipoPer) :
+                new ObjectParameter("nvTipoPer", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaCosto", moCostoParameter, inDestinoParameter, inSalidaParameter, inHabitacParameter, nvTipoPerParameter);
+        }
+    
+        public virtual ObjectResult<spsObtFechaViajes_Result> spsObtFechaViajes(Nullable<int> idSalida, Nullable<int> idDestino)
+        {
+            var idSalidaParameter = idSalida.HasValue ?
+                new ObjectParameter("IdSalida", idSalida) :
+                new ObjectParameter("IdSalida", typeof(int));
+    
+            var idDestinoParameter = idDestino.HasValue ?
+                new ObjectParameter("IdDestino", idDestino) :
+                new ObjectParameter("IdDestino", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtFechaViajes_Result>("spsObtFechaViajes", idSalidaParameter, idDestinoParameter);
+        }
+    
+        public virtual ObjectResult<spsObtieneHabitaciones_Result> spsObtieneHabitaciones()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtieneHabitaciones_Result>("spsObtieneHabitaciones");
+        }
+    
+        public virtual ObjectResult<spsObtLugarDestinoViajes_Result> spsObtLugarDestinoViajes(Nullable<int> idSalida)
+        {
+            var idSalidaParameter = idSalida.HasValue ?
+                new ObjectParameter("IdSalida", idSalida) :
+                new ObjectParameter("IdSalida", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtLugarDestinoViajes_Result>("spsObtLugarDestinoViajes", idSalidaParameter);
+        }
+    
+        public virtual ObjectResult<spsObtLugarSalidaViajes_Result> spsObtLugarSalidaViajes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtLugarSalidaViajes_Result>("spsObtLugarSalidaViajes");
         }
     }
 }

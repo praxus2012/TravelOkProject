@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace CapaModelo
 {
-    class cmCostos
+    public class cmCostos
     {
 
-        public decimal CostoLugar { get; set; }
+        public decimal dCostoLugar { get; set; }
         public int IdDestino { get; set; }
         public int IdSalida { get; set; }
         public int IdHabitación { get; set; }
-        public string TipoPersona { get; set; }
+        public string sTipoPersona { get; set; }
 
     }
 }

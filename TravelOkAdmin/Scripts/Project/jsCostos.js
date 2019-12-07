@@ -98,3 +98,54 @@ function successObtieneHabitaciones(data) {
         MensajeError('Ha ocurrido un error inesperado');
     }
 }
+
+
+//inserta costo
+
+$(document).on('click', '#btnInsertaCosto', function (e) {
+
+
+    if ($('#inCosto').val() != '') {
+        var CCosto = {
+            dCostoLugar: $('#inCosto').val(),
+            IdDestino: $('#selDestinosCost').val(),
+            IdSalida: $('#selSalidaCost').val(),
+            IdHabitación: $('#selHabitaciones').val(),
+            sTipoPersona: $('#selPersona').val(),
+            
+        };
+        LLamaInsertaCosto(CCosto);
+    } else {
+        MensajeAdvertencia('No ha llenado los campos requeridos');
+    }
+});
+
+function LLamaInsertaCosto(CCosto) {
+    var url = $('#urlInsertaCostos').val();
+    $.ajax({
+        url: url,
+        data: JSON.stringify({ CCosto }),
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        success: SuccessLlamadaInsertaCosto,
+        Advertencia: function (xmlHttpRequest, textStatus, errorThrown) {
+            alert("error ", data.Mensaje, "verificar info");
+        }
+    });
+}
+
+function SuccessLlamadaInsertaCosto(data) {
+    if (data.Exito) {
+        MensajeExito('Se ha agregado el costo correctamente');
+        $('#inCosto').val('');
+        $('#selDestinosCost').val(0);
+        $('#selSalidaCost').val(0);
+        $('#selHabitaciones').val(0);
+        $('#selPersona').val(0);
+
+    } else {
+        MensajeError('Algo ha salido mal, intentelo mas tarde.');
+    }
+}

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos.Administrador
 {
-    class CDA_Costos
+    public class CDA_Costos
     {
         public bool bInsertaCosto(cmCostos CCostos)
         {
@@ -16,7 +16,7 @@ namespace CapaDatos.Administrador
             {
                 try
                 {
-                    if (contexto.spiInsertaCosto(CCostos.CostoLugar, CCostos.IdDestino, CCostos.IdSalida, CCostos.IdHabitación, CCostos.TipoPersona) == -1)
+                    if (contexto.spiInsertaCosto(CCostos.dCostoLugar, CCostos.IdDestino, CCostos.IdSalida, CCostos.IdHabitación, CCostos.sTipoPersona) == -1)
 
                         return true;
                     return false;

@@ -78,6 +78,9 @@
     <Compile Include="spsObtieneDestinosImg_Result.cs">
       <DependentUpon>TravelOkQAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="spsObtieneHabitaciones_Result.cs">
+      <DependentUpon>TravelOkQAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="spsObtLugarDestinoViajes_Result.cs">
       <DependentUpon>TravelOkQAModel.tt</DependentUpon>
     </Compile>

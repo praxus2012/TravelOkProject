@@ -38,5 +38,24 @@ namespace TravelOkAdmin.Controllers
             }
             return Content(resultado.ToString());
         }
+
+
+        public ActionResult InsertaCostos(cmCostos CCostos)
+        {
+            var resultado = new JObject();
+
+            CDA_Costos cdaCostos = new CDA_Costos();
+            if (cdaCostos.bInsertaCosto(CCostos))
+                resultado["Exito"] = true;
+            else
+                resultado["Exito"] = false;
+            return Content(resultado.ToString());
+        }
+
+
+
+
+
+
     }
 }

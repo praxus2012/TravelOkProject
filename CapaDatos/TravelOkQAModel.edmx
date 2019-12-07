@@ -221,6 +221,13 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Parameter Name="nvRutaArchivo" Type="nvarchar" Mode="In" />
           <Parameter Name="nvDescripcion" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="spiInsertaCosto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="moCosto" Type="money" Mode="In" />
+          <Parameter Name="inDestino" Type="int" Mode="In" />
+          <Parameter Name="inSalida" Type="int" Mode="In" />
+          <Parameter Name="inHabitac" Type="int" Mode="In" />
+          <Parameter Name="nvTipoPer" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="spiInsertaDestino" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nvDestino" Type="nvarchar" Mode="In" />
           <Parameter Name="nvTitulo" Type="nvarchar" Mode="In" />
@@ -256,6 +263,7 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Parameter Name="idViaje" Type="int" Mode="In" />
         </Function>
         <Function Name="spsObtieneDestinosImg" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spsObtieneHabitaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spsObtLugarDestinoViajes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdSalida" Type="int" Mode="In" />
         </Function>
@@ -417,6 +425,14 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           </FunctionImport>
           <FunctionImport Name="spsObtLugarSalidaViajes" ReturnType="Collection(DB_A4B5D6_TravelokkModel.spsObtLugarSalidaViajes_Result)" />
           <EntitySet Name="TO_Usuario" EntityType="DB_A4B5D6_TravelokkModel.TO_Usuario" />
+          <FunctionImport Name="spiInsertaCosto">
+            <Parameter Name="moCosto" Mode="In" Type="Decimal" />
+            <Parameter Name="inDestino" Mode="In" Type="Int32" />
+            <Parameter Name="inSalida" Mode="In" Type="Int32" />
+            <Parameter Name="inHabitac" Mode="In" Type="Int32" />
+            <Parameter Name="nvTipoPer" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spsObtieneHabitaciones" ReturnType="Collection(DB_A4B5D6_TravelokkModel.spsObtieneHabitaciones_Result)" />
         </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
           <Property Type="Int32" Name="IdExp" Nullable="false" />
@@ -679,6 +695,10 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="Activo" Type="Boolean" />
         </EntityType>
+        <ComplexType Name="spsObtieneHabitaciones_Result">
+          <Property Type="Int32" Name="IdTipoHab" Nullable="false" />
+          <Property Type="String" Name="nvDescripcion" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -899,6 +919,15 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spiInsertaCosto" FunctionName="DB_A4B5D6_TravelokkModel.Store.spiInsertaCosto" />
+          <FunctionImportMapping FunctionImportName="spsObtieneHabitaciones" FunctionName="DB_A4B5D6_TravelokkModel.Store.spsObtieneHabitaciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_A4B5D6_TravelokkModel.spsObtieneHabitaciones_Result">
+                <ScalarProperty Name="IdTipoHab" ColumnName="IdTipoHab" />
+                <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

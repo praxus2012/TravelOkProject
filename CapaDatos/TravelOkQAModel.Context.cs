@@ -246,5 +246,35 @@ namespace CapaDatos
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtLugarSalidaViajes_Result>("spsObtLugarSalidaViajes");
         }
+    
+        public virtual int spiInsertaCosto(Nullable<decimal> moCosto, Nullable<int> inDestino, Nullable<int> inSalida, Nullable<int> inHabitac, string nvTipoPer)
+        {
+            var moCostoParameter = moCosto.HasValue ?
+                new ObjectParameter("moCosto", moCosto) :
+                new ObjectParameter("moCosto", typeof(decimal));
+    
+            var inDestinoParameter = inDestino.HasValue ?
+                new ObjectParameter("inDestino", inDestino) :
+                new ObjectParameter("inDestino", typeof(int));
+    
+            var inSalidaParameter = inSalida.HasValue ?
+                new ObjectParameter("inSalida", inSalida) :
+                new ObjectParameter("inSalida", typeof(int));
+    
+            var inHabitacParameter = inHabitac.HasValue ?
+                new ObjectParameter("inHabitac", inHabitac) :
+                new ObjectParameter("inHabitac", typeof(int));
+    
+            var nvTipoPerParameter = nvTipoPer != null ?
+                new ObjectParameter("nvTipoPer", nvTipoPer) :
+                new ObjectParameter("nvTipoPer", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaCosto", moCostoParameter, inDestinoParameter, inSalidaParameter, inHabitacParameter, nvTipoPerParameter);
+        }
+    
+        public virtual ObjectResult<spsObtieneHabitaciones_Result> spsObtieneHabitaciones()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtieneHabitaciones_Result>("spsObtieneHabitaciones");
+        }
     }
 }
