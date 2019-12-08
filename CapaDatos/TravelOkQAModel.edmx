@@ -20,11 +20,13 @@
 advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TO_Costo">
           <Key>
-            <PropertyRef Name="Id_Destino" />
+            <PropertyRef Name="IdDestino" />
           </Key>
           <Property Name="CostoLugar" Type="money" />
-          <Property Name="Id_Destino" Type="int" Nullable="false" />
-          <Property Name="TipoPersona" Type="char" MaxLength="1" />
+          <Property Name="IdDestino" Type="int" Nullable="false" />
+          <Property Name="IdSalida" Type="int" />
+          <Property Name="IdHabitacion" Type="int" />
+          <Property Name="TipoPersona" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TO_Destino">
           <Key>
@@ -62,6 +64,13 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Property Name="Calificacion" Type="decimal" Precision="18" Scale="0" />
           <Property Name="ImgDestino" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="TO_Habitaciones">
+          <Key>
+            <PropertyRef Name="IdTipoHab" />
+          </Key>
+          <Property Name="IdTipoHab" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nvDescripcion" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="TO_Salida">
           <Key>
             <PropertyRef Name="IdSalida" />
@@ -71,14 +80,19 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
         </EntityType>
         <EntityType Name="TO_Usuario">
           <Key>
-            <PropertyRef Name="Usuario" />
+            <PropertyRef Name="Correo" />
           </Key>
-          <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Contra" Type="varchar" MaxLength="50" />
-          <Property Name="Nombre" Type="varchar" MaxLength="250" />
-          <Property Name="ApePat" Type="varchar" MaxLength="250" />
-          <Property Name="ApeMat" Type="varchar" MaxLength="250" />
-          <Property Name="FechaContrat" Type="date" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Contra" Type="nvarchar" MaxLength="30" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="200" />
+          <Property Name="Genero" Type="nvarchar" MaxLength="200" />
+          <Property Name="FechNac" Type="date" />
+          <Property Name="Pais" Type="nvarchar" MaxLength="150" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="150" />
+          <Property Name="Municipio" Type="nvarchar" MaxLength="150" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="25" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityType Name="TO_Viajes">
           <Key>
@@ -136,7 +150,31 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
               <PropertyRef Name="IdViaje" />
             </Principal>
             <Dependent Role="TO_Costo">
-              <PropertyRef Name="Id_Destino" />
+              <PropertyRef Name="IdDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Costo_TO_Habitaciones">
+          <End Role="TO_Habitaciones" Type="Self.TO_Habitaciones" Multiplicity="0..1" />
+          <End Role="TO_Costo" Type="Self.TO_Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Habitaciones">
+              <PropertyRef Name="IdTipoHab" />
+            </Principal>
+            <Dependent Role="TO_Costo">
+              <PropertyRef Name="IdHabitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Costo_TO_Salida">
+          <End Role="TO_Salida" Type="Self.TO_Salida" Multiplicity="0..1" />
+          <End Role="TO_Costo" Type="Self.TO_Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Salida">
+              <PropertyRef Name="IdSalida" />
+            </Principal>
+            <Dependent Role="TO_Costo">
+              <PropertyRef Name="IdSalida" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -164,6 +202,9 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="spdEliminaDestinoId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idDestino" Type="int" Mode="In" />
+        </Function>
         <Function Name="spdEliminaSalida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nvSalida" Type="nvarchar" Mode="In" />
         </Function>
@@ -228,6 +269,7 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <EntitySet Name="TO_Destino" EntityType="Self.TO_Destino" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_DetalleDestinos" EntityType="Self.TO_DetalleDestinos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Experiencias" EntityType="Self.TO_Experiencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TO_Habitaciones" EntityType="Self.TO_Habitaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Salida" EntityType="Self.TO_Salida" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Usuario" EntityType="Self.TO_Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Viajes" EntityType="Self.TO_Viajes" Schema="dbo" store:Type="Tables" />
@@ -235,7 +277,9 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <EntitySet Name="TO_Costo" EntityType="Self.TO_Costo" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [TO_Costo].[CostoLugar] AS [CostoLugar], 
-    [TO_Costo].[Id_Destino] AS [Id_Destino], 
+    [TO_Costo].[IdDestino] AS [IdDestino], 
+    [TO_Costo].[IdSalida] AS [IdSalida], 
+    [TO_Costo].[IdHabitacion] AS [IdHabitacion], 
     [TO_Costo].[TipoPersona] AS [TipoPersona]
     FROM [dbo].[TO_Costo] AS [TO_Costo]</DefiningQuery>
           </EntitySet>
@@ -249,6 +293,14 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           </AssociationSet>
           <AssociationSet Name="FK_TO_Costo_TO_Destino" Association="Self.FK_TO_Costo_TO_Destino">
             <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Habitaciones" Association="Self.FK_TO_Costo_TO_Habitaciones">
+            <End Role="TO_Habitaciones" EntitySet="TO_Habitaciones" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Salida" Association="Self.FK_TO_Costo_TO_Salida">
+            <End Role="TO_Salida" EntitySet="TO_Salida" />
             <End Role="TO_Costo" EntitySet="TO_Costo" />
           </AssociationSet>
           <AssociationSet Name="FK_TO_Viajes_TO_Destino" Association="Self.FK_TO_Viajes_TO_Destino">
@@ -310,9 +362,7 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <EntitySet Name="TO_DetalleDestinos" EntityType="DB_A4B5D6_TravelokkModel.TO_DetalleDestinos" />
           <EntitySet Name="TO_Experiencias" EntityType="DB_A4B5D6_TravelokkModel.TO_Experiencias" />
           <EntitySet Name="TO_Salida" EntityType="DB_A4B5D6_TravelokkModel.TO_Salida" />
-          <EntitySet Name="TO_Usuario" EntityType="DB_A4B5D6_TravelokkModel.TO_Usuario" />
           <EntitySet Name="TOA_Usuario" EntityType="DB_A4B5D6_TravelokkModel.TOA_Usuario" />
-          <EntitySet Name="TO_Costo" EntityType="DB_A4B5D6_TravelokkModel.TO_Costo" />
           <AssociationSet Name="FK__TO_Experi__IdDes__5AEE82B9" Association="DB_A4B5D6_TravelokkModel.FK__TO_Experi__IdDes__5AEE82B9">
             <End Role="TO_Destino" EntitySet="TO_Destino" />
             <End Role="TO_Experiencias" EntitySet="TO_Experiencias" />
@@ -320,10 +370,6 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <AssociationSet Name="FK_DetDestinos_Destinos" Association="DB_A4B5D6_TravelokkModel.FK_DetDestinos_Destinos">
             <End Role="TO_Destino" EntitySet="TO_Destino" />
             <End Role="TO_DetalleDestinos" EntitySet="TO_DetalleDestinos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Costo_TO_Destino" Association="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Destino">
-            <End Role="TO_Destino" EntitySet="TO_Destino" />
-            <End Role="TO_Costo" EntitySet="TO_Costo" />
           </AssociationSet>
           <FunctionImport Name="spiAgregaBlog">
             <Parameter Name="nvTitulo" Mode="In" Type="String" />
@@ -336,23 +382,41 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
             <Parameter Name="nvDescripción" Mode="In" Type="String" />
             <Parameter Name="bActivo" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <EntitySet Name="TO_Habitaciones" EntityType="DB_A4B5D6_TravelokkModel.TO_Habitaciones" />
           <EntitySet Name="TO_Viajes" EntityType="DB_A4B5D6_TravelokkModel.TO_Viajes" />
+          <EntitySet Name="TO_Costo" EntityType="DB_A4B5D6_TravelokkModel.TO_Costo" />
+          <AssociationSet Name="FK_TO_Costo_TO_Destino" Association="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Destino">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
           <AssociationSet Name="FK_TO_Viajes_TO_Destino" Association="DB_A4B5D6_TravelokkModel.FK_TO_Viajes_TO_Destino">
             <End Role="TO_Destino" EntitySet="TO_Destino" />
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Habitaciones" Association="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Habitaciones">
+            <End Role="TO_Habitaciones" EntitySet="TO_Habitaciones" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Salida" Association="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Salida">
+            <End Role="TO_Salida" EntitySet="TO_Salida" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
           </AssociationSet>
           <AssociationSet Name="FK_TO_Viajes_TO_Salida" Association="DB_A4B5D6_TravelokkModel.FK_TO_Viajes_TO_Salida">
             <End Role="TO_Salida" EntitySet="TO_Salida" />
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
           </AssociationSet>
+          <FunctionImport Name="spdEliminaDestinoId">
+          <Parameter Name="idDestino" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="spsObtFechaViajes" ReturnType="Collection(DB_A4B5D6_TravelokkModel.spsObtFechaViajes_Result)">
             <Parameter Name="IdSalida" Mode="In" Type="Int32" />
             <Parameter Name="IdDestino" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtLugarDestinoViajes" ReturnType="Collection(DB_A4B5D6_TravelokkModel.spsObtLugarDestinoViajes_Result)">
-            <Parameter Name="IdSalida" Mode="In" Type="Int32" />
+          <Parameter Name="IdSalida" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtLugarSalidaViajes" ReturnType="Collection(DB_A4B5D6_TravelokkModel.spsObtLugarSalidaViajes_Result)" />
+          <EntitySet Name="TO_Usuario" EntityType="DB_A4B5D6_TravelokkModel.TO_Usuario" />
         </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
           <Property Type="Int32" Name="IdExp" Nullable="false" />
@@ -453,18 +517,8 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           </Key>
           <Property Name="IdSalida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ciudad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TO_Costo" Relationship="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Salida" FromRole="TO_Salida" ToRole="TO_Costo" />
           <NavigationProperty Name="TO_Viajes" Relationship="DB_A4B5D6_TravelokkModel.FK_TO_Viajes_TO_Salida" FromRole="TO_Salida" ToRole="TO_Viajes" />
-        </EntityType>
-        <EntityType Name="TO_Usuario">
-          <Key>
-            <PropertyRef Name="Usuario" />
-          </Key>
-          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Contra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ApePat" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ApeMat" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="FechaContrat" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="TOA_Usuario">
           <Key>
@@ -480,15 +534,6 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Property Name="dtFecReg" Type="DateTime" Precision="3" />
           <Property Name="dtFecAct" Type="DateTime" Precision="3" />
           <Property Name="Activo" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="TO_Costo">
-          <Key>
-            <PropertyRef Name="Id_Destino" />
-          </Key>
-          <Property Name="CostoLugar" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Id_Destino" Type="Int32" Nullable="false" />
-          <Property Name="TipoPersona" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="TO_Destino" Relationship="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Destino" FromRole="TO_Costo" ToRole="TO_Destino" />
         </EntityType>
         <Association Name="FK__TO_Experi__IdDes__5AEE82B9">
           <End Type="DB_A4B5D6_TravelokkModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
@@ -514,18 +559,14 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TO_Costo_TO_Destino">
-          <End Type="DB_A4B5D6_TravelokkModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
-          <End Type="DB_A4B5D6_TravelokkModel.TO_Costo" Role="TO_Costo" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Destino">
-              <PropertyRef Name="IdViaje" />
-            </Principal>
-            <Dependent Role="TO_Costo">
-              <PropertyRef Name="Id_Destino" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="TO_Habitaciones">
+          <Key>
+            <PropertyRef Name="IdTipoHab" />
+          </Key>
+          <Property Name="IdTipoHab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nvDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TO_Costo" Relationship="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Habitaciones" FromRole="TO_Habitaciones" ToRole="TO_Costo" />
+        </EntityType>
         <EntityType Name="TO_Viajes">
           <Key>
             <PropertyRef Name="IdViaje" />
@@ -537,6 +578,31 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <NavigationProperty Name="TO_Destino" Relationship="DB_A4B5D6_TravelokkModel.FK_TO_Viajes_TO_Destino" FromRole="TO_Viajes" ToRole="TO_Destino" />
           <NavigationProperty Name="TO_Salida" Relationship="DB_A4B5D6_TravelokkModel.FK_TO_Viajes_TO_Salida" FromRole="TO_Viajes" ToRole="TO_Salida" />
         </EntityType>
+        <EntityType Name="TO_Costo">
+          <Key>
+            <PropertyRef Name="IdDestino" />
+          </Key>
+          <Property Name="CostoLugar" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IdDestino" Type="Int32" Nullable="false" />
+          <Property Name="IdSalida" Type="Int32" />
+          <Property Name="IdHabitacion" Type="Int32" />
+          <Property Name="TipoPersona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TO_Destino" Relationship="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Destino" FromRole="TO_Costo" ToRole="TO_Destino" />
+          <NavigationProperty Name="TO_Habitaciones" Relationship="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Habitaciones" FromRole="TO_Costo" ToRole="TO_Habitaciones" />
+          <NavigationProperty Name="TO_Salida" Relationship="DB_A4B5D6_TravelokkModel.FK_TO_Costo_TO_Salida" FromRole="TO_Costo" ToRole="TO_Salida" />
+        </EntityType>
+        <Association Name="FK_TO_Costo_TO_Destino">
+          <End Type="DB_A4B5D6_TravelokkModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
+          <End Type="DB_A4B5D6_TravelokkModel.TO_Costo" Role="TO_Costo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Destino">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Costo">
+              <PropertyRef Name="IdDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TO_Viajes_TO_Destino">
           <End Type="DB_A4B5D6_TravelokkModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
           <End Type="DB_A4B5D6_TravelokkModel.TO_Viajes" Role="TO_Viajes" Multiplicity="*" />
@@ -546,6 +612,30 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
             </Principal>
             <Dependent Role="TO_Viajes">
               <PropertyRef Name="Id_Destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Costo_TO_Habitaciones">
+          <End Type="DB_A4B5D6_TravelokkModel.TO_Habitaciones" Role="TO_Habitaciones" Multiplicity="0..1" />
+          <End Type="DB_A4B5D6_TravelokkModel.TO_Costo" Role="TO_Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Habitaciones">
+              <PropertyRef Name="IdTipoHab" />
+            </Principal>
+            <Dependent Role="TO_Costo">
+              <PropertyRef Name="IdHabitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Costo_TO_Salida">
+          <End Type="DB_A4B5D6_TravelokkModel.TO_Salida" Role="TO_Salida" Multiplicity="0..1" />
+          <End Type="DB_A4B5D6_TravelokkModel.TO_Costo" Role="TO_Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Salida">
+              <PropertyRef Name="IdSalida" />
+            </Principal>
+            <Dependent Role="TO_Costo">
+              <PropertyRef Name="IdSalida" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -573,6 +663,22 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Property Type="Int32" Name="Id_salida" Nullable="false" />
           <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="250" />
         </ComplexType>
+        <EntityType Name="TO_Usuario">
+          <Key>
+            <PropertyRef Name="Correo" />
+          </Key>
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Contra" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Apellidos" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Genero" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FechNac" Type="DateTime" Precision="0" />
+          <Property Name="Pais" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Municipio" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -704,18 +810,6 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TO_Usuario">
-            <EntityTypeMapping TypeName="DB_A4B5D6_TravelokkModel.TO_Usuario">
-              <MappingFragment StoreEntitySet="TO_Usuario">
-                <ScalarProperty Name="FechaContrat" ColumnName="FechaContrat" />
-                <ScalarProperty Name="ApeMat" ColumnName="ApeMat" />
-                <ScalarProperty Name="ApePat" ColumnName="ApePat" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Contra" ColumnName="Contra" />
-                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TOA_Usuario">
             <EntityTypeMapping TypeName="DB_A4B5D6_TravelokkModel.TOA_Usuario">
               <MappingFragment StoreEntitySet="TOA_Usuario">
@@ -732,17 +826,16 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TO_Costo">
-            <EntityTypeMapping TypeName="DB_A4B5D6_TravelokkModel.TO_Costo">
-              <MappingFragment StoreEntitySet="TO_Costo">
-                <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
-                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
-                <ScalarProperty Name="CostoLugar" ColumnName="CostoLugar" />
+          <FunctionImportMapping FunctionImportName="spiAgregaBlog" FunctionName="DB_A4B5D6_TravelokkModel.Store.spiAgregaBlog" />
+          <FunctionImportMapping FunctionImportName="spiInsertaDetalleDestino" FunctionName="DB_A4B5D6_TravelokkModel.Store.spiInsertaDetalleDestino" />
+          <EntitySetMapping Name="TO_Habitaciones">
+            <EntityTypeMapping TypeName="DB_A4B5D6_TravelokkModel.TO_Habitaciones">
+              <MappingFragment StoreEntitySet="TO_Habitaciones">
+                <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
+                <ScalarProperty Name="IdTipoHab" ColumnName="IdTipoHab" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="spiAgregaBlog" FunctionName="DB_A4B5D6_TravelokkModel.Store.spiAgregaBlog" />
-          <FunctionImportMapping FunctionImportName="spiInsertaDetalleDestino" FunctionName="DB_A4B5D6_TravelokkModel.Store.spiInsertaDetalleDestino" />
           <EntitySetMapping Name="TO_Viajes">
             <EntityTypeMapping TypeName="DB_A4B5D6_TravelokkModel.TO_Viajes">
               <MappingFragment StoreEntitySet="TO_Viajes">
@@ -753,6 +846,18 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TO_Costo">
+            <EntityTypeMapping TypeName="DB_A4B5D6_TravelokkModel.TO_Costo">
+              <MappingFragment StoreEntitySet="TO_Costo">
+                <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
+                <ScalarProperty Name="IdHabitacion" ColumnName="IdHabitacion" />
+                <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
+                <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
+                <ScalarProperty Name="CostoLugar" ColumnName="CostoLugar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spdEliminaDestinoId" FunctionName="DB_A4B5D6_TravelokkModel.Store.spdEliminaDestinoId" />
           <FunctionImportMapping FunctionImportName="spsObtFechaViajes" FunctionName="DB_A4B5D6_TravelokkModel.Store.spsObtFechaViajes">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DB_A4B5D6_TravelokkModel.spsObtFechaViajes_Result">
@@ -777,6 +882,23 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="TO_Usuario">
+            <EntityTypeMapping TypeName="DB_A4B5D6_TravelokkModel.TO_Usuario">
+              <MappingFragment StoreEntitySet="TO_Usuario">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="FechNac" ColumnName="FechNac" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Contra" ColumnName="Contra" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

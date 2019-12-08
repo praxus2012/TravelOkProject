@@ -9,6 +9,7 @@ namespace CapaDatos.Administrador
 {
     public class CDA_Destinos
     {
+
         public bool bInsertaDestino(cmDestinos CDestino)
         {
             //using (var contexto = new TravelOKViajesEntities())//local
@@ -25,6 +26,27 @@ namespace CapaDatos.Administrador
                 {
                     x.GetHashCode();
                     return false;
+                }
+            }
+        }
+
+
+        public bool bEliminaDestino_Id(int idDestino)
+        {
+            //using (var contexto = new TravelOKViajesEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
+            {
+                try
+                {
+                    if (contexto.spdEliminaDestinoId(idDestino) == -1)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                catch (Exception x)
+                {
+                    throw x;
                 }
             }
         }

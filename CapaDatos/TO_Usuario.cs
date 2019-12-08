@@ -14,11 +14,16 @@ namespace CapaDatos
     
     public partial class TO_Usuario
     {
-        public string Usuario { get; set; }
+        public string Correo { get; set; }
         public string Contra { get; set; }
         public string Nombre { get; set; }
-        public string ApePat { get; set; }
-        public string ApeMat { get; set; }
-        public Nullable<System.DateTime> FechaContrat { get; set; }
+        public string Apellidos { get; set; }
+        public string Genero { get; set; }
+        public Nullable<System.DateTime> FechNac { get; set; }
+        public string Pais { get; set; }
+        public string Estado { get; set; }
+        public string Municipio { get; set; }
+        public string Telefono { get; set; }
+        public Nullable<bool> Activo { get; set; }
     }
 }

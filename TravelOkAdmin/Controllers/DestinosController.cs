@@ -57,6 +57,22 @@ namespace TravelOkAdmin.Controllers
         }
 
 
+        public ActionResult EliminaDestinoId(int idDestino)
+        {
+            var resultado = new JObject();
+            CDA_Destinos cdaDestino = new CDA_Destinos();
+            if (cdaDestino.bEliminaDestino_Id(idDestino))
+            {
+                resultado["Exito"] = true;
+            }
+            else
+            {
+                resultado["Exito"] = false;
+            }
+            //resultado["Exito"] = cdaSalida.bEliminaSalidaId(idSalida) ? true : false;
+            return Content(resultado.ToString());
+        }
+
         public ActionResult InsertaDetalleDestino(cmCarruselDestino CDetDestino)
         {
             var resultado = new JObject();

@@ -103,6 +103,9 @@
     <Compile Include="TO_Experiencias.cs">
       <DependentUpon>TravelOkQAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TO_Habitaciones.cs">
+      <DependentUpon>TravelOkQAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TO_Salida.cs">
       <DependentUpon>TravelOkQAModel.tt</DependentUpon>
     </Compile>

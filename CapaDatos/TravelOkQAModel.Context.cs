@@ -32,10 +32,11 @@ namespace CapaDatos
         public virtual DbSet<TO_DetalleDestinos> TO_DetalleDestinos { get; set; }
         public virtual DbSet<TO_Experiencias> TO_Experiencias { get; set; }
         public virtual DbSet<TO_Salida> TO_Salida { get; set; }
-        public virtual DbSet<TO_Usuario> TO_Usuario { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
-        public virtual DbSet<TO_Costo> TO_Costo { get; set; }
+        public virtual DbSet<TO_Habitaciones> TO_Habitaciones { get; set; }
         public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
+        public virtual DbSet<TO_Costo> TO_Costo { get; set; }
+        public virtual DbSet<TO_Usuario> TO_Usuario { get; set; }
     
         public virtual int spInsertaComunidad(string nombre, string testimonio, Nullable<int> idViaje, Nullable<decimal> calificacion, byte[] imgDestino)
         {
@@ -208,6 +209,15 @@ namespace CapaDatos
                 new ObjectParameter("bActivo", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaDetalleDestino", idDestinoParameter, nvRutaParameter, nvDescripciónParameter, bActivoParameter);
+        }
+    
+        public virtual int spdEliminaDestinoId(Nullable<int> idDestino)
+        {
+            var idDestinoParameter = idDestino.HasValue ?
+                new ObjectParameter("idDestino", idDestino) :
+                new ObjectParameter("idDestino", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spdEliminaDestinoId", idDestinoParameter);
         }
     
         public virtual ObjectResult<spsObtFechaViajes_Result> spsObtFechaViajes(Nullable<int> idSalida, Nullable<int> idDestino)
