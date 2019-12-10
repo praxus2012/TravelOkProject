@@ -42,6 +42,7 @@ namespace CapaDatos
                                    iCalificacion = tblComunidad.Calificacion,
                                    IdViaje = tblComunidad.IdDestino,
                                    sDestino = tblComunidad.Destino,
+                                   ImgDestino = tblComunidad.ImgDestino,
                                    dtFechaRegistro = tblComunidad.ActivityDate
                                }
                                ).ToList();

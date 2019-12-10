@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaDatos;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,76 +21,60 @@ namespace TravelOKViajes.Controllers
             return View();
         }
 
-        // GET: Logueo/Details/5
-        public ActionResult Details(int id)
+        public ActionResult RegistrarUsuario(TO_Usuario Usr)
         {
-            return View();
-        }
-
-        // GET: Logueo/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Logueo/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
+            JObject Respuesta = new JObject();
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                CD_Usuario cdUsuario = new CD_Usuario();
+                Usr = cdUsuario.fnRegistraUsuario(Usr);
+                if(Usr == null)
+                {
+                    Respuesta["Exito"] = false;
+                    Respuesta["Mensaje"] = "El usuario ya existe, favor de loguearse";
+                }
+                else
+                {
+                    Respuesta["Exito"] = true;
+                    Respuesta["oUsr"] = JToken.FromObject(Usr);
+                    Session["UserID"] = Usr.Correo;
+                    Session["UserName"] = Usr.Nombre;
+                }
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                Respuesta["Exito"] = false;
+                Respuesta["Mensaje"] = ex.Message;
             }
+            return Content(Respuesta.ToString());
         }
 
-        // GET: Logueo/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult IniciarSesion(TO_Usuario Usr)
         {
-            return View();
-        }
-
-        // POST: Logueo/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
+            JObject Respuesta = new JObject();
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                CD_Usuario cdUsuario = new CD_Usuario();
+                Usr = cdUsuario.fnLogueaUsuario(Usr);
+                if (Usr == null)
+                {
+                    Respuesta["Exito"] = false;
+                    Respuesta["Mensaje"] = "Usuario o contraseña incorrectos";
+                }
+                else
+                {
+                    Respuesta["Exito"] = true;
+                    Respuesta["oUsr"] = JToken.FromObject(Usr);
+                    Session["UserID"] = Usr.Correo;
+                    Session["UserName"] = Usr.Nombre;
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                Respuesta["Exito"] = false;
+                Respuesta["Mensaje"] = ex.Message;
             }
-        }
-
-        // GET: Logueo/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Logueo/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return Content(Respuesta.ToString());
         }
     }
 }

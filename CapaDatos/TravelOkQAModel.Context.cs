@@ -31,12 +31,12 @@ namespace CapaDatos
         public virtual DbSet<TO_Destino> TO_Destino { get; set; }
         public virtual DbSet<TO_DetalleDestinos> TO_DetalleDestinos { get; set; }
         public virtual DbSet<TO_Experiencias> TO_Experiencias { get; set; }
-        public virtual DbSet<TO_Salida> TO_Salida { get; set; }
-        public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Habitaciones> TO_Habitaciones { get; set; }
-        public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
-        public virtual DbSet<TO_Costo> TO_Costo { get; set; }
+        public virtual DbSet<TO_Salida> TO_Salida { get; set; }
         public virtual DbSet<TO_Usuario> TO_Usuario { get; set; }
+        public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
+        public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
+        public virtual DbSet<TO_Costo> TO_Costo { get; set; }
     
         public virtual int spInsertaComunidad(string nombre, string testimonio, Nullable<int> idViaje, Nullable<decimal> calificacion, byte[] imgDestino)
         {
@@ -61,11 +61,6 @@ namespace CapaDatos
                 new ObjectParameter("ImgDestino", typeof(byte[]));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertaComunidad", nombreParameter, testimonioParameter, idViajeParameter, calificacionParameter, imgDestinoParameter);
-        }
-    
-        public virtual ObjectResult<spObtieneComunidad_Result> spObtieneComunidad()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spObtieneComunidad_Result>("spObtieneComunidad");
         }
     
         public virtual int spdEliminaSalida(string nvSalida)
@@ -245,6 +240,11 @@ namespace CapaDatos
         public virtual ObjectResult<spsObtLugarSalidaViajes_Result> spsObtLugarSalidaViajes()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtLugarSalidaViajes_Result>("spsObtLugarSalidaViajes");
+        }
+    
+        public virtual ObjectResult<spObtieneComunidad_Result> spObtieneComunidad()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spObtieneComunidad_Result>("spObtieneComunidad");
         }
     }
 }

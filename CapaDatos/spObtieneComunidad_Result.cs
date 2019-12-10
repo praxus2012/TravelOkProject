@@ -20,5 +20,6 @@ namespace CapaDatos
         public int IdDestino { get; set; }
         public string Destino { get; set; }
         public string ActivityDate { get; set; }
+        public byte[] ImgDestino { get; set; }
     }
 }

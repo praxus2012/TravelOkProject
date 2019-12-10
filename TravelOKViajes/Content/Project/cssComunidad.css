@@ -7,6 +7,18 @@
     color: #aaa;
 }
 
+.imgVis{
+    width:20rem;
+}
+
+ul>li{
+    display:block;
+}
+
+.text{
+    float:left;
+}
+
 .rate-hover-layer {
     color: orange;
 }

@@ -22,6 +22,7 @@ namespace CapaDatos
     
         public int IdTipoHab { get; set; }
         public string nvDescripcion { get; set; }
+        public Nullable<int> CapMax { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TO_Costo> TO_Costo { get; set; }
