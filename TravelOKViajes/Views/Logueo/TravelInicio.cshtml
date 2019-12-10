@@ -6,19 +6,21 @@
 
 <h2 class="text-center mt-3">Bienvenido a Travel OK</h2>
 <h2 class="text-center mt-3">INICIA SESION</h2>
-<h2 class="text-center mt-3">PARA CONTINUAR</h2>   
-<div class="container">
-    <div class="row">
+<h2 class="text-center mt-3">PARA CONTINUAR</h2>
+<div class="container d-flex justify-content-center">
+    <div class="row col-md-6 justify-content-center d-flex">
         <input type="text" placeholder="Usuario" class="form-control mb-3 mt-5" />
         <input type="password" placeholder="Contraseña" class="form-control mb-5 mt-5" />
-        <div class="btn btn-primary col-12 mb-3">Iniciar Sesión</div>
-        <div class="col-6">¿Aún no formas parte de esta gran comunidad?</div>
-        @Html.ActionLink("Registrarse", "TravelRegistro", "Logueo", new { @class = "nav-item nav-link col-12 text-center" }, null)
-
-        <div class="row col-12 mb-4">
-        <div class="btn">
-            Al confirmar, aceptas nuestros Términos y condiciones
+        <div id="btnIniciar" class="btn btn-primary col-12 mb-3">Iniciar Sesión</div>
+        <div class="row col-12">
+            <div class="col-9">¿Aún no formas parte de esta gran comunidad?</div>
+            @Html.ActionLink("Registrarse", "TravelRegistro", "Logueo", null, new { @class = "nav-link col-3 m-0 p-0 text-primary text-center" })
         </div>
-    </div>
+        
+        <div class="row col-12 mb-4 text-center">
+            <div class="m-auto">
+                Al confirmar, aceptas nuestros Términos y condiciones
+            </div>
+        </div>
     </div>
 </div>

@@ -29,8 +29,15 @@
                 @Html.ActionLink("Confirma", "ConfirmaVenta", "Venta", null, null)
                 @Html.ActionLink("DESTINOS", "Destinos", "Home", new { @class = "nav-item nav-link" }, new { @class = "nav-item nav-link" })
                 @Html.ActionLink("VIAJEROS", "Comunidad", "Home", new { @class = "nav-item nav-link" }, new { @class = "nav-item nav-link" })
-                @Html.ActionLink("Iniciar sesión", "TravelInicio", "Logueo", new { @class = "nav-item nav-link" }, new { @class = "nav-item nav-link" })
-                @Html.ActionLink("Registrarse", "TravelRegistro", "Logueo", new { @class = "nav-item nav-link" }, new { @class = "nav-item nav-link" })
+                @if (Session["UserName"] != null)
+                {
+                    <text>Bienvenido @Session["UserName"].ToString()</text>
+                }
+                else
+                {
+                    @Html.ActionLink("Iniciar sesión", "TravelInicio", "Logueo", new { @class = "nav-item nav-link" }, new { @class = "nav-item nav-link" })
+                    @Html.ActionLink("Registrarse", "TravelRegistro", "Logueo", new { @class = "nav-item nav-link" }, new { @class = "nav-item nav-link" })
+                }
                 @Html.ActionLink("¡Evalúa tu viaje!", "Index", "Encuesta", new { @class = "nav-item nav-link" }, new { @class = "nav-item nav-link" })
             </div>
         </div>

@@ -45,5 +45,30 @@ namespace CapaDatos
                 };
             }
         }
+
+        public TO_Usuario fnLogueaUsuario(TO_Usuario oUsr)
+        {
+            using(var Contexto = new TravelOKEntitiesQA())
+            {
+                if (Contexto.TO_Usuario.Where(usr => usr.Correo == oUsr.Correo).Count() > 0)
+                    return Contexto.TO_Usuario.Where(usr => usr.Correo == oUsr.Correo && usr.Contra == oUsr.Contra).FirstOrDefault();
+                else
+                    return null;
+            }
+        }
+        public TO_Usuario fnRegistraUsuario(TO_Usuario oUsr)
+        {
+            using (var Contexto = new TravelOKEntitiesQA())
+            {
+                if (Contexto.TO_Usuario.Where(usr => usr.Correo == oUsr.Correo).Count() == 0)
+                {
+                    Contexto.TO_Usuario.Add(oUsr);
+                    Contexto.SaveChanges();
+                    return oUsr;
+                }
+                else
+                    return null;
+            }
+        }
     }
 }

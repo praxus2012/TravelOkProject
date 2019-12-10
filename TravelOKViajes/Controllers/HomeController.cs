@@ -228,7 +228,8 @@ namespace TravelOKViajes.Controllers
                                 new JProperty("Cal", c.iCalificacion),
                                 new JProperty("IDes", c.IdViaje),
                                 new JProperty("Des", c.sDestino),
-                                new JProperty("FR", c.dtFechaRegistro)
+                                new JProperty("FR", c.dtFechaRegistro),
+                                new JProperty("Img", String.Format("data:image/gif;base64,{0}", (Convert.ToBase64String(c.ImgDestino))))
                         ));
                 }
             }
@@ -279,7 +280,8 @@ namespace TravelOKViajes.Controllers
                             new JProperty("Cal",c.iCalificacion),
                             new JProperty("IDes", c.IdViaje),
                             new JProperty("Des", c.sDestino),
-                            new JProperty("FR", c.dtFechaRegistro)
+                            new JProperty("FR", c.dtFechaRegistro),
+                            new JProperty("Img", Convert.ToBase64String(c.ImgDestino))
                     ));
             }
             else

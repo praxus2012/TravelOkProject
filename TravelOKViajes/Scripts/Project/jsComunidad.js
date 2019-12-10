@@ -51,7 +51,7 @@ function GeneraComentarios(Comunidad) {
     $('#dvTestimonios').empty();
     $.each(Comunidad, function (i) {
         $('#dvTestimonios').append(
-            CreaComentario(Comunidad[i]["Nom"], Comunidad[i]["Des"], Comunidad[i]["Tes"], Comunidad[i]["Cal"], Comunidad[i]["FR"])
+            CreaComentario(Comunidad[i]["Nom"], Comunidad[i]["Des"], Comunidad[i]["Tes"], Comunidad[i]["Cal"], Comunidad[i]["FR"], Comunidad[i]["Img"])
         );
         $(".rate").rate();
     });
@@ -124,13 +124,13 @@ function successInsertaComunidad(data) {
     }
 }
 
-function CreaComentario(Nombre, Destino, Testimonio,Calificacion,Fecha) {
+function CreaComentario(Nombre, Destino, Testimonio,Calificacion,Fecha,Img) {
     if (Nombre != "")
         Nombre = Nombre + " - ";
     var dvComentario = "<div class='jumbotron jumbotron-fluid'>" +
-        "<div class='container'>" +
-        "<h3 class='display-5 hName'>" + Nombre + Destino + "</h3>" +
-        "<p class='lead dvText'>" + Testimonio + "<br/><div>" + Fecha + "</div></p>" +
-        "</div><div class='rate' id='Trate' data-rate-value=" + Calificacion + "></div></div > ";
+        "<div class='container col-12'>" +
+        "<div class='row col-8 text'><ul><li><h3 class='display-5 hName'>" + Nombre + Destino + "</h3></li>" +
+        "<li><p class='lead dvText'>" + Testimonio + "<br/><div>" + Fecha + "</div></p></li></ul></div>" +
+        "<div class='row col-3'><img class='imgVis' src='" + Img + "'></div></div><div class='rate' id='Trate' data-rate-value=" + Calificacion + "></div></div > ";
     return dvComentario;
 }
