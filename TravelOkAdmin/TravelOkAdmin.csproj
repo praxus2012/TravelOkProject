@@ -124,6 +124,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CostosController.cs" />
     <Compile Include="Controllers\DestinosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -193,6 +194,7 @@
     <Content Include="Scripts\Project\jsSalida.js" />
     <Content Include="Scripts\Project\libs\classie.js" />
     <Content Include="Scripts\Project\libs\imagesloaded.pkgd.min.js" />
+    <Content Include="Scripts\Project\jsCostos.js" />
     <Content Include="Scripts\Project\libs\main.js" />
     <Content Include="Scripts\Project\libs\masonry.pkgd.min.js" />
     <Content Include="Scripts\Project\libs\modernizr-custom.js" />
@@ -218,6 +220,7 @@
     <Content Include="Views\Home\Actividades.cshtml" />
     <Content Include="Views\Destinos\Index.cshtml" />
     <Content Include="Views\Salidas\Index.cshtml" />
+    <Content Include="Views\Costos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

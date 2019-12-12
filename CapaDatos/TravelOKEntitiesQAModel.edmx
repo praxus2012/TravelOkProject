@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TravelOKViajesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TravelOKEntitiesQAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TO_Blog">
           <Key>
             <PropertyRef Name="IdBlog" />
@@ -70,6 +70,7 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           </Key>
           <Property Name="IdTipoHab" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nvDescripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="CapMax" Type="int" />
         </EntityType>
         <EntityType Name="TO_Salida">
           <Key>
@@ -272,7 +273,7 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Parameter Name="nvUsu" Type="nvarchar" Mode="In" />
           <Parameter Name="nvCont" Type="nvarchar" Mode="In" />
         </Function>
-        <EntityContainer Name="TravelOKViajesModelStoreContainer">
+        <EntityContainer Name="TravelOKEntitiesQAModelStoreContainer">
           <EntitySet Name="TO_Blog" EntityType="Self.TO_Blog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Destino" EntityType="Self.TO_Destino" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_DetalleDestinos" EntityType="Self.TO_DetalleDestinos" Schema="dbo" store:Type="Tables" />
@@ -320,196 +321,11 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TravelOKViajesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="TravelOKViajesEntities" annotation:LazyLoadingEnabled="true">
-          <FunctionImport Name="spInsertaComunidad">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Testimonio" Mode="In" Type="String" />
-            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
-            <Parameter Name="Calificacion" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="spObtieneComunidad" ReturnType="Collection(TravelOKViajesModel.spObtieneComunidad_Result)" />
-          <FunctionImport Name="spVerificaUsuario" ReturnType="Collection(TravelOKViajesModel.spVerificaUsuario_Result)">
-            <Parameter Name="nvUsu" Mode="In" Type="String" />
-            <Parameter Name="nvCont" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="spiInsertaDestino">
-          <Parameter Name="nvDestino" Mode="In" Type="String" />
-            <Parameter Name="nvTitulo" Mode="In" Type="String" />
-            <Parameter Name="nvSubt" Mode="In" Type="String" />
-            <Parameter Name="nvDesc" Mode="In" Type="String" />
-            <Parameter Name="bPrincipal" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="spiInsertaSalida">
-          <Parameter Name="nvSalida" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="spdEliminaSalida">
-          <Parameter Name="nvSalida" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="spdEliminaSalidaId">
-          <Parameter Name="idSalida" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="spiAgregaImDestinosC">
-            <Parameter Name="Id_Destino" Mode="In" Type="Int32" />
-            <Parameter Name="nvRutaArchivo" Mode="In" Type="String" />
-            <Parameter Name="nvDescripcion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="spsObtieneDestinosImg" ReturnType="Collection(TravelOKViajesModel.spsObtieneDestinosImg_Result)" />
-          <FunctionImport Name="spsObtieneDestinoDet" ReturnType="Collection(TravelOKViajesModel.spsObtieneDestinoDet_Result)">
-          <Parameter Name="idViaje" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="spsObtieneCarrusel" ReturnType="Collection(TravelOKViajesModel.spsObtieneCarrusel_Result)">
-          <Parameter Name="Id_Destino" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="spInsertaComunidad1">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Testimonio" Mode="In" Type="String" />
-            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
-            <Parameter Name="Calificacion" Mode="In" Type="Decimal" />
-            <Parameter Name="ImgDestino" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="spiInsertaDestino1">
-            <Parameter Name="nvDestino" Mode="In" Type="String" />
-            <Parameter Name="nvTitulo" Mode="In" Type="String" />
-            <Parameter Name="nvSubt" Mode="In" Type="String" />
-            <Parameter Name="nvDesc" Mode="In" Type="String" />
-            <Parameter Name="bPrincipal" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="spiInsertaDetalleDestino">
-            <Parameter Name="idDestino" Mode="In" Type="Int32" />
-            <Parameter Name="nvRuta" Mode="In" Type="String" />
-            <Parameter Name="nvDescripción" Mode="In" Type="String" />
-            <Parameter Name="bActivo" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="spInsertaComunidad2">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Testimonio" Mode="In" Type="String" />
-            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
-            <Parameter Name="Calificacion" Mode="In" Type="Decimal" />
-            <Parameter Name="ImgDestino" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="spdEliminaDestinoId">
-          <Parameter Name="idDestino" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="spiAgregaBlog">
-            <Parameter Name="nvTitulo" Mode="In" Type="String" />
-            <Parameter Name="nvTexto" Mode="In" Type="String" />
-            <Parameter Name="imgBlog" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="spiInsertaCosto">
-            <Parameter Name="moCosto" Mode="In" Type="Decimal" />
-            <Parameter Name="inDestino" Mode="In" Type="Int32" />
-            <Parameter Name="inSalida" Mode="In" Type="Int32" />
-            <Parameter Name="inHabitac" Mode="In" Type="Int32" />
-            <Parameter Name="nvTipoPer" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="spsObtFechaViajes" ReturnType="Collection(TravelOKViajesModel.spsObtFechaViajes_Result)">
-            <Parameter Name="IdSalida" Mode="In" Type="Int32" />
-            <Parameter Name="IdDestino" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="spsObtieneHabitaciones" ReturnType="Collection(TravelOKViajesModel.spsObtieneHabitaciones_Result)" />
-          <FunctionImport Name="spsObtLugarDestinoViajes" ReturnType="Collection(TravelOKViajesModel.spsObtLugarDestinoViajes_Result)">
-          <Parameter Name="IdSalida" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="spsObtLugarSalidaViajes" ReturnType="Collection(TravelOKViajesModel.spsObtLugarSalidaViajes_Result)" />
-          <EntitySet Name="TO_Blog" EntityType="TravelOKViajesModel.TO_Blog" />
-          <EntitySet Name="TO_Destino" EntityType="TravelOKViajesModel.TO_Destino" />
-          <EntitySet Name="TO_DetalleDestinos" EntityType="TravelOKViajesModel.TO_DetalleDestinos" />
-          <EntitySet Name="TO_Experiencias" EntityType="TravelOKViajesModel.TO_Experiencias" />
-          <EntitySet Name="TO_Habitaciones" EntityType="TravelOKViajesModel.TO_Habitaciones" />
-          <EntitySet Name="TO_Salida" EntityType="TravelOKViajesModel.TO_Salida" />
-          <EntitySet Name="TO_Usuario" EntityType="TravelOKViajesModel.TO_Usuario" />
-          <EntitySet Name="TO_Viajes" EntityType="TravelOKViajesModel.TO_Viajes" />
-          <EntitySet Name="TOA_Usuario" EntityType="TravelOKViajesModel.TOA_Usuario" />
-          <EntitySet Name="TO_Costo" EntityType="TravelOKViajesModel.TO_Costo" />
-          <AssociationSet Name="FK__TO_Experi__IdDes__5AEE82B9" Association="TravelOKViajesModel.FK__TO_Experi__IdDes__5AEE82B9">
-            <End Role="TO_Destino" EntitySet="TO_Destino" />
-            <End Role="TO_Experiencias" EntitySet="TO_Experiencias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DetDestinos_Destinos" Association="TravelOKViajesModel.FK_DetDestinos_Destinos">
-            <End Role="TO_Destino" EntitySet="TO_Destino" />
-            <End Role="TO_DetalleDestinos" EntitySet="TO_DetalleDestinos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Costo_TO_Destino" Association="TravelOKViajesModel.FK_TO_Costo_TO_Destino">
-            <End Role="TO_Destino" EntitySet="TO_Destino" />
-            <End Role="TO_Costo" EntitySet="TO_Costo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Viajes_TO_Destino" Association="TravelOKViajesModel.FK_TO_Viajes_TO_Destino">
-            <End Role="TO_Destino" EntitySet="TO_Destino" />
-            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Costo_TO_Habitaciones" Association="TravelOKViajesModel.FK_TO_Costo_TO_Habitaciones">
-            <End Role="TO_Habitaciones" EntitySet="TO_Habitaciones" />
-            <End Role="TO_Costo" EntitySet="TO_Costo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Costo_TO_Salida" Association="TravelOKViajesModel.FK_TO_Costo_TO_Salida">
-            <End Role="TO_Salida" EntitySet="TO_Salida" />
-            <End Role="TO_Costo" EntitySet="TO_Costo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Viajes_TO_Salida" Association="TravelOKViajesModel.FK_TO_Viajes_TO_Salida">
-            <End Role="TO_Salida" EntitySet="TO_Salida" />
-            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
-          </AssociationSet>
-        </EntityContainer>
-        <ComplexType Name="spObtieneComunidad_Result">
-          <Property Type="Int32" Name="IdExp" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="450" />
-          <Property Type="String" Name="Testimonio" Nullable="true" />
-          <Property Type="Decimal" Name="Calificacion" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Int32" Name="IdDestino" Nullable="false" />
-          <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="ActivityDate" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="spVerificaUsuario_Result">
-          <Property Type="String" Name="nvUsuario" Nullable="false" MaxLength="25" />
-          <Property Type="String" Name="nvContraseña" Nullable="false" MaxLength="25" />
-          <Property Type="String" Name="nvNombre" Nullable="true" MaxLength="60" />
-          <Property Type="String" Name="nvApPat" Nullable="true" MaxLength="60" />
-          <Property Type="String" Name="nvApMat" Nullable="true" MaxLength="60" />
-          <Property Type="String" Name="nvCorreo" Nullable="true" MaxLength="250" />
-          <Property Type="DateTime" Name="dtFecNac" Nullable="true" />
-          <Property Type="DateTime" Name="dtFecReg" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="dtFecAct" Nullable="true" Precision="23" />
-          <Property Type="Boolean" Name="Activo" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="spsObtieneDestinosImg_Result">
-          <Property Type="Int32" Name="idViaje" Nullable="false" />
-          <Property Type="String" Name="sTitulo" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="sSubTit" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="sDescrip" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="sRutaImg" Nullable="true" MaxLength="150" />
-        </ComplexType>
-        <ComplexType Name="spsObtieneDestinoDet_Result">
-          <Property Type="Int32" Name="idViaje" Nullable="false" />
-          <Property Type="String" Name="sTitulo" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="sSubTit" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="sDescrip" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="sRutaImg" Nullable="true" MaxLength="150" />
-        </ComplexType>
-        <ComplexType Name="spsObtieneCarrusel_Result">
-          <Property Type="Int32" Name="Id_Detalle" Nullable="false" />
-          <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="nvRutaArchivo" Nullable="true" MaxLength="300" />
-        </ComplexType>
-        <ComplexType Name="spsObtFechaViajes_Result">
-          <Property Type="Int32" Name="IdViaje" Nullable="false" />
-          <Property Type="DateTime" Name="dtFechaSalida" Nullable="true" Precision="23" />
-        </ComplexType>
-        <ComplexType Name="spsObtieneHabitaciones_Result">
-          <Property Type="Int32" Name="IdTipoHab" Nullable="false" />
-          <Property Type="String" Name="nvDescripcion" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="spsObtLugarDestinoViajes_Result">
-          <Property Type="Int32" Name="Id_Destino" Nullable="false" />
-          <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
-        </ComplexType>
-        <ComplexType Name="spsObtLugarSalidaViajes_Result">
-          <Property Type="Int32" Name="Id_salida" Nullable="false" />
-          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="250" />
-        </ComplexType>
+      <Schema Namespace="TravelOKEntitiesQAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="TO_Blog">
           <Key>
             <PropertyRef Name="IdBlog" />
@@ -533,10 +349,10 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Property Name="nvRutaImg" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="bPrincipal" Type="Boolean" />
           <Property Name="bActivo" Type="Boolean" />
-          <NavigationProperty Name="TO_Experiencias" Relationship="TravelOKViajesModel.FK__TO_Experi__IdDes__5AEE82B9" FromRole="TO_Destino" ToRole="TO_Experiencias" />
-          <NavigationProperty Name="TO_DetalleDestinos" Relationship="TravelOKViajesModel.FK_DetDestinos_Destinos" FromRole="TO_Destino" ToRole="TO_DetalleDestinos" />
-          <NavigationProperty Name="TO_Costo" Relationship="TravelOKViajesModel.FK_TO_Costo_TO_Destino" FromRole="TO_Destino" ToRole="TO_Costo" />
-          <NavigationProperty Name="TO_Viajes" Relationship="TravelOKViajesModel.FK_TO_Viajes_TO_Destino" FromRole="TO_Destino" ToRole="TO_Viajes" />
+          <NavigationProperty Name="TO_Experiencias" Relationship="Self.FK__TO_Experi__IdDes__5AEE82B9" FromRole="TO_Destino" ToRole="TO_Experiencias" />
+          <NavigationProperty Name="TO_DetalleDestinos" Relationship="Self.FK_DetDestinos_Destinos" FromRole="TO_Destino" ToRole="TO_DetalleDestinos" />
+          <NavigationProperty Name="TO_Costo" Relationship="Self.FK_TO_Costo_TO_Destino" FromRole="TO_Destino" ToRole="TO_Costo" />
+          <NavigationProperty Name="TO_Viajes" Relationship="Self.FK_TO_Viajes_TO_Destino" FromRole="TO_Destino" ToRole="TO_Viajes" />
         </EntityType>
         <EntityType Name="TO_DetalleDestinos">
           <Key>
@@ -548,7 +364,7 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Property Name="nvDescripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="dtFechaAlta" Type="DateTime" Precision="3" />
           <Property Name="bActivo" Type="Boolean" />
-          <NavigationProperty Name="TO_Destino" Relationship="TravelOKViajesModel.FK_DetDestinos_Destinos" FromRole="TO_DetalleDestinos" ToRole="TO_Destino" />
+          <NavigationProperty Name="TO_Destino" Relationship="Self.FK_DetDestinos_Destinos" FromRole="TO_DetalleDestinos" ToRole="TO_Destino" />
         </EntityType>
         <EntityType Name="TO_Experiencias">
           <Key>
@@ -561,7 +377,7 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Property Name="ActivityDate" Type="DateTime" Precision="0" />
           <Property Name="Calificacion" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="ImgDestino" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="TO_Destino" Relationship="TravelOKViajesModel.FK__TO_Experi__IdDes__5AEE82B9" FromRole="TO_Experiencias" ToRole="TO_Destino" />
+          <NavigationProperty Name="TO_Destino" Relationship="Self.FK__TO_Experi__IdDes__5AEE82B9" FromRole="TO_Experiencias" ToRole="TO_Destino" />
         </EntityType>
         <EntityType Name="TO_Habitaciones">
           <Key>
@@ -569,7 +385,8 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           </Key>
           <Property Name="IdTipoHab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nvDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TO_Costo" Relationship="TravelOKViajesModel.FK_TO_Costo_TO_Habitaciones" FromRole="TO_Habitaciones" ToRole="TO_Costo" />
+          <Property Name="CapMax" Type="Int32" />
+          <NavigationProperty Name="TO_Costo" Relationship="Self.FK_TO_Costo_TO_Habitaciones" FromRole="TO_Habitaciones" ToRole="TO_Costo" />
         </EntityType>
         <EntityType Name="TO_Salida">
           <Key>
@@ -577,14 +394,14 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           </Key>
           <Property Name="IdSalida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ciudad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TO_Costo" Relationship="TravelOKViajesModel.FK_TO_Costo_TO_Salida" FromRole="TO_Salida" ToRole="TO_Costo" />
-          <NavigationProperty Name="TO_Viajes" Relationship="TravelOKViajesModel.FK_TO_Viajes_TO_Salida" FromRole="TO_Salida" ToRole="TO_Viajes" />
+          <NavigationProperty Name="TO_Costo" Relationship="Self.FK_TO_Costo_TO_Salida" FromRole="TO_Salida" ToRole="TO_Costo" />
+          <NavigationProperty Name="TO_Viajes" Relationship="Self.FK_TO_Viajes_TO_Salida" FromRole="TO_Salida" ToRole="TO_Viajes" />
         </EntityType>
         <EntityType Name="TO_Usuario">
           <Key>
             <PropertyRef Name="Correo" />
           </Key>
-          <Property Name="Correo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Contra" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Apellidos" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -604,15 +421,15 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Property Name="Id_Destino" Type="Int32" Nullable="false" />
           <Property Name="Id_Salida" Type="Int32" Nullable="false" />
           <Property Name="dtFechaSalida" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="TO_Destino" Relationship="TravelOKViajesModel.FK_TO_Viajes_TO_Destino" FromRole="TO_Viajes" ToRole="TO_Destino" />
-          <NavigationProperty Name="TO_Salida" Relationship="TravelOKViajesModel.FK_TO_Viajes_TO_Salida" FromRole="TO_Viajes" ToRole="TO_Salida" />
+          <NavigationProperty Name="TO_Destino" Relationship="Self.FK_TO_Viajes_TO_Destino" FromRole="TO_Viajes" ToRole="TO_Destino" />
+          <NavigationProperty Name="TO_Salida" Relationship="Self.FK_TO_Viajes_TO_Salida" FromRole="TO_Viajes" ToRole="TO_Salida" />
         </EntityType>
         <EntityType Name="TOA_Usuario">
           <Key>
             <PropertyRef Name="nvUsuario" />
           </Key>
-          <Property Name="nvUsuario" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="nvContraseña" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="nvUsuario" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nvContraseña" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nvNombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="nvApPat" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="nvApMat" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
@@ -631,13 +448,13 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Property Name="IdSalida" Type="Int32" />
           <Property Name="IdHabitacion" Type="Int32" />
           <Property Name="TipoPersona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TO_Destino" Relationship="TravelOKViajesModel.FK_TO_Costo_TO_Destino" FromRole="TO_Costo" ToRole="TO_Destino" />
-          <NavigationProperty Name="TO_Habitaciones" Relationship="TravelOKViajesModel.FK_TO_Costo_TO_Habitaciones" FromRole="TO_Costo" ToRole="TO_Habitaciones" />
-          <NavigationProperty Name="TO_Salida" Relationship="TravelOKViajesModel.FK_TO_Costo_TO_Salida" FromRole="TO_Costo" ToRole="TO_Salida" />
+          <NavigationProperty Name="TO_Destino" Relationship="Self.FK_TO_Costo_TO_Destino" FromRole="TO_Costo" ToRole="TO_Destino" />
+          <NavigationProperty Name="TO_Habitaciones" Relationship="Self.FK_TO_Costo_TO_Habitaciones" FromRole="TO_Costo" ToRole="TO_Habitaciones" />
+          <NavigationProperty Name="TO_Salida" Relationship="Self.FK_TO_Costo_TO_Salida" FromRole="TO_Costo" ToRole="TO_Salida" />
         </EntityType>
         <Association Name="FK__TO_Experi__IdDes__5AEE82B9">
-          <End Type="TravelOKViajesModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
-          <End Type="TravelOKViajesModel.TO_Experiencias" Role="TO_Experiencias" Multiplicity="*" />
+          <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
+          <End Role="TO_Experiencias" Type="Self.TO_Experiencias" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TO_Destino">
               <PropertyRef Name="IdViaje" />
@@ -648,8 +465,8 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DetDestinos_Destinos">
-          <End Type="TravelOKViajesModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
-          <End Type="TravelOKViajesModel.TO_DetalleDestinos" Role="TO_DetalleDestinos" Multiplicity="*" />
+          <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
+          <End Role="TO_DetalleDestinos" Type="Self.TO_DetalleDestinos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TO_Destino">
               <PropertyRef Name="IdViaje" />
@@ -660,8 +477,8 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TO_Costo_TO_Destino">
-          <End Type="TravelOKViajesModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
-          <End Type="TravelOKViajesModel.TO_Costo" Role="TO_Costo" Multiplicity="0..1" />
+          <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
+          <End Role="TO_Costo" Type="Self.TO_Costo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="TO_Destino">
               <PropertyRef Name="IdViaje" />
@@ -672,8 +489,8 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TO_Viajes_TO_Destino">
-          <End Type="TravelOKViajesModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
-          <End Type="TravelOKViajesModel.TO_Viajes" Role="TO_Viajes" Multiplicity="*" />
+          <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
+          <End Role="TO_Viajes" Type="Self.TO_Viajes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TO_Destino">
               <PropertyRef Name="IdViaje" />
@@ -684,8 +501,8 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TO_Costo_TO_Habitaciones">
-          <End Type="TravelOKViajesModel.TO_Habitaciones" Role="TO_Habitaciones" Multiplicity="0..1" />
-          <End Type="TravelOKViajesModel.TO_Costo" Role="TO_Costo" Multiplicity="*" />
+          <End Role="TO_Habitaciones" Type="Self.TO_Habitaciones" Multiplicity="0..1" />
+          <End Role="TO_Costo" Type="Self.TO_Costo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TO_Habitaciones">
               <PropertyRef Name="IdTipoHab" />
@@ -696,8 +513,8 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TO_Costo_TO_Salida">
-          <End Type="TravelOKViajesModel.TO_Salida" Role="TO_Salida" Multiplicity="0..1" />
-          <End Type="TravelOKViajesModel.TO_Costo" Role="TO_Costo" Multiplicity="*" />
+          <End Role="TO_Salida" Type="Self.TO_Salida" Multiplicity="0..1" />
+          <End Role="TO_Costo" Type="Self.TO_Costo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TO_Salida">
               <PropertyRef Name="IdSalida" />
@@ -708,8 +525,8 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TO_Viajes_TO_Salida">
-          <End Type="TravelOKViajesModel.TO_Salida" Role="TO_Salida" Multiplicity="1" />
-          <End Type="TravelOKViajesModel.TO_Viajes" Role="TO_Viajes" Multiplicity="*" />
+          <End Role="TO_Salida" Type="Self.TO_Salida" Multiplicity="1" />
+          <End Role="TO_Viajes" Type="Self.TO_Viajes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TO_Salida">
               <PropertyRef Name="IdSalida" />
@@ -719,28 +536,277 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="TravelOKEntitiesQA" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TO_Blog" EntityType="Self.TO_Blog" />
+          <EntitySet Name="TO_Destino" EntityType="Self.TO_Destino" />
+          <EntitySet Name="TO_DetalleDestinos" EntityType="Self.TO_DetalleDestinos" />
+          <EntitySet Name="TO_Experiencias" EntityType="Self.TO_Experiencias" />
+          <EntitySet Name="TO_Habitaciones" EntityType="Self.TO_Habitaciones" />
+          <EntitySet Name="TO_Salida" EntityType="Self.TO_Salida" />
+          <EntitySet Name="TO_Usuario" EntityType="Self.TO_Usuario" />
+          <EntitySet Name="TO_Viajes" EntityType="Self.TO_Viajes" />
+          <EntitySet Name="TOA_Usuario" EntityType="Self.TOA_Usuario" />
+          <EntitySet Name="TO_Costo" EntityType="Self.TO_Costo" />
+          <AssociationSet Name="FK__TO_Experi__IdDes__5AEE82B9" Association="Self.FK__TO_Experi__IdDes__5AEE82B9">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Experiencias" EntitySet="TO_Experiencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetDestinos_Destinos" Association="Self.FK_DetDestinos_Destinos">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_DetalleDestinos" EntitySet="TO_DetalleDestinos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Destino" Association="Self.FK_TO_Costo_TO_Destino">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Viajes_TO_Destino" Association="Self.FK_TO_Viajes_TO_Destino">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Habitaciones" Association="Self.FK_TO_Costo_TO_Habitaciones">
+            <End Role="TO_Habitaciones" EntitySet="TO_Habitaciones" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Salida" Association="Self.FK_TO_Costo_TO_Salida">
+            <End Role="TO_Salida" EntitySet="TO_Salida" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Viajes_TO_Salida" Association="Self.FK_TO_Viajes_TO_Salida">
+            <End Role="TO_Salida" EntitySet="TO_Salida" />
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+          </AssociationSet>
+          <FunctionImport Name="spdEliminaDestinoId">
+            <Parameter Name="idDestino" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spdEliminaSalida">
+            <Parameter Name="nvSalida" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spdEliminaSalidaId">
+            <Parameter Name="idSalida" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spiAgregaBlog">
+            <Parameter Name="nvTitulo" Mode="In" Type="String" />
+            <Parameter Name="nvTexto" Mode="In" Type="String" />
+            <Parameter Name="imgBlog" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="spiAgregaImDestinosC">
+            <Parameter Name="Id_Destino" Mode="In" Type="Int32" />
+            <Parameter Name="nvRutaArchivo" Mode="In" Type="String" />
+            <Parameter Name="nvDescripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spiInsertaCosto">
+            <Parameter Name="moCosto" Mode="In" Type="Decimal" />
+            <Parameter Name="inDestino" Mode="In" Type="Int32" />
+            <Parameter Name="inSalida" Mode="In" Type="Int32" />
+            <Parameter Name="inHabitac" Mode="In" Type="Int32" />
+            <Parameter Name="nvTipoPer" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spiInsertaDestino">
+            <Parameter Name="nvDestino" Mode="In" Type="String" />
+            <Parameter Name="nvTitulo" Mode="In" Type="String" />
+            <Parameter Name="nvSubt" Mode="In" Type="String" />
+            <Parameter Name="nvDesc" Mode="In" Type="String" />
+            <Parameter Name="bPrincipal" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="spiInsertaDetalleDestino">
+            <Parameter Name="idDestino" Mode="In" Type="Int32" />
+            <Parameter Name="nvRuta" Mode="In" Type="String" />
+            <Parameter Name="nvDescripción" Mode="In" Type="String" />
+            <Parameter Name="bActivo" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="spiInsertaSalida">
+            <Parameter Name="nvSalida" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spInsertaComunidad">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Testimonio" Mode="In" Type="String" />
+            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
+            <Parameter Name="Calificacion" Mode="In" Type="Decimal" />
+            <Parameter Name="ImgDestino" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="spObtieneComunidad" ReturnType="Collection(TravelOKEntitiesQAModel.spObtieneComunidad_Result)" />
+          <FunctionImport Name="spsObtFechaViajes" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtFechaViajes_Result)">
+            <Parameter Name="IdSalida" Mode="In" Type="Int32" />
+            <Parameter Name="IdDestino" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spsObtieneCarrusel" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneCarrusel_Result)">
+            <Parameter Name="Id_Destino" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spsObtieneDestinoDet" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneDestinoDet_Result)">
+            <Parameter Name="idViaje" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spsObtieneDestinosImg" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneDestinosImg_Result)" />
+          <FunctionImport Name="spsObtieneHabitaciones" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneHabitaciones_Result)" />
+          <FunctionImport Name="spsObtLugarDestinoViajes" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtLugarDestinoViajes_Result)">
+            <Parameter Name="IdSalida" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spsObtLugarSalidaViajes" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtLugarSalidaViajes_Result)" />
+          <FunctionImport Name="spVerificaUsuario" ReturnType="Collection(TravelOKEntitiesQAModel.spVerificaUsuario_Result)">
+            <Parameter Name="nvUsu" Mode="In" Type="String" />
+            <Parameter Name="nvCont" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spObtieneComunidad_Result">
+          <Property Type="Int32" Name="IdExp" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="450" />
+          <Property Type="String" Name="Testimonio" Nullable="true" />
+          <Property Type="Decimal" Name="Calificacion" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="IdDestino" Nullable="false" />
+          <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ActivityDate" Nullable="true" MaxLength="30" />
+          <Property Type="Binary" Name="ImgDestino" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spsObtFechaViajes_Result">
+          <Property Type="Int32" Name="IdViaje" Nullable="false" />
+          <Property Type="DateTime" Name="dtFechaSalida" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spsObtieneCarrusel_Result">
+          <Property Type="Int32" Name="Id_Detalle" Nullable="false" />
+          <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="nvRutaArchivo" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="spsObtieneDestinoDet_Result">
+          <Property Type="Int32" Name="idViaje" Nullable="false" />
+          <Property Type="String" Name="sTitulo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sSubTit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sDescrip" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="sRutaImg" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="spsObtieneDestinosImg_Result">
+          <Property Type="Int32" Name="idViaje" Nullable="false" />
+          <Property Type="String" Name="sTitulo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sSubTit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sDescrip" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="sRutaImg" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="spsObtieneHabitaciones_Result">
+          <Property Type="Int32" Name="IdTipoHab" Nullable="false" />
+          <Property Type="String" Name="nvDescripcion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spsObtLugarDestinoViajes_Result">
+          <Property Type="Int32" Name="Id_Destino" Nullable="false" />
+          <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="spsObtLugarSalidaViajes_Result">
+          <Property Type="Int32" Name="Id_salida" Nullable="false" />
+          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="spVerificaUsuario_Result">
+          <Property Type="String" Name="nvUsuario" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="nvContraseña" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="nvNombre" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="nvApPat" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="nvApMat" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="nvCorreo" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="dtFecNac" Nullable="true" />
+          <Property Type="DateTime" Name="dtFecReg" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="dtFecAct" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Activo" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TravelOKViajesModelStoreContainer" CdmEntityContainer="TravelOKViajesEntities">
-          <FunctionImportMapping FunctionImportName="spObtieneComunidad" FunctionName="TravelOKViajesModel.Store.spObtieneComunidad">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TravelOKViajesModel.spObtieneComunidad_Result">
+        <EntityContainerMapping StorageEntityContainer="TravelOKEntitiesQAModelStoreContainer" CdmEntityContainer="TravelOKEntitiesQA">
+          <EntitySetMapping Name="TO_Blog">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Blog">
+              <MappingFragment StoreEntitySet="TO_Blog">
+                <ScalarProperty Name="IdBlog" ColumnName="IdBlog" />
+                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
+                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
+                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
+                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Destino">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Destino">
+              <MappingFragment StoreEntitySet="TO_Destino">
+                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
+                <ScalarProperty Name="nvSubt" ColumnName="nvSubt" />
+                <ScalarProperty Name="nvDesc" ColumnName="nvDesc" />
+                <ScalarProperty Name="nvRutaImg" ColumnName="nvRutaImg" />
+                <ScalarProperty Name="bPrincipal" ColumnName="bPrincipal" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_DetalleDestinos">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_DetalleDestinos">
+              <MappingFragment StoreEntitySet="TO_DetalleDestinos">
+                <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
+                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
+                <ScalarProperty Name="nvRutaArchivo" ColumnName="nvRutaArchivo" />
+                <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
+                <ScalarProperty Name="dtFechaAlta" ColumnName="dtFechaAlta" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Experiencias">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Experiencias">
+              <MappingFragment StoreEntitySet="TO_Experiencias">
                 <ScalarProperty Name="IdExp" ColumnName="IdExp" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Testimonio" ColumnName="Testimonio" />
-                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
                 <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
-                <ScalarProperty Name="Destino" ColumnName="Destino" />
                 <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spVerificaUsuario" FunctionName="TravelOKViajesModel.Store.spVerificaUsuario">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TravelOKViajesModel.spVerificaUsuario_Result">
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="ImgDestino" ColumnName="ImgDestino" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Habitaciones">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Habitaciones">
+              <MappingFragment StoreEntitySet="TO_Habitaciones">
+                <ScalarProperty Name="IdTipoHab" ColumnName="IdTipoHab" />
+                <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
+                <ScalarProperty Name="CapMax" ColumnName="CapMax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Salida">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Salida">
+              <MappingFragment StoreEntitySet="TO_Salida">
+                <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Usuario">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Usuario">
+              <MappingFragment StoreEntitySet="TO_Usuario">
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Contra" ColumnName="Contra" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="FechNac" ColumnName="FechNac" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Viajes">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Viajes">
+              <MappingFragment StoreEntitySet="TO_Viajes">
+                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
+                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
+                <ScalarProperty Name="Id_Salida" ColumnName="Id_Salida" />
+                <ScalarProperty Name="dtFechaSalida" ColumnName="dtFechaSalida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOA_Usuario">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TOA_Usuario">
+              <MappingFragment StoreEntitySet="TOA_Usuario">
                 <ScalarProperty Name="nvUsuario" ColumnName="nvUsuario" />
                 <ScalarProperty Name="nvContraseña" ColumnName="nvContraseña" />
                 <ScalarProperty Name="nvNombre" ColumnName="nvNombre" />
@@ -751,203 +817,123 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
                 <ScalarProperty Name="dtFecReg" ColumnName="dtFecReg" />
                 <ScalarProperty Name="dtFecAct" ColumnName="dtFecAct" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Costo">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Costo">
+              <MappingFragment StoreEntitySet="TO_Costo">
+                <ScalarProperty Name="CostoLugar" ColumnName="CostoLugar" />
+                <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
+                <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
+                <ScalarProperty Name="IdHabitacion" ColumnName="IdHabitacion" />
+                <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spdEliminaDestinoId" FunctionName="TravelOKEntitiesQAModel.Store.spdEliminaDestinoId" />
+          <FunctionImportMapping FunctionImportName="spdEliminaSalida" FunctionName="TravelOKEntitiesQAModel.Store.spdEliminaSalida" />
+          <FunctionImportMapping FunctionImportName="spdEliminaSalidaId" FunctionName="TravelOKEntitiesQAModel.Store.spdEliminaSalidaId" />
+          <FunctionImportMapping FunctionImportName="spiAgregaBlog" FunctionName="TravelOKEntitiesQAModel.Store.spiAgregaBlog" />
+          <FunctionImportMapping FunctionImportName="spiAgregaImDestinosC" FunctionName="TravelOKEntitiesQAModel.Store.spiAgregaImDestinosC" />
+          <FunctionImportMapping FunctionImportName="spiInsertaCosto" FunctionName="TravelOKEntitiesQAModel.Store.spiInsertaCosto" />
+          <FunctionImportMapping FunctionImportName="spiInsertaDestino" FunctionName="TravelOKEntitiesQAModel.Store.spiInsertaDestino" />
+          <FunctionImportMapping FunctionImportName="spiInsertaDetalleDestino" FunctionName="TravelOKEntitiesQAModel.Store.spiInsertaDetalleDestino" />
+          <FunctionImportMapping FunctionImportName="spiInsertaSalida" FunctionName="TravelOKEntitiesQAModel.Store.spiInsertaSalida" />
+          <FunctionImportMapping FunctionImportName="spInsertaComunidad" FunctionName="TravelOKEntitiesQAModel.Store.spInsertaComunidad" />
+          <FunctionImportMapping FunctionImportName="spObtieneComunidad" FunctionName="TravelOKEntitiesQAModel.Store.spObtieneComunidad">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spObtieneComunidad_Result">
+                <ScalarProperty Name="IdExp" ColumnName="IdExp" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Testimonio" ColumnName="Testimonio" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
+                <ScalarProperty Name="ImgDestino" ColumnName="ImgDestino" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spiInsertaSalida" FunctionName="TravelOKViajesModel.Store.spiInsertaSalida" />
-          <FunctionImportMapping FunctionImportName="spdEliminaSalida" FunctionName="TravelOKViajesModel.Store.spdEliminaSalida" />
-          <FunctionImportMapping FunctionImportName="spdEliminaSalidaId" FunctionName="TravelOKViajesModel.Store.spdEliminaSalidaId" />
-          <FunctionImportMapping FunctionImportName="spiAgregaImDestinosC" FunctionName="TravelOKViajesModel.Store.spiAgregaImDestinosC" />
-          <FunctionImportMapping FunctionImportName="spsObtieneDestinosImg" FunctionName="TravelOKViajesModel.Store.spsObtieneDestinosImg">
+          <FunctionImportMapping FunctionImportName="spsObtFechaViajes" FunctionName="TravelOKEntitiesQAModel.Store.spsObtFechaViajes">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TravelOKViajesModel.spsObtieneDestinosImg_Result">
-                <ScalarProperty Name="idViaje" ColumnName="idViaje" />
-                <ScalarProperty Name="sTitulo" ColumnName="sTitulo" />
-                <ScalarProperty Name="sSubTit" ColumnName="sSubTit" />
-                <ScalarProperty Name="sDescrip" ColumnName="sDescrip" />
-                <ScalarProperty Name="sRutaImg" ColumnName="sRutaImg" />
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtFechaViajes_Result">
+                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
+                <ScalarProperty Name="dtFechaSalida" ColumnName="dtFechaSalida" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spsObtieneDestinoDet" FunctionName="TravelOKViajesModel.Store.spsObtieneDestinoDet">
+          <FunctionImportMapping FunctionImportName="spsObtieneCarrusel" FunctionName="TravelOKEntitiesQAModel.Store.spsObtieneCarrusel">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TravelOKViajesModel.spsObtieneDestinoDet_Result">
-                <ScalarProperty Name="idViaje" ColumnName="idViaje" />
-                <ScalarProperty Name="sTitulo" ColumnName="sTitulo" />
-                <ScalarProperty Name="sSubTit" ColumnName="sSubTit" />
-                <ScalarProperty Name="sDescrip" ColumnName="sDescrip" />
-                <ScalarProperty Name="sRutaImg" ColumnName="sRutaImg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spsObtieneCarrusel" FunctionName="TravelOKViajesModel.Store.spsObtieneCarrusel">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TravelOKViajesModel.spsObtieneCarrusel_Result">
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtieneCarrusel_Result">
                 <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
                 <ScalarProperty Name="Destino" ColumnName="Destino" />
                 <ScalarProperty Name="nvRutaArchivo" ColumnName="nvRutaArchivo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spiInsertaDestino1" FunctionName="TravelOKViajesModel.Store.spiInsertaDestino" />
-          <FunctionImportMapping FunctionImportName="spiInsertaDetalleDestino" FunctionName="TravelOKViajesModel.Store.spiInsertaDetalleDestino" />
-          <FunctionImportMapping FunctionImportName="spInsertaComunidad2" FunctionName="TravelOKViajesModel.Store.spInsertaComunidad" />
-          <FunctionImportMapping FunctionImportName="spdEliminaDestinoId" FunctionName="TravelOKViajesModel.Store.spdEliminaDestinoId" />
-          <FunctionImportMapping FunctionImportName="spiAgregaBlog" FunctionName="TravelOKViajesModel.Store.spiAgregaBlog" />
-          <FunctionImportMapping FunctionImportName="spiInsertaCosto" FunctionName="TravelOKViajesModel.Store.spiInsertaCosto" />
-          <FunctionImportMapping FunctionImportName="spsObtFechaViajes" FunctionName="TravelOKViajesModel.Store.spsObtFechaViajes">
+          <FunctionImportMapping FunctionImportName="spsObtieneDestinoDet" FunctionName="TravelOKEntitiesQAModel.Store.spsObtieneDestinoDet">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TravelOKViajesModel.spsObtFechaViajes_Result">
-                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
-                <ScalarProperty Name="dtFechaSalida" ColumnName="dtFechaSalida" />
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtieneDestinoDet_Result">
+                <ScalarProperty Name="idViaje" ColumnName="idViaje" />
+                <ScalarProperty Name="sTitulo" ColumnName="sTitulo" />
+                <ScalarProperty Name="sSubTit" ColumnName="sSubTit" />
+                <ScalarProperty Name="sDescrip" ColumnName="sDescrip" />
+                <ScalarProperty Name="sRutaImg" ColumnName="sRutaImg" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spsObtieneHabitaciones" FunctionName="TravelOKViajesModel.Store.spsObtieneHabitaciones">
+          <FunctionImportMapping FunctionImportName="spsObtieneDestinosImg" FunctionName="TravelOKEntitiesQAModel.Store.spsObtieneDestinosImg">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TravelOKViajesModel.spsObtieneHabitaciones_Result">
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtieneDestinosImg_Result">
+                <ScalarProperty Name="idViaje" ColumnName="idViaje" />
+                <ScalarProperty Name="sTitulo" ColumnName="sTitulo" />
+                <ScalarProperty Name="sSubTit" ColumnName="sSubTit" />
+                <ScalarProperty Name="sDescrip" ColumnName="sDescrip" />
+                <ScalarProperty Name="sRutaImg" ColumnName="sRutaImg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spsObtieneHabitaciones" FunctionName="TravelOKEntitiesQAModel.Store.spsObtieneHabitaciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtieneHabitaciones_Result">
                 <ScalarProperty Name="IdTipoHab" ColumnName="IdTipoHab" />
                 <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spsObtLugarDestinoViajes" FunctionName="TravelOKViajesModel.Store.spsObtLugarDestinoViajes">
+          <FunctionImportMapping FunctionImportName="spsObtLugarDestinoViajes" FunctionName="TravelOKEntitiesQAModel.Store.spsObtLugarDestinoViajes">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TravelOKViajesModel.spsObtLugarDestinoViajes_Result">
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtLugarDestinoViajes_Result">
                 <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
                 <ScalarProperty Name="Destino" ColumnName="Destino" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spsObtLugarSalidaViajes" FunctionName="TravelOKViajesModel.Store.spsObtLugarSalidaViajes">
+          <FunctionImportMapping FunctionImportName="spsObtLugarSalidaViajes" FunctionName="TravelOKEntitiesQAModel.Store.spsObtLugarSalidaViajes">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TravelOKViajesModel.spsObtLugarSalidaViajes_Result">
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtLugarSalidaViajes_Result">
                 <ScalarProperty Name="Id_salida" ColumnName="Id_salida" />
                 <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="TO_Blog">
-            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Blog">
-              <MappingFragment StoreEntitySet="TO_Blog">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
-                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
-                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
-                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
-                <ScalarProperty Name="IdBlog" ColumnName="IdBlog" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Destino">
-            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Destino">
-              <MappingFragment StoreEntitySet="TO_Destino">
-                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
-                <ScalarProperty Name="bPrincipal" ColumnName="bPrincipal" />
-                <ScalarProperty Name="nvRutaImg" ColumnName="nvRutaImg" />
-                <ScalarProperty Name="nvDesc" ColumnName="nvDesc" />
-                <ScalarProperty Name="nvSubt" ColumnName="nvSubt" />
-                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
-                <ScalarProperty Name="Destino" ColumnName="Destino" />
-                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_DetalleDestinos">
-            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_DetalleDestinos">
-              <MappingFragment StoreEntitySet="TO_DetalleDestinos">
-                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
-                <ScalarProperty Name="dtFechaAlta" ColumnName="dtFechaAlta" />
-                <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
-                <ScalarProperty Name="nvRutaArchivo" ColumnName="nvRutaArchivo" />
-                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
-                <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Experiencias">
-            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Experiencias">
-              <MappingFragment StoreEntitySet="TO_Experiencias">
-                <ScalarProperty Name="ImgDestino" ColumnName="ImgDestino" />
-                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
-                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
-                <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
-                <ScalarProperty Name="Testimonio" ColumnName="Testimonio" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdExp" ColumnName="IdExp" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Habitaciones">
-            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Habitaciones">
-              <MappingFragment StoreEntitySet="TO_Habitaciones">
-                <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
-                <ScalarProperty Name="IdTipoHab" ColumnName="IdTipoHab" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Salida">
-            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Salida">
-              <MappingFragment StoreEntitySet="TO_Salida">
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
-                <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Usuario">
-            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Usuario">
-              <MappingFragment StoreEntitySet="TO_Usuario">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="FechNac" ColumnName="FechNac" />
-                <ScalarProperty Name="Genero" ColumnName="Genero" />
-                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Contra" ColumnName="Contra" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Viajes">
-            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Viajes">
-              <MappingFragment StoreEntitySet="TO_Viajes">
-                <ScalarProperty Name="dtFechaSalida" ColumnName="dtFechaSalida" />
-                <ScalarProperty Name="Id_Salida" ColumnName="Id_Salida" />
-                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
-                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TOA_Usuario">
-            <EntityTypeMapping TypeName="TravelOKViajesModel.TOA_Usuario">
-              <MappingFragment StoreEntitySet="TOA_Usuario">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="dtFecAct" ColumnName="dtFecAct" />
-                <ScalarProperty Name="dtFecReg" ColumnName="dtFecReg" />
-                <ScalarProperty Name="dtFecNac" ColumnName="dtFecNac" />
-                <ScalarProperty Name="nvCorreo" ColumnName="nvCorreo" />
-                <ScalarProperty Name="nvApMat" ColumnName="nvApMat" />
-                <ScalarProperty Name="nvApPat" ColumnName="nvApPat" />
-                <ScalarProperty Name="nvNombre" ColumnName="nvNombre" />
-                <ScalarProperty Name="nvContraseña" ColumnName="nvContraseña" />
+          <FunctionImportMapping FunctionImportName="spVerificaUsuario" FunctionName="TravelOKEntitiesQAModel.Store.spVerificaUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spVerificaUsuario_Result">
                 <ScalarProperty Name="nvUsuario" ColumnName="nvUsuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Costo">
-            <EntityTypeMapping TypeName="TravelOKViajesModel.TO_Costo">
-              <MappingFragment StoreEntitySet="TO_Costo">
-                <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
-                <ScalarProperty Name="IdHabitacion" ColumnName="IdHabitacion" />
-                <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
-                <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
-                <ScalarProperty Name="CostoLugar" ColumnName="CostoLugar" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+                <ScalarProperty Name="nvContraseña" ColumnName="nvContraseña" />
+                <ScalarProperty Name="nvNombre" ColumnName="nvNombre" />
+                <ScalarProperty Name="nvApPat" ColumnName="nvApPat" />
+                <ScalarProperty Name="nvApMat" ColumnName="nvApMat" />
+                <ScalarProperty Name="nvCorreo" ColumnName="nvCorreo" />
+                <ScalarProperty Name="dtFecNac" ColumnName="dtFecNac" />
+                <ScalarProperty Name="dtFecReg" ColumnName="dtFecReg" />
+                <ScalarProperty Name="dtFecAct" ColumnName="dtFecAct" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
