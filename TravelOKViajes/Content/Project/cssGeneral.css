@@ -11,6 +11,11 @@
     width: 150px;
 }
 
+#dvPersona{
+    color:white;
+    padding-top:0.2rem;
+}
+
 .titular {
     float: left;
     font-size: 20pt;

@@ -13,11 +13,19 @@ namespace TravelOKViajes.Controllers
         // GET: Logueo
         public ActionResult TravelInicio()
         {
+            if(Session["UserID"]!= null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
         public ActionResult TravelRegistro()
         {
+            if (Session["UserID"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 

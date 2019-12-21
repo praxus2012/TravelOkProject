@@ -5,23 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f83f4386b61c43dbbd4059f05ce0676e" Name="Diagram1">
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Blog" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Destino" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_DetalleDestinos" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Experiencias" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Habitaciones" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Salida" Width="1.5" PointX="3.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Usuario" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Viajes" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TOA_Usuario" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Costo" Width="1.5" PointX="6" PointY="2.125" IsExpanded="true" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK__TO_Experi__IdDes__5AEE82B9" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_DetDestinos_Destinos" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Destino" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Destino" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Habitaciones" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Salida" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Salida" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Blog" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Destino" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_DetalleDestinos" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Experiencias" Width="1.5" PointX="3" PointY="13.875" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Habitaciones" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Salida" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Usuario" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Viajes" Width="1.5" PointX="6" PointY="6.25" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TOA_Usuario" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Costo" Width="1.5" PointX="3" PointY="4.125" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK__TO_Experi__IdDes__5AEE82B9" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_DetDestinos_Destinos" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Destino" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Destino" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Habitaciones" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Salida" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Salida" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -8,55 +8,55 @@
 <div class="container">
     <div class="row mb-4">
         <div class="col-4">
-            <input class="form-control" placeholder="Nombre(s)" />
+            <input class="form-control" placeholder="Nombre(s)" id="inNom" />
         </div>
         <div class="col-4">
-            <input class="form-control" placeholder="Apellido(s)" />
+            <input class="form-control" placeholder="Apellido(s)" id="inApp" />
         </div>
         <div class="col-4">
-            <input class="form-control" placeholder="Género" />
-        </div>
-    </div>
-    <div class="row mb-4">
-        <div class="col-4">
-            <input class="form-control" placeholder="Cumpleaños" />
-        </div>
-        <div class="col-4">
-            <input class="form-control" placeholder="País" />
-        </div>
-        <div class="col-4">
-            <input class="form-control" placeholder="Estado" />
+            <input class="form-control" placeholder="Género" id="inGen"/>
         </div>
     </div>
     <div class="row mb-4">
         <div class="col-4">
-            <input class="form-control" placeholder="Municipio" />
+            <input class="form-control" placeholder="Cumpleaños" id="inCumple"/>
         </div>
         <div class="col-4">
-            <input class="form-control" placeholder="Teléfono" />
+            <input class="form-control" placeholder="País" id="inPais"/>
         </div>
         <div class="col-4">
-            <input class="form-control" placeholder="Confirmar Teléfono" />
-        </div>
-    </div>
-    <div class="row mb-4">
-        <div class="col-4">
-            <input class="form-control" placeholder="Correo" />
-        </div>
-        <div class="col-4">
-            <input class="form-control" placeholder="Confirmar Correo" />
+            <input class="form-control" placeholder="Estado" id="inEstado"/>
         </div>
     </div>
     <div class="row mb-4">
         <div class="col-4">
-            <input class="form-control" placeholder="Contraseña" />
+            <input class="form-control" placeholder="Municipio" id="inMuni"/>
         </div>
         <div class="col-4">
-            <input class="form-control" placeholder="Confirmar Contraseña" />
+            <input class="form-control" placeholder="Teléfono" id="inTel"/>
+        </div>
+        <div class="col-4">
+            <input class="form-control" placeholder="Confirmar Teléfono" id="inTel2"/>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-4">
+            <input class="form-control" placeholder="Correo" id="inCorreo"/>
+        </div>
+        <div class="col-4">
+            <input class="form-control" placeholder="Confirmar Correo" id="inCorreo2"/>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-4">
+            <input class="form-control" placeholder="Contraseña" id="inContra"/>
+        </div>
+        <div class="col-4">
+            <input class="form-control" placeholder="Confirmar Contraseña" id="inContra2"/>
         </div>
     </div>
     <div class="row mb-4 d-flex justify-content-end">
-        <div class="btn btn-primary col-3">
+        <div class="btn btn-primary col-3" id="btnRegistro">
             REGISTRARME
         </div>
     </div>
@@ -66,3 +66,5 @@
         </div>
     </div>
 </div>
+<script src="~/Scripts/Project/jsLogueo.js"></script>
+<input type="hidden" id="urlRegistro" value="@Url.Action("RegistrarUsuario","Logueo")" />

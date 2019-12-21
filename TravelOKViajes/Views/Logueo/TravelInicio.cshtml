@@ -9,8 +9,8 @@
 <h2 class="text-center mt-3">PARA CONTINUAR</h2>
 <div class="container d-flex justify-content-center">
     <div class="row col-md-6 justify-content-center d-flex">
-        <input type="text" placeholder="Usuario" class="form-control mb-3 mt-5" />
-        <input type="password" placeholder="Contraseña" class="form-control mb-5 mt-5" />
+        <input type="text" placeholder="Usuario" id="inUsr" class="form-control mb-3 mt-5" />
+        <input type="password" placeholder="Contraseña" id="inPass" class="form-control mb-5 mt-5" />
         <div id="btnIniciar" class="btn btn-primary col-12 mb-3">Iniciar Sesión</div>
         <div class="row col-12">
             <div class="col-9">¿Aún no formas parte de esta gran comunidad?</div>
@@ -24,3 +24,5 @@
         </div>
     </div>
 </div>
+<script src="~/Scripts/Project/jsLogueo.js"></script>
+<input type="hidden" id="urlIniciaSesion" value="@Url.Action("IniciarSesion","Logueo")" />
