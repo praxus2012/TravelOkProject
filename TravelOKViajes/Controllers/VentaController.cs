@@ -27,7 +27,10 @@ namespace TravelOKViajes.Controllers
             }
             return View();*/
             /*return RedirectToAction("SeleccionVenta");*/
-            var resultado = new JObject();            
+            /*ViewBag["idSalida"] = detVenta.idSalida;
+            ViewBag["idVenta"] = detVenta.idVenta;
+            ViewBag["idDestino"] = detVenta.idDestino;*/
+            var resultado = new JObject();
             resultado["Exito"] = true;
             return Content(resultado.ToString());
         }
