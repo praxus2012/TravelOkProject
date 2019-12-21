@@ -21,6 +21,12 @@ namespace TravelOKViajes.Controllers
         [HttpPost]
         public ActionResult InicialVenta(cmVentaDet detVenta)
         {
+            /*if (Session["Activo"] == null)
+            {
+                RedirectToAction("Index", "Login");
+            }
+            return View();*/
+            /*return RedirectToAction("SeleccionVenta");*/
             var resultado = new JObject();            
             resultado["Exito"] = true;
             return Content(resultado.ToString());
