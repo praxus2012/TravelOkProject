@@ -76,9 +76,10 @@ function LLamaInsertaDestino(CDestino) {
         dataType: "json",
         async: true,
         success: SuccessLlamadaInsertaDestino,
-        Advertencia: function (xmlHttpRequest, textStatus, errorThrown) {
-            alert("error ", data.Mensaje, "verificar info");
-        }
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
+            alert("error ", errorThrown.Mensaje, "verificar info");
+        },
+        
     });
 }
 

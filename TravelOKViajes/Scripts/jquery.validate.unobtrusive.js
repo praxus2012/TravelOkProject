@@ -230,7 +230,7 @@
             /// </summary>
             /// <param name="selector" type="String">Any valid jQuery selector.</param>
 
-            // $forms includes all forms in selector's DOM hierarchy (parent, children and self) that have at least one
+            
             // element with data-val=true
             var $selector = $(selector),
                 $forms = $selector.parents()
