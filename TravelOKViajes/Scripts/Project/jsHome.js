@@ -45,14 +45,25 @@ function successObtieneDestinos(data) {
 }
 
 $(document).on('click', '.btselec', function (e) {
-    var detVenta = {
+    /*var detVenta = {
         idSalida : $('#selSalida').val(),
         idDestino : $('#selDestinos').val(),
         sFecha : $('#selFechas').val()
     };
-    LlamaIniciarVenta(detVenta);
-});
+    LlamaIniciarVenta(detVenta);*/
+    if ($('#selSalida').val() != 0
+        && $('#selDestinos').val() != 0
+        && $('#selFechas').val() != 0) {
+        sessionStorage.setItem("Destino", $('#selSalida').val());
+        sessionStorage.setItem("Salida", $('#selDestinos').val());
+        sessionStorage.setItem("Fecha", $('#selFechas').val());
+        window.location.href = '/Venta/DetalleVenta';
+    } else {
+        window.location.href = '/Venta/SeleccionVenta';
+    }
 
+});
+/*
 function LlamaIniciarVenta(detVenta) {
     var url = $('#urlInicialVenta').val();
     $.ajax({
@@ -70,9 +81,10 @@ function LlamaIniciarVenta(detVenta) {
 }
 function successIniciaVenta(data) {
     if (data.Exito) {
-        window.location.href = '/Venta/SeleccionVenta';
+        
+        
     }
-}
+}*/
 
 
 
@@ -94,6 +106,11 @@ function LlamaRecupDestVta(detVenta) {
 function successRecupDestVta(data) {
     if (data.Exito) {
         $.each(data.LsDestinos, function (i) {
+            $('#selDestinos').empty();
+            $('#selDestinos')
+                .append($("<option></option>")
+                    .attr("value", "0")
+                    .text("¿De dónde salimos?"));
             $('#selDestinos')
                 .append($("<option></option>")
                     .attr("value", data.LsDestinos[i].IdDest)
@@ -136,6 +153,11 @@ function LlamaRecupFechVta(detVenta) {
 }
 function successRecupFechVta(data) {
     if (data.Exito) {
+        $('#selFechas').empty();
+        $('#selFechas')
+            .append($("<option></option>")
+                .attr("value", "0")
+                .text("Fechas"));
         $.each(data.LsFechaVta, function (i) {
             $('#selFechas')
                 .append($("<option></option>")
