@@ -17,7 +17,7 @@ namespace TravelOKViajes.Controllers
         }
 
 		// GET: Encuesta/Details/5
-		/// Ejemplo
+		/// 
 		/// 
 		public ActionResult InicialEncuesta()
 		{
