@@ -54,8 +54,9 @@ $(document).on('click', '.btselec', function (e) {
     if ($('#selSalida').val() != 0
         && $('#selDestinos').val() != 0
         && $('#selFechas').val() != 0) {
-        sessionStorage.setItem("Destino", $('#selSalida').val());
-        sessionStorage.setItem("Salida", $('#selDestinos').val());
+        sessionStorage.setItem("Salida", $('#selSalida').val());
+        sessionStorage.setItem("Destino", $('#selDestinos').val());
+        sessionStorage.setItem("DestinoDes", $('#selDestinos option:selected').text());
         sessionStorage.setItem("Fecha", $('#selFechas').val());
         window.location.href = '/Venta/DetalleVenta';
     } else {

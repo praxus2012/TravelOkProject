@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿var destDesc = "";
+
+$(document).ready(function () {
     CargaInicial();
 });
 
@@ -61,6 +63,7 @@ function ObtieneDestinoDet(Destino) {
 function successObtieneDestinosDet(data) {
     if (data.Exito) {
         $('.hTitmodal').text(data.DestinoDet['sTitulo']);
+        destDesc = data.DestinoDet['sTitulo'];
         $('.hSubTmodal').text(data.DestinoDet['sSubTit']);
         $('#dvInfo').text(data.DestinoDet['sDescrip']);
         var contador = 0;
@@ -90,7 +93,10 @@ function successObtieneDestinosDet(data) {
     }
 }
 
-
+$(document).on('click', '.btnRes', function () {
+    sessionStorage.setItem("DestinoDes", destDesc);
+    window.location.href = '/Venta/DetalleVenta';
+});
 
 //$(document).on('click', '.dvHuas', function (e) {
     //if(data.LsDestinos.count==1){

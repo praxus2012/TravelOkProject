@@ -25,7 +25,7 @@ function IniciaSesion(Usr) {
 function sucessIniciaSesion(data) {
     if (data.Exito) {
         if (sessionStorage.getItem("Destino") != null) {
-            window.location.href = '/Venta/SeleccionVenta';
+            window.location.href = '/Venta/DetalleVenta';
         } else {
             window.location.href = '/Home/Index';
         }

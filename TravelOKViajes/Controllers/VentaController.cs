@@ -34,7 +34,14 @@ namespace TravelOKViajes.Controllers
 
         public ActionResult DetalleVenta()
         {
-            return View();
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("TravelInicio", "Logueo");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult SeleccionVenta()
         {
