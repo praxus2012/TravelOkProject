@@ -17,8 +17,14 @@ namespace CapaDatos.Administrador
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
-                {                    
-                        lsHabitaciones = spsObHabitacCostos(CCostos.IdDestino, CCostos.IdSalida);                   
+                {
+                    //     lsHabitaciones = contexto.spsObHabitacCostos(CCostos.IdSalida, CCostos.IdDestino).Select;
+                    lsHabitaciones = (from habitaciones in contexto.spsObHabitacCostos(CCostos.IdSalida, CCostos.IdDestino)
+                                      select new TO_Habitaciones
+                                      {
+                                          IdTipoHab = habitaciones.IdTipoHab,
+                                          nvDescripcion = habitaciones.nvDescripcion
+                                      }).ToList();
                 }
                 catch (Exception x)
                 {
@@ -59,7 +65,7 @@ namespace CapaDatos.Administrador
             {
                 try
                 {
-                    if (contexto.spdEliminaCosto(CCostos.IdSalida,CCostos.IdDestino,CCostos.IdHabitación) == -1)
+                    if (contexto.spdEliminaCosto(CCostos.IdSalida, CCostos.IdDestino, CCostos.IdHabitación) == -1)
                     {
                         return true;
                     }
@@ -71,13 +77,5 @@ namespace CapaDatos.Administrador
                 }
             }
         }
-
-
-
-
-
-
-
-
     }
 }

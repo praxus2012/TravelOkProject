@@ -281,5 +281,35 @@ namespace CapaDatos
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtieneDestinosDet_Result>("spsObtieneDestinosDet");
         }
+    
+        public virtual int spdEliminaCosto(Nullable<int> nvSalida, Nullable<int> nvDestino, Nullable<int> nvHabitacion)
+        {
+            var nvSalidaParameter = nvSalida.HasValue ?
+                new ObjectParameter("nvSalida", nvSalida) :
+                new ObjectParameter("nvSalida", typeof(int));
+    
+            var nvDestinoParameter = nvDestino.HasValue ?
+                new ObjectParameter("nvDestino", nvDestino) :
+                new ObjectParameter("nvDestino", typeof(int));
+    
+            var nvHabitacionParameter = nvHabitacion.HasValue ?
+                new ObjectParameter("nvHabitacion", nvHabitacion) :
+                new ObjectParameter("nvHabitacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spdEliminaCosto", nvSalidaParameter, nvDestinoParameter, nvHabitacionParameter);
+        }
+    
+        public virtual ObjectResult<spsObHabitacCostos_Result> spsObHabitacCostos(Nullable<int> idSalida, Nullable<int> idDestino)
+        {
+            var idSalidaParameter = idSalida.HasValue ?
+                new ObjectParameter("IdSalida", idSalida) :
+                new ObjectParameter("IdSalida", typeof(int));
+    
+            var idDestinoParameter = idDestino.HasValue ?
+                new ObjectParameter("IdDestino", idDestino) :
+                new ObjectParameter("IdDestino", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObHabitacCostos_Result>("spsObHabitacCostos", idSalidaParameter, idDestinoParameter);
+        }
     }
 }

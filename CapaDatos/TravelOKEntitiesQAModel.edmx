@@ -203,6 +203,11 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="spdEliminaCosto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nvSalida" Type="int" Mode="In" />
+          <Parameter Name="nvDestino" Type="int" Mode="In" />
+          <Parameter Name="nvHabitacion" Type="int" Mode="In" />
+        </Function>
         <Function Name="spdEliminaDestinoId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idDestino" Type="int" Mode="In" />
         </Function>
@@ -253,6 +258,10 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Parameter Name="ImgDestino" Type="varbinary(max)" Mode="In" />
         </Function>
         <Function Name="spObtieneComunidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spsObHabitacCostos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdSalida" Type="int" Mode="In" />
+          <Parameter Name="IdDestino" Type="int" Mode="In" />
+        </Function>
         <Function Name="spsObtFechaViajes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdSalida" Type="int" Mode="In" />
           <Parameter Name="IdDestino" Type="int" Mode="In" />
@@ -436,6 +445,15 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
           </AssociationSet>
           <FunctionImport Name="spsObtieneDestinosDet" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneDestinosDet_Result)" />
+          <FunctionImport Name="spdEliminaCosto">
+            <Parameter Name="nvSalida" Mode="In" Type="Int32" />
+            <Parameter Name="nvDestino" Mode="In" Type="Int32" />
+            <Parameter Name="nvHabitacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spsObHabitacCostos" ReturnType="Collection(TravelOKEntitiesQAModel.spsObHabitacCostos_Result)">
+            <Parameter Name="IdSalida" Mode="In" Type="Int32" />
+            <Parameter Name="IdDestino" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
           <Property Type="Int32" Name="IdExp" Nullable="false" />
@@ -709,6 +727,10 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
           <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
           <Property Type="Decimal" Name="costolugar" Nullable="true" Precision="19" />
         </ComplexType>
+        <ComplexType Name="spsObHabitacCostos_Result">
+          <Property Type="Int32" Name="IdTipoHab" Nullable="false" />
+          <Property Type="String" Name="nvDescripcion" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -946,6 +968,15 @@ advertencia 6002: La tabla o vista 'DB_A4FE5F_Praxusa1.dbo.TO_Costo' no tiene de
                 <ScalarProperty Name="idviaje" ColumnName="idviaje" />
                 <ScalarProperty Name="Destino" ColumnName="Destino" />
                 <ScalarProperty Name="costolugar" ColumnName="costolugar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spdEliminaCosto" FunctionName="TravelOKEntitiesQAModel.Store.spdEliminaCosto" />
+          <FunctionImportMapping FunctionImportName="spsObHabitacCostos" FunctionName="TravelOKEntitiesQAModel.Store.spsObHabitacCostos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObHabitacCostos_Result">
+                <ScalarProperty Name="IdTipoHab" ColumnName="IdTipoHab" />
+                <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

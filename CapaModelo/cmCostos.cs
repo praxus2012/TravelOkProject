@@ -10,9 +10,9 @@ namespace CapaModelo
     {
 
         public decimal? dCostoLugar { get; set; }
-        public int IdDestino { get; set; }
+        public int? IdDestino { get; set; }
         public string sDestino { get; set; }
-        public int IdSalida { get; set; }
+        public int? IdSalida { get; set; }
         public int IdHabitación { get; set; }
         public string sTipoPersona { get; set; }
 
