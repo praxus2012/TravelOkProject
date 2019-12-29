@@ -12,7 +12,7 @@ namespace CapaDatos
         public List<TO_Destino> lsObtieneDestinos()
         {
             List<TO_Destino> lsDestinos = new List<TO_Destino>();
-            //using (var contexto = new TravelOKViajesEntities())//local
+           // using (var contexto = new TravelOKViajesEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 lsDestinos = contexto.TO_Destino.ToList();

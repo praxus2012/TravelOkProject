@@ -10,14 +10,14 @@
     <div id="diCosto">Costo</div>
     <input class="form-control" id="inCosto" placeholder="costo de la habitación" />
 
-    <div id="diDestino">Destino</div>
-    <select class="form-control" id="selDestinosCost">
-        <option value="0">Selecciona el destino</option>
+    <div id="diISalida">Salida</div>
+    <select class="form-control" id="selISalidaCost">
+        <option value="0">Seleccione la Salida </option>
     </select>
 
-    <div id="diSalida">Salida</div>
-    <select class="form-control" id="selSalidaCost">
-        <option value="0">Seleccione la Salida </option>
+    <div id="diIDestino">Destino</div>
+    <select class="form-control" id="selIDestinosCost">
+        <option value="0">Selecciona el destino</option>
     </select>
 
     <div id="disDDestino">Habitación</div>
@@ -34,14 +34,36 @@
     <div id="btnInsertaCosto" class="btn btn-primary">Insertar</div>
 </form>
 
+<form class="form-group">
+    <div id="diSalida">Salida</div>
+    <select class="form-control" id="selSalidaCost">
+        <option value="0">Seleccione la Salida </option>
+    </select>
 
-<script src="~/Scripts/Project/jsCostos.js"></script>
+    <div id="diDestino">Destino</div>
+    <select class="form-control" id="selDestinosCost">
+        <option value="0">Selecciona el destino</option>
+    </select>
+    <div id="diHabitacionE">Habitación</div>
+    <select class="form-control" id="selHabitacionCost">
+        <option value="0">Seleccione la Habitación </option>
+    </select>
+    <div id="btnEliminaCosto" class="btn btn-primary">Eliminar</div>
+</form>
 
-<link href="~/Content/Project/cssSalida.css" rel="stylesheet" />
+    <script src="~/Scripts/Project/jsCostos.js"></script>
 
-<input type="hidden" id="urlDestinoInicial" value="@Url.Action("InicialDestinos","Destinos")" />
-<input type="hidden" id="urlSalidaInicial" value="@Url.Action("ObtieneSaalidas","Salidas")" />
-<input type="hidden" id="urlObtHabitaciones" value="@Url.Action("ObtieneHabitaciones","Costos")" />
-<input type="hidden" id="urlInsertaCostos" value="@Url.Action("InsertaCostos","Costos")" />
+    <link href="~/Content/Project/cssSalida.css" rel="stylesheet" />
+
+
+    <input type="hidden" id="urlObtSalidaI" value="@Url.Action("ObtieneSaalidas","Salidas")" />
+    <input type="hidden" id="urlObtDestinoI" value="@Url.Action("InicialDestinos","Destinos")" />
+    <input type="hidden" id="urlSalidaInicial" value="@Url.Action("ObtieneSalidasCost","Costos")" />
+    <input type="hidden" id="urlDestinoInicial" value="@Url.Action("ObtieneDestinosCost","Costos")" />
+    <input type="hidden" id="urlObtHabitaciones" value="@Url.Action("ObtieneHabitaciones","Costos")" />
+    <input type="hidden" id="urlObtHabitacionesCost" value="@Url.Action("ObtieneHabitacionesCost","Costos")" />
+    <input type="hidden" id="urlInsertaCostos" value="@Url.Action("InsertaCostos","Costos")" />
+    <input type="hidden" id="urlEliminaCostos" value="@Url.Action("EliminaCosto","Costos")" />
+
 
 
