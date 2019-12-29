@@ -173,6 +173,7 @@
     <Content Include="Content\Project\cssGeneral.css" />
     <Content Include="Content\Project\cssHome.css" />
     <Content Include="Content\Project\cssQuienesSomos.css" />
+    <Content Include="Content\Project\cssSeleccionVenta.css" />
     <Content Include="Content\Project\cssTerminos.css" />
     <Content Include="Content\Project\cssVenta.css" />
     <Content Include="Content\Project\Libs\normalize.css" />
@@ -463,6 +464,7 @@
     <Content Include="Scripts\Project\jsLayout.js" />
     <Content Include="Scripts\Project\jsLogueo.js" />
     <Content Include="Scripts\Project\jsMensajes.js" />
+    <Content Include="Scripts\Project\jsSeleccionVenta.js" />
     <Content Include="Scripts\Project\jsVenta.js" />
     <Content Include="Scripts\Project\libs\classie.js" />
     <Content Include="Scripts\Project\libs\imagesloaded.pkgd.min.js" />

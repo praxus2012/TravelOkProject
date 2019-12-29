@@ -55,6 +55,26 @@ namespace TravelOKViajes.Controllers
             }
         }
 
+        public ActionResult InicioSelecVenta()
+        {
+            var resultado = new JObject();
+            try
+            {
+                CD_SelecVen cdSelVen = new CD_SelecVen();
+                List<cmCostos> lsDetDes = new List<cmCostos>();
+                lsDetDes = cdSelVen.fnlsObtieneDestinosDet();
+                if (lsDetDes.Count > 0)
+                {
+                    resultado["LsDestinos"] = JToken.FromObject(lsDetDes);
+                    resultado["Exito"] = true;
+                }
+            }
+            catch (Exception x)
+            {
+                resultado["Exito"] = false;
+            }
+            return Content(resultado.ToString());
+        }
 
         //  [HttpPost]
         public ActionResult ConfirmaVenta()
