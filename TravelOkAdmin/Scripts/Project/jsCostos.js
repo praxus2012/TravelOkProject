@@ -7,6 +7,7 @@
   
 
     ActivaComboDestE();
+    ObtHabitacionSalidaDestino();
 });
 
 // Destinos (para el insert)
@@ -197,11 +198,15 @@ function LlamaRecupDestVta(detVenta) {
 function successRecupDestVta(data) {
     if (data.Exito) {
         $.each(data.LsDestinos, function (i) {
-            $('#selDestinosCost').empty();
-            $('#selDestinosCost')
-                .append($("<option></option>")
-                    .attr("value", "0")
-                    .text("¿De dónde salimos?"));
+
+            if (i==0) {
+                $('#selDestinosCost').empty();
+                $('#selDestinosCost')
+                    .append($("<option></option>")
+                        .attr("value", "0")
+                        .text("¿De dónde salimos?"));
+            }
+
             $('#selDestinosCost')
                 .append($("<option></option>")
                     .attr("value", data.LsDestinos[i].IdDest)
@@ -214,11 +219,15 @@ function successRecupDestVta(data) {
 
 
 function ObtHabitacionSalidaDestino() {
-    $('#selDestinosCost').change(function () {
+    $('#selDestinosCost').change(function () {        
         var detCosto = {
-            idSalida: $('#selSalidaCost').val(),
-            idDestino: $('#selDestinosCost').val()
+            IdSalida: $('#selSalidaCost').val(),
+            IdDestino: $('#selDestinosCost').val(),
+            sDestino: null,
+            IdHabitación: null,
+            sTipoPersona: null
         };
+
         LlamaRecupHabCosto(detCosto);
     });
 }
@@ -241,11 +250,14 @@ function LlamaRecupHabCosto(detCosto) {
 function successRecupHabCost(data) {
     if (data.Exito) {
         $.each(data.LsHabitaciones, function (i) {
-            $('#selHabitacionCost').empty();
-            $('#selHabitacionCost')
-                .append($("<option></option>")
-                    .attr("value", "0")
-                    .text("¿Cual es la Habitación?"));
+
+            if (i == 0) {
+                $('#selHabitacionCost').empty();
+                $('#selHabitacionCost')
+                    .append($("<option></option>")
+                        .attr("value", "0")
+                        .text("¿Cual es la Habitación?"));
+            }
             $('#selHabitacionCost')
                 .append($("<option></option>")
                     .attr("value", data.LsHabitaciones[i].tipoHab)
