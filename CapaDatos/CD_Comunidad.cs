@@ -30,8 +30,8 @@ namespace CapaDatos
         public List<cmComunidad> lsObtieneComunidad()
         {
             List<cmComunidad> lsComunidad = new List<cmComunidad>();
-            //using(var contexto = new TravelOKViajesEntities())//Local
-            using (var contexto = new TravelOKEntitiesQA())//QA
+            using(var contexto = new TravelOKViajesEntities())//Local
+            //using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 lsComunidad = (from tblComunidad in contexto.spObtieneComunidad()
                                select new cmComunidad

@@ -20,14 +20,10 @@
                 </select>
             </div>
             <div class="col-lg-3 col-md-6">
-                <select class="form-control" id="selAdultos">
-                    <option value="0">Adultos</option>
-                </select>
+                <input class="form-control" type="number" id="inAdultos" name="quantity" min="1" placeholder="Adultos">
             </div>
             <div class="col-lg-3 col-md-6">
-                <select class="form-control" id="selNinos">
-                    <option value="0">Ninos</option>
-                </select>
+                <input class="form-control" type="number" id="inNinos" name="quantity" min="1" placeholder="Niños">
             </div>
         </div>
     </div>
@@ -46,7 +42,7 @@
                             <h4 class="card-title">Habitacion sencilla</h4>
                             <h3>Costo:</h3>
                             <h2>$4,100</h2>
-                            <div class="btn btn-primary">ELIJE ESTE VIAJE</div>
+                            <div class="btn btn-primary btnAsiento">ELIJE ESTE VIAJE</div>
                         </div>
                     </div>
                 </div>
@@ -89,3 +85,5 @@
     </div>
 </div>
 <script src="~/Scripts/Project/jsDetalleVenta.js"></script>
+<input type="hidden" id="urlinicialDetVent" value="@Url.Action("InicioDetVenta","Venta")" />
+<input type="hidden" id="urlRecuperaFechas" value="@Url.Action("RecuperaFechasVen","Venta")" />

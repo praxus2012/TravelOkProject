@@ -48,3 +48,10 @@ function successObtieneDestinos(data) {
         MensajeError('Ha ocurrido un error inesperado');
     }
 }
+
+$(document).on('click', '.btn', function () {
+    var atributo = $(this).attr('id');
+    sessionStorage.setItem("Destino", atributo.split('-')[1]);
+    sessionStorage.setItem("DestinoDes", atributo.split('-')[2]);
+    window.location.href = '/Venta/DetalleVenta';
+});

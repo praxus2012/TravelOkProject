@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ca044f4ba553468e805ba566b009242a" Name="Diagram1" ZoomLevel="80">
-        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Blog" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Destino" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="TravelOKViajesModel.TO_DetalleDestinos" Width="1.5" PointX="3" PointY="14.125" />
-        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Experiencias" Width="1.5" PointX="3" PointY="7.5" />
-        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Habitaciones" Width="1.5" PointX="3.75" PointY="1.625" />
-        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Salida" Width="1.5" PointX="0.75" PointY="2.5" />
-        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Usuario" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Viajes" Width="1.5" PointX="3" PointY="4.25" />
-        <EntityTypeShape EntityType="TravelOKViajesModel.TOA_Usuario" Width="1.5" PointX="8.75" PointY="4.75" />
-        <EntityTypeShape EntityType="TravelOKViajesModel.TO_Costo" Width="1.5" PointX="6" PointY="6.125" />
-        <AssociationConnector Association="TravelOKViajesModel.FK__TO_Experi__IdDes__5AEE82B9" />
-        <AssociationConnector Association="TravelOKViajesModel.FK_DetDestinos_Destinos" />
-        <AssociationConnector Association="TravelOKViajesModel.FK_TO_Costo_TO_Destino" />
-        <AssociationConnector Association="TravelOKViajesModel.FK_TO_Viajes_TO_Destino" />
-        <AssociationConnector Association="TravelOKViajesModel.FK_TO_Costo_TO_Habitaciones" />
-        <AssociationConnector Association="TravelOKViajesModel.FK_TO_Costo_TO_Salida" />
-        <AssociationConnector Association="TravelOKViajesModel.FK_TO_Viajes_TO_Salida" />
+      <Diagram DiagramId="61c14590a6a14e30b0d1e93bf5999356" Name="Diagram1">
+        <EntityTypeShape EntityType="TravelOKEntities.TO_Blog" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntities.TO_Destino" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntities.TO_DetalleDestinos" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntities.TO_Experiencias" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntities.TO_Habitaciones" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntities.TO_Salida" Width="1.5" PointX="3.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntities.TO_Usuario" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntities.TO_Viajes" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntities.TOA_Usuario" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntities.TO_Costo" Width="1.5" PointX="6" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="TravelOKEntities.FK__TO_Experi__IdDes__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelOKEntities.FK_DetDestinos_Destinos" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelOKEntities.FK_TO_Costo_TO_Destino" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelOKEntities.FK_TO_Viajes_TO_Destino" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelOKEntities.FK_TO_Costo_TO_Habitaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelOKEntities.FK_TO_Costo_TO_Salida" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelOKEntities.FK_TO_Viajes_TO_Salida" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

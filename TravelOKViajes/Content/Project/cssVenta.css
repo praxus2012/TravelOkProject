@@ -2,14 +2,53 @@
     background-color:#0094ff;
 }
 
-#dvAutobus{
-    width:55rem;
-    margin:0 auto;
-    height:20.5rem;
-    border-style:solid;
-    border-radius:0.5em;
+#dvTransporte {
+    width: 25rem;
+    margin: 0 auto;
+    border-style: solid;
+    border-radius: 0.5em;
+    height: 45rem;
+}
+#ulIzq {
+    float: left;
+    width: 9rem;
+    height: 32rem;
+    border-style: solid;
+    border-radius: 0.5em;
+    margin:0px;
+    margin-top:6rem;
+    padding:0px;
 }
 
+#ulDer {
+    float: right;
+    width: 9rem;
+    height: 32rem;
+    border-style: solid;
+    border-radius: 0.5em;
+    margin: 0px;
+    margin-top: 6rem;
+    padding: 0px;
+}
+
+#ulAtras {
+    width: 25rem;
+    border-style: solid;
+    border-radius: 0.5em;
+    height: 6rem;
+    margin: 0px;
+    padding: 0px;
+}
+
+/*
+
+#dvAutobus {
+    width: 55rem;
+    margin: 0 auto;
+    height: 20.5rem;
+    border-style: solid;
+    border-radius: 0.5em;
+}
 #ulPrimerAsiento {
     width: 80px;
     height: 240px;
@@ -97,4 +136,4 @@ li{
     display: inline-block;
     background-image: url('../../Img/Asientos/ALibre.jpg');
     background-size: contain;
-}
+}*/

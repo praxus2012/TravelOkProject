@@ -58,6 +58,7 @@
     <Compile Include="CD_Comunidad.cs" />
     <Compile Include="CD_Costos.cs" />
     <Compile Include="CD_Destinos.cs" />
+    <Compile Include="CD_DetVenta.cs" />
     <Compile Include="CD_Salida.cs" />
     <Compile Include="Administrador\CDA_Usuario.cs" />
     <Compile Include="CD_SelecVen.cs" />
@@ -65,67 +66,70 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="spObtieneComunidad_Result.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="spsObHabitacCostos_Result.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="spsObtFechaViajes_Result.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="spsObtieneCarrusel_Result.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="spsObtieneDestinoDet_Result.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="spsObtieneDestinosDet_Result.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="spsObtieneDestinosImg_Result.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="spsObtieneHabitaciones_Result.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="spsObtLugarDestinoViajes_Result.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="spsObtLugarSalidaViajes_Result.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spsObtLugarSalViajesDest_Result.cs">
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="spVerificaUsuario_Result.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TOA_Usuario.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_Blog.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_Costo.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_Destino.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_DetalleDestinos.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_Experiencias.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_Habitaciones.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_Salida.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_Usuario.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_Viajes.cs">
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+      <DependentUpon>TravelOKEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TravelOKEntities.Context.cs">
       <AutoGen>True</AutoGen>
@@ -163,6 +167,10 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <EntityDeploy Include="TravelOKEntitiesQAModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TravelOKEntitiesQAModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <EntityDeploy Include="TravelOKEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TravelOKEntities.Designer.cs</LastGenOutput>
@@ -170,10 +178,6 @@
     <None Include="TravelOKEntities.edmx.diagram">
       <DependentUpon>TravelOKEntities.edmx</DependentUpon>
     </None>
-    <EntityDeploy Include="TravelOKEntitiesQAModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TravelOKEntitiesQAModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="TravelOKEntitiesQAModel.edmx.diagram">
       <DependentUpon>TravelOKEntitiesQAModel.edmx</DependentUpon>
     </None>
