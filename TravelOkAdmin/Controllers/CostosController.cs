@@ -97,7 +97,7 @@ namespace TravelOkAdmin.Controllers
             }
             return Content(resultado.ToString());
         }
-
+        [HttpPost]
         public ActionResult ObtieneHabitacionesCost(cmCostos CCosto)
         {
             var resultado = new JObject();
