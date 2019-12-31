@@ -37,6 +37,7 @@ namespace CapaDatos
         public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Costo> TO_Costo { get; set; }
+        public virtual DbSet<TO_Transporte> TO_Transporte { get; set; }
     
         public virtual int spdEliminaDestinoId(Nullable<int> idDestino)
         {
@@ -310,6 +311,15 @@ namespace CapaDatos
                 new ObjectParameter("IdDestino", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObHabitacCostos_Result>("spsObHabitacCostos", idSalidaParameter, idDestinoParameter);
+        }
+    
+        public virtual ObjectResult<spsObtLugarSalViajesDest_Result> spsObtLugarSalViajesDest(Nullable<int> idDestino)
+        {
+            var idDestinoParameter = idDestino.HasValue ?
+                new ObjectParameter("IdDestino", idDestino) :
+                new ObjectParameter("IdDestino", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtLugarSalViajesDest_Result>("spsObtLugarSalViajesDest", idDestinoParameter);
         }
     }
 }

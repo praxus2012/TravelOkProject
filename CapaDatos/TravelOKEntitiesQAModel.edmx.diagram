@@ -22,6 +22,8 @@
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Habitaciones" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Salida" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Salida" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Transporte" Width="1.5" PointX="8.375" PointY="5" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Transporte" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

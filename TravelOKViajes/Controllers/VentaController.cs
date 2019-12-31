@@ -27,8 +27,18 @@ namespace TravelOKViajes.Controllers
             }
             return View();*/
             /*return RedirectToAction("SeleccionVenta");*/
-            var resultado = new JObject();            
-            resultado["Exito"] = true;
+            var resultado = new JObject();
+            CD_Transporte cdTran = new CD_Transporte();
+            cmTransporte oTran = cdTran.fnoObtieneTransporte(detVenta);
+            if (oTran != null)
+            {
+                resultado["oTransporte"] = JToken.FromObject(oTran);
+                resultado["Exito"] = true;
+            }
+            else
+            {
+                resultado["Exito"] = false;
+            }
             return Content(resultado.ToString());
         }
 

@@ -116,3 +116,10 @@ function successRecupFechVta(data) {
     }
 }
 
+$(document).on('click', '.btnAsiento', function () {
+    sessionStorage.setItem("Fecha", $('#selFechas').val());
+    sessionStorage.setItem("Salida", $('#selSalida').val());
+    sessionStorage.setItem("Adulto", $('#inAdultos').val());
+    sessionStorage.setItem("Nino", $('#inNinos').val());
+    window.location.href = '/Venta/Index';
+});

@@ -1,22 +1,19 @@
-﻿body {
-    background-color:#0094ff;
-}
-
+﻿
 #dvTransporte {
     width: 25rem;
     margin: 0 auto;
     border-style: solid;
     border-radius: 0.5em;
-    height: 45rem;
+    height: 46rem;
 }
 #ulIzq {
     float: left;
     width: 9rem;
     height: 32rem;
-    border-style: solid;
-    border-radius: 0.5em;
+    /*border-style: solid;
+    border-radius: 0.5em;*/
     margin:0px;
-    margin-top:6rem;
+    margin-top:3rem;
     padding:0px;
 }
 
@@ -24,21 +21,90 @@
     float: right;
     width: 9rem;
     height: 32rem;
-    border-style: solid;
-    border-radius: 0.5em;
+    /*border-style: solid;
+    border-radius: 0.5em;*/
     margin: 0px;
-    margin-top: 6rem;
+    margin-top: 3rem;
     padding: 0px;
 }
 
 #ulAtras {
     width: 25rem;
-    border-style: solid;
-    border-radius: 0.5em;
-    height: 6rem;
-    margin: 0px;
+    text-align: center;
+    /*border-style: solid;
+    border-radius: 0.5em;*/
+    height: 3.5rem;
+    padding: 0px;
+    position: absolute;
+    bottom: 1rem;
+}
+
+.columnas > li {
+    display: inline-block;
+    
+}
+
+.fila {
+    display: block;
+    height: 3rem;
+    margin-bottom: 10%;
+}
+
+.columnas {
+    margin: 0 auto;
+    width: 75%;
+    height: 3rem;
     padding: 0px;
 }
+
+.asiento {
+    background-image: url('../../Img/Asientos/ALibre.jpg');
+    background-size: contain;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    text-align: center;
+    padding-top: 0.3rem;
+    margin-left: 2px;
+}
+
+.bano {
+    background-image: url('../../Img/Asientos/baño.jpg');
+    background-size: contain;
+    width: 3rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    padding-top: 0.3rem;
+    margin-left: 2px;
+}
+
+.atras{
+    display:inline-block;
+    margin-left:1rem;
+}
+
+#dvLibre {
+    background-image: url('../../Img/Asientos/ALibre.jpg');
+    background-size: contain;
+    width: 3rem;
+    height: 3rem;
+}
+
+#dvOcupado {
+    background-image: url('../../Img/Asientos/AOcupado.jpg');
+    background-size: contain;
+    width: 3rem;
+    height: 3rem;
+}
+
+#dvSelec {
+    background-image: url('../../Img/Asientos/ASeleccionado.jpg');
+    background-size: contain;
+    width: 3rem;
+    height: 3rem;
+}
+
 
 /*
 

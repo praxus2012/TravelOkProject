@@ -5,10 +5,22 @@
 }
 
 <h2>Selecciona tus asientos</h2>
-<div id="dvAsientos">
-    <div id="dvVacio"></div>
-    <div id="dvOcupado"></div>
-    <div id="dvSeleccion"></div>
+
+<div id="dvDer">
+    <div>
+        Seleccione sus asientos
+    </div>
+    <div>
+        <div id="dvLibre">
+
+        </div>
+        <div id="dvOcupado">
+
+        </div>
+        <div id="dvSelec">
+
+        </div>
+    </div>
 </div>
 
 <div id="dvTransporte">
@@ -108,3 +120,4 @@
 
 <script src="~/Scripts/Project/jsVenta.js"></script>
 <link href="~/Content/Project/cssVenta.css" rel="stylesheet" />
+<input type="hidden" id="urlinicialTrans" value="@Url.Action("InicialVenta","Venta")" />

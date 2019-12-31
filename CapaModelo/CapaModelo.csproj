@@ -46,6 +46,7 @@
     <Compile Include="cmCostos.cs" />
     <Compile Include="cmHabitacion.cs" />
     <Compile Include="cmSalida.cs" />
+    <Compile Include="cmTransporte.cs" />
     <Compile Include="cmVentaDet.cs" />
     <Compile Include="cmCarruselDestino.cs" />
     <Compile Include="cmDestinos.cs" />
