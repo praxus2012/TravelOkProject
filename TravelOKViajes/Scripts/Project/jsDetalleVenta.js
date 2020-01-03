@@ -119,7 +119,7 @@ function successRecupFechVta(data) {
 $(document).on('click', '.btnAsiento', function () {
     sessionStorage.setItem("Fecha", $('#selFechas').val());
     sessionStorage.setItem("Salida", $('#selSalida').val());
-    sessionStorage.setItem("Adulto", $('#inAdultos').val());
-    sessionStorage.setItem("Nino", $('#inNinos').val());
+    sessionStorage.setItem("Adulto", $('#inAdultos').val() == '' ? 0 : $('#inAdultos').val());
+    sessionStorage.setItem("Nino", $('#inNinos').val() == '' ? 0 : $('#inNinos').val());
     window.location.href = '/Venta/Index';
 });

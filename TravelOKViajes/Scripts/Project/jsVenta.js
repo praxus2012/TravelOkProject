@@ -2,12 +2,18 @@
     alert('texto' + $(this).attr('id'));
 });*/
 
-$('#ulPrimerAsiento').children().click(function (evt) {
-    alert('texto ' + $(this).attr('id'));
-});
+var asientosTot = 0;
 
 $(document).ready(function () {
-    GeneraAutobus();
+    asientosTot = parseInt(sessionStorage.getItem("Adulto")) + parseInt(sessionStorage.getItem("Nino"));
+    if (asientosTot > 0) {
+        GeneraAutobus();
+        $('#hdes').text($('#hdes').text() + sessionStorage.getItem("DestinoDes"));
+        $('#txDis').text($('#txDis').text() + asientosTot);
+    } else {
+        window.location.href = '/Home/Index';
+    }
+    
 });
 
 function GeneraAutobus() {
@@ -41,7 +47,7 @@ function successObtieneAutobus(data) {
             $('#ulIzq').append('<li class="f-' + i + ' fila"><ul class="ui-f-' + i + ' columnas ci"></ul></li>');
             //alert(data.oTransporte.NumColUno);
             for (j = 0; j < data.oTransporte.NumColUno; j++) {
-                $('.ui-f-' + i ).append('<li class="asiento a-' + asiento + '">' + asiento + '</li>');
+                $('.ui-f-' + i).append('<li class="asiento del" id="a-' + asiento + '">' + asiento + '</li>');
                 asiento++;
             }
         }
@@ -49,18 +55,38 @@ function successObtieneAutobus(data) {
             $('#ulDer').append('<li class="f-' + i + ' fila"><ul class="ud-f-' + i + ' columnas ci"></ul></li>');
             //alert(data.oTransporte.NumColUno);
             for (j = 0; j < data.oTransporte.NumColDos; j++) {
-                $('.ud-f-' + i).append('<li class="asiento a-' + asiento + '">' + asiento + '</li>');
+                $('.ud-f-' + i).append('<li class="asiento del" id="a-' + asiento + '">' + asiento + '</li>');
                 asiento++;
             }
         }
         if (data.oTransporte.FilaTrasera) {
             for (i = 0; i < data.oTransporte.NumAsTrasera; i++) {
-                $('#ulAtras').append('<li class="asiento atras a-' + asiento + '">' + asiento + '</li>');
+                $('#ulAtras').append('<li class="asiento atras" id="a-' + asiento + '">' + asiento + '</li>');
                 asiento++;
             }
         }
         if (data.oTransporte.SaniTrasero) {
             $('#ulAtras').append('<li class="bano atras"></li>');
         }
+        GeneraClick();
     }
+}
+
+function GeneraClick() {
+    $('.asiento').click(function (evt) {
+        if ($(this).attr('class').split(' ').length > 2) {
+            alert('Asiento ocupado');
+        } else {
+            //alert($('#' + $(this).attr('id')).css('background-image').split('/')[$('#' + $(this).attr('id')).css('background-image').split('/').length - 1]);
+            if ($('#' + $(this).attr('id')).css('background-image').split('/')[$('#' + $(this).attr('id')).css('background-image').split('/').length - 1] == 'ASeleccionado.jpg")') {
+                $('#' + $(this).attr('id')).css("background-image", "url('../../Img/Asientos/ALibre.jpg')");
+                asientosTot = asientosTot + 1;
+            } else {
+                if (asientosTot > 0) {
+                    $('#' + $(this).attr('id')).css("background-image", "url('../../Img/Asientos/ASeleccionado.jpg')");
+                    asientosTot = asientosTot - 1;
+                }
+            }
+        }
+    });
 }

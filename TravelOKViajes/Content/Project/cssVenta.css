@@ -66,6 +66,22 @@
     text-align: center;
     padding-top: 0.3rem;
     margin-left: 2px;
+    cursor:pointer;
+}
+
+#btContinuar{
+    margin:0 auto;
+}
+
+#txDis {
+    position: absolute;
+    top: 6rem;
+    font-size:1.5rem;
+    right: 11rem;
+}
+
+.clr{
+    clear:both;
 }
 
 .bano {
@@ -87,13 +103,35 @@
 #dvLibre {
     background-image: url('../../Img/Asientos/ALibre.jpg');
     background-size: contain;
+    background-repeat: no-repeat;
     width: 3rem;
     height: 3rem;
 }
 
+.txAs {
+    position: absolute;
+    bottom: -25px;
+    margin: 0 auto;
+    
+}
+
+#txLib {
+    left: 0px;
+}
+
+#txOc {
+    left: -0.5rem;
+}
+
+#txSel {
+    left: -1.5rem;
+}
+
+
 #dvOcupado {
     background-image: url('../../Img/Asientos/AOcupado.jpg');
     background-size: contain;
+    background-repeat: no-repeat;
     width: 3rem;
     height: 3rem;
 }
@@ -102,9 +140,20 @@
     background-image: url('../../Img/Asientos/ASeleccionado.jpg');
     background-size: contain;
     width: 3rem;
+    background-repeat: no-repeat;
     height: 3rem;
 }
 
+#dvDer{
+    float:left;
+    text-align:center;
+    margin-top:3rem;
+}
+
+#txCen {
+    margin: 0 auto;
+    font-size: 1.5rem;
+}
 
 /*
 
