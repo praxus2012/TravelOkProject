@@ -189,6 +189,7 @@
     <Content Include="Img\Asientos\AMenor.jpg" />
     <Content Include="Img\Asientos\AOcupado.jpg" />
     <Content Include="Img\Asientos\ASeleccionado.jpg" />
+    <Content Include="Img\Asientos\baño.jpg" />
     <Content Include="Img\blancas.png" />
     <Content Include="Img\Carrusel1\car1.png" />
     <Content Include="Img\Carrusel1\car2.png" />

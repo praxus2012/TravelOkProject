@@ -58,9 +58,11 @@
     <Compile Include="CD_Comunidad.cs" />
     <Compile Include="CD_Costos.cs" />
     <Compile Include="CD_Destinos.cs" />
+    <Compile Include="CD_DetVenta.cs" />
     <Compile Include="CD_Salida.cs" />
     <Compile Include="Administrador\CDA_Usuario.cs" />
     <Compile Include="CD_SelecVen.cs" />
+    <Compile Include="CD_Transporte.cs" />
     <Compile Include="CD_Viajes.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +96,9 @@
     <Compile Include="spsObtLugarSalidaViajes_Result.cs">
       <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="spsObtLugarSalViajesDest_Result.cs">
+      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="spVerificaUsuario_Result.cs">
       <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
     </Compile>
@@ -119,6 +124,9 @@
       <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_Salida.cs">
+      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TO_Transporte.cs">
       <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_Usuario.cs">
@@ -163,6 +171,10 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <EntityDeploy Include="TravelOKEntitiesQAModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TravelOKEntitiesQAModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <EntityDeploy Include="TravelOKEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TravelOKEntities.Designer.cs</LastGenOutput>
@@ -170,10 +182,6 @@
     <None Include="TravelOKEntities.edmx.diagram">
       <DependentUpon>TravelOKEntities.edmx</DependentUpon>
     </None>
-    <EntityDeploy Include="TravelOKEntitiesQAModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TravelOKEntitiesQAModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="TravelOKEntitiesQAModel.edmx.diagram">
       <DependentUpon>TravelOKEntitiesQAModel.edmx</DependentUpon>
     </None>

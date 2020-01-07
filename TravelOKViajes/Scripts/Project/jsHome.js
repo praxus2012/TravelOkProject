@@ -106,12 +106,12 @@ function LlamaRecupDestVta(detVenta) {
 }
 function successRecupDestVta(data) {
     if (data.Exito) {
+        $('#selDestinos').empty();
+        $('#selDestinos')
+            .append($("<option></option>")
+                .attr("value", "0")
+                .text("¿Ha donde vamos?"));
         $.each(data.LsDestinos, function (i) {
-            $('#selDestinos').empty();
-            $('#selDestinos')
-                .append($("<option></option>")
-                    .attr("value", "0")
-                    .text("¿De dónde salimos?"));
             $('#selDestinos')
                 .append($("<option></option>")
                     .attr("value", data.LsDestinos[i].IdDest)

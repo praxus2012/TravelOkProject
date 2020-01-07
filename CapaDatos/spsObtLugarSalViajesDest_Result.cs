@@ -10,18 +10,10 @@
 namespace CapaDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TO_Viajes
+    public partial class spsObtLugarSalViajesDest_Result
     {
-        public int IdViaje { get; set; }
-        public int Id_Destino { get; set; }
-        public int Id_Salida { get; set; }
-        public Nullable<System.DateTime> dtFechaSalida { get; set; }
-        public Nullable<int> IdTransporte { get; set; }
-    
-        public virtual TO_Destino TO_Destino { get; set; }
-        public virtual TO_Salida TO_Salida { get; set; }
-        public virtual TO_Transporte TO_Transporte { get; set; }
+        public int Id_salida { get; set; }
+        public string Ciudad { get; set; }
     }
 }
