@@ -133,9 +133,82 @@ function successObtieneHabitaciones(data) {
     }
 }
 
+//      Modificar
+
+//obtiene destinos(Modificar)
+
+function LlamaRecupDestVtaM(detVenta) {
+    var url = $('#urlDestinoInicial').val();
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: JSON.stringify({ detVenta }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        success: successRecupDestVtaM,
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
+            alert('test');
+        }
+    });
+}
+function successRecupDestVtaM(data) {
+    if (data.Exito) {
+        $.each(data.LsDestinos, function (i) {
+
+            if (i == 0) {
+                $('#selMDestinosCost').empty();
+                $('#selMDestinosCost')
+                    .append($("<option></option>")
+                        .attr("value", "0")
+                        .text("¿De dónde salimos?"));
+            }
+
+            $('#selMDestinosCost')
+                .append($("<option></option>")
+                    .attr("value", data.LsDestinos[i].IdDest)
+                    .text(data.LsDestinos[i].Destino));
+        });
+    }
+}
+//obtiene habitaciones(Modificar)
+
+function LlamaRecupHabCostoM(idSalida, idDestino) {
+    var url = $('#urlObtHabitacionesCost').val();
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: JSON.stringify({ idSalida, idDestino }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        success: successRecupHabCostM,
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
+            alert('test');
+        }
+    });
+}
+function successRecupHabCostM(data) {
+    if (data.Exito) {
+        $.each(data.LsHabitaciones, function (i) {
+
+            if (i == 0) {
+                $('#selMHabitacionCost').empty();
+                $('#selMHabitacionCost')
+                    .append($("<option></option>")
+                        .attr("value", "0")
+                        .text("¿Cual es la Habitación?"));
+            }
+            $('#selMHabitacionCost')
+                .append($("<option></option>")
+                    .attr("value", data.LsHabitaciones[i].tipoHab)
+                    .text(data.LsHabitaciones[i].Descripcion));
+        });
+    }
+}
 
 
-
+//     eliminar--------------------------------------------
 
 //obtiene salidas (para eliminar)
 
@@ -158,7 +231,7 @@ function successObtieneSaalidas(data) {
     if (data.Exito) {
         var valact = 0;
         $.each(data.LsSalidas, function (i) {
-            $('#selSalidaCost')
+            $('#selSalidaCost, #selMSalidaCost')
                 .append($("<option></option>")
                     .attr("value", data.LsSalidas[i].Salida)
                     .text(data.LsSalidas[i].Ciudad));
@@ -177,6 +250,13 @@ function ActivaComboDestE() {
             idSalida: $('#selSalidaCost').val()
         };
         LlamaRecupDestVta(detVenta);
+    });
+
+    $('#selMSalidaCost').change(function () {
+        var detVenta = {
+            idSalida: $('#selMSalidaCost').val()
+        };
+        LlamaRecupDestVtaM(detVenta);
     });
 }
 
@@ -220,24 +300,32 @@ function successRecupDestVta(data) {
 
 function ObtHabitacionSalidaDestino() {
     $('#selDestinosCost').change(function () {        
-        var detCosto = {
-            IdSalida: $('#selSalidaCost').val(),
-            IdDestino: $('#selDestinosCost').val(),
-            sDestino: null,
-            IdHabitación: null,
-            sTipoPersona: null
-        };
+       /* var detCosto = {
+            idSalida: $('#selSalidaCost').val(),
+            idDestino: $('#selDestinosCost').val()           
+        };*/
 
-        LlamaRecupHabCosto(detCosto);
+        var idSalida = $('#selSalidaCost').val();
+        var idDestino = $('#selDestinosCost').val();    
+
+        LlamaRecupHabCosto(idSalida, idDestino);
+    });
+
+    $('#selMDestinosCost').change(function () {
+        
+        var idSalida = $('#selMSalidaCost').val();
+        var idDestino = $('#selMDestinosCost').val();
+
+        LlamaRecupHabCostoM(idSalida, idDestino);
     });
 }
 
-function LlamaRecupHabCosto(detCosto) {
+function LlamaRecupHabCosto(idSalida, idDestino) {
     var url = $('#urlObtHabitacionesCost').val();
     $.ajax({
         url: url,
         type: "POST",
-        data: JSON.stringify({ detCosto }),
+        data: JSON.stringify({ idSalida, idDestino }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         async: true,
@@ -282,7 +370,7 @@ $(document).on('click', '#btnInsertaCosto', function (e) {
             dCostoLugar: $('#inCosto').val(),
             IdDestino: $('#selIDestinosCost').val(),
             IdSalida: $('#selISalidaCost').val(),
-            IdHabitación: $('#selHabitaciones').val(),
+            IdHabitacion: $('#selHabitaciones').val(),
             sTipoPersona: $('#selPersona option:selected').text(),
             
         };
@@ -332,7 +420,7 @@ $(document).on('click', '#btnEliminaCosto', function (e) {
         var CCosto = {
              idSalida:  $('#selSalidaCost').val(),
              idDestino: $('#selDestinosCost').val(),
-             idHabitac: $('#selEHabitaciones').val()
+            IdHabitacion: $('#selHabitacionCost').val()
         }
 
         LLamaEliminaCosto(CCosto);
@@ -360,10 +448,11 @@ function SuccessLlamadaEliminaCosto(data) {
         MensajeExito('Se ha eliminado correctamente');
         $('#selSalidaCost').empty();
         $('#selDestinosCost').empty();
-        $('#selEHabitaciones').empty();
+        $('#selHabitacionCost').empty();
 
         ObtieneSalidasE();
         ActivaComboDestE();
+        ObtHabitacionSalidaDestino();
         
     } else {
         MensajeAdvertencia('Ha ocurrido un error');

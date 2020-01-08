@@ -98,12 +98,12 @@ namespace TravelOkAdmin.Controllers
             return Content(resultado.ToString());
         }
         [HttpPost]
-        public ActionResult ObtieneHabitacionesCost(cmCostos CCosto)
+        public ActionResult ObtieneHabitacionesCost(int idSalida, int idDestino)
         {
             var resultado = new JObject();
             CDA_Costos cdaCostos = new CDA_Costos();
             List<TO_Habitaciones> lsHabitacion = new List<TO_Habitaciones>();
-            lsHabitacion = cdaCostos.lsObtieneHabitacCostos(CCosto);
+            lsHabitacion = cdaCostos.lsObtieneHabitacCostos(idSalida, idDestino);
             if (lsHabitacion.Count > 0)
             {
                 JToken arHabitaciones = new JArray(from d in lsHabitacion
