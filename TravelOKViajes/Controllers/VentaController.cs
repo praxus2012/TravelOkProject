@@ -136,7 +136,13 @@ namespace TravelOKViajes.Controllers
 
         }
 
-        //  [HttpPost]
+        [HttpPost]
+        public ActionResult RegistraUsuarios()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult ConfirmaVenta()
         {
             return View();

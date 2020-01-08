@@ -11,7 +11,7 @@ namespace CapaDatos.Administrador
     {
         public bool bInsertaCarruselDestino(cmCarruselDestino CaDestino)
         {
-            //using (var contexto = new TravelOKViajesEntities())//local
+            //using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try

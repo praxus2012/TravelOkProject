@@ -12,7 +12,7 @@ namespace CapaDatos
         public List<TO_Destino> lsObtieneDestinos()
         {
             List<TO_Destino> lsDestinos = new List<TO_Destino>();
-           // using (var contexto = new TravelOKViajesEntities())//local
+           // using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 lsDestinos = contexto.TO_Destino.ToList();
@@ -23,7 +23,7 @@ namespace CapaDatos
         public List<cmDestinos> lsObtieneImgDestinos()
         {
             List<cmDestinos> lsDestinosImg = new List<cmDestinos>();
-            //using (var contexto = new TravelOKViajesEntities())//local
+            //using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 lsDestinosImg = (from des in contexto.spsObtieneDestinosImg()
@@ -44,7 +44,7 @@ sTitulo = des.sTitulo
         public List<cmCarruselDestino> cmObtieneCarrDestino(cmDestinos Destino)
         {
             List<cmCarruselDestino> CarrDest = null;
-            //using (var contexto = new TravelOKViajesEntities())
+            //using (var contexto = new TravelOKEntities())
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 CarrDest = (from sp in contexto.spsObtieneCarrusel(Destino.idViaje)
@@ -59,7 +59,7 @@ sTitulo = des.sTitulo
         }
         public cmDestinos cmObtieneImgDestinos(cmDestinos Destino)
         {
-            //using (var contexto = new TravelOKViajesEntities())//local
+            //using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 Destino = (from des in contexto.spsObtieneDestinoDet(Destino.idViaje)

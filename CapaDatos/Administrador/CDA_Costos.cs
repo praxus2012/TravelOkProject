@@ -13,7 +13,7 @@ namespace CapaDatos.Administrador
         public List<TO_Habitaciones> lsObtieneHabitacCostos(cmCostos CCostos)
         {
             List<TO_Habitaciones> lsHabitaciones = new List<TO_Habitaciones>();
-            // using (var contexto = new TravelOKViajesEntities())//local
+            // using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
@@ -38,7 +38,7 @@ namespace CapaDatos.Administrador
 
         public bool bInsertaCosto(cmCostos CCostos)
         {
-            //using (var contexto = new TravelOKViajesEntities())//local
+            //using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
@@ -60,7 +60,7 @@ namespace CapaDatos.Administrador
 
         public bool bEliminaCosto(cmCostos CCostos)
         {
-            //using (var contexto = new TravelOKViajesEntities())//local
+            //using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try

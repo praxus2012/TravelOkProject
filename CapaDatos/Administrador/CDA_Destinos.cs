@@ -12,7 +12,7 @@ namespace CapaDatos.Administrador
 
         public bool bInsertaDestino(cmDestinos CDestino)
         {
-            //using (var contexto = new TravelOKViajesEntities())//local
+            //using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
@@ -33,7 +33,7 @@ namespace CapaDatos.Administrador
 
         public bool bEliminaDestino_Id(int idDestino)
         {
-            //using (var contexto = new TravelOKViajesEntities())//local
+            //using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try

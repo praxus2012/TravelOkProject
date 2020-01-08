@@ -15,10 +15,10 @@ namespace CapaDatos
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class TravelOKViajesEntities : DbContext
+    public partial class TravelOKEntities : DbContext
     {
-        public TravelOKViajesEntities()
-            : base("name=TravelOKViajesEntities")
+        public TravelOKEntities()
+            : base("name=TravelOKEntities")
         {
         }
     
@@ -33,11 +33,11 @@ namespace CapaDatos
         public virtual DbSet<TO_Experiencias> TO_Experiencias { get; set; }
         public virtual DbSet<TO_Habitaciones> TO_Habitaciones { get; set; }
         public virtual DbSet<TO_Salida> TO_Salida { get; set; }
+        public virtual DbSet<TO_Transporte> TO_Transporte { get; set; }
         public virtual DbSet<TO_Usuario> TO_Usuario { get; set; }
         public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Costo> TO_Costo { get; set; }
-        public virtual DbSet<TO_Transporte> TO_Transporte { get; set; }
     
         public virtual int spdEliminaCosto(Nullable<int> nvSalida, Nullable<int> nvDestino, Nullable<int> nvHabitacion)
         {
