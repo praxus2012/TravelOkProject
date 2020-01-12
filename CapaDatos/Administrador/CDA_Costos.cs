@@ -78,15 +78,15 @@ namespace CapaDatos.Administrador
             }
         }
 
-        public TO_Costo lsObtieneCosto(cmCostos CCostos)
+        public List<TO_Costo> lsObtieneCosto(cmCostos CCostos)
         {
-            TO_Costo tCostos = new TO_Costo();
+            List <TO_Costo> lsCostos = new List<TO_Costo>();
             // using (var contexto = new TravelOKViajesEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
-                {                   
-                    tCostos = (from costos in contexto.TO_Costo
+                {
+                    lsCostos = (from costos in contexto.TO_Costo
                                 where costos.IdSalida==CCostos.IdSalida
                                 && costos.IdDestino==CCostos.IdDestino
                                 && costos.IdHabitacion==CCostos.IdHabitacion
@@ -96,7 +96,7 @@ namespace CapaDatos.Administrador
                                          CostoLugar = costos.CostoLugar,                                    
                                          TipoPersona = costos.TipoPersona
 
-                                }).FirstOrDefault();
+                                }).ToList();
                 }
                 catch (Exception x)
                 {
@@ -104,7 +104,7 @@ namespace CapaDatos.Administrador
                     return null;
                 }
             }
-            return tCostos;
+            return lsCostos;
         }
 
 
