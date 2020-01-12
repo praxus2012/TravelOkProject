@@ -11,7 +11,7 @@ namespace CapaDatos
     {
         public List<cmVentaDet> fnlsRecuperaSalidaDes(cmVentaDet oDestino)
         {
-            using (var contexto = new TravelOKViajesEntities())
+            using (var contexto = new TravelOKEntities())
             {
                 List<cmVentaDet> LsSalVenta = new List<cmVentaDet>();
                 LsSalVenta = (from salida in contexto.spsObtLugarSalViajesDest(oDestino.idDestino)

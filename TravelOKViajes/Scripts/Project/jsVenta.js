@@ -3,7 +3,7 @@
 });*/
 
 var asientosTot = 0;
-
+var seleccion = "";
 $(document).ready(function () {
     asientosTot = parseInt(sessionStorage.getItem("Adulto")) + parseInt(sessionStorage.getItem("Nino"));
     if (asientosTot > 0) {
@@ -85,6 +85,11 @@ function GeneraClick() {
                 if (asientosTot > 0) {
                     $('#' + $(this).attr('id')).css("background-image", "url('../../Img/Asientos/ASeleccionado.jpg')");
                     asientosTot = asientosTot - 1;
+                    if (seleccion == "") {
+                        seleccion = $(this).attr('id').split('-')[1];
+                    } else {
+                        seleccion = seleccion + '|' + $(this).attr('id').split('-')[1];
+                    }
                 }
             }
         }

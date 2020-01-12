@@ -160,10 +160,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TravelOKEntitiesQAModel.Designer.cs">
+    <Compile Include="TravelOKEntitiesQA.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TravelOKEntitiesQAModel.edmx</DependentUpon>
+      <DependentUpon>TravelOKEntitiesQA.edmx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -171,10 +171,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <EntityDeploy Include="TravelOKEntitiesQAModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TravelOKEntitiesQAModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <EntityDeploy Include="TravelOKEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TravelOKEntities.Designer.cs</LastGenOutput>
@@ -182,8 +178,12 @@
     <None Include="TravelOKEntities.edmx.diagram">
       <DependentUpon>TravelOKEntities.edmx</DependentUpon>
     </None>
-    <None Include="TravelOKEntitiesQAModel.edmx.diagram">
-      <DependentUpon>TravelOKEntitiesQAModel.edmx</DependentUpon>
+    <EntityDeploy Include="TravelOKEntitiesQA.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TravelOKEntitiesQA.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TravelOKEntitiesQA.edmx.diagram">
+      <DependentUpon>TravelOKEntitiesQA.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -208,12 +208,12 @@
     </Content>
     <Content Include="TravelOKEntitiesQAModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TravelOKEntitiesQAModel.edmx</DependentUpon>
+      <DependentUpon>TravelOKEntitiesQA.edmx</DependentUpon>
       <LastGenOutput>TravelOKEntitiesQAModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="TravelOKEntitiesQAModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TravelOKEntitiesQAModel.edmx</DependentUpon>
+      <DependentUpon>TravelOKEntitiesQA.edmx</DependentUpon>
       <LastGenOutput>TravelOKEntitiesQAModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>

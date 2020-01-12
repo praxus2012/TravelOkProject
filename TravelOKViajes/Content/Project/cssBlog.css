@@ -1,3 +1,20 @@
 ﻿#liBlo{
     border-top-style:solid;
 }
+
+#dvIzq{
+    float:left;
+}
+
+#dvIzq p{
+    font-size:2rem;
+}
+
+
+#dvDer{
+    float: right;
+}
+
+#dvDer,#dvIzq{
+    margin-top:2rem;
+}
