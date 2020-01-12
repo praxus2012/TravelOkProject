@@ -12,18 +12,20 @@ namespace CapaDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class TO_Costo
+    public partial class TO_Viajeros
     {
-        public Nullable<decimal> CostoLugar { get; set; }
-        public int IdDestino { get; set; }
-        public Nullable<int> IdSalida { get; set; }
-        public Nullable<int> IdHabitacion { get; set; }
+        public int Folio { get; set; }
         public Nullable<int> IdViaje { get; set; }
-        public string TipoPersona { get; set; }
+        public string IdUsuario { get; set; }
+        public string NombreAsistente { get; set; }
+        public string ApAsistente { get; set; }
+        public string Correo { get; set; }
+        public Nullable<int> Asiento { get; set; }
+        public Nullable<System.DateTime> FechaRegistro { get; set; }
+        public Nullable<bool> Pagado { get; set; }
+        public Nullable<decimal> Deuda { get; set; }
     
-        public virtual TO_Destino TO_Destino { get; set; }
-        public virtual TO_Habitaciones TO_Habitaciones { get; set; }
-        public virtual TO_Salida TO_Salida { get; set; }
+        public virtual TO_Usuario TO_Usuario { get; set; }
         public virtual TO_Viajes TO_Viajes { get; set; }
     }
 }

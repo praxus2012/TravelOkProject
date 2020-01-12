@@ -14,6 +14,12 @@ namespace CapaDatos
     
     public partial class TO_Usuario
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TO_Usuario()
+        {
+            this.TO_Viajeros = new HashSet<TO_Viajeros>();
+        }
+    
         public string Correo { get; set; }
         public string Contra { get; set; }
         public string Nombre { get; set; }
@@ -25,5 +31,8 @@ namespace CapaDatos
         public string Municipio { get; set; }
         public string Telefono { get; set; }
         public Nullable<bool> Activo { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TO_Viajeros> TO_Viajeros { get; set; }
     }
 }
