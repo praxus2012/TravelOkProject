@@ -146,6 +146,36 @@ namespace TravelOkAdmin.Controllers
         }
 
 
+        [HttpPost]
+        public ActionResult ObtieneCostos(cmCostos CCostos)
+        {
+            var resultado = new JObject();
+            try
+            {
+                CDA_Costos cdCostos = new CDA_Costos();
+                List <TO_Costo> lscostos = new List<TO_Costo>();
+
+                lscostos = cdCostos.lsObtieneCosto(CCostos);
+
+                if (lscostos.Count > 0)
+                    {
+                    JToken arCostos = new JArray(from d in lscostos
+                                                 select new JObject(
+                                                      new JProperty("Costo", d.CostoLugar),
+                                                      new JProperty("Salida", d.IdSalida)
+                                                    ));
+                    resultado["LsCostos"] = arCostos;
+                    resultado["Exito"] = true;
+                }
+            }
+            catch (Exception x)
+            {
+                resultado["Exito"] = false;
+            }
+            return Content(resultado.ToString());
+
+        }
+
 
 
 
