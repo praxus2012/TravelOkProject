@@ -15,10 +15,10 @@ namespace CapaDatos
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class TravelOKEntities : DbContext
+    public partial class TravelOKEntitiesQAModelEntities : DbContext
     {
-        public TravelOKEntities()
-            : base("name=TravelOKEntities")
+        public TravelOKEntitiesQAModelEntities()
+            : base("name=TravelOKEntitiesQAModelEntities")
         {
         }
     
@@ -38,6 +38,7 @@ namespace CapaDatos
         public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Costo> TO_Costo { get; set; }
+        public virtual DbSet<TO_Viajeros> TO_Viajeros { get; set; }
     
         public virtual int spdEliminaCosto(Nullable<int> nvSalida, Nullable<int> nvDestino, Nullable<int> nvHabitacion)
         {
@@ -320,6 +321,19 @@ namespace CapaDatos
                 new ObjectParameter("nvCont", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spVerificaUsuario_Result>("spVerificaUsuario", nvUsuParameter, nvContParameter);
+        }
+    
+        public virtual int spsObtPropHabUno(Nullable<int> idDestino, Nullable<int> total)
+        {
+            var idDestinoParameter = idDestino.HasValue ?
+                new ObjectParameter("IdDestino", idDestino) :
+                new ObjectParameter("IdDestino", typeof(int));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("Total", total) :
+                new ObjectParameter("Total", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spsObtPropHabUno", idDestinoParameter, totalParameter);
         }
     }
 }

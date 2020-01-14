@@ -9,14 +9,41 @@ namespace CapaDatos.Administrador
 {
     public class CDA_Costos
     {
-        public bool bInsertaCosto(cmCostos CCostos)
+
+        public List<TO_Habitaciones> lsObtieneHabitacCostos(int idSalida, int idDestino)
         {
-            //using (var contexto = new TravelOKViajesEntities())//local
+            List<TO_Habitaciones> lsHabitaciones = new List<TO_Habitaciones>();
+            // using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
                 try
                 {
-                    if (contexto.spiInsertaCosto(CCostos.dCostoLugar, CCostos.IdDestino, CCostos.IdSalida, CCostos.IdHabitación, CCostos.sTipoPersona) == -1)
+                    //     lsHabitaciones = contexto.spsObHabitacCostos(CCostos.IdSalida, CCostos.IdDestino).Select;
+                    lsHabitaciones = (from habitaciones in contexto.spsObHabitacCostos(idSalida, idDestino)
+                                      select new TO_Habitaciones
+                                      {
+                                          IdTipoHab = habitaciones.IdTipoHab,
+                                          nvDescripcion = habitaciones.nvDescripcion
+                                      }).ToList();
+                }
+                catch (Exception x)
+                {
+                    x.GetHashCode();
+                    return null;
+                }
+            }
+            return lsHabitaciones;
+        }
+
+
+        public bool bInsertaCosto(cmCostos CCostos)
+        {
+            //using (var contexto = new TravelOKEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
+            {
+                try
+                {
+                    if (contexto.spiInsertaCosto(CCostos.dCostoLugar, CCostos.IdDestino, CCostos.IdSalida, CCostos.IdHabitacion, CCostos.sTipoPersona) == -1)
 
                         return true;
                     return false;
@@ -30,6 +57,55 @@ namespace CapaDatos.Administrador
         }
 
 
+
+        public bool bEliminaCosto(cmCostos CCostos)
+        {
+            //using (var contexto = new TravelOKEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
+            {
+                try
+                {
+                    if (contexto.spdEliminaCosto(CCostos.IdSalida, CCostos.IdDestino, CCostos.IdHabitacion) == -1)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
+        }
+
+        public List<TO_Costo> lsObtieneCosto(cmCostos CCostos)
+        {
+            List <TO_Costo> lsCostos = new List<TO_Costo>();
+            // using (var contexto = new TravelOKViajesEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
+            {
+                try
+                {
+                    lsCostos = (from costos in contexto.TO_Costo
+                                where costos.IdSalida==CCostos.IdSalida
+                                && costos.IdDestino==CCostos.IdDestino
+                                && costos.IdHabitacion==CCostos.IdHabitacion
+                                && CCostos.sTipoPersona==CCostos.sTipoPersona
+                                select new TO_Costo
+                                      {
+                                         CostoLugar = costos.CostoLugar,                                    
+                                         TipoPersona = costos.TipoPersona
+
+                                }).ToList();
+                }
+                catch (Exception x)
+                {
+                    x.GetHashCode();
+                    return null;
+                }
+            }
+            return lsCostos;
+        }
 
 
     }

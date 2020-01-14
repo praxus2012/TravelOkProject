@@ -173,6 +173,7 @@
     <Content Include="Content\Project\cssGeneral.css" />
     <Content Include="Content\Project\cssHome.css" />
     <Content Include="Content\Project\cssQuienesSomos.css" />
+    <Content Include="Content\Project\cssSeleccionVenta.css" />
     <Content Include="Content\Project\cssTerminos.css" />
     <Content Include="Content\Project\cssVenta.css" />
     <Content Include="Content\Project\Libs\normalize.css" />
@@ -188,6 +189,7 @@
     <Content Include="Img\Asientos\AMenor.jpg" />
     <Content Include="Img\Asientos\AOcupado.jpg" />
     <Content Include="Img\Asientos\ASeleccionado.jpg" />
+    <Content Include="Img\Asientos\baño.jpg" />
     <Content Include="Img\blancas.png" />
     <Content Include="Img\Carrusel1\car1.png" />
     <Content Include="Img\Carrusel1\car2.png" />
@@ -457,11 +459,13 @@
     <Content Include="Scripts\Project\jQuery\jquery-3.4.1.js" />
     <Content Include="Scripts\Project\jsComunidad.js" />
     <Content Include="Scripts\Project\jsDestinos.js" />
+    <Content Include="Scripts\Project\jsDetalleVenta.js" />
     <Content Include="Scripts\Project\jsEncuesta.js" />
     <Content Include="Scripts\Project\jsHome.js" />
     <Content Include="Scripts\Project\jsLayout.js" />
     <Content Include="Scripts\Project\jsLogueo.js" />
     <Content Include="Scripts\Project\jsMensajes.js" />
+    <Content Include="Scripts\Project\jsSeleccionVenta.js" />
     <Content Include="Scripts\Project\jsVenta.js" />
     <Content Include="Scripts\Project\libs\classie.js" />
     <Content Include="Scripts\Project\libs\imagesloaded.pkgd.min.js" />

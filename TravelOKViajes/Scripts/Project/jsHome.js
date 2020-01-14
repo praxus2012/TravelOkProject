@@ -54,8 +54,9 @@ $(document).on('click', '.btselec', function (e) {
     if ($('#selSalida').val() != 0
         && $('#selDestinos').val() != 0
         && $('#selFechas').val() != 0) {
-        sessionStorage.setItem("Destino", $('#selSalida').val());
-        sessionStorage.setItem("Salida", $('#selDestinos').val());
+        sessionStorage.setItem("Salida", $('#selSalida').val());
+        sessionStorage.setItem("Destino", $('#selDestinos').val());
+        sessionStorage.setItem("DestinoDes", $('#selDestinos option:selected').text());
         sessionStorage.setItem("Fecha", $('#selFechas').val());
         window.location.href = '/Venta/DetalleVenta';
     } else {
@@ -105,12 +106,12 @@ function LlamaRecupDestVta(detVenta) {
 }
 function successRecupDestVta(data) {
     if (data.Exito) {
+        $('#selDestinos').empty();
+        $('#selDestinos')
+            .append($("<option></option>")
+                .attr("value", "0")
+                .text("¿Ha donde vamos?"));
         $.each(data.LsDestinos, function (i) {
-            $('#selDestinos').empty();
-            $('#selDestinos')
-                .append($("<option></option>")
-                    .attr("value", "0")
-                    .text("¿De dónde salimos?"));
             $('#selDestinos')
                 .append($("<option></option>")
                     .attr("value", data.LsDestinos[i].IdDest)

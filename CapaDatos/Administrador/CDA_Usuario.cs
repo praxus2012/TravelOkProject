@@ -13,7 +13,7 @@ namespace CapaDatos
         {
             try
             {
-                //using (var contexto = new TravelOKViajesEntities())//local
+                //using (var contexto = new TravelOKEntities())//local
                 using (var contexto = new TravelOKEntitiesQA())//QA
                 {
                     TOA_Usuario Tuser = new TOA_Usuario();

@@ -4,12 +4,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Selecciona tus asientos</h2>
-<div id="dvAsientos">
-    <div id="dvVacio"></div>
-    <div id="dvOcupado"></div>
-    <div id="dvSeleccion"></div>
+<h2 id="hdes">Vámonos a </h2>
+
+<div id="dvDer" class="container col-4">
+    <div class="row col-12">
+        <label id="txCen">Seleccione sus asientos</label>
+    </div>
+    <div class="row col-12 d-flex justify-content-around mt-3">
+        <div id="dvLibre" class="col-2">
+            <label class="txAs" id="txLib">Libre</label>
+        </div>
+        <div id="dvOcupado" class="col-2">
+            <label class="txAs" id="txOc">Ocupado</label>
+        </div>
+        <div id="dvSelec" class="col-2">
+            <label class="txAs" id="txSel">Seleccionado</label>
+        </div>
+    </div>
+    <div class="btn btn-primary row col-10 mt-5" id="btContinuar">Continuar</div>
 </div>
+<div id="dvTransporte">
+    <ul id="ulIzq">
+    </ul>
+    <ul id="ulDer">
+    </ul>
+    <ul id="ulAtras">
+    </ul>
+</div>
+
+<label id="txDis">Asientos Totales: </label>
+
+
+<!--
 <div id="dvAutobus">
     <label>@ViewData["idDestino"]</label>
     <ul id="ulPrimerAsiento">
@@ -92,7 +118,8 @@
 
         </li>
     </ul>
-</div>
+</div>-->
 
 <script src="~/Scripts/Project/jsVenta.js"></script>
 <link href="~/Content/Project/cssVenta.css" rel="stylesheet" />
+<input type="hidden" id="urlinicialTrans" value="@Url.Action("InicialVenta","Venta")" />

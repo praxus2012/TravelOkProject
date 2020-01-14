@@ -33,10 +33,28 @@ namespace CapaDatos
         public virtual DbSet<TO_Experiencias> TO_Experiencias { get; set; }
         public virtual DbSet<TO_Habitaciones> TO_Habitaciones { get; set; }
         public virtual DbSet<TO_Salida> TO_Salida { get; set; }
+        public virtual DbSet<TO_Transporte> TO_Transporte { get; set; }
         public virtual DbSet<TO_Usuario> TO_Usuario { get; set; }
         public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Costo> TO_Costo { get; set; }
+    
+        public virtual int spdEliminaCosto(Nullable<int> nvSalida, Nullable<int> nvDestino, Nullable<int> nvHabitacion)
+        {
+            var nvSalidaParameter = nvSalida.HasValue ?
+                new ObjectParameter("nvSalida", nvSalida) :
+                new ObjectParameter("nvSalida", typeof(int));
+    
+            var nvDestinoParameter = nvDestino.HasValue ?
+                new ObjectParameter("nvDestino", nvDestino) :
+                new ObjectParameter("nvDestino", typeof(int));
+    
+            var nvHabitacionParameter = nvHabitacion.HasValue ?
+                new ObjectParameter("nvHabitacion", nvHabitacion) :
+                new ObjectParameter("nvHabitacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spdEliminaCosto", nvSalidaParameter, nvDestinoParameter, nvHabitacionParameter);
+        }
     
         public virtual int spdEliminaDestinoId(Nullable<int> idDestino)
         {
@@ -209,6 +227,19 @@ namespace CapaDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spObtieneComunidad_Result>("spObtieneComunidad");
         }
     
+        public virtual ObjectResult<spsObHabitacCostos_Result> spsObHabitacCostos(Nullable<int> idSalida, Nullable<int> idDestino)
+        {
+            var idSalidaParameter = idSalida.HasValue ?
+                new ObjectParameter("IdSalida", idSalida) :
+                new ObjectParameter("IdSalida", typeof(int));
+    
+            var idDestinoParameter = idDestino.HasValue ?
+                new ObjectParameter("IdDestino", idDestino) :
+                new ObjectParameter("IdDestino", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObHabitacCostos_Result>("spsObHabitacCostos", idSalidaParameter, idDestinoParameter);
+        }
+    
         public virtual ObjectResult<spsObtFechaViajes_Result> spsObtFechaViajes(Nullable<int> idSalida, Nullable<int> idDestino)
         {
             var idSalidaParameter = idSalida.HasValue ?
@@ -240,6 +271,11 @@ namespace CapaDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtieneDestinoDet_Result>("spsObtieneDestinoDet", idViajeParameter);
         }
     
+        public virtual ObjectResult<spsObtieneDestinosDet_Result> spsObtieneDestinosDet()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtieneDestinosDet_Result>("spsObtieneDestinosDet");
+        }
+    
         public virtual ObjectResult<spsObtieneDestinosImg_Result> spsObtieneDestinosImg()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtieneDestinosImg_Result>("spsObtieneDestinosImg");
@@ -262,6 +298,15 @@ namespace CapaDatos
         public virtual ObjectResult<spsObtLugarSalidaViajes_Result> spsObtLugarSalidaViajes()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtLugarSalidaViajes_Result>("spsObtLugarSalidaViajes");
+        }
+    
+        public virtual ObjectResult<spsObtLugarSalViajesDest_Result> spsObtLugarSalViajesDest(Nullable<int> idDestino)
+        {
+            var idDestinoParameter = idDestino.HasValue ?
+                new ObjectParameter("IdDestino", idDestino) :
+                new ObjectParameter("IdDestino", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtLugarSalViajesDest_Result>("spsObtLugarSalViajesDest", idDestinoParameter);
         }
     
         public virtual ObjectResult<spVerificaUsuario_Result> spVerificaUsuario(string nvUsu, string nvCont)

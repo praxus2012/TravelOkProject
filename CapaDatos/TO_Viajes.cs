@@ -14,12 +14,25 @@ namespace CapaDatos
     
     public partial class TO_Viajes
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TO_Viajes()
+        {
+            this.TO_Costo = new HashSet<TO_Costo>();
+            this.TO_Viajeros = new HashSet<TO_Viajeros>();
+        }
+    
         public int IdViaje { get; set; }
         public int Id_Destino { get; set; }
         public int Id_Salida { get; set; }
         public Nullable<System.DateTime> dtFechaSalida { get; set; }
+        public Nullable<int> IdTransporte { get; set; }
     
         public virtual TO_Destino TO_Destino { get; set; }
         public virtual TO_Salida TO_Salida { get; set; }
+        public virtual TO_Transporte TO_Transporte { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TO_Costo> TO_Costo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TO_Viajeros> TO_Viajeros { get; set; }
     }
 }

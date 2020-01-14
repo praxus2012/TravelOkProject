@@ -14,5 +14,6 @@ namespace CapaModelo
         public int idDestino { get; set; }
         public string sDestino { get; set; }
         public DateTime? dtFecha { get; set; }
+        public int? idTransporte { get; set; }
     }
 }

@@ -12,9 +12,10 @@ namespace CapaDatos
         public List<TO_Habitaciones> lsObtieneHabitaciones()
         {
             List<TO_Habitaciones> lsHabitaciones = new List<TO_Habitaciones>();
-            //using (var contexto = new TravelOKViajesEntities())//local
+            //using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
-            {
+            {       
+
                 lsHabitaciones = contexto.TO_Habitaciones.ToList();
             }
             return lsHabitaciones;
