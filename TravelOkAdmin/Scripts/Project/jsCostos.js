@@ -3,8 +3,7 @@
     ObtieneDestinosI();
     ObtieneHabitaciones();
    
-    ObtieneSalidasE();
-  
+    ObtieneSalidasE();  
 
     ActivaComboDestE();
     ObtHabitacionSalidaDestino();

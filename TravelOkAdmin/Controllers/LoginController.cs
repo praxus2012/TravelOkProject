@@ -32,8 +32,8 @@ namespace TravelOkAdmin.Controllers
                 {
                     resultado["Exito"] = true;
                     DateTime horaActual = DateTime.Now;
-                    Session["Activo"] = true;
-                    Session["Usuario"] = usuarioRecuperado;
+                    Session["Nombre"] = usuarioRecuperado.nvNombre;
+                    Session["Usuario"] = usuarioRecuperado.nvUsuario;
                 }
             }
             else

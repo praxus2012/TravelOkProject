@@ -15,10 +15,20 @@ namespace CapaDatos
            // using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
+                lsDestinos = contexto.TO_Destino.Where(Des => Des.bActivo==true).ToList();
+            }
+            return lsDestinos;
+        }
+        public List<TO_Destino> lsObtieneDestinosTodo()
+        {
+            List<TO_Destino> lsDestinos = new List<TO_Destino>();
+            // using (var contexto = new TravelOKEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
+            {
                 lsDestinos = contexto.TO_Destino.ToList();
             }
             return lsDestinos;
-        } 
+        }
 
         public List<cmDestinos> lsObtieneImgDestinos()
         {

@@ -23,7 +23,7 @@ namespace CapaDatos
     
         public virtual TO_Destino TO_Destino { get; set; }
         public virtual TO_Habitaciones TO_Habitaciones { get; set; }
-        public virtual TO_Salida TO_Salida { get; set; }
         public virtual TO_Viajes TO_Viajes { get; set; }
+        public virtual TO_Salida TO_Salida { get; set; }
     }
 }

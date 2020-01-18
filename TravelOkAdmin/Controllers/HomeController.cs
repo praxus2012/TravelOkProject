@@ -10,7 +10,7 @@ namespace TravelOkAdmin.Controllers
     {
         public ActionResult Index()
         {
-            if (Session["Activo"] == null)
+            if (Session["Usuario"] == null)
             {
                 RedirectToAction("Index", "Login");
             }
@@ -26,7 +26,7 @@ namespace TravelOkAdmin.Controllers
 
         public ActionResult Actividades()
         {
-            if (Session["Activo"] == null)
+            if (Session["Usuario"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }

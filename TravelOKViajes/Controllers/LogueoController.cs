@@ -44,7 +44,16 @@ namespace TravelOKViajes.Controllers
                 else
                 {
                     Respuesta["Exito"] = true;
-                    Respuesta["oUsr"] = JToken.FromObject(Usr);
+                    Respuesta["oUsr"] = new JObject(
+                        new JProperty("Correo", Usr.Correo),
+                        new JProperty("Contra", Usr.Contra),
+                        new JProperty("Nombre", Usr.Nombre),
+                        new JProperty("Apellidos", Usr.Apellidos),
+                        new JProperty("Genero", Usr.Genero),
+                        new JProperty("Estado", Usr.Estado),
+                        new JProperty("Municipio", Usr.Municipio),
+                        new JProperty("Telefono", Usr.Telefono),
+                        new JProperty("Activo", Usr.Activo));
                     Session["UserID"] = Usr.Correo;
                     Session["UserName"] = Usr.Nombre;
                 }
@@ -72,7 +81,16 @@ namespace TravelOKViajes.Controllers
                 else
                 {
                     Respuesta["Exito"] = true;
-                    Respuesta["oUsr"] = JToken.FromObject(Usr);
+                    Respuesta["oUsr"] = new JObject(
+                       new JProperty("Correo", Usr.Correo),
+                       new JProperty("Contra", Usr.Contra),
+                       new JProperty("Nombre", Usr.Nombre),
+                       new JProperty("Apellidos", Usr.Apellidos),
+                       new JProperty("Genero", Usr.Genero),
+                       new JProperty("Estado", Usr.Estado),
+                       new JProperty("Municipio", Usr.Municipio),
+                       new JProperty("Telefono", Usr.Telefono),
+                       new JProperty("Activo", Usr.Activo));
                     Session["UserID"] = Usr.Correo;
                     Session["UserName"] = Usr.Nombre;
                 }

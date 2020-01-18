@@ -1,5 +1,5 @@
 ﻿$(document).on('click', '#btnIniciarSesion', function () {
-    //validador();
+    validador();
     var url = $('#urlHome').val();
     window.location.href = url;
 });
@@ -17,6 +17,7 @@ function validador() {
 }
 
 function LlamadaIniciarSesion(datosUsuario) {
+    debugger;
     var url = $('#urlLogeo').val();
     $("#imagenCargando").css("visibility", "visible");
     $.ajax({
