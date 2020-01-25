@@ -80,9 +80,10 @@ namespace CapaDatos.Administrador
             {
                 try
                 {
-                   // contexto.TO_Salida.Add(salida);                   
-                    contexto.SaveChanges();
-                  
+                    TO_Salida editarSalida = contexto.TO_Salida.Where(sal => sal.IdSalida == salida.IdSalida).FirstOrDefault();
+                    editarSalida.Ciudad = salida.Ciudad;
+                    editarSalida.bActivo = salida.bActivo;
+                    contexto.SaveChanges();                  
                 }
                 catch (Exception x)
                 {

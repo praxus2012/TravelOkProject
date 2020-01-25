@@ -10,5 +10,6 @@ namespace CapaModelo
     {
         public int IdSalida { get; set; }
         public string Ciudad { get; set; }
+        public bool bActivo { get; set; }
     }
 }
