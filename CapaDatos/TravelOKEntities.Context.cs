@@ -38,6 +38,7 @@ namespace CapaDatos
         public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Costo> TO_Costo { get; set; }
+        public virtual DbSet<TO_Viajeros> TO_Viajeros { get; set; }
     
         public virtual int spdEliminaCosto(Nullable<int> nvSalida, Nullable<int> nvDestino, Nullable<int> nvHabitacion)
         {
@@ -320,6 +321,36 @@ namespace CapaDatos
                 new ObjectParameter("nvCont", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spVerificaUsuario_Result>("spVerificaUsuario", nvUsuParameter, nvContParameter);
+        }
+    
+        public virtual int spsObtPropHabUno(Nullable<int> idViaje, Nullable<int> total)
+        {
+            var idViajeParameter = idViaje.HasValue ?
+                new ObjectParameter("IdViaje", idViaje) :
+                new ObjectParameter("IdViaje", typeof(int));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("Total", total) :
+                new ObjectParameter("Total", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spsObtPropHabUno", idViajeParameter, totalParameter);
+        }
+    
+        public virtual int spsObtPropuestas(Nullable<int> idViaje, Nullable<int> total, Nullable<int> decremento)
+        {
+            var idViajeParameter = idViaje.HasValue ?
+                new ObjectParameter("IdViaje", idViaje) :
+                new ObjectParameter("IdViaje", typeof(int));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("Total", total) :
+                new ObjectParameter("Total", typeof(int));
+    
+            var decrementoParameter = decremento.HasValue ?
+                new ObjectParameter("Decremento", decremento) :
+                new ObjectParameter("Decremento", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spsObtPropuestas", idViajeParameter, totalParameter, decrementoParameter);
         }
     }
 }

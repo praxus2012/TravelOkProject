@@ -323,17 +323,34 @@ namespace CapaDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spVerificaUsuario_Result>("spVerificaUsuario", nvUsuParameter, nvContParameter);
         }
     
-        public virtual int spsObtPropHabUno(Nullable<int> idDestino, Nullable<int> total)
+        public virtual int spsObtPropHabUno(Nullable<int> idViaje, Nullable<int> total)
         {
-            var idDestinoParameter = idDestino.HasValue ?
-                new ObjectParameter("IdDestino", idDestino) :
-                new ObjectParameter("IdDestino", typeof(int));
+            var idViajeParameter = idViaje.HasValue ?
+                new ObjectParameter("IdViaje", idViaje) :
+                new ObjectParameter("IdViaje", typeof(int));
     
             var totalParameter = total.HasValue ?
                 new ObjectParameter("Total", total) :
                 new ObjectParameter("Total", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spsObtPropHabUno", idDestinoParameter, totalParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spsObtPropHabUno", idViajeParameter, totalParameter);
+        }
+    
+        public virtual int spsObtPropuestas(Nullable<int> idViaje, Nullable<int> total, Nullable<int> decremento)
+        {
+            var idViajeParameter = idViaje.HasValue ?
+                new ObjectParameter("IdViaje", idViaje) :
+                new ObjectParameter("IdViaje", typeof(int));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("Total", total) :
+                new ObjectParameter("Total", typeof(int));
+    
+            var decrementoParameter = decremento.HasValue ?
+                new ObjectParameter("Decremento", decremento) :
+                new ObjectParameter("Decremento", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spsObtPropuestas", idViajeParameter, totalParameter, decrementoParameter);
         }
     }
 }

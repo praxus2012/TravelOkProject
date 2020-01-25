@@ -24,6 +24,10 @@
         <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Salida" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajes_TO_Salida" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajes_TO_Transporte" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Viajeros" Width="1.5" PointX="11" PointY="3.25" />
+        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Usuario" />
+        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Viajes" />
+        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Viajes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -26,64 +26,18 @@
                 <input class="form-control" type="number" id="inNinos" name="quantity" min="1" placeholder="Niños">
             </div>
         </div>
+        <div class="row mt-4 d-flex justify-content-center">
+            <div class="btn d-flex form-control col-6 justify-content-center btn-primary btnBuscar">Buscar</div>
+        </div>
     </div>
 </div>
 
 <div class="container col-12">
-    <div class="row">
-        <div class="col-4">
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="http://www.hotelelparque.com/wp-content/uploads/2017/11/habitacion-sencilla-fomeque.jpg" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h4 class="card-title">Habitacion sencilla</h4>
-                            <h3>Costo:</h3>
-                            <h2>$4,100</h2>
-                            <div class="btn btn-primary btnAsiento">ELIJE ESTE VIAJE</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="http://www.reserva-ejemplo.com/WebRoot/StoreES2/Shops/reserva-ejemplo/4A15/80A3/09AD/6954/8853/52DF/A338/FB03/roomdoble.jpg" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h4 class="card-title">Habitación doble</h4>
-                            <h3>Desde:</h3>
-                            <h2>$3,600</h2>
-                            <div class="btn btn-primary">ELIJE ESTE VIAJE</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="http://www.ghtiberio.com/wp-content/uploads/sites/352/2015/10/quadrupla5.jpg" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h4 class="card-title">Habitación triple</h4>
-                            <h3>Desde:</h3>
-                            <h2>$3,600</h2>
-                            <div class="btn btn-primary">ELIJE ESTE VIAJE</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="row dvOp">
+        
     </div>
 </div>
 <script src="~/Scripts/Project/jsDetalleVenta.js"></script>
 <input type="hidden" id="urlinicialDetVent" value="@Url.Action("InicioDetVenta","Venta")" />
+<input type="hidden" id="urlObtieneProp" value="@Url.Action("ObtienePropuestas","Venta")" />
 <input type="hidden" id="urlRecuperaFechas" value="@Url.Action("RecuperaFechasVen","Venta")" />

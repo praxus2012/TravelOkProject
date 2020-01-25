@@ -500,6 +500,8 @@
     <Content Include="Views\Logueo\TravelRegistro.cshtml" />
     <Content Include="Views\Venta\SeleccionVenta.cshtml" />
     <Content Include="Views\Venta\DetalleVenta.cshtml" />
+    <Content Include="Views\Venta\RegistraUsuarios.cshtml" />
+    <Content Include="Views\Venta\Pago.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

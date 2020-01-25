@@ -49,7 +49,7 @@ namespace TravelOKViajes.Controllers
                 return RedirectToAction("TravelInicio", "Logueo");
             }
             else
-            {
+            {                
                 return View();
             }
         }
@@ -91,9 +91,10 @@ namespace TravelOKViajes.Controllers
             var resultado = new JObject();
             try
             {
-                CD_DetVenta cdDetVen = new CD_DetVenta();
+                CD_DetVenta odVenta = new CD_DetVenta();
                 List<cmVentaDet> lsDetSal = new List<cmVentaDet>();
-                lsDetSal = cdDetVen.fnlsRecuperaSalidaDes(oDest);
+                lsDetSal = odVenta.fnlsRecuperaSalidaDes(oDest);
+                
                 if (lsDetSal.Count > 0)
                 {
                     resultado["LsSalidas"] = JToken.FromObject(lsDetSal);
@@ -101,6 +102,76 @@ namespace TravelOKViajes.Controllers
                 }
             }
             catch (Exception x)
+            {
+                resultado["Exito"] = false;
+            }
+            return Content(resultado.ToString());
+        }
+
+        [HttpPost]
+        public ActionResult ObtienePropuestas(cmHabitacion oHabitacion)
+        {
+            var resultado = new JObject();
+            try
+            {
+                CD_DetVenta odVenta = new CD_DetVenta();
+                List<cmHabitacion> lsHabitaciones = new List<cmHabitacion>();
+                int count = 0;
+                if (oHabitacion.iPasajeros > 2)
+                {
+                    while (count < 3)
+                    {
+                        oHabitacion.iDecremento = count;
+                        lsHabitaciones = odVenta.fnlsRecuperaOpciones(oHabitacion);
+                        decimal tot = 0;
+                        foreach(cmHabitacion hab in lsHabitaciones)
+                        {
+                            tot += hab.dCosto;
+                        }
+                        if (count == 0)
+                        {
+                            resultado["Opcion0"] = JToken.FromObject(lsHabitaciones);
+                            resultado["Total0"] = tot;
+                        }
+                        if (count == 1)
+                        {
+                            resultado["Opcion1"] = JToken.FromObject(lsHabitaciones);
+                            resultado["Total1"] = tot;
+                        }
+                        if (count == 2)
+                        {
+                            resultado["Opcion2"] = JToken.FromObject(lsHabitaciones);
+                            resultado["Total2"] = tot;
+                        }
+                        count++;
+                    }
+                }
+                else
+                {
+                    oHabitacion.iDecremento = 0;
+                    lsHabitaciones = odVenta.fnlsRecuperaOpciones(oHabitacion);
+                    decimal tot = 0;
+                    foreach (cmHabitacion hab in lsHabitaciones)
+                    {
+                        tot += hab.dCosto;
+                    }
+                    resultado["Opcion"] = JObject.FromObject(lsHabitaciones);
+                    resultado["Total"] = tot;
+                }
+                if (lsHabitaciones.Count > 0)
+                {
+                    resultado["Exito"] = true;
+                }
+
+                /*lsHabitaciones = odVenta.fnlsRecuperaOpciones(new cmHabitacion
+                {
+                    iPasajeros = 10,
+                    idViaje = 2,
+                    iDecremento = 0
+                });*/
+
+            }
+            catch(Exception ex)
             {
                 resultado["Exito"] = false;
             }
@@ -144,6 +215,12 @@ namespace TravelOKViajes.Controllers
 
         [HttpPost]
         public ActionResult ConfirmaVenta()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Pago()
         {
             return View();
         }

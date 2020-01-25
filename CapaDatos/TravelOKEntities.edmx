@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TravelOKEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TravelOKEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TO_Blog">
           <Key>
             <PropertyRef Name="IdBlog" />
@@ -26,6 +26,7 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Property Name="IdDestino" Type="int" Nullable="false" />
           <Property Name="IdSalida" Type="int" />
           <Property Name="IdHabitacion" Type="int" />
+          <Property Name="IdViaje" Type="int" />
           <Property Name="TipoPersona" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TO_Destino">
@@ -78,12 +79,14 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           </Key>
           <Property Name="IdSalida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ciudad" Type="varchar" MaxLength="250" />
+          <Property Name="bActivo" Type="bit" />
         </EntityType>
         <EntityType Name="TO_Transporte">
           <Key>
             <PropertyRef Name="IdTransporte" />
           </Key>
           <Property Name="IdTransporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nvNombre" Type="nvarchar" MaxLength="100" />
           <Property Name="NumAsientos" Type="int" />
           <Property Name="FilaTrasera" Type="bit" />
           <Property Name="NumAsTrasera" Type="int" />
@@ -117,9 +120,11 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Property Name="Telefono" Type="nvarchar" MaxLength="25" />
           <Property Name="Activo" Type="bit" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Viajeros' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="TO_Viajeros">
+          <Key>
+            <PropertyRef Name="Folio" />
+          </Key>
+          <Property Name="Folio" Type="int" Nullable="false" />
           <Property Name="IdViaje" Type="int" />
           <Property Name="IdUsuario" Type="nvarchar" MaxLength="200" />
           <Property Name="NombreAsistente" Type="nvarchar(max)" />
@@ -129,7 +134,7 @@ advertencia 6013: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Viajeros' no ti
           <Property Name="FechaRegistro" Type="datetime" />
           <Property Name="Pagado" Type="bit" />
           <Property Name="Deuda" Type="money" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="TO_Viajes">
           <Key>
             <PropertyRef Name="IdViaje" />
@@ -215,12 +220,42 @@ advertencia 6013: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Viajeros' no ti
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.TO_Viajeros', pero no se encuentra la tabla.
-        <Association Name="FK_TO_Viajeros_TO_Usuario" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.TO_Viajeros', pero no se encuentra la tabla.
-        <Association Name="FK_TO_Viajeros_TO_Viajes" />-->
+        <Association Name="FK_TO_Costo_TO_Viajes">
+          <End Role="TO_Viajes" Type="Self.TO_Viajes" Multiplicity="0..1" />
+          <End Role="TO_Costo" Type="Self.TO_Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Viajes">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Costo">
+              <PropertyRef Name="IdViaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Viajeros_TO_Usuario">
+          <End Role="TO_Usuario" Type="Self.TO_Usuario" Multiplicity="0..1" />
+          <End Role="TO_Viajeros" Type="Self.TO_Viajeros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Usuario">
+              <PropertyRef Name="Correo" />
+            </Principal>
+            <Dependent Role="TO_Viajeros">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Viajeros_TO_Viajes">
+          <End Role="TO_Viajes" Type="Self.TO_Viajes" Multiplicity="0..1" />
+          <End Role="TO_Viajeros" Type="Self.TO_Viajeros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Viajes">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Viajeros">
+              <PropertyRef Name="IdViaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TO_Viajes_TO_Destino">
           <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
           <End Role="TO_Viajes" Type="Self.TO_Viajes" Multiplicity="*" />
@@ -336,6 +371,15 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
         <Function Name="spsObtLugarSalViajesDest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdDestino" Type="int" Mode="In" />
         </Function>
+        <Function Name="spsObtPropHabUno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdViaje" Type="int" Mode="In" />
+          <Parameter Name="Total" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spsObtPropuestas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdViaje" Type="int" Mode="In" />
+          <Parameter Name="Total" Type="int" Mode="In" />
+          <Parameter Name="Decremento" Type="int" Mode="In" />
+        </Function>
         <Function Name="spVerificaUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nvUsu" Type="nvarchar" Mode="In" />
           <Parameter Name="nvCont" Type="nvarchar" Mode="In" />
@@ -349,6 +393,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
           <EntitySet Name="TO_Salida" EntityType="Self.TO_Salida" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Transporte" EntityType="Self.TO_Transporte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Usuario" EntityType="Self.TO_Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TO_Viajeros" EntityType="Self.TO_Viajeros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Viajes" EntityType="Self.TO_Viajes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOA_Usuario" EntityType="Self.TOA_Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Costo" EntityType="Self.TO_Costo" store:Type="Tables" store:Schema="dbo">
@@ -357,6 +402,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
     [TO_Costo].[IdDestino] AS [IdDestino], 
     [TO_Costo].[IdSalida] AS [IdSalida], 
     [TO_Costo].[IdHabitacion] AS [IdHabitacion], 
+    [TO_Costo].[IdViaje] AS [IdViaje], 
     [TO_Costo].[TipoPersona] AS [TipoPersona]
     FROM [dbo].[TO_Costo] AS [TO_Costo]</DefiningQuery>
           </EntitySet>
@@ -380,6 +426,18 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
             <End Role="TO_Salida" EntitySet="TO_Salida" />
             <End Role="TO_Costo" EntitySet="TO_Costo" />
           </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Viajes" Association="Self.FK_TO_Costo_TO_Viajes">
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Viajeros_TO_Usuario" Association="Self.FK_TO_Viajeros_TO_Usuario">
+            <End Role="TO_Usuario" EntitySet="TO_Usuario" />
+            <End Role="TO_Viajeros" EntitySet="TO_Viajeros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Viajeros_TO_Viajes" Association="Self.FK_TO_Viajeros_TO_Viajes">
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+            <End Role="TO_Viajeros" EntitySet="TO_Viajeros" />
+          </AssociationSet>
           <AssociationSet Name="FK_TO_Viajes_TO_Destino" Association="Self.FK_TO_Viajes_TO_Destino">
             <End Role="TO_Destino" EntitySet="TO_Destino" />
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
@@ -393,8 +451,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TravelOKEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -468,6 +525,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
           <Property Name="Ciudad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TO_Costo" Relationship="Self.FK_TO_Costo_TO_Salida" FromRole="TO_Salida" ToRole="TO_Costo" />
           <NavigationProperty Name="TO_Viajes" Relationship="Self.FK_TO_Viajes_TO_Salida" FromRole="TO_Salida" ToRole="TO_Viajes" />
+          <Property Name="bActivo" Type="Boolean" />
         </EntityType>
         <EntityType Name="TO_Transporte">
           <Key>
@@ -491,6 +549,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
           <Property Name="SanMedio" Type="Boolean" />
           <Property Name="NumFilSanM" Type="Int32" />
           <NavigationProperty Name="TO_Viajes" Relationship="Self.FK_TO_Viajes_TO_Transporte" FromRole="TO_Transporte" ToRole="TO_Viajes" />
+          <Property Name="nvNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TO_Usuario">
           <Key>
@@ -507,6 +566,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
           <Property Name="Municipio" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="TO_Viajeros" Relationship="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Usuario" FromRole="TO_Usuario" ToRole="TO_Viajeros" />
         </EntityType>
         <EntityType Name="TO_Viajes">
           <Key>
@@ -520,6 +580,8 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
           <NavigationProperty Name="TO_Destino" Relationship="Self.FK_TO_Viajes_TO_Destino" FromRole="TO_Viajes" ToRole="TO_Destino" />
           <NavigationProperty Name="TO_Salida" Relationship="Self.FK_TO_Viajes_TO_Salida" FromRole="TO_Viajes" ToRole="TO_Salida" />
           <NavigationProperty Name="TO_Transporte" Relationship="Self.FK_TO_Viajes_TO_Transporte" FromRole="TO_Viajes" ToRole="TO_Transporte" />
+          <NavigationProperty Name="TO_Viajeros" Relationship="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Viajes" FromRole="TO_Viajes" ToRole="TO_Viajeros" />
+          <NavigationProperty Name="TO_Costo" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Viajes" FromRole="TO_Viajes" ToRole="TO_Costo" />
         </EntityType>
         <EntityType Name="TOA_Usuario">
           <Key>
@@ -548,6 +610,8 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
           <NavigationProperty Name="TO_Destino" Relationship="Self.FK_TO_Costo_TO_Destino" FromRole="TO_Costo" ToRole="TO_Destino" />
           <NavigationProperty Name="TO_Habitaciones" Relationship="Self.FK_TO_Costo_TO_Habitaciones" FromRole="TO_Costo" ToRole="TO_Habitaciones" />
           <NavigationProperty Name="TO_Salida" Relationship="Self.FK_TO_Costo_TO_Salida" FromRole="TO_Costo" ToRole="TO_Salida" />
+          <Property Name="IdViaje" Type="Int32" />
+          <NavigationProperty Name="TO_Viajes" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Viajes" FromRole="TO_Costo" ToRole="TO_Viajes" />
         </EntityType>
         <Association Name="FK__TO_Experi__IdDes__5AEE82B9">
           <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
@@ -695,13 +759,13 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
             <Parameter Name="nvHabitacion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spdEliminaDestinoId">
-            <Parameter Name="idDestino" Mode="In" Type="Int32" />
+          <Parameter Name="idDestino" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spdEliminaSalida">
-            <Parameter Name="nvSalida" Mode="In" Type="String" />
+          <Parameter Name="nvSalida" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spdEliminaSalidaId">
-            <Parameter Name="idSalida" Mode="In" Type="Int32" />
+          <Parameter Name="idSalida" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spiAgregaBlog">
             <Parameter Name="nvTitulo" Mode="In" Type="String" />
@@ -734,7 +798,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
             <Parameter Name="bActivo" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="spiInsertaSalida">
-            <Parameter Name="nvSalida" Mode="In" Type="String" />
+          <Parameter Name="nvSalida" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spInsertaComunidad">
             <Parameter Name="Nombre" Mode="In" Type="String" />
@@ -753,24 +817,46 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
             <Parameter Name="IdDestino" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtieneCarrusel" ReturnType="Collection(TravelOKEntitiesModel.spsObtieneCarrusel_Result)">
-            <Parameter Name="Id_Destino" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Destino" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtieneDestinoDet" ReturnType="Collection(TravelOKEntitiesModel.spsObtieneDestinoDet_Result)">
-            <Parameter Name="idViaje" Mode="In" Type="Int32" />
+          <Parameter Name="idViaje" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtieneDestinosDet" ReturnType="Collection(TravelOKEntitiesModel.spsObtieneDestinosDet_Result)" />
           <FunctionImport Name="spsObtieneDestinosImg" ReturnType="Collection(TravelOKEntitiesModel.spsObtieneDestinosImg_Result)" />
           <FunctionImport Name="spsObtieneHabitaciones" ReturnType="Collection(TravelOKEntitiesModel.spsObtieneHabitaciones_Result)" />
           <FunctionImport Name="spsObtLugarDestinoViajes" ReturnType="Collection(TravelOKEntitiesModel.spsObtLugarDestinoViajes_Result)">
-            <Parameter Name="IdSalida" Mode="In" Type="Int32" />
+          <Parameter Name="IdSalida" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtLugarSalidaViajes" ReturnType="Collection(TravelOKEntitiesModel.spsObtLugarSalidaViajes_Result)" />
           <FunctionImport Name="spsObtLugarSalViajesDest" ReturnType="Collection(TravelOKEntitiesModel.spsObtLugarSalViajesDest_Result)">
-            <Parameter Name="IdDestino" Mode="In" Type="Int32" />
+          <Parameter Name="IdDestino" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spVerificaUsuario" ReturnType="Collection(TravelOKEntitiesModel.spVerificaUsuario_Result)">
             <Parameter Name="nvUsu" Mode="In" Type="String" />
             <Parameter Name="nvCont" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="TO_Viajeros" EntityType="TravelOKEntitiesModel.TO_Viajeros" />
+          <AssociationSet Name="FK_TO_Viajeros_TO_Usuario" Association="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Usuario">
+            <End Role="TO_Usuario" EntitySet="TO_Usuario" />
+            <End Role="TO_Viajeros" EntitySet="TO_Viajeros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Viajeros_TO_Viajes" Association="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Viajes">
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+            <End Role="TO_Viajeros" EntitySet="TO_Viajeros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Viajes" Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Viajes">
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <FunctionImport Name="spsObtPropHabUno">
+            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
+            <Parameter Name="Total" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spsObtPropuestas">
+            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
+            <Parameter Name="Total" Mode="In" Type="Int32" />
+            <Parameter Name="Decremento" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
@@ -843,6 +929,59 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
           <Property Type="DateTime" Name="dtFecAct" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="Activo" Nullable="true" />
         </ComplexType>
+        <EntityType Name="TO_Viajeros">
+          <Key>
+            <PropertyRef Name="Folio" />
+          </Key>
+          <Property Name="Folio" Type="Int32" Nullable="false" />
+          <Property Name="IdViaje" Type="Int32" />
+          <Property Name="IdUsuario" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NombreAsistente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApAsistente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Asiento" Type="Int32" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="Pagado" Type="Boolean" />
+          <Property Name="Deuda" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="TO_Usuario" Relationship="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Usuario" FromRole="TO_Viajeros" ToRole="TO_Usuario" />
+          <NavigationProperty Name="TO_Viajes" Relationship="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Viajes" FromRole="TO_Viajeros" ToRole="TO_Viajes" />
+        </EntityType>
+        <Association Name="FK_TO_Viajeros_TO_Usuario">
+          <End Type="TravelOKEntitiesModel.TO_Usuario" Role="TO_Usuario" Multiplicity="0..1" />
+          <End Type="TravelOKEntitiesModel.TO_Viajeros" Role="TO_Viajeros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Usuario">
+              <PropertyRef Name="Correo" />
+            </Principal>
+            <Dependent Role="TO_Viajeros">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Viajeros_TO_Viajes">
+          <End Type="TravelOKEntitiesModel.TO_Viajes" Role="TO_Viajes" Multiplicity="0..1" />
+          <End Type="TravelOKEntitiesModel.TO_Viajeros" Role="TO_Viajeros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Viajes">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Viajeros">
+              <PropertyRef Name="IdViaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Costo_TO_Viajes">
+          <End Type="TravelOKEntitiesModel.TO_Viajes" Role="TO_Viajes" Multiplicity="0..1" />
+          <End Type="TravelOKEntitiesModel.TO_Costo" Role="TO_Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Viajes">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Costo">
+              <PropertyRef Name="IdViaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -912,6 +1051,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
           <EntitySetMapping Name="TO_Salida">
             <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Salida">
               <MappingFragment StoreEntitySet="TO_Salida">
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
                 <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
                 <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
               </MappingFragment>
@@ -920,6 +1060,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
           <EntitySetMapping Name="TO_Transporte">
             <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Transporte">
               <MappingFragment StoreEntitySet="TO_Transporte">
+                <ScalarProperty Name="nvNombre" ColumnName="nvNombre" />
                 <ScalarProperty Name="IdTransporte" ColumnName="IdTransporte" />
                 <ScalarProperty Name="NumAsientos" ColumnName="NumAsientos" />
                 <ScalarProperty Name="FilaTrasera" ColumnName="FilaTrasera" />
@@ -987,6 +1128,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
           <EntitySetMapping Name="TO_Costo">
             <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Costo">
               <MappingFragment StoreEntitySet="TO_Costo">
+                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
                 <ScalarProperty Name="CostoLugar" ColumnName="CostoLugar" />
                 <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
                 <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
@@ -1124,6 +1266,24 @@ error 6004: Una relación hace referencia a la tabla 'DB_A53E22_travelok123.dbo.
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="TO_Viajeros">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Viajeros">
+              <MappingFragment StoreEntitySet="TO_Viajeros">
+                <ScalarProperty Name="Deuda" ColumnName="Deuda" />
+                <ScalarProperty Name="Pagado" ColumnName="Pagado" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Asiento" ColumnName="Asiento" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="ApAsistente" ColumnName="ApAsistente" />
+                <ScalarProperty Name="NombreAsistente" ColumnName="NombreAsistente" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spsObtPropHabUno" FunctionName="TravelOKEntitiesModel.Store.spsObtPropHabUno" />
+          <FunctionImportMapping FunctionImportName="spsObtPropuestas" FunctionName="TravelOKEntitiesModel.Store.spsObtPropuestas" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

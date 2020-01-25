@@ -372,8 +372,13 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Parameter Name="IdDestino" Type="int" Mode="In" />
         </Function>
         <Function Name="spsObtPropHabUno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdDestino" Type="int" Mode="In" />
+          <Parameter Name="IdViaje" Type="int" Mode="In" />
           <Parameter Name="Total" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spsObtPropuestas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdViaje" Type="int" Mode="In" />
+          <Parameter Name="Total" Type="int" Mode="In" />
+          <Parameter Name="Decremento" Type="int" Mode="In" />
         </Function>
         <Function Name="spVerificaUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nvUsu" Type="nvarchar" Mode="In" />
@@ -535,7 +540,7 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
             <Parameter Name="nvCont" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spsObtPropHabUno">
-            <Parameter Name="IdDestino" Mode="In" Type="Int32" />
+            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
             <Parameter Name="Total" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="TO_Blog" EntityType="TravelOKEntitiesQAModel.TO_Blog" />
@@ -594,6 +599,11 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
             <End Role="TO_Salida" EntitySet="TO_Salida" />
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
           </AssociationSet>
+          <FunctionImport Name="spsObtPropuestas">
+            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
+            <Parameter Name="Total" Mode="In" Type="Int32" />
+            <Parameter Name="Decremento" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
           <Property Type="Int32" Name="IdExp" Nullable="false" />
@@ -1273,6 +1283,7 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spsObtPropuestas" FunctionName="TravelOKEntitiesQAModel.Store.spsObtPropuestas" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
