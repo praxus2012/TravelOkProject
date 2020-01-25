@@ -80,6 +80,7 @@ namespace CapaDatos.Administrador
             {
                 try
                 {
+                    //holi
                     TO_Salida editarSalida = contexto.TO_Salida.Where(sal => sal.IdSalida == salida.IdSalida).FirstOrDefault();
                     editarSalida.Ciudad = salida.Ciudad;
                     editarSalida.bActivo = salida.bActivo;
