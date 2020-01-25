@@ -1,4 +1,5 @@
 ﻿using System;
+using CapaModelo;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,6 +69,28 @@ namespace CapaDatos.Administrador
                     return false;
                 }
             }
+        }
+
+        public bool bModificaSalida(cmSalida salida )
+        {
+            cmSalida mSalida = new cmSalida();
+            
+            // using (var contexto = new TravelOKEntities())//local
+            using (var contexto = new TravelOKEntitiesQA())//QA
+            {
+                try
+                {
+                   // contexto.TO_Salida.Add(salida);                   
+                    contexto.SaveChanges();
+                  
+                }
+                catch (Exception x)
+                {
+                    x.GetHashCode();
+                    return false;
+                }
+            }
+            return false;
         }
 
 

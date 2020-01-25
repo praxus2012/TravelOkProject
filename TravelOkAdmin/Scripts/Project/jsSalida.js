@@ -5,6 +5,7 @@
 
 function Inicial() {
     ObtieneSalidas();
+    ObtieneSalidasModif();
 }
 
 function ObtieneSalidas() {
@@ -35,6 +36,45 @@ function successObtieneSaalidas(data) {
         MensajeError('Ha ocurrido un error inesperado');
     }
 }
+
+function ObtieneSalidasModif() {
+    var url = $('#urlDestinoInicial').val();
+    $.ajax({
+        url: url,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        success: successObtieneSaalidasModif,
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
+            MensajeError(data.Mensaje);
+        }
+    });
+}
+function successObtieneSaalidasModif(data) {
+    if (data.Exito) {
+        var valact = 0;
+        $.each(data.LsSalidas, function (i) {
+            $('#selSalidaM')
+                .append($("<option></option>")
+                    .attr("value", data.LsSalidas[i].Salida)
+                    .text(data.LsSalidas[i].Ciudad));
+
+        });
+    } else {
+        MensajeError('Ha ocurrido un error inesperado');
+    }
+}
+
+$('#selSalidaM').on('change', function (e) {
+
+    $('#inMSalida').val($("#selSalidaM option:selected").text());
+
+    $('#dvMSalida').removeClass("d-none");
+
+   
+
+});
 
 $(document).on('click', '#btnAgregarSal', function (e) {
     if ($('#inSalida').val() === "") {
