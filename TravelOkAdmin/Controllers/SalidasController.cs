@@ -1,5 +1,6 @@
 ﻿using CapaDatos;
 using CapaDatos.Administrador;
+using CapaModelo;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -76,6 +77,21 @@ namespace TravelOkAdmin.Controllers
                 resultado["Exito"] = true;
             else
                 resultado["Exito"] = false;
+            return Content(resultado.ToString());
+        }
+
+        public ActionResult ModificarSalida(int IdSalida, string Ciudad)
+        {
+            var resultado = new JObject();
+            CDA_Salidas cdaSalida = new CDA_Salidas();
+            if (cdaSalida.bModificaSalida(IdSalida, Ciudad))
+            {
+                resultado["Exito"] = true;
+            }
+            else
+            {
+                resultado["Exito"] = false;
+            }
             return Content(resultado.ToString());
         }
     }

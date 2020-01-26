@@ -37,6 +37,52 @@ function successObtieneSaalidas(data) {
     }
 }
 
+//-- Agregar
+
+
+
+$(document).on('click', '#btnAgregarSal', function (e) {
+    if ($('#inSalida').val() === "") {
+        MensajeAdvertencia("No has ingresado una salida");
+    } else {
+        var Ciudad = $('#inSalida').val();
+        LlamaInsertaSalida(Ciudad);
+    }
+});
+
+
+function LlamaInsertaSalida(sSalida) {
+    var url = $('#urlSalidaInserta').val();
+    $.ajax({
+        url: url,
+        data: JSON.stringify({ sSalida }),
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        success: SuccessLlamadaInsertaSalida,
+        Advertencia: function (xmlHttpRequest, textStatus, errorThrown) {
+            alert("error ", data.Mensaje, "verificar info");
+        }
+    });
+}
+
+function SuccessLlamadaInsertaSalida(data) {
+    if (data.Exito) {
+        MensajeExito("Se ha agregado la salida correctamente");
+        $('#inSalida').val('');
+
+        $('#selSalida').empty();
+        ObtieneSalidas();
+
+    } else {
+        MensajeAdvertencia("Ha ocurrido un error inesperado, intentelo mas tarde.");
+    }
+}
+
+
+//-- Modificar
+
 function ObtieneSalidasModif() {
     var url = $('#urlDestinoInicial').val();
     $.ajax({
@@ -76,15 +122,48 @@ $('#selSalidaM').on('change', function (e) {
 
 });
 
-$(document).on('click', '#btnAgregarSal', function (e) {
-    if ($('#inSalida').val() === "") {
-        MensajeAdvertencia("No has ingresado una salida");
+$(document).on('click', '#btnMdifCiudad', function (e) {
+    if ($('#inMSalida').val() === "") {
+        MensajeAdvertencia("No has ingresado el nombre de salida");
     } else {
-        var Ciudad = $('#inSalida').val();
-        LlamaInsertaSalida(Ciudad);
+        //var CDsalida = {
+        IdSalida = $('#selSalidaM').val();
+        Ciudad = $('#inMSalida').val();
+        //}
+        LlamaModificaSalida(IdSalida, Ciudad);
     }
 });
 
+function LlamaModificaSalida(IdSalida, Ciudad) {
+    var url = $('#urlSalidaModif').val();
+    $.ajax({
+        url: url,
+        data: JSON.stringify({ IdSalida, Ciudad }),
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        success: SuccessLlamadaModificaSalida,
+        Advertencia: function (xmlHttpRequest, textStatus, errorThrown) {
+            alert("error ", data.Mensaje, "verificar info");
+        }
+    });
+}
+
+function SuccessLlamadaModificaSalida(data) {
+    if (data.Exito) {
+        MensajeExito("Se ha modificado la salida correctamente");
+       // $('#inMSalida').val('');
+
+        $('#selSalidaM').empty();
+        ObtieneSalidasModif();
+
+    } else {
+        MensajeAdvertencia("Ha ocurrido un error inesperado, intentelo mas tarde.");
+    }
+}
+
+//--Eliminar
 
 $(document).on('click', '#btnEliminaCiudad', function (e) {
     if ($('#selSalida').val() === "") {
@@ -123,32 +202,3 @@ function SuccessLlamadaEliminaSalidaId(data) {
 
 }
 
-
-function LlamaInsertaSalida(sSalida) {
-    var url = $('#urlSalidaInserta').val();
-    $.ajax({
-        url: url,
-        data: JSON.stringify({ sSalida }),
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        success: SuccessLlamadaInsertaSalida,
-        Advertencia: function (xmlHttpRequest, textStatus, errorThrown) {
-            alert("error ", data.Mensaje, "verificar info");
-        }
-    });
-}
-
-function SuccessLlamadaInsertaSalida(data) {
-    if (data.Exito) {
-        MensajeExito("Se ha agregado la salida correctamente");
-        $('#inSalida').val('');
-
-        $('#selSalida').empty();
-        ObtieneSalidas();
-
-    } else {
-        MensajeAdvertencia("Ha ocurrido un error inesperado, intentelo mas tarde.");
-    }
-}

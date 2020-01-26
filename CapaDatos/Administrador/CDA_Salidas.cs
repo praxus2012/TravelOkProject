@@ -71,7 +71,7 @@ namespace CapaDatos.Administrador
             }
         }
 
-        public bool bModificaSalida(cmSalida salida )
+        public bool bModificaSalida(int IdSalida, string Ciudad)
         {
             cmSalida mSalida = new cmSalida();
             
@@ -80,9 +80,9 @@ namespace CapaDatos.Administrador
             {
                 try
                 {
-                    TO_Salida editarSalida = contexto.TO_Salida.Where(sal => sal.IdSalida == salida.IdSalida).FirstOrDefault();
-                    editarSalida.Ciudad = salida.Ciudad;
-                    editarSalida.bActivo = salida.bActivo;
+                    TO_Salida editarSalida = contexto.TO_Salida.Where(sal => sal.IdSalida == IdSalida).FirstOrDefault();
+                    editarSalida.Ciudad = Ciudad;
+                    editarSalida.bActivo = true;
                     contexto.SaveChanges();                  
                 }
                 catch (Exception x)
@@ -91,7 +91,7 @@ namespace CapaDatos.Administrador
                     return false;
                 }
             }
-            return false;
+            return true;
         }
 
 
