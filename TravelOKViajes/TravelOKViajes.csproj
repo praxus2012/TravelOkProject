@@ -168,6 +168,7 @@
     <Content Include="Content\Project\cssBlog.css" />
     <Content Include="Content\Project\cssComunidad.css" />
     <Content Include="Content\Project\cssContact.css" />
+    <Content Include="Content\Project\cssDetalleVenta.css" />
     <Content Include="Content\Project\cssEncuesta.css" />
     <Content Include="Content\Project\cssExperienciaTravel.css" />
     <Content Include="Content\Project\cssGeneral.css" />

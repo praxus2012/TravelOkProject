@@ -81,6 +81,17 @@ function GeneraClick() {
             if ($('#' + $(this).attr('id')).css('background-image').split('/')[$('#' + $(this).attr('id')).css('background-image').split('/').length - 1] == 'ASeleccionado.jpg")') {
                 $('#' + $(this).attr('id')).css("background-image", "url('../../Img/Asientos/ALibre.jpg')");
                 asientosTot = asientosTot + 1;
+                var sSafar = seleccion.split('|');
+                seleccion = '';
+                for (var i = 0; i < sSafar.length; i++) {
+                    if (sSafar[i] != $(this).attr('id').split('-')[1]) {
+                        if (seleccion == "") {
+                            seleccion = sSafar[i];
+                        } else {
+                            seleccion = seleccion + '|' + sSafar[i];
+                        }
+                    }
+                }
             } else {
                 if (asientosTot > 0) {
                     $('#' + $(this).attr('id')).css("background-image", "url('../../Img/Asientos/ASeleccionado.jpg')");

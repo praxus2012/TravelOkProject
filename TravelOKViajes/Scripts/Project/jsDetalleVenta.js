@@ -115,14 +115,10 @@ function successRecupFechVta(data) {
         }
     }
 }
-
+/*
 $(document).on('click', '.btnAsiento', function () {
-    sessionStorage.setItem("Fecha", $('#selFechas').val());
-    sessionStorage.setItem("Salida", $('#selSalida').val());
-    sessionStorage.setItem("Adulto", $('#inAdultos').val() == '' ? 0 : $('#inAdultos').val());
-    sessionStorage.setItem("Nino", $('#inNinos').val() == '' ? 0 : $('#inNinos').val());
-    window.location.href = '/Venta/Index';
-});
+    
+});*/
 
 
 $(document).on('click', '.btnBuscar', function () {
@@ -158,7 +154,7 @@ function successObtienePropuestas(data) {
             html = '<div class="col-4">' +
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
-                '<div class="col-md-4">' +
+                '<div class="col-md-4 imgH">' +
                 '<img src="http://www.hotelelparque.com/wp-content/uploads/2017/11/habitacion-sencilla-fomeque.jpg" class="card-img" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +
@@ -166,9 +162,9 @@ function successObtienePropuestas(data) {
             $.each(data.Opcion0, function (i) {
                 html = html + '<h4 class="card-title">Habitacion ' + data.Opcion0[i]['nvDescripcion'] + ': ' + data.Opcion0[i]['inumHab'] + '</h4>';
             });
-            html = html + '<h3>Total:</h3>' +
-                '<h2 class="c-1">$' + data.Total0 + '</h2>' +
-                '<div class="btn btn-primary btnAsiento btnOp-0">ELIJE ESTE VIAJE</div>' +
+            html = html + '<h3>Total: <label id="p-1">' + formatCurrency(data.Total0) + '</label></h3>' +
+                //'<h2 class="c-1">$' + data.Total0 + '</h2>' +
+                '<div class="btn btn-primary btnAsiento btnV" id="btnOp-0">ELIJE ESTE VIAJE</div>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
@@ -178,17 +174,17 @@ function successObtienePropuestas(data) {
             html = html +'<div class="col-4">' +
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
-                '<div class="col-md-4">' +
-                '<img src="http://www.hotelelparque.com/wp-content/uploads/2017/11/habitacion-sencilla-fomeque.jpg" class="card-img" alt="...">' +
+                '<div class="col-md-4 imgH">' +
+                '<img src="https://cdn.easy-rez.com/production/hotels/a5ef0afdd823b3a0448bc3198a285aee/uploads/.rooms/th_0752692001531761234.jpg" class="card-img" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +
                 '<div class="card-body cb-2">';
             $.each(data.Opcion1, function (i) {
                 html = html + '<h4 class="card-title">Habitacion ' + data.Opcion1[i]['nvDescripcion'] + ': ' + data.Opcion1[i]['inumHab'] + '</h4>';
             });
-            html = html + '<h3>Total:</h3>' +
-                '<h2 class="c-1">$' + data.Total1 + '</h2>' +
-                '<div class="btn btn-primary btnAsiento btnOp-0">ELIJE ESTE VIAJE</div>' +
+            html = html + '<h3>Total: <label id="p-1">' + formatCurrency(data.Total1) + '</label></h3>' +
+                //'<h2 class="c-1">$' + data.Total1 + '</h2>' +
+                '<div class="btn btn-primary btnAsiento btnV" id="btnOp-1">ELIJE ESTE VIAJE</div>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
@@ -198,17 +194,17 @@ function successObtienePropuestas(data) {
             html = html +'<div class="col-4">' +
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
-                '<div class="col-md-4">' +
-                '<img src="http://www.hotelelparque.com/wp-content/uploads/2017/11/habitacion-sencilla-fomeque.jpg" class="card-img" alt="...">' +
+                '<div class="col-md-4 imgH">' +
+                '<img src="https://www.hotelveracruz.com.mx/uploads/galeriahabitaciones/estandar-sencilla-hotel-veracruz-centro-b_UQkqZsm.jpg" class="card-img" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +
                 '<div class="card-body cb-3">';
             $.each(data.Opcion2, function (i) {
                 html = html + '<h4 class="card-title">Habitacion ' + data.Opcion2[i]['nvDescripcion'] + ': ' + data.Opcion2[i]['inumHab'] + '</h4>';
             });
-            html = html + '<h3>Total:</h3>' +
-                '<h2 class="c-1">$' + data.Total2 + '</h2>' +
-                '<div class="btn btn-primary btnAsiento btnOp-0">ELIJE ESTE VIAJE</div>' +
+            html = html + '<h3>Total: <label id="p-2">' + formatCurrency(data.Total2) + '</label></h3>' +
+                //'<h2 class="c-1">$</h2>' +
+                '<div class="btn btn-primary btnAsiento btnV" id="btnOp-2">ELIJE ESTE VIAJE</div>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
@@ -219,7 +215,7 @@ function successObtienePropuestas(data) {
             html = '<div class="col-4">' +
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
-                '<div class="col-md-4">' +
+                '<div class="col-md-4 imgH">' +
                 '<img src="http://www.hotelelparque.com/wp-content/uploads/2017/11/habitacion-sencilla-fomeque.jpg" class="card-img" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +
@@ -227,9 +223,8 @@ function successObtienePropuestas(data) {
             $.each(data.Opcion, function (i) {
                 html = html + '<h4 class="card-title">Habitacion ' + data.Opcion[i]['nvDescripcion'] + ': ' + data.Opcion[i]['inumHab'] + '</h4>';
             });
-            html = html + '<h3>Total:</h3>' +
-                '<h2 class="c-1">$' + data.Total + '</h2>' +
-                '<div class="btn btn-primary btnAsiento btnOp-0">ELIJE ESTE VIAJE</div>' +
+            html = html + '<h3>Total: <label id="p-3">' + formatCurrency(data.Total)+'</label></h3>' +
+                '<div class="btn btn-primary btnAsiento btnV" id="btnOp-3">ELIJE ESTE VIAJE</div>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
@@ -237,7 +232,29 @@ function successObtienePropuestas(data) {
                 '</div>';
             $('.dvOp').append(html);
         }
+        GeneraClick();
     } else {
         alert('error');
     }
+}
+
+function formatCurrency(number) {
+    if (number == "") return;
+    number = parseFloat(number).toFixed(0);
+    var n = number.split('').reverse().join("");
+    console.log(n);
+    var n2 = n.replace(/\d\d\d(?!$)/g, "$&,");
+    return '$' + n2.split('').reverse().join('');
+}
+
+//Generar click de bton
+function GeneraClick() {
+    $('.btnV').click(function () {
+        sessionStorage.setItem("Fecha", $('#selFechas').val());
+        sessionStorage.setItem("Salida", $('#selSalida').val());
+        sessionStorage.setItem("Adulto", $('#inAdultos').val() == '' ? 0 : $('#inAdultos').val());
+        sessionStorage.setItem("Nino", $('#inNinos').val() == '' ? 0 : $('#inNinos').val());
+        sessionStorage.setItem("OpHab", $(this).attr('id'));
+        window.location.href = '/Venta/Index';
+    });
 }
