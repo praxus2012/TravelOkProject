@@ -32,13 +32,13 @@ namespace CapaDatos
         public virtual DbSet<TO_DetalleDestinos> TO_DetalleDestinos { get; set; }
         public virtual DbSet<TO_Experiencias> TO_Experiencias { get; set; }
         public virtual DbSet<TO_Habitaciones> TO_Habitaciones { get; set; }
+        public virtual DbSet<TO_Salida> TO_Salida { get; set; }
         public virtual DbSet<TO_Transporte> TO_Transporte { get; set; }
         public virtual DbSet<TO_Usuario> TO_Usuario { get; set; }
         public virtual DbSet<TO_Viajeros> TO_Viajeros { get; set; }
         public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Costo> TO_Costo { get; set; }
-        public virtual DbSet<TO_Salida> TO_Salida { get; set; }
     
         public virtual int spdEliminaCosto(Nullable<int> nvSalida, Nullable<int> nvDestino, Nullable<int> nvHabitacion)
         {
@@ -351,6 +351,45 @@ namespace CapaDatos
                 new ObjectParameter("Decremento", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spsObtPropuestas", idViajeParameter, totalParameter, decrementoParameter);
+        }
+    
+        public virtual int spdEliminaHabitacion(string idTipoHab)
+        {
+            var idTipoHabParameter = idTipoHab != null ?
+                new ObjectParameter("IdTipoHab", idTipoHab) :
+                new ObjectParameter("IdTipoHab", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spdEliminaHabitacion", idTipoHabParameter);
+        }
+    
+        public virtual int spiInsertaHabitaciones(string nvDescripcion, Nullable<int> capMax)
+        {
+            var nvDescripcionParameter = nvDescripcion != null ?
+                new ObjectParameter("nvDescripcion", nvDescripcion) :
+                new ObjectParameter("nvDescripcion", typeof(string));
+    
+            var capMaxParameter = capMax.HasValue ?
+                new ObjectParameter("CapMax", capMax) :
+                new ObjectParameter("CapMax", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaHabitaciones", nvDescripcionParameter, capMaxParameter);
+        }
+    
+        public virtual int spuActualizaHabitaciones(Nullable<int> idTipoHab, string nvDescripcion, Nullable<int> capMax)
+        {
+            var idTipoHabParameter = idTipoHab.HasValue ?
+                new ObjectParameter("IdTipoHab", idTipoHab) :
+                new ObjectParameter("IdTipoHab", typeof(int));
+    
+            var nvDescripcionParameter = nvDescripcion != null ?
+                new ObjectParameter("nvDescripcion", nvDescripcion) :
+                new ObjectParameter("nvDescripcion", typeof(string));
+    
+            var capMaxParameter = capMax.HasValue ?
+                new ObjectParameter("CapMax", capMax) :
+                new ObjectParameter("CapMax", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spuActualizaHabitaciones", idTipoHabParameter, nvDescripcionParameter, capMaxParameter);
         }
     }
 }

@@ -18,8 +18,8 @@ namespace CapaDatos
         public int IdDestino { get; set; }
         public Nullable<int> IdSalida { get; set; }
         public Nullable<int> IdHabitacion { get; set; }
-        public string TipoPersona { get; set; }
         public Nullable<int> IdViaje { get; set; }
+        public string TipoPersona { get; set; }
     
         public virtual TO_Destino TO_Destino { get; set; }
         public virtual TO_Habitaciones TO_Habitaciones { get; set; }

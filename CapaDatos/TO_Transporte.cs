@@ -21,6 +21,7 @@ namespace CapaDatos
         }
     
         public int IdTransporte { get; set; }
+        public string nvNombre { get; set; }
         public Nullable<int> NumAsientos { get; set; }
         public Nullable<bool> FilaTrasera { get; set; }
         public Nullable<int> NumAsTrasera { get; set; }
@@ -37,7 +38,6 @@ namespace CapaDatos
         public Nullable<bool> SaniTrasero { get; set; }
         public Nullable<bool> SanMedio { get; set; }
         public Nullable<int> NumFilSanM { get; set; }
-        public string nvNombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TO_Viajes> TO_Viajes { get; set; }
