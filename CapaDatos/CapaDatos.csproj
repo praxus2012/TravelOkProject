@@ -165,16 +165,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TravelOKEntitiesQA.tt</DependentUpon>
     </Compile>
-    <Compile Include="TravelOKEntitiesQAModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TravelOKEntitiesQAModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TravelOKEntitiesQAModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="TravelOKEntitiesQA.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -223,23 +213,13 @@
     </Content>
     <Content Include="TravelOKEntitiesQA.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TravelOKEntitiesQA.Context.cs</LastGenOutput>
       <DependentUpon>TravelOKEntitiesQA.edmx</DependentUpon>
+      <LastGenOutput>TravelOKEntitiesQA.Context.cs</LastGenOutput>
     </Content>
     <Content Include="TravelOKEntitiesQA.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TravelOKEntitiesQA.edmx</DependentUpon>
       <LastGenOutput>TravelOKEntitiesQA.cs</LastGenOutput>
-      <DependentUpon>TravelOKEntitiesQA.edmx</DependentUpon>
-    </Content>
-    <Content Include="TravelOKEntitiesQAModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TravelOKEntitiesQA.edmx</DependentUpon>
-      <LastGenOutput>TravelOKEntitiesQAModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="TravelOKEntitiesQAModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TravelOKEntitiesQA.edmx</DependentUpon>
-      <LastGenOutput>TravelOKEntitiesQAModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

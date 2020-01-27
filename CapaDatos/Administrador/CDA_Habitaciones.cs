@@ -16,7 +16,7 @@ namespace CapaDatos.Administrador
             {
                 try
                 {
-                    if (contexto.spiInsertaHabitaciones(icapMax, nvDescripcion) == -1)
+                    if (contexto.spiInsertaHabitaciones(nvDescripcion,icapMax) == -1)
                         return true;
                     return false;
                 }

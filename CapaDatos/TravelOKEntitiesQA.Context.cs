@@ -15,10 +15,10 @@ namespace CapaDatos
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class TravelOKEntitiesQAModelEntities : DbContext
+    public partial class TravelOKEntitiesQA : DbContext
     {
-        public TravelOKEntitiesQAModelEntities()
-            : base("name=TravelOKEntitiesQAModelEntities")
+        public TravelOKEntitiesQA()
+            : base("name=TravelOKEntitiesQA")
         {
         }
     
@@ -64,6 +64,15 @@ namespace CapaDatos
                 new ObjectParameter("idDestino", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spdEliminaDestinoId", idDestinoParameter);
+        }
+    
+        public virtual int spdEliminaHabitacion(string idTipoHab)
+        {
+            var idTipoHabParameter = idTipoHab != null ?
+                new ObjectParameter("IdTipoHab", idTipoHab) :
+                new ObjectParameter("IdTipoHab", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spdEliminaHabitacion", idTipoHabParameter);
         }
     
         public virtual int spdEliminaSalida(string nvSalida)
@@ -189,6 +198,19 @@ namespace CapaDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaDetalleDestino", idDestinoParameter, nvRutaParameter, nvDescripciónParameter, bActivoParameter);
         }
     
+        public virtual int spiInsertaHabitaciones(string nvDescripcion, Nullable<int> capMax)
+        {
+            var nvDescripcionParameter = nvDescripcion != null ?
+                new ObjectParameter("nvDescripcion", nvDescripcion) :
+                new ObjectParameter("nvDescripcion", typeof(string));
+    
+            var capMaxParameter = capMax.HasValue ?
+                new ObjectParameter("CapMax", capMax) :
+                new ObjectParameter("CapMax", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaHabitaciones", nvDescripcionParameter, capMaxParameter);
+        }
+    
         public virtual int spiInsertaSalida(string nvSalida)
         {
             var nvSalidaParameter = nvSalida != null ?
@@ -310,19 +332,6 @@ namespace CapaDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtLugarSalViajesDest_Result>("spsObtLugarSalViajesDest", idDestinoParameter);
         }
     
-        public virtual ObjectResult<spVerificaUsuario_Result> spVerificaUsuario(string nvUsu, string nvCont)
-        {
-            var nvUsuParameter = nvUsu != null ?
-                new ObjectParameter("nvUsu", nvUsu) :
-                new ObjectParameter("nvUsu", typeof(string));
-    
-            var nvContParameter = nvCont != null ?
-                new ObjectParameter("nvCont", nvCont) :
-                new ObjectParameter("nvCont", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spVerificaUsuario_Result>("spVerificaUsuario", nvUsuParameter, nvContParameter);
-        }
-    
         public virtual int spsObtPropHabUno(Nullable<int> idViaje, Nullable<int> total)
         {
             var idViajeParameter = idViaje.HasValue ?
@@ -353,28 +362,6 @@ namespace CapaDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spsObtPropuestas", idViajeParameter, totalParameter, decrementoParameter);
         }
     
-        public virtual int spdEliminaHabitacion(string idTipoHab)
-        {
-            var idTipoHabParameter = idTipoHab != null ?
-                new ObjectParameter("IdTipoHab", idTipoHab) :
-                new ObjectParameter("IdTipoHab", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spdEliminaHabitacion", idTipoHabParameter);
-        }
-    
-        public virtual int spiInsertaHabitaciones(string nvDescripcion, Nullable<int> capMax)
-        {
-            var nvDescripcionParameter = nvDescripcion != null ?
-                new ObjectParameter("nvDescripcion", nvDescripcion) :
-                new ObjectParameter("nvDescripcion", typeof(string));
-    
-            var capMaxParameter = capMax.HasValue ?
-                new ObjectParameter("CapMax", capMax) :
-                new ObjectParameter("CapMax", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaHabitaciones", nvDescripcionParameter, capMaxParameter);
-        }
-    
         public virtual int spuActualizaHabitaciones(Nullable<int> idTipoHab, string nvDescripcion, Nullable<int> capMax)
         {
             var idTipoHabParameter = idTipoHab.HasValue ?
@@ -390,6 +377,19 @@ namespace CapaDatos
                 new ObjectParameter("CapMax", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spuActualizaHabitaciones", idTipoHabParameter, nvDescripcionParameter, capMaxParameter);
+        }
+    
+        public virtual ObjectResult<spVerificaUsuario_Result> spVerificaUsuario(string nvUsu, string nvCont)
+        {
+            var nvUsuParameter = nvUsu != null ?
+                new ObjectParameter("nvUsu", nvUsu) :
+                new ObjectParameter("nvUsu", typeof(string));
+    
+            var nvContParameter = nvCont != null ?
+                new ObjectParameter("nvCont", nvCont) :
+                new ObjectParameter("nvCont", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spVerificaUsuario_Result>("spVerificaUsuario", nvUsuParameter, nvContParameter);
         }
     }
 }
