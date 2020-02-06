@@ -21,6 +21,7 @@ function ObtieneDestinos() {
         error: function (xmlHttpRequest, textStatus, errorThrown) {
             MensajeError(data.Mensaje);
             //alert('error');
+            OcultaCarga();
         }
     });
 }
@@ -41,8 +42,10 @@ function successObtieneDestinos(data) {
             });            
         });
         GeneraComentarios(data.LsComunidad);
+        OcultaCarga();
     } else {
         MensajeError('Ha ocurrido un error inesperado');
+        OcultaCarga();
     }
 }
 
@@ -76,8 +79,10 @@ $(document).on("click", "#btnComparte", function (e) {
             iCalificacion: $(".rate").rate("getValue")
         };*/
         InsertaComunidad(datosComunidad);
+        OcultaCarga();
     } else {
         MensajeAdvertencia("No ha llenado algunos de los cámpos.");
+        OcultaCarga();
     }
 });
 
@@ -107,6 +112,7 @@ function InsertaComunidad(datosComunidad) {
         success: successInsertaComunidad,
         error: function (xmlHttpRequest, textStatus, errorThrown) {
             MensajeError(errorThrown);
+            OcultaCarga();
         }
     });
 }
@@ -119,8 +125,10 @@ function successInsertaComunidad(data) {
         $(".rate").rate("setValue");
         MensajeExito("Gracias por sus comentarios.");
         CargaInicial();
+        OcultaCarga();
     } else {
         MensajeError('Ha ocurrido un error inesperado');
+        OcultaCarga();
     }
 }
 

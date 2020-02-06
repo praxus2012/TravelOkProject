@@ -462,6 +462,7 @@
     <Content Include="Scripts\Project\jsDestinos.js" />
     <Content Include="Scripts\Project\jsDetalleVenta.js" />
     <Content Include="Scripts\Project\jsEncuesta.js" />
+    <Content Include="Scripts\Project\jsGeneral.js" />
     <Content Include="Scripts\Project\jsHome.js" />
     <Content Include="Scripts\Project\jsLayout.js" />
     <Content Include="Scripts\Project\jsLogueo.js" />

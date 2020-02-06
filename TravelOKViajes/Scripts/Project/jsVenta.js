@@ -34,7 +34,8 @@ function ObtieneAutobus(detVenta) {
         async: true,
         success: successObtieneAutobus,
         error: function (xmlHttpRequest, textStatus, errorThrown) {
-            alert('Error de datos');
+            MensajeError('Error de datos');
+            OcultaCarga();
         }
     });
 }
@@ -69,6 +70,7 @@ function successObtieneAutobus(data) {
             $('#ulAtras').append('<li class="bano atras"></li>');
         }
         GeneraClick();
+        OcultaCarga();
     }
 }
 

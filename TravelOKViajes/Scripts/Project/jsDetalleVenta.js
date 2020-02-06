@@ -2,6 +2,7 @@
     $('#hDest').text($('#hDest').text() + sessionStorage.getItem('DestinoDes'));
     FuncionesIniciales();
     ActivaCombo();
+    OcultaCarga();
 });
 
 function FuncionesIniciales() {
@@ -33,7 +34,7 @@ function ObtieneSalidaDet(oDest) {
         async: true,
         success: successObtieneSalidaDet,
         error: function (xmlHttpRequest, textStatus, errorThrown) {
-            alert('test');
+            MensajeError('Ocurrió un error inesperado');
         }
     });
 }
@@ -59,6 +60,9 @@ function successObtieneSalidaDet(data) {
             };
             LlamaRecupFechVta(detVenta);
         }
+        OcultaCarga();
+    } else {
+        MensajeError("Existe un problema");
     }
 }
 
@@ -92,7 +96,8 @@ function LlamaRecupFechVta(detVenta) {
         async: true,
         success: successRecupFechVta,
         error: function (xmlHttpRequest, textStatus, errorThrown) {
-            alert('Error de datos');
+            MensajeError('Error de datos');
+            OcultaCarga();
         }
     });
 }
@@ -113,6 +118,9 @@ function successRecupFechVta(data) {
         if (sessionStorage.getItem("Fecha") != null) {
             $('#selFechas').val(sessionStorage.getItem("Fecha"));
         }
+        OcultaCarga();
+    } else {
+        MensajeError("Ha ocurrido un error inesperado");
     }
 }
 /*

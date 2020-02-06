@@ -17,7 +17,8 @@ function IniciaSesion(Usr) {
         async: true,
         success: sucessIniciaSesion,
         error: function (xmlHttpRequest, textStatus, errorThrown) {
-            alert('Error');
+            MensajeError('Error al Loguearse');
+            OcultaCarga();
         }
     });
 }
@@ -29,8 +30,10 @@ function sucessIniciaSesion(data) {
         } else {
             window.location.href = '/Home/Index';
         }
+        OcultaCarga();
     } else {
-        alert(data.Mensaje);
+        MensajeError(data.Mensaje);
+        OcultaCarga();
     }
 }
 
@@ -68,10 +71,12 @@ $(document).on('click', '#btnRegistro', function () {
             };
             Registro(Usr);
         } else {
-            alert('Error en confirmar correo, contrasenia o telefono');
+            MensajeAdvertencia('Error en confirmar correo, contrasenia o telefono');
+            OcultaCarga();
         }
     } else {
-        alert('No ha llenado todos los campos requeridos');
+        MensajeAdvertencia('No ha llenado todos los campos requeridos');
+        OcultaCarga();
     }
 });
 
@@ -86,7 +91,8 @@ function Registro(Usr) {
         async: true,
         success: sucessRegistro,
         error: function (xmlHttpRequest, textStatus, errorThrown) {
-            alert('Error');
+            MensajeError('Error');
+            OcultaCarga();
         }
     });
 }
@@ -95,6 +101,7 @@ function sucessRegistro(data) {
     if (data.Exito) {
         window.location.href = '/Home/Index';
     } else {
-        alert(data.Mensaje);
+        MensajeError(data.Mensaje);
+        OcultaCarga();
     }
 }
