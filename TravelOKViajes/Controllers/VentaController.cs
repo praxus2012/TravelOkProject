@@ -207,7 +207,6 @@ namespace TravelOKViajes.Controllers
 
         }
 
-        [HttpPost]
         public ActionResult RegistraUsuarios()
         {
             return View();

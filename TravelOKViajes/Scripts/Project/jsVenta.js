@@ -16,6 +16,16 @@ $(document).ready(function () {
     
 });
 
+$(document).on('click', '#btnContinuar', function () {
+    if (asientosTot == 0) {
+        sessionStorage.setItem("Asientos", seleccion);
+        window.location.href = '/Venta/RegistraUsuarios';
+    } else {
+        MensajeAdvertencia("Seleccione todos los asientos que va a comprar");
+    }
+    OcultaCarga();
+});
+
 function GeneraAutobus() {
     var detVenta = {
         idVenta: sessionStorage.getItem("Fecha")
@@ -77,7 +87,7 @@ function successObtieneAutobus(data) {
 function GeneraClick() {
     $('.asiento').click(function (evt) {
         if ($(this).attr('class').split(' ').length > 2) {
-            alert('Asiento ocupado');
+            MensajeAdvertencia('Asiento ocupado');
         } else {
             //alert($('#' + $(this).attr('id')).css('background-image').split('/')[$('#' + $(this).attr('id')).css('background-image').split('/').length - 1]);
             if ($('#' + $(this).attr('id')).css('background-image').split('/')[$('#' + $(this).attr('id')).css('background-image').split('/').length - 1] == 'ASeleccionado.jpg")') {

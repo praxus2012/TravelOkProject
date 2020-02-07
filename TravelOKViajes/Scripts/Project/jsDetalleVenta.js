@@ -35,6 +35,7 @@ function ObtieneSalidaDet(oDest) {
         success: successObtieneSalidaDet,
         error: function (xmlHttpRequest, textStatus, errorThrown) {
             MensajeError('Ocurrió un error inesperado');
+            OcultaCarga();
         }
     });
 }
@@ -63,6 +64,7 @@ function successObtieneSalidaDet(data) {
         OcultaCarga();
     } else {
         MensajeError("Existe un problema");
+        OcultaCarga();
     }
 }
 
@@ -121,6 +123,7 @@ function successRecupFechVta(data) {
         OcultaCarga();
     } else {
         MensajeError("Ha ocurrido un error inesperado");
+        OcultaCarga();
     }
 }
 /*
@@ -148,7 +151,8 @@ function ObtienePropuestas(oHabitacion) {
         async: true,
         success: successObtienePropuestas,
         error: function (xmlHttpRequest, textStatus, errorThrown) {
-            alert('test');
+            MensajeError('Problema al cargar');
+            OcultaCarga();
         }
     });
 }
@@ -241,8 +245,10 @@ function successObtienePropuestas(data) {
             $('.dvOp').append(html);
         }
         GeneraClick();
+        OcultaCarga();
     } else {
-        alert('error');
+        MensajeAdvertencia('Ocurrió un problema al cargar la información');
+        OcultaCarga();
     }
 }
 
