@@ -1,9 +1,16 @@
-﻿$(document).on('click', '#btnIniciar', function () {
-    var Usr = {
-        Correo: $('#inUsr').val(),
-        Contra: $('#inPass').val()
-    };
-    IniciaSesion(Usr);
+﻿
+$(document).on('click', '#btnIniciar', function () {
+    if ($('#inUsr').val() == ''
+        || $('#inPass').val() == ''){
+        MensajeAdvertencia('No ha ingresado todos los datos');
+        OcultaCarga();
+    } else {
+        var Usr = {
+            Correo: $('#inUsr').val(),
+            Contra: $('#inPass').val()
+        };
+        IniciaSesion(Usr);
+    }
 });
 
 function IniciaSesion(Usr) {
@@ -47,7 +54,7 @@ $(document).on('click', '#btnRegistro', function () {
         && $('#inTel2').val() != ''
         && $('#inNom').val() != ''
         && $('#inApp').val() != ''
-        && $('#inGen').val() != ''
+        && $('#inGen option:selected').text() != 'Selecciona'
         && $('#inCumple').val() != ''
         && $('#inPais').val() != ''
         && $('#inEstado').val() != ''
@@ -61,7 +68,7 @@ $(document).on('click', '#btnRegistro', function () {
                 Contra: $('#inContra').val(),
                 Nombre: $('#inNom').val(),
                 Apellidos: $('#inApp').val(),
-                Genero: $('#inGen').val(),
+                Genero: $('#inGen option:selected').text(),
                 FechNac: $('#inCumple').val(),
                 Pais: $('#inPais').val(),
                 Estado: $('#inEstado').val(),

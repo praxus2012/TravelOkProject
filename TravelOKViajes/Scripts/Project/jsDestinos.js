@@ -1,7 +1,9 @@
 ﻿var destDesc = "";
 
 $(document).ready(function () {
+    MuestraCarga();
     CargaInicial();
+    OcultaCarga();
 });
 
 
@@ -34,6 +36,7 @@ function successObtieneDestinos(data) {
                     '</div>');
         });
         $('.dvDestino').click(function () {
+            MuestraCarga();
             ObtieneDestinoDet(Destino = { idViaje: $(this).children().attr('alt').split('-')[1] });
         });
     } else {
@@ -87,9 +90,10 @@ function successObtieneDestinosDet(data) {
             }
             contador++;
         });
-
+        OcultaCarga();
     } else {
         MensajeError('Ha ocurrido un error inesperado');
+        OcultaCarga();
     }
 }
 
