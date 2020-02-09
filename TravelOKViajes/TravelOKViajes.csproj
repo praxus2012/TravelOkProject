@@ -467,6 +467,7 @@
     <Content Include="Scripts\Project\jsLayout.js" />
     <Content Include="Scripts\Project\jsLogueo.js" />
     <Content Include="Scripts\Project\jsMensajes.js" />
+    <Content Include="Scripts\Project\jsRegistraUsuarios.js" />
     <Content Include="Scripts\Project\jsSeleccionVenta.js" />
     <Content Include="Scripts\Project\jsVenta.js" />
     <Content Include="Scripts\Project\libs\classie.js" />

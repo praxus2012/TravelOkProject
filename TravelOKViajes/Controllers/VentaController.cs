@@ -155,7 +155,7 @@ namespace TravelOKViajes.Controllers
                     {
                         tot += hab.dCosto;
                     }
-                    resultado["Opcion"] = JObject.FromObject(lsHabitaciones);
+                    resultado["Opcion"] = JToken.FromObject(lsHabitaciones);
                     resultado["Total"] = tot;
                 }
                 if (lsHabitaciones.Count > 0)
