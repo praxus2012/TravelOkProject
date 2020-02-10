@@ -130,10 +130,13 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Property Name="NombreAsistente" Type="nvarchar(max)" />
           <Property Name="ApAsistente" Type="nvarchar(max)" />
           <Property Name="Correo" Type="nvarchar(max)" />
+          <Property Name="Edad" Type="int" />
           <Property Name="Asiento" Type="int" />
+          <Property Name="Telefono" Type="nvarchar(max)" />
           <Property Name="FechaRegistro" Type="datetime" />
-          <Property Name="Pagado" Type="bit" />
-          <Property Name="Deuda" Type="money" />
+          <Property Name="CostoTotal" Type="money" />
+          <Property Name="Pagado" Type="money" />
+          <Property Name="Deuda" Type="money" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="TO_Viajes">
           <Key>
@@ -455,304 +458,7 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TravelOKEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="TO_Blog">
-          <Key>
-            <PropertyRef Name="IdBlog" />
-          </Key>
-          <Property Name="IdBlog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nvTitulo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="nvTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="imgBlog" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="dtFechaSubida" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="TO_Destino">
-          <Key>
-            <PropertyRef Name="IdViaje" />
-          </Key>
-          <Property Name="IdViaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Destino" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="nvTitulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="nvSubt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="nvDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="nvRutaImg" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="bPrincipal" Type="Boolean" />
-          <Property Name="bActivo" Type="Boolean" />
-          <NavigationProperty Name="TO_Experiencias" Relationship="Self.FK__TO_Experi__IdDes__5AEE82B9" FromRole="TO_Destino" ToRole="TO_Experiencias" />
-          <NavigationProperty Name="TO_DetalleDestinos" Relationship="Self.FK_DetDestinos_Destinos" FromRole="TO_Destino" ToRole="TO_DetalleDestinos" />
-          <NavigationProperty Name="TO_Costo" Relationship="Self.FK_TO_Costo_TO_Destino" FromRole="TO_Destino" ToRole="TO_Costo" />
-          <NavigationProperty Name="TO_Viajes" Relationship="Self.FK_TO_Viajes_TO_Destino" FromRole="TO_Destino" ToRole="TO_Viajes" />
-        </EntityType>
-        <EntityType Name="TO_DetalleDestinos">
-          <Key>
-            <PropertyRef Name="Id_Detalle" />
-          </Key>
-          <Property Name="Id_Detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Destino" Type="Int32" Nullable="false" />
-          <Property Name="nvRutaArchivo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="nvDescripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="dtFechaAlta" Type="DateTime" Precision="3" />
-          <Property Name="bActivo" Type="Boolean" />
-          <NavigationProperty Name="TO_Destino" Relationship="Self.FK_DetDestinos_Destinos" FromRole="TO_DetalleDestinos" ToRole="TO_Destino" />
-        </EntityType>
-        <EntityType Name="TO_Experiencias">
-          <Key>
-            <PropertyRef Name="IdExp" />
-          </Key>
-          <Property Name="IdExp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
-          <Property Name="Testimonio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="IdDestino" Type="Int32" Nullable="false" />
-          <Property Name="ActivityDate" Type="DateTime" Precision="0" />
-          <Property Name="Calificacion" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ImgDestino" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="TO_Destino" Relationship="Self.FK__TO_Experi__IdDes__5AEE82B9" FromRole="TO_Experiencias" ToRole="TO_Destino" />
-        </EntityType>
-        <EntityType Name="TO_Habitaciones">
-          <Key>
-            <PropertyRef Name="IdTipoHab" />
-          </Key>
-          <Property Name="IdTipoHab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nvDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CapMax" Type="Int32" />
-          <NavigationProperty Name="TO_Costo" Relationship="Self.FK_TO_Costo_TO_Habitaciones" FromRole="TO_Habitaciones" ToRole="TO_Costo" />
-        </EntityType>
-        <EntityType Name="TO_Salida">
-          <Key>
-            <PropertyRef Name="IdSalida" />
-          </Key>
-          <Property Name="IdSalida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ciudad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TO_Costo" Relationship="Self.FK_TO_Costo_TO_Salida" FromRole="TO_Salida" ToRole="TO_Costo" />
-          <NavigationProperty Name="TO_Viajes" Relationship="Self.FK_TO_Viajes_TO_Salida" FromRole="TO_Salida" ToRole="TO_Viajes" />
-          <Property Name="bActivo" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="TO_Transporte">
-          <Key>
-            <PropertyRef Name="IdTransporte" />
-          </Key>
-          <Property Name="IdTransporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NumAsientos" Type="Int32" />
-          <Property Name="FilaTrasera" Type="Boolean" />
-          <Property Name="NumAsTrasera" Type="Int32" />
-          <Property Name="NumColPrin" Type="Int32" />
-          <Property Name="NumColUno" Type="Int32" />
-          <Property Name="NumFilColUno" Type="Int32" />
-          <Property Name="PrimFilColUnoDif" Type="Boolean" />
-          <Property Name="NumAsFilCUnoDif" Type="Int32" />
-          <Property Name="NumColDos" Type="Int32" />
-          <Property Name="NumFilcolDos" Type="Int32" />
-          <Property Name="PrimFilColDosDif" Type="Boolean" />
-          <Property Name="NumAsFilCDosDif" Type="Int32" />
-          <Property Name="NumSani" Type="Int32" />
-          <Property Name="SaniTrasero" Type="Boolean" />
-          <Property Name="SanMedio" Type="Boolean" />
-          <Property Name="NumFilSanM" Type="Int32" />
-          <NavigationProperty Name="TO_Viajes" Relationship="Self.FK_TO_Viajes_TO_Transporte" FromRole="TO_Transporte" ToRole="TO_Viajes" />
-          <Property Name="nvNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="TO_Usuario">
-          <Key>
-            <PropertyRef Name="Correo" />
-          </Key>
-          <Property Name="Correo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Contra" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Apellidos" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Genero" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="FechNac" Type="DateTime" Precision="0" />
-          <Property Name="Pais" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Estado" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Municipio" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="Activo" Type="Boolean" />
-          <NavigationProperty Name="TO_Viajeros" Relationship="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Usuario" FromRole="TO_Usuario" ToRole="TO_Viajeros" />
-        </EntityType>
-        <EntityType Name="TO_Viajes">
-          <Key>
-            <PropertyRef Name="IdViaje" />
-          </Key>
-          <Property Name="IdViaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Destino" Type="Int32" Nullable="false" />
-          <Property Name="Id_Salida" Type="Int32" Nullable="false" />
-          <Property Name="dtFechaSalida" Type="DateTime" Precision="3" />
-          <Property Name="IdTransporte" Type="Int32" />
-          <NavigationProperty Name="TO_Destino" Relationship="Self.FK_TO_Viajes_TO_Destino" FromRole="TO_Viajes" ToRole="TO_Destino" />
-          <NavigationProperty Name="TO_Salida" Relationship="Self.FK_TO_Viajes_TO_Salida" FromRole="TO_Viajes" ToRole="TO_Salida" />
-          <NavigationProperty Name="TO_Transporte" Relationship="Self.FK_TO_Viajes_TO_Transporte" FromRole="TO_Viajes" ToRole="TO_Transporte" />
-          <NavigationProperty Name="TO_Viajeros" Relationship="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Viajes" FromRole="TO_Viajes" ToRole="TO_Viajeros" />
-          <NavigationProperty Name="TO_Costo" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Viajes" FromRole="TO_Viajes" ToRole="TO_Costo" />
-        </EntityType>
-        <EntityType Name="TOA_Usuario">
-          <Key>
-            <PropertyRef Name="nvUsuario" />
-          </Key>
-          <Property Name="nvUsuario" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="nvContraseña" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="nvNombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="nvApPat" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="nvApMat" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="nvCorreo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="dtFecNac" Type="DateTime" Precision="0" />
-          <Property Name="dtFecReg" Type="DateTime" Precision="3" />
-          <Property Name="dtFecAct" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="TO_Costo">
-          <Key>
-            <PropertyRef Name="IdDestino" />
-          </Key>
-          <Property Name="CostoLugar" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="IdDestino" Type="Int32" Nullable="false" />
-          <Property Name="IdSalida" Type="Int32" />
-          <Property Name="IdHabitacion" Type="Int32" />
-          <Property Name="TipoPersona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TO_Destino" Relationship="Self.FK_TO_Costo_TO_Destino" FromRole="TO_Costo" ToRole="TO_Destino" />
-          <NavigationProperty Name="TO_Habitaciones" Relationship="Self.FK_TO_Costo_TO_Habitaciones" FromRole="TO_Costo" ToRole="TO_Habitaciones" />
-          <NavigationProperty Name="TO_Salida" Relationship="Self.FK_TO_Costo_TO_Salida" FromRole="TO_Costo" ToRole="TO_Salida" />
-          <Property Name="IdViaje" Type="Int32" />
-          <NavigationProperty Name="TO_Viajes" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Viajes" FromRole="TO_Costo" ToRole="TO_Viajes" />
-        </EntityType>
-        <Association Name="FK__TO_Experi__IdDes__5AEE82B9">
-          <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
-          <End Role="TO_Experiencias" Type="Self.TO_Experiencias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Destino">
-              <PropertyRef Name="IdViaje" />
-            </Principal>
-            <Dependent Role="TO_Experiencias">
-              <PropertyRef Name="IdDestino" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DetDestinos_Destinos">
-          <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
-          <End Role="TO_DetalleDestinos" Type="Self.TO_DetalleDestinos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Destino">
-              <PropertyRef Name="IdViaje" />
-            </Principal>
-            <Dependent Role="TO_DetalleDestinos">
-              <PropertyRef Name="Id_Destino" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TO_Costo_TO_Destino">
-          <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
-          <End Role="TO_Costo" Type="Self.TO_Costo" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Destino">
-              <PropertyRef Name="IdViaje" />
-            </Principal>
-            <Dependent Role="TO_Costo">
-              <PropertyRef Name="IdDestino" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TO_Viajes_TO_Destino">
-          <End Role="TO_Destino" Type="Self.TO_Destino" Multiplicity="1" />
-          <End Role="TO_Viajes" Type="Self.TO_Viajes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Destino">
-              <PropertyRef Name="IdViaje" />
-            </Principal>
-            <Dependent Role="TO_Viajes">
-              <PropertyRef Name="Id_Destino" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TO_Costo_TO_Habitaciones">
-          <End Role="TO_Habitaciones" Type="Self.TO_Habitaciones" Multiplicity="0..1" />
-          <End Role="TO_Costo" Type="Self.TO_Costo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Habitaciones">
-              <PropertyRef Name="IdTipoHab" />
-            </Principal>
-            <Dependent Role="TO_Costo">
-              <PropertyRef Name="IdHabitacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TO_Costo_TO_Salida">
-          <End Role="TO_Salida" Type="Self.TO_Salida" Multiplicity="0..1" />
-          <End Role="TO_Costo" Type="Self.TO_Costo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Salida">
-              <PropertyRef Name="IdSalida" />
-            </Principal>
-            <Dependent Role="TO_Costo">
-              <PropertyRef Name="IdSalida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TO_Viajes_TO_Salida">
-          <End Role="TO_Salida" Type="Self.TO_Salida" Multiplicity="1" />
-          <End Role="TO_Viajes" Type="Self.TO_Viajes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Salida">
-              <PropertyRef Name="IdSalida" />
-            </Principal>
-            <Dependent Role="TO_Viajes">
-              <PropertyRef Name="Id_Salida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TO_Viajes_TO_Transporte">
-          <End Role="TO_Transporte" Type="Self.TO_Transporte" Multiplicity="0..1" />
-          <End Role="TO_Viajes" Type="Self.TO_Viajes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Transporte">
-              <PropertyRef Name="IdTransporte" />
-            </Principal>
-            <Dependent Role="TO_Viajes">
-              <PropertyRef Name="IdTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="TravelOKEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TO_Blog" EntityType="Self.TO_Blog" />
-          <EntitySet Name="TO_Destino" EntityType="Self.TO_Destino" />
-          <EntitySet Name="TO_DetalleDestinos" EntityType="Self.TO_DetalleDestinos" />
-          <EntitySet Name="TO_Experiencias" EntityType="Self.TO_Experiencias" />
-          <EntitySet Name="TO_Habitaciones" EntityType="Self.TO_Habitaciones" />
-          <EntitySet Name="TO_Salida" EntityType="Self.TO_Salida" />
-          <EntitySet Name="TO_Transporte" EntityType="Self.TO_Transporte" />
-          <EntitySet Name="TO_Usuario" EntityType="Self.TO_Usuario" />
-          <EntitySet Name="TO_Viajes" EntityType="Self.TO_Viajes" />
-          <EntitySet Name="TOA_Usuario" EntityType="Self.TOA_Usuario" />
-          <EntitySet Name="TO_Costo" EntityType="Self.TO_Costo" />
-          <AssociationSet Name="FK__TO_Experi__IdDes__5AEE82B9" Association="Self.FK__TO_Experi__IdDes__5AEE82B9">
-            <End Role="TO_Destino" EntitySet="TO_Destino" />
-            <End Role="TO_Experiencias" EntitySet="TO_Experiencias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DetDestinos_Destinos" Association="Self.FK_DetDestinos_Destinos">
-            <End Role="TO_Destino" EntitySet="TO_Destino" />
-            <End Role="TO_DetalleDestinos" EntitySet="TO_DetalleDestinos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Costo_TO_Destino" Association="Self.FK_TO_Costo_TO_Destino">
-            <End Role="TO_Destino" EntitySet="TO_Destino" />
-            <End Role="TO_Costo" EntitySet="TO_Costo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Viajes_TO_Destino" Association="Self.FK_TO_Viajes_TO_Destino">
-            <End Role="TO_Destino" EntitySet="TO_Destino" />
-            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Costo_TO_Habitaciones" Association="Self.FK_TO_Costo_TO_Habitaciones">
-            <End Role="TO_Habitaciones" EntitySet="TO_Habitaciones" />
-            <End Role="TO_Costo" EntitySet="TO_Costo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Costo_TO_Salida" Association="Self.FK_TO_Costo_TO_Salida">
-            <End Role="TO_Salida" EntitySet="TO_Salida" />
-            <End Role="TO_Costo" EntitySet="TO_Costo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Viajes_TO_Salida" Association="Self.FK_TO_Viajes_TO_Salida">
-            <End Role="TO_Salida" EntitySet="TO_Salida" />
-            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Viajes_TO_Transporte" Association="Self.FK_TO_Viajes_TO_Transporte">
-            <End Role="TO_Transporte" EntitySet="TO_Transporte" />
-            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
-          </AssociationSet>
           <FunctionImport Name="spdEliminaCosto">
             <Parameter Name="nvSalida" Mode="In" Type="Int32" />
             <Parameter Name="nvDestino" Mode="In" Type="Int32" />
@@ -836,7 +542,59 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
             <Parameter Name="nvUsu" Mode="In" Type="String" />
             <Parameter Name="nvCont" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spsObtPropHabUno">
+            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
+            <Parameter Name="Total" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spsObtPropuestas">
+            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
+            <Parameter Name="Total" Mode="In" Type="Int32" />
+            <Parameter Name="Decremento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="TO_Blog" EntityType="TravelOKEntitiesModel.TO_Blog" />
+          <EntitySet Name="TO_Destino" EntityType="TravelOKEntitiesModel.TO_Destino" />
+          <EntitySet Name="TO_DetalleDestinos" EntityType="TravelOKEntitiesModel.TO_DetalleDestinos" />
+          <EntitySet Name="TO_Experiencias" EntityType="TravelOKEntitiesModel.TO_Experiencias" />
+          <EntitySet Name="TO_Habitaciones" EntityType="TravelOKEntitiesModel.TO_Habitaciones" />
+          <EntitySet Name="TO_Salida" EntityType="TravelOKEntitiesModel.TO_Salida" />
+          <EntitySet Name="TO_Transporte" EntityType="TravelOKEntitiesModel.TO_Transporte" />
+          <EntitySet Name="TO_Usuario" EntityType="TravelOKEntitiesModel.TO_Usuario" />
           <EntitySet Name="TO_Viajeros" EntityType="TravelOKEntitiesModel.TO_Viajeros" />
+          <EntitySet Name="TO_Viajes" EntityType="TravelOKEntitiesModel.TO_Viajes" />
+          <EntitySet Name="TOA_Usuario" EntityType="TravelOKEntitiesModel.TOA_Usuario" />
+          <EntitySet Name="TO_Costo" EntityType="TravelOKEntitiesModel.TO_Costo" />
+          <AssociationSet Name="FK__TO_Experi__IdDes__5AEE82B9" Association="TravelOKEntitiesModel.FK__TO_Experi__IdDes__5AEE82B9">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Experiencias" EntitySet="TO_Experiencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetDestinos_Destinos" Association="TravelOKEntitiesModel.FK_DetDestinos_Destinos">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_DetalleDestinos" EntitySet="TO_DetalleDestinos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Destino" Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Destino">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Viajes_TO_Destino" Association="TravelOKEntitiesModel.FK_TO_Viajes_TO_Destino">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Habitaciones" Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Habitaciones">
+            <End Role="TO_Habitaciones" EntitySet="TO_Habitaciones" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Salida" Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Salida">
+            <End Role="TO_Salida" EntitySet="TO_Salida" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Viajes_TO_Salida" Association="TravelOKEntitiesModel.FK_TO_Viajes_TO_Salida">
+            <End Role="TO_Salida" EntitySet="TO_Salida" />
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Viajes_TO_Transporte" Association="TravelOKEntitiesModel.FK_TO_Viajes_TO_Transporte">
+            <End Role="TO_Transporte" EntitySet="TO_Transporte" />
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+          </AssociationSet>
           <AssociationSet Name="FK_TO_Viajeros_TO_Usuario" Association="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Usuario">
             <End Role="TO_Usuario" EntitySet="TO_Usuario" />
             <End Role="TO_Viajeros" EntitySet="TO_Viajeros" />
@@ -849,15 +607,6 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
             <End Role="TO_Costo" EntitySet="TO_Costo" />
           </AssociationSet>
-          <FunctionImport Name="spsObtPropHabUno">
-            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
-            <Parameter Name="Total" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="spsObtPropuestas">
-            <Parameter Name="IdViaje" Mode="In" Type="Int32" />
-            <Parameter Name="Total" Mode="In" Type="Int32" />
-            <Parameter Name="Decremento" Mode="In" Type="Int32" />
-          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
           <Property Type="Int32" Name="IdExp" Nullable="false" />
@@ -929,6 +678,119 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Property Type="DateTime" Name="dtFecAct" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="Activo" Nullable="true" />
         </ComplexType>
+        <EntityType Name="TO_Blog">
+          <Key>
+            <PropertyRef Name="IdBlog" />
+          </Key>
+          <Property Name="IdBlog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nvTitulo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="nvTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="imgBlog" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="dtFechaSubida" Type="DateTime" Precision="3" />
+          <Property Name="Activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TO_Destino">
+          <Key>
+            <PropertyRef Name="IdViaje" />
+          </Key>
+          <Property Name="IdViaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Destino" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="nvTitulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nvSubt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nvDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="nvRutaImg" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="bPrincipal" Type="Boolean" />
+          <Property Name="bActivo" Type="Boolean" />
+          <NavigationProperty Name="TO_Experiencias" Relationship="TravelOKEntitiesModel.FK__TO_Experi__IdDes__5AEE82B9" FromRole="TO_Destino" ToRole="TO_Experiencias" />
+          <NavigationProperty Name="TO_DetalleDestinos" Relationship="TravelOKEntitiesModel.FK_DetDestinos_Destinos" FromRole="TO_Destino" ToRole="TO_DetalleDestinos" />
+          <NavigationProperty Name="TO_Costo" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Destino" FromRole="TO_Destino" ToRole="TO_Costo" />
+          <NavigationProperty Name="TO_Viajes" Relationship="TravelOKEntitiesModel.FK_TO_Viajes_TO_Destino" FromRole="TO_Destino" ToRole="TO_Viajes" />
+        </EntityType>
+        <EntityType Name="TO_DetalleDestinos">
+          <Key>
+            <PropertyRef Name="Id_Detalle" />
+          </Key>
+          <Property Name="Id_Detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Destino" Type="Int32" Nullable="false" />
+          <Property Name="nvRutaArchivo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="nvDescripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="dtFechaAlta" Type="DateTime" Precision="3" />
+          <Property Name="bActivo" Type="Boolean" />
+          <NavigationProperty Name="TO_Destino" Relationship="TravelOKEntitiesModel.FK_DetDestinos_Destinos" FromRole="TO_DetalleDestinos" ToRole="TO_Destino" />
+        </EntityType>
+        <EntityType Name="TO_Experiencias">
+          <Key>
+            <PropertyRef Name="IdExp" />
+          </Key>
+          <Property Name="IdExp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+          <Property Name="Testimonio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdDestino" Type="Int32" Nullable="false" />
+          <Property Name="ActivityDate" Type="DateTime" Precision="0" />
+          <Property Name="Calificacion" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ImgDestino" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TO_Destino" Relationship="TravelOKEntitiesModel.FK__TO_Experi__IdDes__5AEE82B9" FromRole="TO_Experiencias" ToRole="TO_Destino" />
+        </EntityType>
+        <EntityType Name="TO_Habitaciones">
+          <Key>
+            <PropertyRef Name="IdTipoHab" />
+          </Key>
+          <Property Name="IdTipoHab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nvDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CapMax" Type="Int32" />
+          <NavigationProperty Name="TO_Costo" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Habitaciones" FromRole="TO_Habitaciones" ToRole="TO_Costo" />
+        </EntityType>
+        <EntityType Name="TO_Salida">
+          <Key>
+            <PropertyRef Name="IdSalida" />
+          </Key>
+          <Property Name="IdSalida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ciudad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="bActivo" Type="Boolean" />
+          <NavigationProperty Name="TO_Costo" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Salida" FromRole="TO_Salida" ToRole="TO_Costo" />
+          <NavigationProperty Name="TO_Viajes" Relationship="TravelOKEntitiesModel.FK_TO_Viajes_TO_Salida" FromRole="TO_Salida" ToRole="TO_Viajes" />
+        </EntityType>
+        <EntityType Name="TO_Transporte">
+          <Key>
+            <PropertyRef Name="IdTransporte" />
+          </Key>
+          <Property Name="IdTransporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nvNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NumAsientos" Type="Int32" />
+          <Property Name="FilaTrasera" Type="Boolean" />
+          <Property Name="NumAsTrasera" Type="Int32" />
+          <Property Name="NumColPrin" Type="Int32" />
+          <Property Name="NumColUno" Type="Int32" />
+          <Property Name="NumFilColUno" Type="Int32" />
+          <Property Name="PrimFilColUnoDif" Type="Boolean" />
+          <Property Name="NumAsFilCUnoDif" Type="Int32" />
+          <Property Name="NumColDos" Type="Int32" />
+          <Property Name="NumFilcolDos" Type="Int32" />
+          <Property Name="PrimFilColDosDif" Type="Boolean" />
+          <Property Name="NumAsFilCDosDif" Type="Int32" />
+          <Property Name="NumSani" Type="Int32" />
+          <Property Name="SaniTrasero" Type="Boolean" />
+          <Property Name="SanMedio" Type="Boolean" />
+          <Property Name="NumFilSanM" Type="Int32" />
+          <NavigationProperty Name="TO_Viajes" Relationship="TravelOKEntitiesModel.FK_TO_Viajes_TO_Transporte" FromRole="TO_Transporte" ToRole="TO_Viajes" />
+        </EntityType>
+        <EntityType Name="TO_Usuario">
+          <Key>
+            <PropertyRef Name="Correo" />
+          </Key>
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Contra" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Apellidos" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Genero" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FechNac" Type="DateTime" Precision="0" />
+          <Property Name="Pais" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Municipio" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="TO_Viajeros" Relationship="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Usuario" FromRole="TO_Usuario" ToRole="TO_Viajeros" />
+        </EntityType>
         <EntityType Name="TO_Viajeros">
           <Key>
             <PropertyRef Name="Folio" />
@@ -939,13 +801,157 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Property Name="NombreAsistente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ApAsistente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Edad" Type="Int32" />
           <Property Name="Asiento" Type="Int32" />
+          <Property Name="Telefono" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
-          <Property Name="Pagado" Type="Boolean" />
-          <Property Name="Deuda" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CostoTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Pagado" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Deuda" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="TO_Usuario" Relationship="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Usuario" FromRole="TO_Viajeros" ToRole="TO_Usuario" />
           <NavigationProperty Name="TO_Viajes" Relationship="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Viajes" FromRole="TO_Viajeros" ToRole="TO_Viajes" />
         </EntityType>
+        <EntityType Name="TO_Viajes">
+          <Key>
+            <PropertyRef Name="IdViaje" />
+          </Key>
+          <Property Name="IdViaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Destino" Type="Int32" Nullable="false" />
+          <Property Name="Id_Salida" Type="Int32" Nullable="false" />
+          <Property Name="dtFechaSalida" Type="DateTime" Precision="3" />
+          <Property Name="IdTransporte" Type="Int32" />
+          <NavigationProperty Name="TO_Destino" Relationship="TravelOKEntitiesModel.FK_TO_Viajes_TO_Destino" FromRole="TO_Viajes" ToRole="TO_Destino" />
+          <NavigationProperty Name="TO_Salida" Relationship="TravelOKEntitiesModel.FK_TO_Viajes_TO_Salida" FromRole="TO_Viajes" ToRole="TO_Salida" />
+          <NavigationProperty Name="TO_Transporte" Relationship="TravelOKEntitiesModel.FK_TO_Viajes_TO_Transporte" FromRole="TO_Viajes" ToRole="TO_Transporte" />
+          <NavigationProperty Name="TO_Viajeros" Relationship="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Viajes" FromRole="TO_Viajes" ToRole="TO_Viajeros" />
+          <NavigationProperty Name="TO_Costo" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Viajes" FromRole="TO_Viajes" ToRole="TO_Costo" />
+        </EntityType>
+        <EntityType Name="TOA_Usuario">
+          <Key>
+            <PropertyRef Name="nvUsuario" />
+          </Key>
+          <Property Name="nvUsuario" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="nvContraseña" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="nvNombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="nvApPat" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="nvApMat" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="nvCorreo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="dtFecNac" Type="DateTime" Precision="0" />
+          <Property Name="dtFecReg" Type="DateTime" Precision="3" />
+          <Property Name="dtFecAct" Type="DateTime" Precision="3" />
+          <Property Name="Activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TO_Costo">
+          <Key>
+            <PropertyRef Name="IdDestino" />
+          </Key>
+          <Property Name="CostoLugar" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IdDestino" Type="Int32" Nullable="false" />
+          <Property Name="IdSalida" Type="Int32" />
+          <Property Name="IdHabitacion" Type="Int32" />
+          <Property Name="IdViaje" Type="Int32" />
+          <Property Name="TipoPersona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TO_Destino" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Destino" FromRole="TO_Costo" ToRole="TO_Destino" />
+          <NavigationProperty Name="TO_Habitaciones" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Habitaciones" FromRole="TO_Costo" ToRole="TO_Habitaciones" />
+          <NavigationProperty Name="TO_Salida" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Salida" FromRole="TO_Costo" ToRole="TO_Salida" />
+          <NavigationProperty Name="TO_Viajes" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Viajes" FromRole="TO_Costo" ToRole="TO_Viajes" />
+        </EntityType>
+        <Association Name="FK__TO_Experi__IdDes__5AEE82B9">
+          <End Type="TravelOKEntitiesModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
+          <End Type="TravelOKEntitiesModel.TO_Experiencias" Role="TO_Experiencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Destino">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Experiencias">
+              <PropertyRef Name="IdDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetDestinos_Destinos">
+          <End Type="TravelOKEntitiesModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
+          <End Type="TravelOKEntitiesModel.TO_DetalleDestinos" Role="TO_DetalleDestinos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Destino">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_DetalleDestinos">
+              <PropertyRef Name="Id_Destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Costo_TO_Destino">
+          <End Type="TravelOKEntitiesModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
+          <End Type="TravelOKEntitiesModel.TO_Costo" Role="TO_Costo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Destino">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Costo">
+              <PropertyRef Name="IdDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Viajes_TO_Destino">
+          <End Type="TravelOKEntitiesModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
+          <End Type="TravelOKEntitiesModel.TO_Viajes" Role="TO_Viajes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Destino">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Viajes">
+              <PropertyRef Name="Id_Destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Costo_TO_Habitaciones">
+          <End Type="TravelOKEntitiesModel.TO_Habitaciones" Role="TO_Habitaciones" Multiplicity="0..1" />
+          <End Type="TravelOKEntitiesModel.TO_Costo" Role="TO_Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Habitaciones">
+              <PropertyRef Name="IdTipoHab" />
+            </Principal>
+            <Dependent Role="TO_Costo">
+              <PropertyRef Name="IdHabitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Costo_TO_Salida">
+          <End Type="TravelOKEntitiesModel.TO_Salida" Role="TO_Salida" Multiplicity="0..1" />
+          <End Type="TravelOKEntitiesModel.TO_Costo" Role="TO_Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Salida">
+              <PropertyRef Name="IdSalida" />
+            </Principal>
+            <Dependent Role="TO_Costo">
+              <PropertyRef Name="IdSalida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Viajes_TO_Salida">
+          <End Type="TravelOKEntitiesModel.TO_Salida" Role="TO_Salida" Multiplicity="1" />
+          <End Type="TravelOKEntitiesModel.TO_Viajes" Role="TO_Viajes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Salida">
+              <PropertyRef Name="IdSalida" />
+            </Principal>
+            <Dependent Role="TO_Viajes">
+              <PropertyRef Name="Id_Salida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Viajes_TO_Transporte">
+          <End Type="TravelOKEntitiesModel.TO_Transporte" Role="TO_Transporte" Multiplicity="0..1" />
+          <End Type="TravelOKEntitiesModel.TO_Viajes" Role="TO_Viajes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Transporte">
+              <PropertyRef Name="IdTransporte" />
+            </Principal>
+            <Dependent Role="TO_Viajes">
+              <PropertyRef Name="IdTransporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TO_Viajeros_TO_Usuario">
           <End Type="TravelOKEntitiesModel.TO_Usuario" Role="TO_Usuario" Multiplicity="0..1" />
           <End Type="TravelOKEntitiesModel.TO_Viajeros" Role="TO_Viajeros" Multiplicity="*" />
@@ -982,161 +988,12 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TravelOKEntitiesModelStoreContainer" CdmEntityContainer="TravelOKEntities">
-          <EntitySetMapping Name="TO_Blog">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Blog">
-              <MappingFragment StoreEntitySet="TO_Blog">
-                <ScalarProperty Name="IdBlog" ColumnName="IdBlog" />
-                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
-                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
-                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
-                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Destino">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Destino">
-              <MappingFragment StoreEntitySet="TO_Destino">
-                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
-                <ScalarProperty Name="Destino" ColumnName="Destino" />
-                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
-                <ScalarProperty Name="nvSubt" ColumnName="nvSubt" />
-                <ScalarProperty Name="nvDesc" ColumnName="nvDesc" />
-                <ScalarProperty Name="nvRutaImg" ColumnName="nvRutaImg" />
-                <ScalarProperty Name="bPrincipal" ColumnName="bPrincipal" />
-                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_DetalleDestinos">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_DetalleDestinos">
-              <MappingFragment StoreEntitySet="TO_DetalleDestinos">
-                <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
-                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
-                <ScalarProperty Name="nvRutaArchivo" ColumnName="nvRutaArchivo" />
-                <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
-                <ScalarProperty Name="dtFechaAlta" ColumnName="dtFechaAlta" />
-                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Experiencias">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Experiencias">
-              <MappingFragment StoreEntitySet="TO_Experiencias">
-                <ScalarProperty Name="IdExp" ColumnName="IdExp" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Testimonio" ColumnName="Testimonio" />
-                <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
-                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
-                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
-                <ScalarProperty Name="ImgDestino" ColumnName="ImgDestino" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Habitaciones">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Habitaciones">
-              <MappingFragment StoreEntitySet="TO_Habitaciones">
-                <ScalarProperty Name="IdTipoHab" ColumnName="IdTipoHab" />
-                <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
-                <ScalarProperty Name="CapMax" ColumnName="CapMax" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Salida">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Salida">
-              <MappingFragment StoreEntitySet="TO_Salida">
-                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
-                <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Transporte">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Transporte">
-              <MappingFragment StoreEntitySet="TO_Transporte">
-                <ScalarProperty Name="nvNombre" ColumnName="nvNombre" />
-                <ScalarProperty Name="IdTransporte" ColumnName="IdTransporte" />
-                <ScalarProperty Name="NumAsientos" ColumnName="NumAsientos" />
-                <ScalarProperty Name="FilaTrasera" ColumnName="FilaTrasera" />
-                <ScalarProperty Name="NumAsTrasera" ColumnName="NumAsTrasera" />
-                <ScalarProperty Name="NumColPrin" ColumnName="NumColPrin" />
-                <ScalarProperty Name="NumColUno" ColumnName="NumColUno" />
-                <ScalarProperty Name="NumFilColUno" ColumnName="NumFilColUno" />
-                <ScalarProperty Name="PrimFilColUnoDif" ColumnName="PrimFilColUnoDif" />
-                <ScalarProperty Name="NumAsFilCUnoDif" ColumnName="NumAsFilCUnoDif" />
-                <ScalarProperty Name="NumColDos" ColumnName="NumColDos" />
-                <ScalarProperty Name="NumFilcolDos" ColumnName="NumFilcolDos" />
-                <ScalarProperty Name="PrimFilColDosDif" ColumnName="PrimFilColDosDif" />
-                <ScalarProperty Name="NumAsFilCDosDif" ColumnName="NumAsFilCDosDif" />
-                <ScalarProperty Name="NumSani" ColumnName="NumSani" />
-                <ScalarProperty Name="SaniTrasero" ColumnName="SaniTrasero" />
-                <ScalarProperty Name="SanMedio" ColumnName="SanMedio" />
-                <ScalarProperty Name="NumFilSanM" ColumnName="NumFilSanM" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Usuario">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Usuario">
-              <MappingFragment StoreEntitySet="TO_Usuario">
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Contra" ColumnName="Contra" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-                <ScalarProperty Name="Genero" ColumnName="Genero" />
-                <ScalarProperty Name="FechNac" ColumnName="FechNac" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Viajes">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Viajes">
-              <MappingFragment StoreEntitySet="TO_Viajes">
-                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
-                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
-                <ScalarProperty Name="Id_Salida" ColumnName="Id_Salida" />
-                <ScalarProperty Name="dtFechaSalida" ColumnName="dtFechaSalida" />
-                <ScalarProperty Name="IdTransporte" ColumnName="IdTransporte" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TOA_Usuario">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TOA_Usuario">
-              <MappingFragment StoreEntitySet="TOA_Usuario">
-                <ScalarProperty Name="nvUsuario" ColumnName="nvUsuario" />
-                <ScalarProperty Name="nvContraseña" ColumnName="nvContraseña" />
-                <ScalarProperty Name="nvNombre" ColumnName="nvNombre" />
-                <ScalarProperty Name="nvApPat" ColumnName="nvApPat" />
-                <ScalarProperty Name="nvApMat" ColumnName="nvApMat" />
-                <ScalarProperty Name="nvCorreo" ColumnName="nvCorreo" />
-                <ScalarProperty Name="dtFecNac" ColumnName="dtFecNac" />
-                <ScalarProperty Name="dtFecReg" ColumnName="dtFecReg" />
-                <ScalarProperty Name="dtFecAct" ColumnName="dtFecAct" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_Costo">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Costo">
-              <MappingFragment StoreEntitySet="TO_Costo">
-                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
-                <ScalarProperty Name="CostoLugar" ColumnName="CostoLugar" />
-                <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
-                <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
-                <ScalarProperty Name="IdHabitacion" ColumnName="IdHabitacion" />
-                <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="spdEliminaCosto" FunctionName="TravelOKEntitiesModel.Store.spdEliminaCosto" />
           <FunctionImportMapping FunctionImportName="spdEliminaDestinoId" FunctionName="TravelOKEntitiesModel.Store.spdEliminaDestinoId" />
           <FunctionImportMapping FunctionImportName="spdEliminaSalida" FunctionName="TravelOKEntitiesModel.Store.spdEliminaSalida" />
@@ -1266,13 +1123,128 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spsObtPropHabUno" FunctionName="TravelOKEntitiesModel.Store.spsObtPropHabUno" />
+          <FunctionImportMapping FunctionImportName="spsObtPropuestas" FunctionName="TravelOKEntitiesModel.Store.spsObtPropuestas" />
+          <EntitySetMapping Name="TO_Blog">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Blog">
+              <MappingFragment StoreEntitySet="TO_Blog">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
+                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
+                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
+                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
+                <ScalarProperty Name="IdBlog" ColumnName="IdBlog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Destino">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Destino">
+              <MappingFragment StoreEntitySet="TO_Destino">
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="bPrincipal" ColumnName="bPrincipal" />
+                <ScalarProperty Name="nvRutaImg" ColumnName="nvRutaImg" />
+                <ScalarProperty Name="nvDesc" ColumnName="nvDesc" />
+                <ScalarProperty Name="nvSubt" ColumnName="nvSubt" />
+                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_DetalleDestinos">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_DetalleDestinos">
+              <MappingFragment StoreEntitySet="TO_DetalleDestinos">
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="dtFechaAlta" ColumnName="dtFechaAlta" />
+                <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
+                <ScalarProperty Name="nvRutaArchivo" ColumnName="nvRutaArchivo" />
+                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
+                <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Experiencias">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Experiencias">
+              <MappingFragment StoreEntitySet="TO_Experiencias">
+                <ScalarProperty Name="ImgDestino" ColumnName="ImgDestino" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
+                <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
+                <ScalarProperty Name="Testimonio" ColumnName="Testimonio" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdExp" ColumnName="IdExp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Habitaciones">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Habitaciones">
+              <MappingFragment StoreEntitySet="TO_Habitaciones">
+                <ScalarProperty Name="CapMax" ColumnName="CapMax" />
+                <ScalarProperty Name="nvDescripcion" ColumnName="nvDescripcion" />
+                <ScalarProperty Name="IdTipoHab" ColumnName="IdTipoHab" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Salida">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Salida">
+              <MappingFragment StoreEntitySet="TO_Salida">
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Transporte">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Transporte">
+              <MappingFragment StoreEntitySet="TO_Transporte">
+                <ScalarProperty Name="NumFilSanM" ColumnName="NumFilSanM" />
+                <ScalarProperty Name="SanMedio" ColumnName="SanMedio" />
+                <ScalarProperty Name="SaniTrasero" ColumnName="SaniTrasero" />
+                <ScalarProperty Name="NumSani" ColumnName="NumSani" />
+                <ScalarProperty Name="NumAsFilCDosDif" ColumnName="NumAsFilCDosDif" />
+                <ScalarProperty Name="PrimFilColDosDif" ColumnName="PrimFilColDosDif" />
+                <ScalarProperty Name="NumFilcolDos" ColumnName="NumFilcolDos" />
+                <ScalarProperty Name="NumColDos" ColumnName="NumColDos" />
+                <ScalarProperty Name="NumAsFilCUnoDif" ColumnName="NumAsFilCUnoDif" />
+                <ScalarProperty Name="PrimFilColUnoDif" ColumnName="PrimFilColUnoDif" />
+                <ScalarProperty Name="NumFilColUno" ColumnName="NumFilColUno" />
+                <ScalarProperty Name="NumColUno" ColumnName="NumColUno" />
+                <ScalarProperty Name="NumColPrin" ColumnName="NumColPrin" />
+                <ScalarProperty Name="NumAsTrasera" ColumnName="NumAsTrasera" />
+                <ScalarProperty Name="FilaTrasera" ColumnName="FilaTrasera" />
+                <ScalarProperty Name="NumAsientos" ColumnName="NumAsientos" />
+                <ScalarProperty Name="nvNombre" ColumnName="nvNombre" />
+                <ScalarProperty Name="IdTransporte" ColumnName="IdTransporte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Usuario">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Usuario">
+              <MappingFragment StoreEntitySet="TO_Usuario">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="FechNac" ColumnName="FechNac" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Contra" ColumnName="Contra" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TO_Viajeros">
             <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Viajeros">
               <MappingFragment StoreEntitySet="TO_Viajeros">
                 <ScalarProperty Name="Deuda" ColumnName="Deuda" />
                 <ScalarProperty Name="Pagado" ColumnName="Pagado" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Asiento" ColumnName="Asiento" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="ApAsistente" ColumnName="ApAsistente" />
                 <ScalarProperty Name="NombreAsistente" ColumnName="NombreAsistente" />
@@ -1282,8 +1254,45 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="spsObtPropHabUno" FunctionName="TravelOKEntitiesModel.Store.spsObtPropHabUno" />
-          <FunctionImportMapping FunctionImportName="spsObtPropuestas" FunctionName="TravelOKEntitiesModel.Store.spsObtPropuestas" />
+          <EntitySetMapping Name="TO_Viajes">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Viajes">
+              <MappingFragment StoreEntitySet="TO_Viajes">
+                <ScalarProperty Name="IdTransporte" ColumnName="IdTransporte" />
+                <ScalarProperty Name="dtFechaSalida" ColumnName="dtFechaSalida" />
+                <ScalarProperty Name="Id_Salida" ColumnName="Id_Salida" />
+                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
+                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOA_Usuario">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TOA_Usuario">
+              <MappingFragment StoreEntitySet="TOA_Usuario">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="dtFecAct" ColumnName="dtFecAct" />
+                <ScalarProperty Name="dtFecReg" ColumnName="dtFecReg" />
+                <ScalarProperty Name="dtFecNac" ColumnName="dtFecNac" />
+                <ScalarProperty Name="nvCorreo" ColumnName="nvCorreo" />
+                <ScalarProperty Name="nvApMat" ColumnName="nvApMat" />
+                <ScalarProperty Name="nvApPat" ColumnName="nvApPat" />
+                <ScalarProperty Name="nvNombre" ColumnName="nvNombre" />
+                <ScalarProperty Name="nvContraseña" ColumnName="nvContraseña" />
+                <ScalarProperty Name="nvUsuario" ColumnName="nvUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Costo">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Costo">
+              <MappingFragment StoreEntitySet="TO_Costo">
+                <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
+                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
+                <ScalarProperty Name="IdHabitacion" ColumnName="IdHabitacion" />
+                <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
+                <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
+                <ScalarProperty Name="CostoLugar" ColumnName="CostoLugar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

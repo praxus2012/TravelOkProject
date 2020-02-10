@@ -211,6 +211,67 @@ namespace TravelOKViajes.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult InsertaViajeros(List<cmViajeros> oUsrViajeros)
+        {
+            JObject resultado = new JObject();
+            if (oUsrViajeros.Count > 0)
+            {
+                CD_Viajeros cdViajeros = new CD_Viajeros();
+                oUsrViajeros.ToList().ForEach(cc => cc.idUsuario = Session["UserID"].ToString());
+                cmHabitacion oHabitacion = new cmHabitacion
+                {
+                    iPasajeros = oUsrViajeros.Count,
+                    idViaje = oUsrViajeros[0].idViaje
+                };
+                CD_DetVenta odVenta = new CD_DetVenta();
+                decimal tot = 0;                
+                switch (oUsrViajeros[0].sOpcionTour)
+                {
+                    case "btnOp-0":
+                        oHabitacion.iDecremento = 0;
+                        foreach (cmHabitacion hab in odVenta.fnlsRecuperaOpciones(oHabitacion))
+                        {
+                            tot += hab.dCosto;
+                        }
+                        oUsrViajeros.ToList().ForEach(cc => cc.dCostoTotal = tot);
+                        break;
+                    case "btnOp-1":
+                        oHabitacion.iDecremento = 1;
+                        foreach (cmHabitacion hab in odVenta.fnlsRecuperaOpciones(oHabitacion))
+                        {
+                            tot += hab.dCosto;
+                        }
+                        oUsrViajeros.ToList().ForEach(cc => cc.dCostoTotal = tot);
+                        break;
+                    case "btnOp-2":
+                        oHabitacion.iDecremento = 2;
+                        foreach (cmHabitacion hab in odVenta.fnlsRecuperaOpciones(oHabitacion))
+                        {
+                            tot += hab.dCosto;
+                        }
+                        oUsrViajeros.ToList().ForEach(cc => cc.dCostoTotal = tot);
+                        break;
+                    case "btnOp-3":
+                        oHabitacion.iDecremento = 0;
+                        foreach (cmHabitacion hab in odVenta.fnlsRecuperaOpciones(oHabitacion))
+                        {
+                            tot += hab.dCosto;
+                        }
+                        oUsrViajeros.ToList().ForEach(cc => cc.dCostoTotal = tot);
+                        break;
+                }
+                if (cdViajeros.InsertaViajeros(oUsrViajeros))
+                    resultado["Exito"] = true;
+                else
+                    resultado["Exito"] = false;
+            }
+            else
+            {
+                resultado["Exito"] = false;
+            }
+            return Content(resultado.ToString());
+        }
 
         [HttpPost]
         public ActionResult ConfirmaVenta()
@@ -218,7 +279,6 @@ namespace TravelOKViajes.Controllers
             return View();
         }
 
-        [HttpPost]
         public ActionResult Pago()
         {
             return View();

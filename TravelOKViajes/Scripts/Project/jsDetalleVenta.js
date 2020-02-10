@@ -163,7 +163,7 @@ function successObtienePropuestas(data) {
         $('.dvOp').empty();
         var pasajeros = parseInt($('#inNinos').val() == '' ? '0' : $('#inNinos').val()) + parseInt($('#inAdultos').val() == '' ? '0' : $('#inAdultos').val());
         if (pasajeros > 2) {
-            html = '<div class="col-4">' +
+            html = '<div class="col-sm">' +
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
                 '<div class="col-md-4 imgH">' +
@@ -183,7 +183,7 @@ function successObtienePropuestas(data) {
                 '</div>' +
                 '</div>';
 
-            html = html +'<div class="col-4">' +
+            html = html +'<div class="col-sm">' +
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
                 '<div class="col-md-4 imgH">' +
@@ -203,7 +203,7 @@ function successObtienePropuestas(data) {
                 '</div>' +
                 '</div>';
 
-            html = html +'<div class="col-4">' +
+            html = html +'<div class="col-sm">' +
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
                 '<div class="col-md-4 imgH">' +
@@ -224,7 +224,7 @@ function successObtienePropuestas(data) {
                 '</div>';
             $('.dvOp').append(html);
         } else {
-            html = '<div class="col-4">' +
+            html = '<div class="col-sm">' +
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
                 '<div class="col-md-4 imgH">' +

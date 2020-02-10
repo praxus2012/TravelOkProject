@@ -5,26 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ebd19c65c321474cac8afb035c387517" Name="Diagram1">
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Blog" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Destino" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_DetalleDestinos" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Experiencias" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Habitaciones" Width="1.5" PointX="3.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Salida" Width="1.5" PointX="3.75" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Transporte" Width="1.5" PointX="3.75" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Usuario" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Viajes" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TOA_Usuario" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Costo" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
-        <AssociationConnector Association="TravelOKEntitiesModel.FK__TO_Experi__IdDes__5AEE82B9" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesModel.FK_DetDestinos_Destinos" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Destino" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajes_TO_Destino" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Habitaciones" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Salida" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajes_TO_Salida" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajes_TO_Transporte" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Viajeros" Width="1.5" PointX="11" PointY="3.25" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Blog" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Destino" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_DetalleDestinos" Width="1.5" PointX="3" PointY="16.375" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Experiencias" Width="1.5" PointX="3" PointY="13.125" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Habitaciones" Width="1.5" PointX="0.75" PointY="11.25" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Salida" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Transporte" Width="1.5" PointX="3.75" PointY="1.25" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Usuario" Width="1.5" PointX="6" PointY="2.875" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Viajeros" Width="1.5" PointX="8.25" PointY="6.625" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Viajes" Width="1.5" PointX="6" PointY="7.125" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TOA_Usuario" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Costo" Width="1.5" PointX="3" PointY="7.125" />
+        <AssociationConnector Association="TravelOKEntitiesModel.FK__TO_Experi__IdDes__5AEE82B9" />
+        <AssociationConnector Association="TravelOKEntitiesModel.FK_DetDestinos_Destinos" />
+        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Destino" />
+        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajes_TO_Destino" />
+        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Habitaciones" />
+        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Salida" />
+        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajes_TO_Salida" />
+        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajes_TO_Transporte" />
         <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Usuario" />
         <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Viajes" />
         <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Viajes" />

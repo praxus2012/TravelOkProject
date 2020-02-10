@@ -20,9 +20,12 @@ namespace CapaDatos
         public string NombreAsistente { get; set; }
         public string ApAsistente { get; set; }
         public string Correo { get; set; }
+        public Nullable<int> Edad { get; set; }
         public Nullable<int> Asiento { get; set; }
+        public string Telefono { get; set; }
         public Nullable<System.DateTime> FechaRegistro { get; set; }
-        public Nullable<bool> Pagado { get; set; }
+        public Nullable<decimal> CostoTotal { get; set; }
+        public Nullable<decimal> Pagado { get; set; }
         public Nullable<decimal> Deuda { get; set; }
     
         public virtual TO_Usuario TO_Usuario { get; set; }

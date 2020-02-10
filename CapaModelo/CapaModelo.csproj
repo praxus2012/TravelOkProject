@@ -50,6 +50,7 @@
     <Compile Include="cmVentaDet.cs" />
     <Compile Include="cmCarruselDestino.cs" />
     <Compile Include="cmDestinos.cs" />
+    <Compile Include="cmViajeros.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
