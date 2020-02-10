@@ -32,6 +32,7 @@ namespace TravelOKViajes.Controllers
             cmTransporte oTran = cdTran.fnoObtieneTransporte(detVenta);
             if (oTran != null)
             {
+                resultado["lsOcupados"] = JToken.FromObject(cdTran.fnlsObtieneOcupados(detVenta.idVenta));
                 resultado["oTransporte"] = JToken.FromObject(oTran);
                 resultado["Exito"] = true;
             }

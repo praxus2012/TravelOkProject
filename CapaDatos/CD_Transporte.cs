@@ -53,5 +53,13 @@ namespace CapaDatos
                 }
             }
         }
+
+        public List<int?> fnlsObtieneOcupados(int idViaje)
+        {
+            using (var contexto = new TravelOKEntitiesQA())
+            {
+                return contexto.TO_Viajeros.Where(v => v.IdViaje == idViaje).Select(v => v.Asiento).ToList();
+            }
+        }
     }
 }

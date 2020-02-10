@@ -58,7 +58,12 @@ function successObtieneAutobus(data) {
             $('#ulIzq').append('<li class="f-' + i + ' fila"><ul class="ui-f-' + i + ' columnas ci"></ul></li>');
             //alert(data.oTransporte.NumColUno);
             for (j = 0; j < data.oTransporte.NumColUno; j++) {
-                $('.ui-f-' + i).append('<li class="asiento del" id="a-' + asiento + '">' + asiento + '</li>');
+                if (Ocupado(data.lsOcupados ,asiento)) {
+                    $('.ui-f-' + i).append('<li class="asiento del ocupado" id="a-' + asiento + '">' + asiento + '</li>');
+                } else {
+                    $('.ui-f-' + i).append('<li class="asiento del" id="a-' + asiento + '">' + asiento + '</li>');
+                }
+                
                 asiento++;
             }
         }
@@ -66,13 +71,22 @@ function successObtieneAutobus(data) {
             $('#ulDer').append('<li class="f-' + i + ' fila"><ul class="ud-f-' + i + ' columnas ci"></ul></li>');
             //alert(data.oTransporte.NumColUno);
             for (j = 0; j < data.oTransporte.NumColDos; j++) {
-                $('.ud-f-' + i).append('<li class="asiento del" id="a-' + asiento + '">' + asiento + '</li>');
+                if (Ocupado(data.lsOcupados, asiento)) {
+                    $('.ud-f-' + i).append('<li class="asiento del ocupado" id="a-' + asiento + '">' + asiento + '</li>');
+                } else {
+                    $('.ud-f-' + i).append('<li class="asiento del" id="a-' + asiento + '">' + asiento + '</li>');
+                }
+                
                 asiento++;
             }
         }
         if (data.oTransporte.FilaTrasera) {
             for (i = 0; i < data.oTransporte.NumAsTrasera; i++) {
-                $('#ulAtras').append('<li class="asiento atras" id="a-' + asiento + '">' + asiento + '</li>');
+                if (Ocupado(data.lsOcupados, asiento)) {
+                    $('#ulAtras').append('<li class="asiento atras ocupado" id="a-' + asiento + '">' + asiento + '</li>');
+                } else {
+                    $('#ulAtras').append('<li class="asiento atras" id="a-' + asiento + '">' + asiento + '</li>');
+                }
                 asiento++;
             }
         }
@@ -117,4 +131,15 @@ function GeneraClick() {
             }
         }
     });
+}
+
+function Ocupado(lsOcupados, asiento) {
+    if (lsOcupados.length > 0) {
+        for (var i = 0; i < lsOcupados.length; i++) {
+            if (asiento == lsOcupados[i]) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
