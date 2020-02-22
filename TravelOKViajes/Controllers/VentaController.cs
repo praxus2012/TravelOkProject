@@ -6,6 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MercadoPago;
+using MercadoPago.Resources;
+using MercadoPago.DataStructures.Preference;
+using MercadoPago.Common;
 
 namespace TravelOKViajes.Controllers
 {
@@ -282,6 +286,17 @@ namespace TravelOKViajes.Controllers
 
         public ActionResult Pago()
         {
+            MercadoPago.SDK.AccessToken = "PROD_ACCESS_TOKEN";
+            Preference preference = new Preference();
+            preference.Items.Add(new Item()
+            {
+                Title = "Viaje",
+                Quantity = 1,
+                CurrencyId = CurrencyId.MXN,
+                UnitPrice = (decimal)75.56,
+                Id = "1"
+            });
+            preference.Save();
             return View();
         }
     }

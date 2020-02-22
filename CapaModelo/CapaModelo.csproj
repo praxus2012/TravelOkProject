@@ -45,6 +45,7 @@
     <Compile Include="cmComunidad.cs" />
     <Compile Include="cmCostos.cs" />
     <Compile Include="cmHabitacion.cs" />
+    <Compile Include="cmPago.cs" />
     <Compile Include="cmSalida.cs" />
     <Compile Include="cmTransporte.cs" />
     <Compile Include="cmVentaDet.cs" />

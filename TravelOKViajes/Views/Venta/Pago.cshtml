@@ -1,6 +1,7 @@
-﻿
+﻿@model MercadoPago.Resources.Preference
 @{
     ViewBag.Title = "Pago";
+
 }
 
 <h2>Realizacion del pago</h2>
@@ -38,8 +39,11 @@
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
-
-
+                <form action="/procesar-pago" method="POST">
+                    <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
+                            data-preference-id="@Html.DisplayFor(model => model.id)">
+                    </script>
+                </form>
             </div>
         </div>
     </div>
