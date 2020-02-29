@@ -93,6 +93,9 @@
     <Compile Include="spsObtieneHabitaciones_Result.cs">
       <DependentUpon>TravelOKEntitiesQA.tt</DependentUpon>
     </Compile>
+    <Compile Include="spsObtieneViajeros_Result.cs">
+      <DependentUpon>TravelOKEntitiesQA.tt</DependentUpon>
+    </Compile>
     <Compile Include="spsObtLugarDestinoViajes_Result.cs">
       <DependentUpon>TravelOKEntitiesQA.tt</DependentUpon>
     </Compile>
