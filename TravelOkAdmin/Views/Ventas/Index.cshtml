@@ -1,44 +1,49 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h2>Analisis de Ventas</h2>
 
 <div id="accordion">
     <div class="card">
         <div class="card-header" id="headingOne">
             <h5 class="mb-0">
                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Destinos
+                    Ventas de viaje
                 </button>
             </h5>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
-                <h2>Inserción destino</h2>
-                <form class="form-group">
-                    <div id="dinDestino">Destino</div>
-                    <input type="text" id="inDestino" class="form-control" placeholder="Escribe nuestro destino." />
-                    <div id="dinTitulo">Título</div>
-                    <input type="text" id="inTitulo" class="form-control" placeholder="Escribe el titulo." />
-                    <div id="dinSubtitulo">Subtitulo</div>
-                    <input type="text" id="inSubtitulo" class="form-control" placeholder="Escribe el subtitulo." />
-                    <div id="dinDescripcion">Descripción</div>
-                    <input type="text" id="inDescripcion" class="form-control" placeholder="Escribe la descripcion." />
-                    <div id="dinGuia">Liga de la guía</div>
-                    <input type="text" id="inGuia" class="form-control" placeholder="Liga de la guía." />
-                    <div id="dinItin">Liga del itinerario</div>
-                    <input type="text" id="inItin" class="form-control" placeholder="Liga del itinerario." />
-                    <div id="dinRecom">Liga de las recomendaciones</div>
-                    <input type="text" id="inRecom" class="form-control" placeholder="Liga de las recomendaciones." />
-                    <div id="dvPantalla" class="dvTexto">Mostrar en pantalla principal?</div>
-                    <label class="switch">
-                        <input type="checkbox" id="chActivo">
-                        <span class="slider round"></span>
-                    </label>
-                    <div class="clr"></div>
-                    <div id="btnInsertaDestino" class="btn btn-primary">Inserta Destino</div>
-                </form>
+                <h2>Consulta de viajeros</h2>
+                <div class="row col-12">
+                    <select id="selViaje" class="form-control">
+
+                    </select>
+                </div>
+                <div class="table-responsive">
+                    <table id="tblFirma1" class="table table-striped table-bordered" style="width:98%">
+                        <thead>
+                            <tr>
+                                <th>Folio</th>
+                                <th>Ciudad</th>
+                                <th>Destino</th>
+                                <th>Usuario Travel</th>
+                                <th>Nombre del asistente</th>
+                                <th>Correo</th>
+                                <th>Asiento</th>
+                                <th>Telefono</th>
+                                <th>Costo Total</th>
+                                <th>Abonado</th>
+                                <th>Deuda</th>
+                                <th>Fecha Registro</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbFirma1">
+                        </tbody>
+                    </table>
+                </div>
                 <h2>Eliminar destino</h2>
 
                 <form class="form-group">
@@ -80,16 +85,14 @@
                     </label>
                     <div class="clr"></div>
                     <div id="btnInsertaDetDestino" class="btn btn-primary">Inserta DetalleDestino</div>
-                    @*<div id="btnInsertaDetDestino" class="btn btn-primary">Inserta DetalleDestino</div>*@
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<script src="~/Scripts/Project/jsDestino.js"></script>
-<link href="~/Content/Project/cssDestino.css" rel="stylesheet" />
+
+<script src="~/Scripts/Project/jsVentas.js"></script>
 <input type="hidden" id="urlDestinoInicial" value="@Url.Action("InicialDestinos","Destinos")" />
 <input type="hidden" id="urlDestinoInserta" value="@Url.Action("InsertaDestino","Destinos")" />
 <input type="hidden" id="urlDestinoElimina" value="@Url.Action("EliminaDestino","Destinos")" />
-<input type="hidden" id="urlDetalleDestinoInserta" value="@Url.Action("InsertaDetalleDestino","Destinos")" />

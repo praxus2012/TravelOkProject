@@ -24,3 +24,15 @@ function MensajeExito(mensaje) {
         'success'
     );
 }
+
+
+
+function MensajeExitoPago(mensaje) {
+    Swal.fire(
+        'Completado',
+        mensaje,
+        'success'
+    ).then((result) => {
+        window.location.href = "/Home/Index";
+    });
+}

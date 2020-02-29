@@ -130,6 +130,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SalidasController.cs" />
+    <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,6 +194,7 @@
     <Content Include="Scripts\Project\jsLayout.js" />
     <Content Include="Scripts\Project\jsMensajes.js" />
     <Content Include="Scripts\Project\jsSalida.js" />
+    <Content Include="Scripts\Project\jsVentas.js" />
     <Content Include="Scripts\Project\libs\classie.js" />
     <Content Include="Scripts\Project\libs\imagesloaded.pkgd.min.js" />
     <Content Include="Scripts\Project\jsCostos.js" />
@@ -222,6 +224,7 @@
     <Content Include="Views\Destinos\Index.cshtml" />
     <Content Include="Views\Salidas\Index.cshtml" />
     <Content Include="Views\Costos\Index.cshtml" />
+    <Content Include="Views\Ventas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

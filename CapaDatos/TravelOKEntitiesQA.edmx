@@ -39,6 +39,9 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Property Name="nvSubt" Type="nvarchar" MaxLength="50" />
           <Property Name="nvDesc" Type="nvarchar" MaxLength="500" />
           <Property Name="nvRutaImg" Type="nvarchar" MaxLength="150" />
+          <Property Name="nvItineraDes" Type="nvarchar(max)" />
+          <Property Name="nvGuia" Type="nvarchar(max)" />
+          <Property Name="nvRecom" Type="nvarchar(max)" />
           <Property Name="bPrincipal" Type="bit" />
           <Property Name="bActivo" Type="bit" />
         </EntityType>
@@ -334,6 +337,9 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Parameter Name="nvTitulo" Type="nvarchar" Mode="In" />
           <Parameter Name="nvSubt" Type="nvarchar" Mode="In" />
           <Parameter Name="nvDesc" Type="nvarchar" Mode="In" />
+          <Parameter Name="nvRecom" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="nvItineraDes" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="nvGuia" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="bPrincipal" Type="bit" Mode="In" />
         </Function>
         <Function Name="spiInsertaDetalleDestino" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -374,6 +380,9 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
         <Function Name="spsObtieneDestinosDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spsObtieneDestinosImg" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spsObtieneHabitaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spsObtieneViajeros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idViaje" Type="int" Mode="In" />
+        </Function>
         <Function Name="spsObtLugarDestinoViajes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdSalida" Type="int" Mode="In" />
         </Function>
@@ -631,6 +640,19 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
             <End Role="TO_Costo" EntitySet="TO_Costo" />
           </AssociationSet>
+          <FunctionImport Name="spiInsertaDestino1">
+            <Parameter Name="nvDestino" Mode="In" Type="String" />
+            <Parameter Name="nvTitulo" Mode="In" Type="String" />
+            <Parameter Name="nvSubt" Mode="In" Type="String" />
+            <Parameter Name="nvDesc" Mode="In" Type="String" />
+            <Parameter Name="nvRecom" Mode="In" Type="String" />
+            <Parameter Name="nvItineraDes" Mode="In" Type="String" />
+            <Parameter Name="nvGuia" Mode="In" Type="String" />
+            <Parameter Name="bPrincipal" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="spsObtieneViajeros" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneViajeros_Result)">
+            <Parameter Name="idViaje" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
           <Property Type="Int32" Name="IdExp" Nullable="false" />
@@ -723,6 +745,9 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Property Name="nvSubt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="nvDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="nvRutaImg" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="nvItineraDes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nvGuia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nvRecom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="bPrincipal" Type="Boolean" />
           <Property Name="bActivo" Type="Boolean" />
           <NavigationProperty Name="TO_Experiencias" Relationship="TravelOKEntitiesQAModel.FK__TO_Experi__IdDes__5AEE82B9" FromRole="TO_Destino" ToRole="TO_Experiencias" />
@@ -1012,6 +1037,20 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="spsObtieneViajeros_Result">
+          <Property Type="Int32" Name="Folio" Nullable="false" />
+          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="IdUsuario" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Nombre" Nullable="true" />
+          <Property Type="String" Name="Correo" Nullable="true" />
+          <Property Type="Int32" Name="Asiento" Nullable="true" />
+          <Property Type="String" Name="Telefono" Nullable="true" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Pagado" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Deuda" Nullable="true" Precision="19" />
+          <Property Type="DateTime" Name="FechaRegistro" Nullable="true" Precision="23" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1026,7 +1065,6 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <FunctionImportMapping FunctionImportName="spiAgregaBlog" FunctionName="TravelOKEntitiesQAModel.Store.spiAgregaBlog" />
           <FunctionImportMapping FunctionImportName="spiAgregaImDestinosC" FunctionName="TravelOKEntitiesQAModel.Store.spiAgregaImDestinosC" />
           <FunctionImportMapping FunctionImportName="spiInsertaCosto" FunctionName="TravelOKEntitiesQAModel.Store.spiInsertaCosto" />
-          <FunctionImportMapping FunctionImportName="spiInsertaDestino" FunctionName="TravelOKEntitiesQAModel.Store.spiInsertaDestino" />
           <FunctionImportMapping FunctionImportName="spiInsertaDetalleDestino" FunctionName="TravelOKEntitiesQAModel.Store.spiInsertaDetalleDestino" />
           <FunctionImportMapping FunctionImportName="spiInsertaHabitaciones" FunctionName="TravelOKEntitiesQAModel.Store.spiInsertaHabitaciones" />
           <FunctionImportMapping FunctionImportName="spiInsertaSalida" FunctionName="TravelOKEntitiesQAModel.Store.spiInsertaSalida" />
@@ -1169,6 +1207,9 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
               <MappingFragment StoreEntitySet="TO_Destino">
                 <ScalarProperty Name="bActivo" ColumnName="bActivo" />
                 <ScalarProperty Name="bPrincipal" ColumnName="bPrincipal" />
+                <ScalarProperty Name="nvRecom" ColumnName="nvRecom" />
+                <ScalarProperty Name="nvGuia" ColumnName="nvGuia" />
+                <ScalarProperty Name="nvItineraDes" ColumnName="nvItineraDes" />
                 <ScalarProperty Name="nvRutaImg" ColumnName="nvRutaImg" />
                 <ScalarProperty Name="nvDesc" ColumnName="nvDesc" />
                 <ScalarProperty Name="nvSubt" ColumnName="nvSubt" />
@@ -1320,7 +1361,26 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="spiInsertaDestino1" FunctionName="TravelOKEntitiesQAModel.Store.spiInsertaDestino" />
+          <FunctionImportMapping FunctionImportName="spsObtieneViajeros" FunctionName="TravelOKEntitiesQAModel.Store.spsObtieneViajeros">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtieneViajeros_Result">
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Asiento" ColumnName="Asiento" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="Pagado" ColumnName="Pagado" />
+                <ScalarProperty Name="Deuda" ColumnName="Deuda" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

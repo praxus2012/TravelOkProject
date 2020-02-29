@@ -14,6 +14,9 @@ namespace CapaModelo
         public string sSubTit { get; set; }
         public string sDescrip { get; set; }
         public string sRutaImg { get; set; }
+        public string sRutaRec { get; set; }
+        public string sRutaItin { get; set; }
+        public string sRutaGuia { get; set; }
         public bool bPrincipal { get; set; }
     }
 }
