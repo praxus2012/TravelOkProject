@@ -17,7 +17,7 @@ namespace CapaDatos.Administrador
             {
                 try
                 {
-                    if (contexto.spiInsertaDestino1(CDestino.sDestino, CDestino.sTitulo, CDestino.sSubTit, CDestino.sDescrip,CDestino.sRutaRec,CDestino.sRutaItin,CDestino.sRutaGuia, CDestino.bPrincipal) == -1)
+                    if (contexto.spiInsertaDestino(CDestino.sDestino, CDestino.sTitulo, CDestino.sSubTit, CDestino.sDescrip,CDestino.sRutaRec,CDestino.sRutaItin,CDestino.sRutaGuia, CDestino.bPrincipal) == -1)
 
                         return true;
                     return false;
