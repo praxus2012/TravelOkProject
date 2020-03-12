@@ -28,6 +28,9 @@ namespace CapaDatos
         public string nvSubt { get; set; }
         public string nvDesc { get; set; }
         public string nvRutaImg { get; set; }
+        public string nvItineraDes { get; set; }
+        public string nvGuia { get; set; }
+        public string nvRecom { get; set; }
         public Nullable<bool> bPrincipal { get; set; }
         public Nullable<bool> bActivo { get; set; }
     

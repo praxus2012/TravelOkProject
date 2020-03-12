@@ -15,11 +15,10 @@ namespace TravelOkAdmin.Controllers
         // GET: Destinos
         public ActionResult Index()
         {
-            /*if (Session["Activo"] == null)
-            {
-                RedirectToAction("Index", "Login");
-            }*/
-            return View();
+            if (Session["Usuario"] != null)
+                return View();
+            else
+                return RedirectToAction("Login", "Index");
         }
 
         public ActionResult Carrusel()

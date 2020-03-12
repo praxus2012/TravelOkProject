@@ -9,6 +9,8 @@ namespace CapaModelo
     public class cmViajeros
     {
         public int idViaje { get; set; }
+        public string sSalida { get; set; }
+        public string sDestino { get; set; }
         public string idUsuario { get; set; }
         public string sNombre { get; set; }
         public string sApellido { get; set; }
@@ -20,6 +22,7 @@ namespace CapaModelo
         public decimal  dCostoTotal { get; set; }
         public string sOpcionTour { get; set; }
         public decimal dPagado { get; set; }
-        
+        public decimal dDeuda { get; set; }
+
     }
 }

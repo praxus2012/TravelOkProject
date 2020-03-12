@@ -56,6 +56,9 @@ $(document).on('click', '#btnInsertaDestino', function (e) {
             sTitulo: $('#inTitulo').val(),
             sSubTit: $('#inSubtitulo').val(),
             sDescrip: $('#inDescripcion').val(),
+            sRutaRec: $('#inRecom').val(),
+            sRutaItin: $('#inItin').val(),
+            sRutaGuia: $('#inGuia').val(),
             bPrincipal: CHECADO
 
 

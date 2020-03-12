@@ -391,5 +391,51 @@ namespace CapaDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spVerificaUsuario_Result>("spVerificaUsuario", nvUsuParameter, nvContParameter);
         }
+    
+        public virtual int spiInsertaDestino1(string nvDestino, string nvTitulo, string nvSubt, string nvDesc, string nvRecom, string nvItineraDes, string nvGuia, Nullable<bool> bPrincipal)
+        {
+            var nvDestinoParameter = nvDestino != null ?
+                new ObjectParameter("nvDestino", nvDestino) :
+                new ObjectParameter("nvDestino", typeof(string));
+    
+            var nvTituloParameter = nvTitulo != null ?
+                new ObjectParameter("nvTitulo", nvTitulo) :
+                new ObjectParameter("nvTitulo", typeof(string));
+    
+            var nvSubtParameter = nvSubt != null ?
+                new ObjectParameter("nvSubt", nvSubt) :
+                new ObjectParameter("nvSubt", typeof(string));
+    
+            var nvDescParameter = nvDesc != null ?
+                new ObjectParameter("nvDesc", nvDesc) :
+                new ObjectParameter("nvDesc", typeof(string));
+    
+            var nvRecomParameter = nvRecom != null ?
+                new ObjectParameter("nvRecom", nvRecom) :
+                new ObjectParameter("nvRecom", typeof(string));
+    
+            var nvItineraDesParameter = nvItineraDes != null ?
+                new ObjectParameter("nvItineraDes", nvItineraDes) :
+                new ObjectParameter("nvItineraDes", typeof(string));
+    
+            var nvGuiaParameter = nvGuia != null ?
+                new ObjectParameter("nvGuia", nvGuia) :
+                new ObjectParameter("nvGuia", typeof(string));
+    
+            var bPrincipalParameter = bPrincipal.HasValue ?
+                new ObjectParameter("bPrincipal", bPrincipal) :
+                new ObjectParameter("bPrincipal", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaDestino1", nvDestinoParameter, nvTituloParameter, nvSubtParameter, nvDescParameter, nvRecomParameter, nvItineraDesParameter, nvGuiaParameter, bPrincipalParameter);
+        }
+    
+        public virtual ObjectResult<spsObtieneViajeros_Result> spsObtieneViajeros(Nullable<int> idViaje)
+        {
+            var idViajeParameter = idViaje.HasValue ?
+                new ObjectParameter("idViaje", idViaje) :
+                new ObjectParameter("idViaje", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtieneViajeros_Result>("spsObtieneViajeros", idViajeParameter);
+        }
     }
 }

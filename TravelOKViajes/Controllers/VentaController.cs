@@ -16,6 +16,7 @@ namespace TravelOKViajes.Controllers
     public class VentaController : Controller
     {
         // GET: Venta
+        
 
         public ActionResult Index()
         {
@@ -25,11 +26,11 @@ namespace TravelOKViajes.Controllers
         [HttpPost]
         public ActionResult InicialVenta(cmVentaDet detVenta)
         {
-            /*if (Session["Activo"] == null)
+            if (Session["UserName"] == null)
             {
-                RedirectToAction("Index", "Login");
+                return RedirectToAction("TravelInicio", "Logueo");
             }
-            return View();*/
+            /*return View();*/
             /*return RedirectToAction("SeleccionVenta");*/
             var resultado = new JObject();
             CD_Transporte cdTran = new CD_Transporte();
@@ -72,6 +73,10 @@ namespace TravelOKViajes.Controllers
 
         public ActionResult InicioSelecVenta()
         {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("TravelInicio", "Logueo");
+            }
             var resultado = new JObject();
             try
             {
@@ -93,6 +98,10 @@ namespace TravelOKViajes.Controllers
 
         public ActionResult InicioDetVenta(cmVentaDet oDest)
         {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("TravelInicio", "Logueo");
+            }
             var resultado = new JObject();
             try
             {
@@ -116,6 +125,10 @@ namespace TravelOKViajes.Controllers
         [HttpPost]
         public ActionResult ObtienePropuestas(cmHabitacion oHabitacion)
         {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("TravelInicio", "Logueo");
+            }
             var resultado = new JObject();
             try
             {
@@ -186,6 +199,10 @@ namespace TravelOKViajes.Controllers
         [HttpPost]
         public ActionResult RecuperaFechasVen(cmVentaDet detVenta)
         {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("TravelInicio", "Logueo");
+            }
             var resultado = new JObject();
             try
             {
@@ -214,11 +231,19 @@ namespace TravelOKViajes.Controllers
 
         public ActionResult RegistraUsuarios()
         {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("TravelInicio", "Logueo");
+            }
             return View();
         }
         [HttpPost]
         public ActionResult InsertaViajeros(List<cmViajeros> oUsrViajeros)
         {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("TravelInicio", "Logueo");
+            }
             JObject resultado = new JObject();
             if (oUsrViajeros.Count > 0)
             {
@@ -266,8 +291,14 @@ namespace TravelOKViajes.Controllers
                         oUsrViajeros.ToList().ForEach(cc => cc.dCostoTotal = tot);
                         break;
                 }
+
                 if (cdViajeros.InsertaViajeros(oUsrViajeros))
+                {
                     resultado["Exito"] = true;
+                    Session["UserID"] = Session["UserID"];
+                    Session["UserName"] = Session["UserName"];
+                    Session["dCosto"] = tot;
+                }                    
                 else
                     resultado["Exito"] = false;
             }
@@ -283,20 +314,30 @@ namespace TravelOKViajes.Controllers
         {
             return View();
         }
-
         public ActionResult Pago()
         {
-            MercadoPago.SDK.AccessToken = "PROD_ACCESS_TOKEN";
-            Preference preference = new Preference();
-            preference.Items.Add(new Item()
+            if (Session["UserName"] == null)
             {
-                Title = "Viaje",
-                Quantity = 1,
-                CurrencyId = CurrencyId.MXN,
-                UnitPrice = (decimal)75.56,
-                Id = "1"
-            });
-            preference.Save();
+                return RedirectToAction("TravelInicio", "Logueo");
+            }
+            decimal dCosto = Decimal.Parse(Session["dCosto"].ToString());
+            if (MercadoPago.SDK.AccessToken == "" || MercadoPago.SDK.AccessToken == null)
+            {
+                MercadoPago.SDK.AccessToken = "TEST-6582260809137792-022623-28a70b40031661378673091a2e5e2645-38792279";
+            }
+                Preference preference = new Preference();
+                preference.Items.Add(new Item()
+                {
+                    Title = "Viaje",
+                    Quantity = 1,
+                    CurrencyId = CurrencyId.MXN,
+                    UnitPrice = (decimal)dCosto,
+                    Id = Session["UserID"].ToString()
+                });
+                preference.Save();
+                ViewData["pref"] = preference;
+                ViewData["dCosto"] = dCosto;
+               
             return View();
         }
     }

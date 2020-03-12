@@ -17,7 +17,10 @@ namespace TravelOkAdmin.Controllers
         // GET: Costos
         public ActionResult Index()
         {
-            return View();
+            if(Session["Usuario"]!=null)
+                return View();
+            else
+                return RedirectToAction("Login", "Index");
         }
 
         [HttpPost]

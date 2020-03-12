@@ -40,5 +40,37 @@ namespace CapaDatos
             }
             return bCorrecto;
         }
+
+        public List<cmPersonasViaje> ObtenerViajeros(TO_Viajes oViajes)
+        {
+            List<cmPersonasViaje> oLsViajeros = new List<cmPersonasViaje>();
+            using (var contexto = new TravelOKEntitiesQA())
+            {
+                try
+                {
+                    oLsViajeros = contexto.spsObtieneViajeros(oViajes.IdViaje).Select(v => new cmPersonasViaje
+                    {
+                        Folio = v.Folio,
+                        Nombre = v.Nombre,
+                        Asiento = v.Asiento,
+                        Ciudad = v.Ciudad,
+                        Correo = v.Correo,
+                        Destino=v.Destino,
+                        Telefono = v.Telefono,
+                        Usuario=v.IdUsuario,
+                        Abonado=v.Pagado,
+                        Deuda=v.Deuda,
+                        Costo=v.CostoTotal,
+                        sFechaReg=v.FechaRegistro.ToString()
+                    }).ToList();
+                    
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return oLsViajeros;
+        }
     }
 }
