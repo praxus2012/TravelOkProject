@@ -110,7 +110,7 @@ function successRecupDestVta(data) {
         $('#selDestinos')
             .append($("<option></option>")
                 .attr("value", "0")
-                .text("¿Ha donde vamos?"));
+                .text("¿A dónde vamos?"));
         $.each(data.LsDestinos, function (i) {
             $('#selDestinos')
                 .append($("<option></option>")
@@ -160,10 +160,16 @@ function successRecupFechVta(data) {
                 .attr("value", "0")
                 .text("Fechas"));
         $.each(data.LsFechaVta, function (i) {
+            var fecha = data.LsFechaVta[i].dtFecha;
+      
+            var $nuevaFecha = fecha.toString().slice(0,9);
+
             $('#selFechas')
                 .append($("<option></option>")
                     .attr("value", data.LsFechaVta[i].IdVenta)
-                    .text(data.LsFechaVta[i].dtFecha));
+                    .text($nuevaFecha));
         });
     }
+
+
 }
