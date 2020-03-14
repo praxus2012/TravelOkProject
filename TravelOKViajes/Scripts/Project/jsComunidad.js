@@ -120,18 +120,18 @@ function InsertaComunidad(datosComunidad) {
 }
 
 function successInsertaComunidad(data) {
-    if (data.Exito) {
+   // if (data.Exito) {
         $('#selDestinos').val('0');
         $('.inNombre').val('');
         $('.txExp').val('');
-        $(".rate").rate("setValue");
+        $(".rate").rate("getValue");
         MensajeExito("Gracias por sus comentarios.");
-        CargaInicial();
-        OcultaCarga();
-    } else {
-        MensajeError('Ha ocurrido un error inesperado');
-        OcultaCarga();
-    }
+       // CargaInicial();
+       // OcultaCarga();
+   // } else {
+    //    MensajeError('Ha ocurrido un error inesperado');
+     //   OcultaCarga();
+   // }
 }
 
 function CreaComentario(Nombre, Destino, Testimonio,Calificacion,Fecha,Img) {
