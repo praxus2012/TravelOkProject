@@ -27,26 +27,28 @@ function ObtieneDestinos() {
 }
 
 function successObtieneDestinos(data) {
-    if (data.Exito) {
-        var valact = 0;
-        $.each(data.LsDestinos, function (i) {
-            $.each(data.LsDestinos[i], function (key, val) {
-                if ($.isNumeric(val))
-                    valact = val;
-                else {
-                    $('#selDestinos')
-                        .append($("<option></option>")
-                            .attr("value", valact)
-                            .text(val));
-                }
-            });            
-        });
+    $('.inNombre').val();
+    cargarDatosSelect($('#selDestinos'), null, data.LsDestinos);
+  //  if (data.Exito) {
+     //   var valact = 0;
+      //  $.each(data.LsDestinos, function (i) {
+        //    $.each(data.LsDestinos[i], function (key, val) {
+          //      if ($.isNumeric(val))
+            //        valact = val;
+              //  else {
+                //    $('#selDestinos')
+                  //      .append($("<option></option>")
+                    //        .attr("value", valact)
+                      //      .text(val));
+           //     }
+          //  });            
+       // });
         GeneraComentarios(data.LsComunidad);
         OcultaCarga();
-    } else {
-        MensajeError('Ha ocurrido un error inesperado');
-        OcultaCarga();
-    }
+   // } else {
+     //   MensajeError('Ha ocurrido un error inesperado');
+    //    OcultaCarga();
+   // }
 }
 
 function GeneraComentarios(Comunidad) {
@@ -141,4 +143,18 @@ function CreaComentario(Nombre, Destino, Testimonio,Calificacion,Fecha,Img) {
         "<li><p class='lead dvText'>" + Testimonio + "<br/><div>" + Fecha + "</div></p></li></ul></div>" +
         "<div class='row col-3'><img class='imgVis' src='" + Img + "'></div></div><div class='rate' id='Trate' data-rate-value=" + Calificacion + "></div></div > ";
     return dvComentario;
+}
+
+function cargarDatosSelect(divContent = null, idSelected = null, datos = null, extras = null) {
+    divContent.empty();
+    html = '';
+    html = html + '<option value="" selected style="min-width: 300px;"> Selecciona una opción </option>'
+    $.each(datos, function (key, value) {
+        html += '<option ';
+        html += (extras && extras.subtext) ? ' data-subtext="' + value.tipo + '"' : '';
+        html += ' value="' + value.Viaje + '" ';
+        //       html += (idSelected == value.id) ? 'selected ' : '';
+        html += '>' + value.Destino + '</option>';
+    });
+    divContent.append(html);
 }
