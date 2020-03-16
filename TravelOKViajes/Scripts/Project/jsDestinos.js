@@ -69,6 +69,21 @@ function successObtieneDestinosDet(data) {
         destDesc = data.DestinoDet['sTitulo'];
         $('.hSubTmodal').text(data.DestinoDet['sSubTit']);
         $('#dvInfo').text(data.DestinoDet['sDescrip']);
+
+        if (data.DestinoDet['sRutaItin'] != null) {
+            $(".btIti").attr("href", data.DestinoDet['sRutaItin']);
+            $(".btIti").attr('target', '_blank');
+        }
+        if (data.DestinoDet['sRutaGuia'] != null) {
+            $(".btGuia").attr("href", data.DestinoDet['sRutaGuia']);
+            $(".btGuia").attr('target', '_blank');
+        }
+        if (data.DestinoDet['sRutaRec'] != null) {
+            $(".btRec").attr("href", data.DestinoDet['sRutaRec']);
+            $(".btRec").attr('target', '_blank');
+        }
+
+
         var contador = 0;
         $('.carousel-indicators').empty();
         $('.carousel-inner').empty();

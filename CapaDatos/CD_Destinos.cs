@@ -72,7 +72,7 @@ sTitulo = des.sTitulo
             //using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
-                Destino = (from des in contexto.spsObtieneDestinoDet(Destino.idViaje)
+                Destino = (from des in contexto.spsObtieneDestinoDet1(Destino.idViaje)
                            select
                               new cmDestinos
                               {
@@ -80,7 +80,10 @@ sTitulo = des.sTitulo
                                   sDescrip = des.sDescrip,
                                   sRutaImg = des.sRutaImg,
                                   sSubTit = des.sSubTit,
-                                  sTitulo = des.sTitulo
+                                  sTitulo = des.sTitulo,
+                                  sRutaItin = des.sIntin,
+                                  sRutaGuia = des.sGuia,
+                                  sRutaRec = des.sRec
                               }).FirstOrDefault();
             }
             return Destino;

@@ -81,7 +81,13 @@
     <Compile Include="spsObtieneCarrusel_Result.cs">
       <DependentUpon>TravelOkEntitiesQA.tt</DependentUpon>
     </Compile>
+    <Compile Include="spsObtieneDestinoDet1_Result.cs">
+      <DependentUpon>TravelOkEntitiesQA.tt</DependentUpon>
+    </Compile>
     <Compile Include="spsObtieneDestinoDet_Result.cs">
+      <DependentUpon>TravelOkEntitiesQA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spsObtieneDestinosDet1_Result.cs">
       <DependentUpon>TravelOkEntitiesQA.tt</DependentUpon>
     </Compile>
     <Compile Include="spsObtieneDestinosDet_Result.cs">

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TravelOKEntitiesQAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TravelOKEntitiesQAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TO_Blog">
           <Key>
             <PropertyRef Name="IdBlog" />
@@ -475,8 +475,7 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TravelOKEntitiesQAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -856,16 +855,16 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
             <Parameter Name="nvHabitacion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spdEliminaDestinoId">
-            <Parameter Name="idDestino" Mode="In" Type="Int32" />
+          <Parameter Name="idDestino" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spdEliminaHabitacion">
-            <Parameter Name="IdTipoHab" Mode="In" Type="String" />
+          <Parameter Name="IdTipoHab" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spdEliminaSalida">
-            <Parameter Name="nvSalida" Mode="In" Type="String" />
+          <Parameter Name="nvSalida" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spdEliminaSalidaId">
-            <Parameter Name="idSalida" Mode="In" Type="Int32" />
+          <Parameter Name="idSalida" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spiAgregaBlog">
             <Parameter Name="nvTitulo" Mode="In" Type="String" />
@@ -905,7 +904,7 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
             <Parameter Name="CapMax" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spiInsertaSalida">
-            <Parameter Name="nvSalida" Mode="In" Type="String" />
+          <Parameter Name="nvSalida" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spInsertaComunidad">
             <Parameter Name="Nombre" Mode="In" Type="String" />
@@ -924,7 +923,7 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
             <Parameter Name="IdDestino" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtieneCarrusel" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneCarrusel_Result)">
-            <Parameter Name="Id_Destino" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Destino" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtieneDestinoDet" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneDestinoDet_Result)">
             <Parameter Name="idViaje" Mode="In" Type="Int32" />
@@ -933,14 +932,14 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <FunctionImport Name="spsObtieneDestinosImg" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneDestinosImg_Result)" />
           <FunctionImport Name="spsObtieneHabitaciones" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneHabitaciones_Result)" />
           <FunctionImport Name="spsObtieneViajeros" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneViajeros_Result)">
-            <Parameter Name="idViaje" Mode="In" Type="Int32" />
+          <Parameter Name="idViaje" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtLugarDestinoViajes" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtLugarDestinoViajes_Result)">
-            <Parameter Name="IdSalida" Mode="In" Type="Int32" />
+          <Parameter Name="IdSalida" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtLugarSalidaViajes" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtLugarSalidaViajes_Result)" />
           <FunctionImport Name="spsObtLugarSalViajesDest" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtLugarSalViajesDest_Result)">
-            <Parameter Name="IdDestino" Mode="In" Type="Int32" />
+          <Parameter Name="IdDestino" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtPropHabUno">
             <Parameter Name="IdViaje" Mode="In" Type="Int32" />
@@ -960,6 +959,10 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
             <Parameter Name="nvUsu" Mode="In" Type="String" />
             <Parameter Name="nvCont" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spsObtieneDestinoDet1" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneDestinoDet1_Result)">
+            <Parameter Name="idViaje" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spsObtieneDestinosDet1" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneDestinosDet1_Result)" />
         </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
           <Property Type="Int32" Name="IdExp" Nullable="false" />
@@ -1044,6 +1047,21 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <Property Type="DateTime" Name="dtFecReg" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="dtFecAct" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="Activo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spsObtieneDestinoDet1_Result">
+          <Property Type="Int32" Name="idViaje" Nullable="false" />
+          <Property Type="String" Name="sTitulo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sSubTit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sDescrip" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="sRutaImg" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="sIntin" Nullable="true" />
+          <Property Type="String" Name="sGuia" Nullable="true" />
+          <Property Type="String" Name="sRec" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spsObtieneDestinosDet1_Result">
+          <Property Type="Int32" Name="idviaje" Nullable="false" />
+          <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="costolugar" Nullable="true" Precision="19" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1274,26 +1292,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spsObtieneDestinoDet" FunctionName="TravelOKEntitiesQAModel.Store.spsObtieneDestinoDet">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtieneDestinoDet_Result">
-                <ScalarProperty Name="idViaje" ColumnName="idViaje" />
-                <ScalarProperty Name="sTitulo" ColumnName="sTitulo" />
-                <ScalarProperty Name="sSubTit" ColumnName="sSubTit" />
-                <ScalarProperty Name="sDescrip" ColumnName="sDescrip" />
-                <ScalarProperty Name="sRutaImg" ColumnName="sRutaImg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spsObtieneDestinosDet" FunctionName="TravelOKEntitiesQAModel.Store.spsObtieneDestinosDet">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtieneDestinosDet_Result">
-                <ScalarProperty Name="idviaje" ColumnName="idviaje" />
-                <ScalarProperty Name="Destino" ColumnName="Destino" />
-                <ScalarProperty Name="costolugar" ColumnName="costolugar" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spsObtieneDestinosImg" FunctionName="TravelOKEntitiesQAModel.Store.spsObtieneDestinosImg">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtieneDestinosImg_Result">
@@ -1371,6 +1369,29 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
                 <ScalarProperty Name="dtFecReg" ColumnName="dtFecReg" />
                 <ScalarProperty Name="dtFecAct" ColumnName="dtFecAct" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spsObtieneDestinoDet1" FunctionName="TravelOKEntitiesQAModel.Store.spsObtieneDestinoDet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtieneDestinoDet1_Result">
+                <ScalarProperty Name="idViaje" ColumnName="idViaje" />
+                <ScalarProperty Name="sTitulo" ColumnName="sTitulo" />
+                <ScalarProperty Name="sSubTit" ColumnName="sSubTit" />
+                <ScalarProperty Name="sDescrip" ColumnName="sDescrip" />
+                <ScalarProperty Name="sRutaImg" ColumnName="sRutaImg" />
+                <ScalarProperty Name="sIntin" ColumnName="sIntin" />
+                <ScalarProperty Name="sGuia" ColumnName="sGuia" />
+                <ScalarProperty Name="sRec" ColumnName="sRec" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spsObtieneDestinosDet1" FunctionName="TravelOKEntitiesQAModel.Store.spsObtieneDestinosDet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtieneDestinosDet1_Result">
+                <ScalarProperty Name="idviaje" ColumnName="idviaje" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="costolugar" ColumnName="costolugar" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

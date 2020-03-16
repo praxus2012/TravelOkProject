@@ -412,5 +412,19 @@ namespace CapaDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spVerificaUsuario_Result>("spVerificaUsuario", nvUsuParameter, nvContParameter);
         }
+    
+        public virtual ObjectResult<spsObtieneDestinoDet1_Result> spsObtieneDestinoDet1(Nullable<int> idViaje)
+        {
+            var idViajeParameter = idViaje.HasValue ?
+                new ObjectParameter("idViaje", idViaje) :
+                new ObjectParameter("idViaje", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtieneDestinoDet1_Result>("spsObtieneDestinoDet1", idViajeParameter);
+        }
+    
+        public virtual ObjectResult<spsObtieneDestinosDet1_Result> spsObtieneDestinosDet1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtieneDestinosDet1_Result>("spsObtieneDestinosDet1");
+        }
     }
 }
