@@ -104,6 +104,7 @@ function LlamaRecupFechVta(detVenta) {
     });
 }
 function successRecupFechVta(data) {
+    console.log(data.LsFechaVta);
     if (data.Exito) {
         $('#selFechas').empty();
         $('#selFechas')
@@ -111,10 +112,15 @@ function successRecupFechVta(data) {
                 .attr("value", "0")
                 .text("Fechas"));
         $.each(data.LsFechaVta, function (i) {
+
+            var fecha = data.LsFechaVta[i].dtFecha;
+
+            var $nuevaFecha = fecha.toString().slice(0, 9);
+
             $('#selFechas')
                 .append($("<option></option>")
                     .attr("value", data.LsFechaVta[i].IdVenta)
-                    .text(data.LsFechaVta[i].dtFecha));
+                    .text($nuevaFecha));
         });
 
         if (sessionStorage.getItem("Fecha") != null) {

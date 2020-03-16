@@ -132,7 +132,9 @@ function successInsertaComunidad(data) {
         $('#selDestinos').val('0');
         $('.inNombre').val('');
         $('.txExp').val('');
+        $('#inArchivo').val('');
         $(".rate").rate("getValue");
+
         MensajeExito("Gracias por sus comentarios.");
        // CargaInicial();
        // OcultaCarga();

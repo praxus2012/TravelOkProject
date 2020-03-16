@@ -19,12 +19,13 @@ function GeneraRegistros() {
             htmlOptions +
             '</select>' +
             '<input type="email" placeholder="correo@ejemplo.com" class="form-control mt-3 inEmail">' +
-            '<input type="number" placeholder="Edad" max="150" min="0" class="form-control mt-3 inEdad">' +
-            '<input type="tel" placeholder="Teléfono" class="form-control mt-3 inTel">' +
+            '<input type="number" pattern="[0-9]" placeholder="Edad" max="150" min="0" class="form-control mt-3 inEdad">' +
+            '<input type="number" placeholder="Teléfono" class="form-control mt-3 inTel">' +
             '</div>';
     }
     $('.dvRegistro').append(html);
 }
+
 
 $(document).on('click', '#btnContinuar', function () {
     var bCorrecto = true;
