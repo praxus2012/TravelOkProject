@@ -21,10 +21,10 @@ function successObtieneDestinos(data) {
     if (data.Exito) {
         $.each(data.LsDestinos, function (i) {
             $('.dvCards').append(
-                '<div class="col-4 cor-' + data.LsDestinos[i]['IdDestino'] + '">' +
+                '<div class="col-sm-6 col-m-6 col-lg-4 cor-' + data.LsDestinos[i]['IdDestino'] + '">' +
                 '<div class= "card mb-3" style = "max-width: 540px;">' +
                 '<div class="row no-gutters">' +
-                '<div class="col-md-4">' +
+                '<div class="col-md-4 col-sm-12">' +
                 '<img src="/Img/ImgDestinos/' + data.LsDestinos[i]['sDestino'] + '.png" class="card-img" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +

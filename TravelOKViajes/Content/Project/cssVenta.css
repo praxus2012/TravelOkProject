@@ -77,12 +77,6 @@
     margin:0 auto;
 }
 
-#txDis {
-    position: absolute;
-    top: 6rem;
-    font-size:1.5rem;
-    right: 11rem;
-}
 
 .clr{
     clear:both;
@@ -158,6 +152,16 @@
     margin: 0 auto;
     font-size: 1.5rem;
 }
+
+
+
+@media (max-width: 767px) {
+    #dvSelecAs {
+        margin-right: -2rem;
+    }
+}
+
+
 
 /*
 

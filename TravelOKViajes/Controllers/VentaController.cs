@@ -331,7 +331,7 @@ namespace TravelOKViajes.Controllers
                     Title = "Viaje",
                     Quantity = 1,
                     CurrencyId = CurrencyId.MXN,
-                    UnitPrice = (decimal)dCosto,
+                    UnitPrice = (decimal)1,
                     Id = Session["UserID"].ToString()
                 });
                 preference.Save();

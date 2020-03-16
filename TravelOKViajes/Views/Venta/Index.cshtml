@@ -6,120 +6,39 @@
 
 <h2 id="hdes">Vámonos a </h2>
 
-<div id="dvDer" class="container col-4">
+
+<div class="container col-12">
     <div class="row col-12">
-        <label id="txCen">Seleccione sus asientos</label>
+        <div id="dvSelecAs" class="container col-lg-6 col-sm-12 col-md-6 mb-4">
+            <div class="row col-12">
+                <label id="txCen" class="col-12">Seleccione sus asientos</label>
+                <label id="txDis">Asientos Totales: </label>
+            </div>
+            <div class="row col-12 d-flex justify-content-around mt-3">
+                <div id="dvLibre" class="col-2">
+                    <label class="txAs" id="txLib">Libre</label>
+                </div>
+                <div id="dvOcupado" class="col-2">
+                    <label class="txAs" id="txOc">Ocupado</label>
+                </div>
+                <div id="dvSelec" class="col-2">
+                    <label class="txAs" id="txSel">Seleccionado</label>
+                </div>
+            </div>
+            <button class="btn btn-primary row form-control mt-5" id="btnContinuar">Continuar</button>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div id="dvTransporte">
+                <ul id="ulIzq">
+                </ul>
+                <ul id="ulDer">
+                </ul>
+                <ul id="ulAtras">
+                </ul>
+            </div>
+        </div>        
     </div>
-    <div class="row col-12 d-flex justify-content-around mt-3">
-        <div id="dvLibre" class="col-2">
-            <label class="txAs" id="txLib">Libre</label>
-        </div>
-        <div id="dvOcupado" class="col-2">
-            <label class="txAs" id="txOc">Ocupado</label>
-        </div>
-        <div id="dvSelec" class="col-2">
-            <label class="txAs" id="txSel">Seleccionado</label>
-        </div>
-    </div>
-    <button class="btn btn-primary row col-10 mt-5" id="btnContinuar">Continuar</button>
 </div>
-<div id="dvTransporte">
-    <ul id="ulIzq">
-    </ul>
-    <ul id="ulDer">
-    </ul>
-    <ul id="ulAtras">
-    </ul>
-</div>
-
-<label id="txDis">Asientos Totales: </label>
-
-
-<!--
-<div id="dvAutobus">
-    <label>@ViewData["idDestino"]</label>
-    <ul id="ulPrimerAsiento">
-        <li id="a1">
-        </li>
-        <li id="a2">
-
-        </li>
-        <li id="a3">
-
-        </li>
-    </ul>
-    <ul id="ulIzq">
-        <li>
-            <ul>
-                <li>
-
-                </li>
-                <li>
-
-                </li>
-            </ul>
-        </li>
-        <li>
-            <ul>
-                <li>
-
-                </li>
-                <li>
-
-                </li>
-            </ul>
-        </li>
-        <li>
-            <ul>
-                <li>
-
-                </li>
-                <li>
-
-                </li>
-            </ul>
-        </li>
-        <li>
-            <ul>
-                <li>
-
-                </li>
-                <li>
-
-                </li>
-            </ul>
-        </li>
-    </ul>
-    <ul id="ulAtras">
-        <li>
-
-        </li>
-        <li>
-
-        </li>
-        <li>
-
-        </li>
-        <li>
-
-        </li>
-    </ul>
-    <ul id="ulArriba">
-        <li>
-
-        </li>
-        <li>
-
-        </li>
-        <li>
-
-        </li>
-        <li>
-
-        </li>
-    </ul>
-</div>-->
-
 <script src="~/Scripts/Project/jsVenta.js"></script>
 <link href="~/Content/Project/cssVenta.css" rel="stylesheet" />
 <input type="hidden" id="urlinicialTrans" value="@Url.Action("InicialVenta","Venta")" />

@@ -1,58 +1,47 @@
 ﻿@{
     ViewBag.Title = "Contacto";
 }
-<div class="d-flex justify-content-center container dvFlexContact">
-    <div class="mapouter">
-        <div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Calle%20Delfino%20Valenzuela%20430%2C%20Rafael%20Lucio%2C%2091110%20Xalapa-Enr%C3%ADquez%2C%20Ver.&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.embedgooglemap.net/blog/best-wordpress-themes/">embedgooglemap.net themes video blog</a></div>
-        <style>
-            .mapouter {
-                position: relative;
-                text-align: right;
-                height: 500px;
-                width: 600px;
-            }
+<div class="d-flex justify-content-center container mt-5 dvFlexContact">
+    <div class="row">
+        <div class="mapouter col-lg-6 col-sm-6">
+            <div id="dvMap"><iframe class="col-12 h-100 mh-100" id="gmap_canvas" src="https://maps.google.com/maps?q=Calle%20Delfino%20Valenzuela%20430%2C%20Rafael%20Lucio%2C%2091110%20Xalapa-Enr%C3%ADquez%2C%20Ver.&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.embedgooglemap.net/blog/best-wordpress-themes/">embedgooglemap.net themes video blog</a></div>
+            
+        </div>
+        <div class="col-lg-6 col-sm-6 mt-4">
+            <address>
+                Xalapa<br />
+                Delfino Valenzuela, Col.Rafael Lucio. #430<br />
+                <abbr title="Phone">Teléfono celular:</abbr>
+                (228)-1223506
+                <abbr title="HomePhone">Oficina:</abbr>
+                (228)-2900192
 
-            .gmap_canvas {
-                overflow: hidden;
-                background: none !important;
-                height: 500px;
-                width: 600px;
-            }
-        </style>
+            </address>
+
+            <address>
+                Puebla<br />
+                <abbr title="Phone">Teléfono celular:</abbr>
+                (222)-3602031
+            </address>
+
+            <address>
+                Veracruz<br />
+                <abbr title="Phone">Teléfono celular:</abbr>
+                (229)-2070568
+            </address>
+
+            <address>
+                CDMX<br />
+                <abbr title="Phone">Teléfono celular:</abbr>
+                (55) 2920 6446
+            </address>
+
+            <address>
+                <strong>Correo electrónico:</strong>   <a href="mailto:servicio.travelok@outlook.com">servicio.travelok@outlook.com</a><br />
+            </address>
+        </div>
     </div>
-    <div id="dvAdd">
-        <address>
-            Xalapa<br />
-            Delfino Valenzuela, Col.Rafael Lucio. #430<br />
-            <abbr title="Phone">Teléfono celular:</abbr>
-            (228)-1223506
-            <abbr title="HomePhone">Oficina:</abbr>
-            (228)-2900192
-
-        </address>
-
-        <address>
-            Puebla<br />
-            <abbr title="Phone">Teléfono celular:</abbr>
-            (222)-3602031
-        </address>
-
-        <address>
-            Veracruz<br />
-            <abbr title="Phone">Teléfono celular:</abbr>
-            (229)-2070568
-        </address>
-
-        <address>
-            CDMX<br />
-            <abbr title="Phone">Teléfono celular:</abbr>
-            (55) 2920 6446
-        </address>
-
-        <address>
-            <strong>Correo electrónico:</strong>   <a href="mailto:servicio.travelok@outlook.com">servicio.travelok@outlook.com</a><br />
-        </address>
-    </div>
+    
 </div>
 
 <link href="~/Content/Project/cssContact.css" rel="stylesheet" />

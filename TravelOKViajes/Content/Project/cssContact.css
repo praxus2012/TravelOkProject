@@ -15,10 +15,8 @@
     border-radius: 0.3rem;
 }
 
-#dvAdd {
-    margin-left: 10%;
-    margin-top: 2rem;
-    font-family: sans-serif;
+#dvMap{
+    height:20rem;
 }
 
 .htitle {

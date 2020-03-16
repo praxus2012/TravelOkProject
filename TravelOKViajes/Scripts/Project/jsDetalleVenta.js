@@ -173,7 +173,7 @@ function successObtienePropuestas(data) {
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
                 '<div class="col-md-4 imgH">' +
-                '<img src="http://www.hotelelparque.com/wp-content/uploads/2017/11/habitacion-sencilla-fomeque.jpg" class="card-img" alt="...">' +
+                '<img src="http://www.hotelelparque.com/wp-content/uploads/2017/11/habitacion-sencilla-fomeque.jpg" class="card-img col-12 m-0" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +
                 '<div class="card-body cb-1">';
@@ -193,7 +193,7 @@ function successObtienePropuestas(data) {
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
                 '<div class="col-md-4 imgH">' +
-                '<img src="https://cdn.easy-rez.com/production/hotels/a5ef0afdd823b3a0448bc3198a285aee/uploads/.rooms/th_0752692001531761234.jpg" class="card-img" alt="...">' +
+                '<img src="https://cdn.easy-rez.com/production/hotels/a5ef0afdd823b3a0448bc3198a285aee/uploads/.rooms/th_0752692001531761234.jpg" class="card-img col-12 m-0" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +
                 '<div class="card-body cb-2">';
@@ -213,7 +213,7 @@ function successObtienePropuestas(data) {
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
                 '<div class="col-md-4 imgH">' +
-                '<img src="https://www.hotelveracruz.com.mx/uploads/galeriahabitaciones/estandar-sencilla-hotel-veracruz-centro-b_UQkqZsm.jpg" class="card-img" alt="...">' +
+                '<img src="https://www.hotelveracruz.com.mx/uploads/galeriahabitaciones/estandar-sencilla-hotel-veracruz-centro-b_UQkqZsm.jpg" class="card-img col-12 m-0" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +
                 '<div class="card-body cb-3">';
@@ -234,7 +234,7 @@ function successObtienePropuestas(data) {
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
                 '<div class="col-md-4 imgH">' +
-                '<img src="http://www.hotelelparque.com/wp-content/uploads/2017/11/habitacion-sencilla-fomeque.jpg" class="card-img" alt="...">' +
+                '<img src="http://www.hotelelparque.com/wp-content/uploads/2017/11/habitacion-sencilla-fomeque.jpg" class="card-img col-12 m-0" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +
                 '<div class="card-body cb-1">';
