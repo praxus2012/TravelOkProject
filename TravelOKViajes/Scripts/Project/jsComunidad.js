@@ -65,7 +65,6 @@ function GeneraComentarios(Comunidad) {
 $(document).on("click", "#btnComparte", function (e) {
     var rating = $(".rate").rate("getValue");
 
-    console.log($ratingSeleccionado);
     var vidFileLength = $("#inArchivo")[0].files.length;
     console.log(rating);
     if ($('#selDestinos').val() != 0 && $('.txExp').val() != "" && $('.inNombre').val() != "" && vidFileLength > 0) {
