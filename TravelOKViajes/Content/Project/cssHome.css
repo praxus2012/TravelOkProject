@@ -59,7 +59,6 @@
 
 #selSalida, #selDestinos, #selFechas, .btselec {
     height: 4rem;
-    font-size: 20pt;
 }
 
 #liInd:hover {
