@@ -53,7 +53,9 @@ namespace TravelOKViajes.Controllers
                         new JProperty("Estado", Usr.Estado),
                         new JProperty("Municipio", Usr.Municipio),
                         new JProperty("Telefono", Usr.Telefono),
-                        new JProperty("Activo", Usr.Activo));
+                        new JProperty("Activo", Usr.Activo),
+                        new JProperty("TelefonoEmerg", Usr.TelefonoEmerg),
+                        new JProperty("ParentescoTelEmerg", Usr.ParentescoTelEmerg));
                     Session["UserID"] = Usr.Correo;
                     Session["UserName"] = Usr.Nombre;
                 }
