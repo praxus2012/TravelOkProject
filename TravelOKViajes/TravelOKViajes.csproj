@@ -315,7 +315,9 @@
     <Content Include="Img\ImgDestinos\Joyas de Hidalgo.png" />
     <Content Include="Img\ImgDestinos\Michoacán.png" />
     <Content Include="Img\ImgDestinos\Nevado de Toluca.png" />
+    <Content Include="Img\ImgDestinos\Peru.png" />
     <Content Include="Img\ImgDestinos\Pueblos Mágicos.png" />
+    <Content Include="Img\ImgDestinos\Puerto Vallarta.png" />
     <Content Include="Img\ImgDestinos\Riviera Maya.png" />
     <Content Include="Img\ImgDestinos\Ruta Turquesa.png" />
     <Content Include="Img\ImgDestinos\Selva Maya.png" />
