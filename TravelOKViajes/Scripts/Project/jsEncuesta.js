@@ -23,10 +23,6 @@ $('.pregunta').children().children().click(function (evt) {
     var numPregunta = parseInt($(this).parent().parent().attr('id').substr(1, 2).trim());
     var respuesta = parseInt($(this).attr("class").substr(1, 1).trim());
     console.warn("Pregunta numero: " + numPregunta + " Respuesta a la pregunta: " + respuesta);
-
-    var preguntas;
-    //console.log(respuesta);
-    //allElements = $(numPregunta).add(respuesta);
     preguntas = $(preguntas).add(numPregunta);
     respuestas = $(preguntas.respuestas).add(respuesta);
 
@@ -90,7 +86,7 @@ function successObtieneDestinos(data) {
 
 
 function ObtenerFecha() {
-    let today = new Date().toLocaleDateString()
+    let today = new Date().toLocaleDateString();
     var lbFecha = document.getElementById('lbFecha');
     lbFecha.innerHTML = today;
 }
