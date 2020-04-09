@@ -63,14 +63,11 @@ function GeneraComentarios(Comunidad) {
 }
 
 $(document).on("click", "#btnComparte", function (e) {
-    var rating = $('.star-rating-control .star-rating-on').length;
+    var rating = $(".rate").rate("getValue");
+
     var vidFileLength = $("#inArchivo")[0].files.length;
     console.log(rating);
-    console.log(typeof(rating));
     if ($('#selDestinos').val() != 0 && $('.txExp').val() != "" && $('.inNombre').val() != "" && vidFileLength > 0) {
-
-        // if ($('#selDestinos').val() != 0 && $('.txExp').val() != "" && $('.inNombre').val() != "" && rating > 0 && vidFileLength > 0 )
-
 
 
         let datosComunidad = new FormData();

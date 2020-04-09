@@ -43,3 +43,13 @@
     float: right;
     text-align: right;
 }
+
+textarea {
+    resize: none;
+    width: 1200px;
+    height: 70px;
+}
+
+.foot {
+    margin-right: 80px;
+}
