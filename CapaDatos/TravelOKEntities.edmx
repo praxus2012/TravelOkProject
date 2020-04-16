@@ -7,14 +7,14 @@
     <Schema Namespace="TravelOKEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TO_Blog">
           <Key>
-            <PropertyRef Name="IdBlog" />
+            <PropertyRef Name="idBlog" />
           </Key>
-          <Property Name="IdBlog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nvTitulo" Type="nvarchar" MaxLength="250" />
-          <Property Name="nvTexto" Type="nvarchar(max)" />
-          <Property Name="imgBlog" Type="varbinary(max)" />
+          <Property Name="idBlog" Type="int" Nullable="false" />
+          <Property Name="nvTitulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nvTexto" Type="varchar" MaxLength="8000" Nullable="false" />
           <Property Name="dtFechaSubida" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="Activo" Type="int" />
+          <Property Name="imgBlog" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -562,7 +562,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
             <Parameter Name="Total" Mode="In" Type="Int32" />
             <Parameter Name="Decremento" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="TO_Blog" EntityType="TravelOKEntitiesModel.TO_Blog" />
           <EntitySet Name="TO_Destino" EntityType="TravelOKEntitiesModel.TO_Destino" />
           <EntitySet Name="TO_DetalleDestinos" EntityType="TravelOKEntitiesModel.TO_DetalleDestinos" />
           <EntitySet Name="TO_Experiencias" EntityType="TravelOKEntitiesModel.TO_Experiencias" />
@@ -618,6 +617,7 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
             <End Role="TO_Costo" EntitySet="TO_Costo" />
           </AssociationSet>
+          <EntitySet Name="TO_Blog" EntityType="TravelOKEntitiesModel.TO_Blog" />
         </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
           <Property Type="Int32" Name="IdExp" Nullable="false" />
@@ -689,17 +689,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <Property Type="DateTime" Name="dtFecAct" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="Activo" Nullable="true" />
         </ComplexType>
-        <EntityType Name="TO_Blog">
-          <Key>
-            <PropertyRef Name="IdBlog" />
-          </Key>
-          <Property Name="IdBlog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nvTitulo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="nvTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="imgBlog" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="dtFechaSubida" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
-        </EntityType>
         <EntityType Name="TO_Destino">
           <Key>
             <PropertyRef Name="IdViaje" />
@@ -1004,6 +993,17 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TO_Blog">
+          <Key>
+            <PropertyRef Name="idBlog" />
+          </Key>
+          <Property Name="idBlog" Type="Int32" Nullable="false" />
+          <Property Name="nvTitulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nvTexto" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="dtFechaSubida" Type="DateTime" Precision="3" />
+          <Property Name="Activo" Type="Int32" />
+          <Property Name="imgBlog" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1141,18 +1141,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spsObtPropHabUno" FunctionName="TravelOKEntitiesModel.Store.spsObtPropHabUno" />
           <FunctionImportMapping FunctionImportName="spsObtPropuestas" FunctionName="TravelOKEntitiesModel.Store.spsObtPropuestas" />
-          <EntitySetMapping Name="TO_Blog">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Blog">
-              <MappingFragment StoreEntitySet="TO_Blog">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
-                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
-                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
-                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
-                <ScalarProperty Name="IdBlog" ColumnName="IdBlog" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TO_Destino">
             <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Destino">
               <MappingFragment StoreEntitySet="TO_Destino">
@@ -1311,6 +1299,18 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
                 <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
                 <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
                 <ScalarProperty Name="CostoLugar" ColumnName="CostoLugar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Blog">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Blog">
+              <MappingFragment StoreEntitySet="TO_Blog">
+                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
+                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
+                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
+                <ScalarProperty Name="idBlog" ColumnName="idBlog" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -7,14 +7,14 @@
     <Schema Namespace="TravelOKEntitiesQAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TO_Blog">
           <Key>
-            <PropertyRef Name="IdBlog" />
+            <PropertyRef Name="idBlog" />
           </Key>
-          <Property Name="IdBlog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nvTitulo" Type="nvarchar" MaxLength="250" />
-          <Property Name="nvTexto" Type="nvarchar(max)" />
-          <Property Name="imgBlog" Type="varbinary(max)" />
+          <Property Name="idBlog" Type="int" Nullable="false" />
+          <Property Name="nvTitulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nvTexto" Type="varchar" MaxLength="8000" Nullable="false" />
           <Property Name="dtFechaSubida" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="Activo" Type="int" />
+          <Property Name="imgBlog" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -122,6 +122,8 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <Property Name="Municipio" Type="nvarchar" MaxLength="150" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="25" />
           <Property Name="Activo" Type="bit" />
+          <Property Name="TelefonoEmerg" Type="varchar" MaxLength="10" />
+          <Property Name="ParentescoTelEmerg" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="TO_Viajeros">
           <Key>
@@ -479,17 +481,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TravelOKEntitiesQAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="TO_Blog">
-          <Key>
-            <PropertyRef Name="IdBlog" />
-          </Key>
-          <Property Name="IdBlog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nvTitulo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="nvTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="imgBlog" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="dtFechaSubida" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
-        </EntityType>
         <EntityType Name="TO_Destino">
           <Key>
             <PropertyRef Name="IdViaje" />
@@ -594,6 +585,8 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="TO_Viajeros" Relationship="Self.FK_TO_Viajeros_TO_Usuario" FromRole="TO_Usuario" ToRole="TO_Viajeros" />
+          <Property Name="TelefonoEmerg" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ParentescoTelEmerg" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TO_Viajeros">
           <Key>
@@ -793,7 +786,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="TravelOKEntitiesQA" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TO_Blog" EntityType="Self.TO_Blog" />
           <EntitySet Name="TO_Destino" EntityType="Self.TO_Destino" />
           <EntitySet Name="TO_DetalleDestinos" EntityType="Self.TO_DetalleDestinos" />
           <EntitySet Name="TO_Experiencias" EntityType="Self.TO_Experiencias" />
@@ -960,9 +952,10 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
             <Parameter Name="nvCont" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spsObtieneDestinoDet1" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneDestinoDet1_Result)">
-            <Parameter Name="idViaje" Mode="In" Type="Int32" />
+          <Parameter Name="idViaje" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtieneDestinosDet1" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneDestinosDet1_Result)" />
+          <EntitySet Name="TO_Blog" EntityType="TravelOKEntitiesQAModel.TO_Blog" />
         </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
           <Property Type="Int32" Name="IdExp" Nullable="false" />
@@ -1063,24 +1056,23 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
           <Property Type="Decimal" Name="costolugar" Nullable="true" Precision="19" />
         </ComplexType>
+        <EntityType Name="TO_Blog">
+          <Key>
+            <PropertyRef Name="idBlog" />
+          </Key>
+          <Property Name="idBlog" Type="Int32" Nullable="false" />
+          <Property Name="nvTitulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nvTexto" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="dtFechaSubida" Type="DateTime" Precision="3" />
+          <Property Name="Activo" Type="Int32" />
+          <Property Name="imgBlog" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TravelOKEntitiesQAModelStoreContainer" CdmEntityContainer="TravelOKEntitiesQA">
-          <EntitySetMapping Name="TO_Blog">
-            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Blog">
-              <MappingFragment StoreEntitySet="TO_Blog">
-                <ScalarProperty Name="IdBlog" ColumnName="IdBlog" />
-                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
-                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
-                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
-                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TO_Destino">
             <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Destino">
               <MappingFragment StoreEntitySet="TO_Destino">
@@ -1168,6 +1160,8 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <EntitySetMapping Name="TO_Usuario">
             <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Usuario">
               <MappingFragment StoreEntitySet="TO_Usuario">
+                <ScalarProperty Name="ParentescoTelEmerg" ColumnName="ParentescoTelEmerg" />
+                <ScalarProperty Name="TelefonoEmerg" ColumnName="TelefonoEmerg" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Contra" ColumnName="Contra" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1395,6 +1389,18 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="TO_Blog">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Blog">
+              <MappingFragment StoreEntitySet="TO_Blog">
+                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
+                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
+                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
+                <ScalarProperty Name="idBlog" ColumnName="idBlog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

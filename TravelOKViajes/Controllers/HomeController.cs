@@ -289,6 +289,39 @@ namespace TravelOKViajes.Controllers
             return Content(resultado.ToString());
         }
 
+        [HttpGet]
+        public JsonResult obtenerPublicaciones()
+        {
+           List<cmBlog> listaPublicaciones = new List<cmBlog>();
+
+           CD_Blog blog = new CD_Blog();
+            listaPublicaciones = blog.lsObtenerListaBlog();
+
+            return Json(new { publicaciones = listaPublicaciones }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpGet]
+        public JsonResult obtenerDetallePublicacion(cmBlog Publicacion)
+        {
+
+            cmBlog publicacion = new cmBlog();
+
+            CD_Blog pub = new CD_Blog();
+            publicacion = pub.cmObtenerPublicacion(Publicacion.idBlog);
+            
+            return Json(new { publicacion = publicacion }, JsonRequestBehavior.AllowGet);
+            /*List<cmBlog> listaPublicaciones = new List<cmBlog>();
+
+            CD_Blog blog = new CD_Blog();
+            listaPublicaciones = blog.lsObtenerListaBlog();
+
+            return Json(new { publicaciones = listaPublicaciones }, JsonRequestBehavior.AllowGet);*/
+
+        }
+
+
+
 
 
 

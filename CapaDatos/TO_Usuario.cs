@@ -33,7 +33,7 @@ namespace CapaDatos
         public Nullable<bool> Activo { get; set; }
         public string TelefonoEmerg { get; set; }
         public string ParentescoTelEmerg { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TO_Viajeros> TO_Viajeros { get; set; }
     }

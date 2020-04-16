@@ -55,7 +55,7 @@
             <li id="liIcons">
                 <ul id="ulIcons">
                     <li>
-                        <a id="awp" target="_blank" href="https://www.facebook.com/Traveelok/?ref=bookmarks"></a>
+                        <a id="awp" target="_blank" href="https://wa.me/5212223602031"></a>
                     </li>
                     <li>
                         <a id="afb" target="_blank" href="https://www.facebook.com/Traveelok/?ref=bookmarks"></a>
@@ -177,6 +177,8 @@
                 @Html.ActionLink("Términos y condiciones", "Terminos", "Home")
             </li>
         </ul>
+        <input type="hidden" id="urlInicioBlog" value="@Url.Action("obtenerPublicaciones","Home")" />
+        <input type="hidden" id="urlDetallePublicacion" value="@Url.Action("obtenerDetallePublicacion","Home")" />
     </footer>
     <script src="~/Scripts/Project/jsLayout.js"></script>
 </body>
