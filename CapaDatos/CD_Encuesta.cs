@@ -10,7 +10,7 @@ namespace CapaDatos
     {
         public List<TO_Encuesta> fnlsObtienePreguntas()
         {
-            using(var context = new TravelOKEntitiesQA())
+            using (var context = new TravelOKEntitiesQA())
             {
                 return context.TO_Encuesta.ToList();
             }

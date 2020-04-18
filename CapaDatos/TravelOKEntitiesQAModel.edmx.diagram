@@ -4,22 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e56818faaa564f209874b6bc7c7428e6" Name="Diagram1">
+      <Diagram DiagramId="6f01aca6277e4adda25f7aacdc43af32" Name="Diagram1">
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Blog" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Destino" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_DetalleDestinos" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Encuesta" Width="1.5" PointX="11.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_EncuestaResp" Width="1.5" PointX="14" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Experiencias" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Habitaciones" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Salida" Width="1.5" PointX="6" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Transporte" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Usuario" Width="1.5" PointX="9" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Usuario" Width="1.5" PointX="9" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Viajeros" Width="1.5" PointX="11.25" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Viajes" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TOA_Usuario" Width="1.5" PointX="11.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TOA_Usuario" Width="1.5" PointX="8.75" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Costo" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK__TO_Experi__IdDes__5AEE82B9" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_DetDestinos_Destinos" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Destino" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Destino" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_EncuestaResp_TO_Encuesta" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Habitaciones" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Salida" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Salida" ManuallyRouted="false" />
@@ -27,7 +31,6 @@
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Viajes" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Viajes" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Blog" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

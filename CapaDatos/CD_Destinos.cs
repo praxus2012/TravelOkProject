@@ -72,7 +72,7 @@ sTitulo = des.sTitulo
             //using (var contexto = new TravelOKEntities())//local
             using (var contexto = new TravelOKEntitiesQA())//QA
             {
-                Destino = (from des in contexto.spsObtieneDestinoDet1(Destino.idViaje)
+                Destino = (from des in contexto.spsObtieneDestinoDet(Destino.idViaje)
                            select
                               new cmDestinos
                               {

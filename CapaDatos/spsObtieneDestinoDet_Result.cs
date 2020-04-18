@@ -18,5 +18,8 @@ namespace CapaDatos
         public string sSubTit { get; set; }
         public string sDescrip { get; set; }
         public string sRutaImg { get; set; }
+        public string sIntin { get; set; }
+        public string sGuia { get; set; }
+        public string sRec { get; set; }
     }
 }

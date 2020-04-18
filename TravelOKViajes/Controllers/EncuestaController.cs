@@ -16,44 +16,43 @@ namespace TravelOKViajes.Controllers
             return View();
         }
 
-		// GET: Encuesta/Details/5
-		/// 
-		/// 
-		public ActionResult InicialEncuesta()
-		{
-			var resultado = new JObject();
-			try
-			{
-				CD_Destinos cdDestino = new CD_Destinos();
-				List<TO_Destino> lsDestinos = new List<TO_Destino>();
+        public ActionResult InicialEncuesta()
+        {
+            var resultado = new JObject();
+            try
+            {
+                CD_Destinos cdDestino = new CD_Destinos();
+                List<TO_Destino> lsDestinos = new List<TO_Destino>();
                 CD_Encuesta cdEncuesta = new CD_Encuesta();
                 List<TO_Encuesta> lsEncuesta = new List<TO_Encuesta>();
                 lsEncuesta = cdEncuesta.fnlsObtienePreguntas();
-				lsDestinos = cdDestino.lsObtieneDestinos();
-				if (lsDestinos.Count > 0)
-				{
-					JToken arDestinos = new JArray(from d in lsDestinos
-												   select new JObject(
-													  new JProperty("Viaje", d.IdViaje),
-													  new JProperty("Destino", d.Destino)
-													));
-					resultado["LsDestinos"] = arDestinos;
+                lsDestinos = cdDestino.lsObtieneDestinos();
+                if (lsDestinos.Count > 0)
+                {
+                    JToken arDestinos = new JArray(from d in lsDestinos
+                                                   select new JObject(
+                                                      new JProperty("Viaje", d.IdViaje),
+                                                      new JProperty("Destino", d.Destino)
+                                                    ));
+                    resultado["LsDestinos"] = arDestinos;
                     resultado["LsEncuesta"] = new JArray(from p in lsEncuesta
                                                          select new JObject(
                                                              new JProperty("IdPregunta", p.IdPregunta),
                                                              new JProperty("nvPregunta", p.nvPregunta),
                                                              new JProperty("iTipoPreg", p.iTipoPreg)
                                                          ));
-					resultado["Exito"] = true;
-				}
-			}
-			catch (Exception x)
-			{
-				resultado["Exito"] = false;
-			}
-			return Content(resultado.ToString());
-		}
-		public ActionResult Details(int id)
+                    resultado["Exito"] = true;
+                }
+            }
+            catch (Exception x)
+            {
+                resultado["Exito"] = false;
+            }
+            return Content(resultado.ToString());
+        }
+
+        // GET: Encuesta/Details/5
+        public ActionResult Details(int id)
         {
             return View();
         }

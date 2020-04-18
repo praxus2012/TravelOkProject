@@ -28,6 +28,9 @@
         <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Viajes" />
         <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Viajes" />
         <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Blog" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Encuesta" Width="1.5" PointX="10.375" PointY="10.25" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_EncuestaResp" Width="1.5" PointX="12.625" PointY="10" />
+        <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_EncuestaResp_TO_Encuesta" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
