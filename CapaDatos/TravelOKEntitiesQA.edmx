@@ -56,25 +56,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <Property Name="dtFechaAlta" Type="datetime" />
           <Property Name="bActivo" Type="bit" />
         </EntityType>
-        <EntityType Name="TO_Encuesta">
-          <Key>
-            <PropertyRef Name="IdPregunta" />
-          </Key>
-          <Property Name="IdPregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nvPregunta" Type="nvarchar(max)" />
-          <Property Name="iTipoPreg" Type="int" />
-        </EntityType>
-        <EntityType Name="TO_EncuestaResp">
-          <Key>
-            <PropertyRef Name="IdResEnc" />
-          </Key>
-          <Property Name="IdResEnc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NombrePersona" Type="nvarchar(max)" />
-          <Property Name="IdPregunta" Type="int" Nullable="false" />
-          <Property Name="nvRespuesta" Type="nvarchar(max)" />
-          <Property Name="dtFechaEncuesta" Type="datetime" />
-          <Property Name="dtFechaViaje" Type="date" />
-        </EntityType>
         <EntityType Name="TO_Experiencias">
           <Key>
             <PropertyRef Name="IdExp" />
@@ -259,18 +240,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TO_EncuestaResp_TO_Encuesta">
-          <End Role="TO_Encuesta" Type="Self.TO_Encuesta" Multiplicity="1" />
-          <End Role="TO_EncuestaResp" Type="Self.TO_EncuestaResp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Encuesta">
-              <PropertyRef Name="IdPregunta" />
-            </Principal>
-            <Dependent Role="TO_EncuestaResp">
-              <PropertyRef Name="IdPregunta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TO_Viajeros_TO_Usuario">
           <End Role="TO_Usuario" Type="Self.TO_Usuario" Multiplicity="0..1" />
           <End Role="TO_Viajeros" Type="Self.TO_Viajeros" Multiplicity="*" />
@@ -445,8 +414,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <EntitySet Name="TO_Blog" EntityType="Self.TO_Blog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Destino" EntityType="Self.TO_Destino" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_DetalleDestinos" EntityType="Self.TO_DetalleDestinos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TO_Encuesta" EntityType="Self.TO_Encuesta" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TO_EncuestaResp" EntityType="Self.TO_EncuestaResp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Experiencias" EntityType="Self.TO_Experiencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Habitaciones" EntityType="Self.TO_Habitaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Salida" EntityType="Self.TO_Salida" Schema="dbo" store:Type="Tables" />
@@ -488,10 +455,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <AssociationSet Name="FK_TO_Costo_TO_Viajes" Association="Self.FK_TO_Costo_TO_Viajes">
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
             <End Role="TO_Costo" EntitySet="TO_Costo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_EncuestaResp_TO_Encuesta" Association="Self.FK_TO_EncuestaResp_TO_Encuesta">
-            <End Role="TO_Encuesta" EntitySet="TO_Encuesta" />
-            <End Role="TO_EncuestaResp" EntitySet="TO_EncuestaResp" />
           </AssociationSet>
           <AssociationSet Name="FK_TO_Viajeros_TO_Usuario" Association="Self.FK_TO_Viajeros_TO_Usuario">
             <End Role="TO_Usuario" EntitySet="TO_Usuario" />
@@ -992,13 +955,7 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <Parameter Name="idViaje" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spsObtieneDestinosDet1" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtieneDestinosDet1_Result)" />
-          <EntitySet Name="TO_Encuesta" EntityType="TravelOKEntitiesQAModel.TO_Encuesta" />
           <EntitySet Name="TO_Blog" EntityType="TravelOKEntitiesQAModel.TO_Blog" />
-          <EntitySet Name="TO_EncuestaResp" EntityType="TravelOKEntitiesQAModel.TO_EncuestaResp" />
-          <AssociationSet Name="FK_TO_EncuestaResp_TO_Encuesta" Association="TravelOKEntitiesQAModel.FK_TO_EncuestaResp_TO_Encuesta">
-            <End Role="TO_Encuesta" EntitySet="TO_Encuesta" />
-            <End Role="TO_EncuestaResp" EntitySet="TO_EncuestaResp" />
-          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
           <Property Type="Int32" Name="IdExp" Nullable="false" />
@@ -1099,15 +1056,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
           <Property Type="Decimal" Name="costolugar" Nullable="true" Precision="19" />
         </ComplexType>
-        <EntityType Name="TO_Encuesta">
-          <Key>
-            <PropertyRef Name="IdPregunta" />
-          </Key>
-          <Property Name="IdPregunta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nvPregunta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="iTipoPreg" Type="Int32" />
-          <NavigationProperty Name="TO_EncuestaResp" Relationship="TravelOKEntitiesQAModel.FK_TO_EncuestaResp_TO_Encuesta" FromRole="TO_Encuesta" ToRole="TO_EncuestaResp" />
-        </EntityType>
         <EntityType Name="TO_Blog">
           <Key>
             <PropertyRef Name="idBlog" />
@@ -1119,30 +1067,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
           <Property Name="Activo" Type="Int32" />
           <Property Name="imgBlog" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="TO_EncuestaResp">
-          <Key>
-            <PropertyRef Name="IdResEnc" />
-          </Key>
-          <Property Name="IdResEnc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombrePersona" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdPregunta" Type="Int32" Nullable="false" />
-          <Property Name="nvRespuesta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="dtFechaEncuesta" Type="DateTime" Precision="3" />
-          <Property Name="dtFechaViaje" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="TO_Encuesta" Relationship="TravelOKEntitiesQAModel.FK_TO_EncuestaResp_TO_Encuesta" FromRole="TO_EncuestaResp" ToRole="TO_Encuesta" />
-        </EntityType>
-        <Association Name="FK_TO_EncuestaResp_TO_Encuesta">
-          <End Type="TravelOKEntitiesQAModel.TO_Encuesta" Role="TO_Encuesta" Multiplicity="1" />
-          <End Type="TravelOKEntitiesQAModel.TO_EncuestaResp" Role="TO_EncuestaResp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Encuesta">
-              <PropertyRef Name="IdPregunta" />
-            </Principal>
-            <Dependent Role="TO_EncuestaResp">
-              <PropertyRef Name="IdPregunta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1465,15 +1389,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="TO_Encuesta">
-            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Encuesta">
-              <MappingFragment StoreEntitySet="TO_Encuesta">
-                <ScalarProperty Name="iTipoPreg" ColumnName="iTipoPreg" />
-                <ScalarProperty Name="nvPregunta" ColumnName="nvPregunta" />
-                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TO_Blog">
             <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Blog">
               <MappingFragment StoreEntitySet="TO_Blog">
@@ -1483,18 +1398,6 @@ advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene defi
                 <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
                 <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
                 <ScalarProperty Name="idBlog" ColumnName="idBlog" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TO_EncuestaResp">
-            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_EncuestaResp">
-              <MappingFragment StoreEntitySet="TO_EncuestaResp">
-                <ScalarProperty Name="dtFechaViaje" ColumnName="dtFechaViaje" />
-                <ScalarProperty Name="dtFechaEncuesta" ColumnName="dtFechaEncuesta" />
-                <ScalarProperty Name="nvRespuesta" ColumnName="nvRespuesta" />
-                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
-                <ScalarProperty Name="NombrePersona" ColumnName="NombrePersona" />
-                <ScalarProperty Name="IdResEnc" ColumnName="IdResEnc" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

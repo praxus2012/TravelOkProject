@@ -27,10 +27,7 @@
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Viajes" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Viajes" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Encuesta" Width="1.5" PointX="0.75" PointY="13.25" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Blog" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_EncuestaResp" Width="1.5" PointX="3" PointY="13" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_EncuestaResp_TO_Encuesta" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

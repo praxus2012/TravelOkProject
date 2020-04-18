@@ -399,6 +399,9 @@
     <Content Include="Img\original\RutaTur\32.png" />
     <Content Include="Img\original\RutaTur\33.png" />
     <Content Include="Img\original\RutaTur\34.png" />
+    <Content Include="Img\Publicaciones\1.png" />
+    <Content Include="Img\Publicaciones\2.png" />
+    <Content Include="Img\Publicaciones\3.png" />
     <Content Include="Img\Ventas\Salidas.PNG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -437,6 +440,7 @@
     <Content Include="Scripts\Project\Bootstrap\bootstrap.js" />
     <Content Include="Scripts\Project\Bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\Project\jQuery\jquery-3.4.1.js" />
+    <Content Include="Scripts\Project\jsBlog.js" />
     <Content Include="Scripts\Project\jsComunidad.js" />
     <Content Include="Scripts\Project\jsDestinos.js" />
     <Content Include="Scripts\Project\jsDetalleVenta.js" />

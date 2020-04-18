@@ -57,11 +57,11 @@
     <Compile Include="Administrador\CDA_Destinos.cs" />
     <Compile Include="Administrador\CDA_Habitaciones.cs" />
     <Compile Include="Administrador\CDA_Salidas.cs" />
+    <Compile Include="CD_Blog.cs" />
     <Compile Include="CD_Comunidad.cs" />
     <Compile Include="CD_Costos.cs" />
     <Compile Include="CD_Destinos.cs" />
     <Compile Include="CD_DetVenta.cs" />
-    <Compile Include="CD_Encuesta.cs" />
     <Compile Include="CD_Salida.cs" />
     <Compile Include="Administrador\CDA_Usuario.cs" />
     <Compile Include="CD_SelecVen.cs" />
@@ -128,12 +128,6 @@
       <DependentUpon>TravelOkEntitiesQA.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_DetalleDestinos.cs">
-      <DependentUpon>TravelOkEntitiesQA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TO_Encuesta.cs">
-      <DependentUpon>TravelOkEntitiesQA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TO_EncuestaResp.cs">
       <DependentUpon>TravelOkEntitiesQA.tt</DependentUpon>
     </Compile>
     <Compile Include="TO_Experiencias.cs">

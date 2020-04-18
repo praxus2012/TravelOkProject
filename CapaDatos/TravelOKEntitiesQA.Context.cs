@@ -38,9 +38,7 @@ namespace CapaDatos
         public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Costo> TO_Costo { get; set; }
-        public virtual DbSet<TO_Encuesta> TO_Encuesta { get; set; }
         public virtual DbSet<TO_Blog> TO_Blog { get; set; }
-        public virtual DbSet<TO_EncuestaResp> TO_EncuestaResp { get; set; }
     
         public virtual int spdEliminaCosto(Nullable<int> nvSalida, Nullable<int> nvDestino, Nullable<int> nvHabitacion)
         {

@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ebd19c65c321474cac8afb035c387517" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Blog" Width="1.5" PointX="8.75" PointY="0.75" />
         <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Destino" Width="1.5" PointX="0.75" PointY="6.875" />
         <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_DetalleDestinos" Width="1.5" PointX="3" PointY="16.375" />
         <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Experiencias" Width="1.5" PointX="3" PointY="13.125" />
@@ -28,6 +27,7 @@
         <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Usuario" />
         <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Viajes" />
         <AssociationConnector Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Viajes" />
+        <EntityTypeShape EntityType="TravelOKEntitiesModel.TO_Blog" Width="1.5" PointX="6.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
