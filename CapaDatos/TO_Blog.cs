@@ -14,11 +14,11 @@ namespace CapaDatos
     
     public partial class TO_Blog
     {
-        public int IdBlog { get; set; }
+        public int idBlog { get; set; }
         public string nvTitulo { get; set; }
         public string nvTexto { get; set; }
-        public byte[] imgBlog { get; set; }
         public Nullable<System.DateTime> dtFechaSubida { get; set; }
-        public Nullable<bool> Activo { get; set; }
+        public Nullable<int> Activo { get; set; }
+        public string imgBlog { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace CapaDatos
             using (var contexto = new TravelOKEntitiesQA())
             {
                 List<cmCostos> LsDesVenta = new List<cmCostos>();
-                LsDesVenta = (from destinos in contexto.spsObtieneDestinosDet1()
+                LsDesVenta = (from destinos in contexto.spsObtieneDestinosDet()
                               select new cmCostos
                               {
                                   IdDestino = destinos.idviaje,

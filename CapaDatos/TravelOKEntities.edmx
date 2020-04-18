@@ -7,17 +7,17 @@
     <Schema Namespace="TravelOKEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TO_Blog">
           <Key>
-            <PropertyRef Name="IdBlog" />
+            <PropertyRef Name="idBlog" />
           </Key>
-          <Property Name="IdBlog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nvTitulo" Type="nvarchar" MaxLength="250" />
-          <Property Name="nvTexto" Type="nvarchar(max)" />
-          <Property Name="imgBlog" Type="varbinary(max)" />
+          <Property Name="idBlog" Type="int" Nullable="false" />
+          <Property Name="nvTitulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nvTexto" Type="varchar" MaxLength="8000" Nullable="false" />
           <Property Name="dtFechaSubida" Type="datetime" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="Activo" Type="int" />
+          <Property Name="imgBlog" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+advertencia 6002: La tabla o vista 'DB_A562BF_travel.dbo.TO_Costo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TO_Costo">
           <Key>
             <PropertyRef Name="IdDestino" />
@@ -39,6 +39,9 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Property Name="nvSubt" Type="nvarchar" MaxLength="50" />
           <Property Name="nvDesc" Type="nvarchar" MaxLength="500" />
           <Property Name="nvRutaImg" Type="nvarchar" MaxLength="150" />
+          <Property Name="nvItineraDes" Type="nvarchar(max)" />
+          <Property Name="nvGuia" Type="nvarchar(max)" />
+          <Property Name="nvRecom" Type="nvarchar(max)" />
           <Property Name="bPrincipal" Type="bit" />
           <Property Name="bActivo" Type="bit" />
         </EntityType>
@@ -52,6 +55,25 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Property Name="nvDescripcion" Type="nvarchar" MaxLength="300" />
           <Property Name="dtFechaAlta" Type="datetime" />
           <Property Name="bActivo" Type="bit" />
+        </EntityType>
+        <EntityType Name="TO_Encuesta">
+          <Key>
+            <PropertyRef Name="IdPregunta" />
+          </Key>
+          <Property Name="IdPregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nvPregunta" Type="nvarchar(max)" />
+          <Property Name="iTipoPreg" Type="int" />
+        </EntityType>
+        <EntityType Name="TO_EncuestaResp">
+          <Key>
+            <PropertyRef Name="IdResEnc" />
+          </Key>
+          <Property Name="IdResEnc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombrePersona" Type="nvarchar(max)" />
+          <Property Name="IdPregunta" Type="int" Nullable="false" />
+          <Property Name="nvRespuesta" Type="nvarchar(max)" />
+          <Property Name="dtFechaEncuesta" Type="datetime" />
+          <Property Name="dtFechaViaje" Type="date" />
         </EntityType>
         <EntityType Name="TO_Experiencias">
           <Key>
@@ -119,12 +141,14 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Property Name="Municipio" Type="nvarchar" MaxLength="150" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="25" />
           <Property Name="Activo" Type="bit" />
+          <Property Name="TelefonoEmerg" Type="varchar" MaxLength="10" />
+          <Property Name="ParentescoTelEmerg" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="TO_Viajeros">
           <Key>
             <PropertyRef Name="Folio" />
           </Key>
-          <Property Name="Folio" Type="int" Nullable="false" />
+          <Property Name="Folio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdViaje" Type="int" />
           <Property Name="IdUsuario" Type="nvarchar" MaxLength="200" />
           <Property Name="NombreAsistente" Type="nvarchar(max)" />
@@ -235,6 +259,18 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TO_EncuestaResp_TO_Encuesta">
+          <End Role="TO_Encuesta" Type="Self.TO_Encuesta" Multiplicity="1" />
+          <End Role="TO_EncuestaResp" Type="Self.TO_EncuestaResp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Encuesta">
+              <PropertyRef Name="IdPregunta" />
+            </Principal>
+            <Dependent Role="TO_EncuestaResp">
+              <PropertyRef Name="IdPregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TO_Viajeros_TO_Usuario">
           <End Role="TO_Usuario" Type="Self.TO_Usuario" Multiplicity="0..1" />
           <End Role="TO_Viajeros" Type="Self.TO_Viajeros" Multiplicity="*" />
@@ -331,6 +367,9 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Parameter Name="nvTitulo" Type="nvarchar" Mode="In" />
           <Parameter Name="nvSubt" Type="nvarchar" Mode="In" />
           <Parameter Name="nvDesc" Type="nvarchar" Mode="In" />
+          <Parameter Name="nvRecom" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="nvItineraDes" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="nvGuia" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="bPrincipal" Type="bit" Mode="In" />
         </Function>
         <Function Name="spiInsertaDetalleDestino" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -391,6 +430,8 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <EntitySet Name="TO_Blog" EntityType="Self.TO_Blog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Destino" EntityType="Self.TO_Destino" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_DetalleDestinos" EntityType="Self.TO_DetalleDestinos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TO_Encuesta" EntityType="Self.TO_Encuesta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TO_EncuestaResp" EntityType="Self.TO_EncuestaResp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Experiencias" EntityType="Self.TO_Experiencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Habitaciones" EntityType="Self.TO_Habitaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO_Salida" EntityType="Self.TO_Salida" Schema="dbo" store:Type="Tables" />
@@ -432,6 +473,10 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <AssociationSet Name="FK_TO_Costo_TO_Viajes" Association="Self.FK_TO_Costo_TO_Viajes">
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
             <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_EncuestaResp_TO_Encuesta" Association="Self.FK_TO_EncuestaResp_TO_Encuesta">
+            <End Role="TO_Encuesta" EntitySet="TO_Encuesta" />
+            <End Role="TO_EncuestaResp" EntitySet="TO_EncuestaResp" />
           </AssociationSet>
           <AssociationSet Name="FK_TO_Viajeros_TO_Usuario" Association="Self.FK_TO_Viajeros_TO_Usuario">
             <End Role="TO_Usuario" EntitySet="TO_Usuario" />
@@ -495,6 +540,9 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
             <Parameter Name="nvTitulo" Mode="In" Type="String" />
             <Parameter Name="nvSubt" Mode="In" Type="String" />
             <Parameter Name="nvDesc" Mode="In" Type="String" />
+            <Parameter Name="nvRecom" Mode="In" Type="String" />
+            <Parameter Name="nvItineraDes" Mode="In" Type="String" />
+            <Parameter Name="nvGuia" Mode="In" Type="String" />
             <Parameter Name="bPrincipal" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="spiInsertaDetalleDestino">
@@ -551,7 +599,6 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
             <Parameter Name="Total" Mode="In" Type="Int32" />
             <Parameter Name="Decremento" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="TO_Blog" EntityType="TravelOKEntitiesModel.TO_Blog" />
           <EntitySet Name="TO_Destino" EntityType="TravelOKEntitiesModel.TO_Destino" />
           <EntitySet Name="TO_DetalleDestinos" EntityType="TravelOKEntitiesModel.TO_DetalleDestinos" />
           <EntitySet Name="TO_Experiencias" EntityType="TravelOKEntitiesModel.TO_Experiencias" />
@@ -596,8 +643,8 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
           </AssociationSet>
           <AssociationSet Name="FK_TO_Viajeros_TO_Usuario" Association="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Usuario">
-            <End Role="TO_Usuario" EntitySet="TO_Usuario" />
-            <End Role="TO_Viajeros" EntitySet="TO_Viajeros" />
+            <End EntitySet="TO_Usuario" Role="TO_Usuario" />
+            <End EntitySet="TO_Viajeros" Role="TO_Viajeros" />
           </AssociationSet>
           <AssociationSet Name="FK_TO_Viajeros_TO_Viajes" Association="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Viajes">
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
@@ -606,6 +653,13 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <AssociationSet Name="FK_TO_Costo_TO_Viajes" Association="TravelOKEntitiesModel.FK_TO_Costo_TO_Viajes">
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
             <End Role="TO_Costo" EntitySet="TO_Costo" />
+          </AssociationSet>
+          <EntitySet Name="TO_Blog" EntityType="TravelOKEntitiesModel.TO_Blog" />
+          <EntitySet Name="TO_Encuesta" EntityType="TravelOKEntitiesModel.TO_Encuesta" />
+          <EntitySet Name="TO_EncuestaResp" EntityType="TravelOKEntitiesModel.TO_EncuestaResp" />
+          <AssociationSet Name="FK_TO_EncuestaResp_TO_Encuesta" Association="TravelOKEntitiesModel.FK_TO_EncuestaResp_TO_Encuesta">
+            <End Role="TO_Encuesta" EntitySet="TO_Encuesta" />
+            <End Role="TO_EncuestaResp" EntitySet="TO_EncuestaResp" />
           </AssociationSet>
         </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
@@ -678,17 +732,6 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Property Type="DateTime" Name="dtFecAct" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="Activo" Nullable="true" />
         </ComplexType>
-        <EntityType Name="TO_Blog">
-          <Key>
-            <PropertyRef Name="IdBlog" />
-          </Key>
-          <Property Name="IdBlog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nvTitulo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="nvTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="imgBlog" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="dtFechaSubida" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Boolean" />
-        </EntityType>
         <EntityType Name="TO_Destino">
           <Key>
             <PropertyRef Name="IdViaje" />
@@ -705,6 +748,9 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <NavigationProperty Name="TO_DetalleDestinos" Relationship="TravelOKEntitiesModel.FK_DetDestinos_Destinos" FromRole="TO_Destino" ToRole="TO_DetalleDestinos" />
           <NavigationProperty Name="TO_Costo" Relationship="TravelOKEntitiesModel.FK_TO_Costo_TO_Destino" FromRole="TO_Destino" ToRole="TO_Costo" />
           <NavigationProperty Name="TO_Viajes" Relationship="TravelOKEntitiesModel.FK_TO_Viajes_TO_Destino" FromRole="TO_Destino" ToRole="TO_Viajes" />
+          <Property Name="nvItineraDes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nvGuia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nvRecom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TO_DetalleDestinos">
           <Key>
@@ -778,18 +824,20 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <Key>
             <PropertyRef Name="Correo" />
           </Key>
-          <Property Name="Correo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Contra" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Apellidos" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Genero" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="FechNac" Type="DateTime" Precision="0" />
-          <Property Name="Pais" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Estado" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Municipio" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Contra" MaxLength="30" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Nombre" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Apellidos" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Genero" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="FechNac" Precision="0" Type="DateTime" />
+          <Property Name="Pais" MaxLength="150" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Estado" MaxLength="150" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Municipio" MaxLength="150" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Telefono" MaxLength="25" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="TO_Viajeros" Relationship="TravelOKEntitiesModel.FK_TO_Viajeros_TO_Usuario" FromRole="TO_Usuario" ToRole="TO_Viajeros" />
+          <Property Name="TelefonoEmerg" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ParentescoTelEmerg" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TO_Viajeros">
           <Key>
@@ -953,8 +1001,8 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TO_Viajeros_TO_Usuario">
-          <End Type="TravelOKEntitiesModel.TO_Usuario" Role="TO_Usuario" Multiplicity="0..1" />
-          <End Type="TravelOKEntitiesModel.TO_Viajeros" Role="TO_Viajeros" Multiplicity="*" />
+          <End Type="TravelOKEntitiesModel.TO_Usuario" Multiplicity="0..1" Role="TO_Usuario" />
+          <End Type="TravelOKEntitiesModel.TO_Viajeros" Multiplicity="*" Role="TO_Viajeros" />
           <ReferentialConstraint>
             <Principal Role="TO_Usuario">
               <PropertyRef Name="Correo" />
@@ -985,6 +1033,50 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
             </Principal>
             <Dependent Role="TO_Costo">
               <PropertyRef Name="IdViaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TO_Blog">
+          <Key>
+            <PropertyRef Name="idBlog" />
+          </Key>
+          <Property Name="idBlog" Type="Int32" Nullable="false" />
+          <Property Name="nvTitulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nvTexto" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="dtFechaSubida" Type="DateTime" Precision="3" />
+          <Property Name="Activo" Type="Int32" />
+          <Property Name="imgBlog" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TO_Encuesta">
+          <Key>
+            <PropertyRef Name="IdPregunta" />
+          </Key>
+          <Property Name="IdPregunta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nvPregunta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="iTipoPreg" Type="Int32" />
+          <NavigationProperty Name="TO_EncuestaResp" Relationship="TravelOKEntitiesModel.FK_TO_EncuestaResp_TO_Encuesta" FromRole="TO_Encuesta" ToRole="TO_EncuestaResp" />
+        </EntityType>
+        <EntityType Name="TO_EncuestaResp">
+          <Key>
+            <PropertyRef Name="IdResEnc" />
+          </Key>
+          <Property Name="IdResEnc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombrePersona" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdPregunta" Type="Int32" Nullable="false" />
+          <Property Name="nvRespuesta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dtFechaEncuesta" Type="DateTime" Precision="3" />
+          <Property Name="dtFechaViaje" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TO_Encuesta" Relationship="TravelOKEntitiesModel.FK_TO_EncuestaResp_TO_Encuesta" FromRole="TO_EncuestaResp" ToRole="TO_Encuesta" />
+        </EntityType>
+        <Association Name="FK_TO_EncuestaResp_TO_Encuesta">
+          <End Type="TravelOKEntitiesModel.TO_Encuesta" Role="TO_Encuesta" Multiplicity="1" />
+          <End Type="TravelOKEntitiesModel.TO_EncuestaResp" Role="TO_EncuestaResp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Encuesta">
+              <PropertyRef Name="IdPregunta" />
+            </Principal>
+            <Dependent Role="TO_EncuestaResp">
+              <PropertyRef Name="IdPregunta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1125,21 +1217,12 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spsObtPropHabUno" FunctionName="TravelOKEntitiesModel.Store.spsObtPropHabUno" />
           <FunctionImportMapping FunctionImportName="spsObtPropuestas" FunctionName="TravelOKEntitiesModel.Store.spsObtPropuestas" />
-          <EntitySetMapping Name="TO_Blog">
-            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Blog">
-              <MappingFragment StoreEntitySet="TO_Blog">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
-                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
-                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
-                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
-                <ScalarProperty Name="IdBlog" ColumnName="IdBlog" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TO_Destino">
             <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Destino">
               <MappingFragment StoreEntitySet="TO_Destino">
+                <ScalarProperty Name="nvRecom" ColumnName="nvRecom" />
+                <ScalarProperty Name="nvGuia" ColumnName="nvGuia" />
+                <ScalarProperty Name="nvItineraDes" ColumnName="nvItineraDes" />
                 <ScalarProperty Name="bActivo" ColumnName="bActivo" />
                 <ScalarProperty Name="bPrincipal" ColumnName="bPrincipal" />
                 <ScalarProperty Name="nvRutaImg" ColumnName="nvRutaImg" />
@@ -1221,6 +1304,8 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
           <EntitySetMapping Name="TO_Usuario">
             <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Usuario">
               <MappingFragment StoreEntitySet="TO_Usuario">
+                <ScalarProperty Name="ParentescoTelEmerg" ColumnName="ParentescoTelEmerg" />
+                <ScalarProperty Name="TelefonoEmerg" ColumnName="TelefonoEmerg" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Municipio" ColumnName="Municipio" />
@@ -1290,6 +1375,39 @@ advertencia 6002: La tabla o vista 'DB_A53E22_travelok123.dbo.TO_Costo' no tiene
                 <ScalarProperty Name="IdSalida" ColumnName="IdSalida" />
                 <ScalarProperty Name="IdDestino" ColumnName="IdDestino" />
                 <ScalarProperty Name="CostoLugar" ColumnName="CostoLugar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Blog">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Blog">
+              <MappingFragment StoreEntitySet="TO_Blog">
+                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
+                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
+                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
+                <ScalarProperty Name="idBlog" ColumnName="idBlog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Encuesta">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_Encuesta">
+              <MappingFragment StoreEntitySet="TO_Encuesta">
+                <ScalarProperty Name="iTipoPreg" ColumnName="iTipoPreg" />
+                <ScalarProperty Name="nvPregunta" ColumnName="nvPregunta" />
+                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_EncuestaResp">
+            <EntityTypeMapping TypeName="TravelOKEntitiesModel.TO_EncuestaResp">
+              <MappingFragment StoreEntitySet="TO_EncuestaResp">
+                <ScalarProperty Name="dtFechaViaje" ColumnName="dtFechaViaje" />
+                <ScalarProperty Name="dtFechaEncuesta" ColumnName="dtFechaEncuesta" />
+                <ScalarProperty Name="nvRespuesta" ColumnName="nvRespuesta" />
+                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
+                <ScalarProperty Name="NombrePersona" ColumnName="NombrePersona" />
+                <ScalarProperty Name="IdResEnc" ColumnName="IdResEnc" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

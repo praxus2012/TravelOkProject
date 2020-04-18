@@ -159,6 +159,7 @@
     <Compile Include="Controllers\EncuestaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogueoController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\VentaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -315,7 +316,9 @@
     <Content Include="Img\ImgDestinos\Joyas de Hidalgo.png" />
     <Content Include="Img\ImgDestinos\Michoacán.png" />
     <Content Include="Img\ImgDestinos\Nevado de Toluca.png" />
+    <Content Include="Img\ImgDestinos\Peru.png" />
     <Content Include="Img\ImgDestinos\Pueblos Mágicos.png" />
+    <Content Include="Img\ImgDestinos\Puerto Vallarta.png" />
     <Content Include="Img\ImgDestinos\Riviera Maya.png" />
     <Content Include="Img\ImgDestinos\Ruta Turquesa.png" />
     <Content Include="Img\ImgDestinos\Selva Maya.png" />
@@ -396,6 +399,9 @@
     <Content Include="Img\original\RutaTur\32.png" />
     <Content Include="Img\original\RutaTur\33.png" />
     <Content Include="Img\original\RutaTur\34.png" />
+    <Content Include="Img\Publicaciones\1.png" />
+    <Content Include="Img\Publicaciones\2.png" />
+    <Content Include="Img\Publicaciones\3.png" />
     <Content Include="Img\Ventas\Salidas.PNG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -417,6 +423,7 @@
     <Content Include="fonts\Cocomat Ultralight-trial.ttf" />
     <Content Include="Img\ImgDestDetalle\Huasteca Potosina\Huasteca-Itinerario-CDMX-PUE Septiembre.pdf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -433,6 +440,7 @@
     <Content Include="Scripts\Project\Bootstrap\bootstrap.js" />
     <Content Include="Scripts\Project\Bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\Project\jQuery\jquery-3.4.1.js" />
+    <Content Include="Scripts\Project\jsBlog.js" />
     <Content Include="Scripts\Project\jsComunidad.js" />
     <Content Include="Scripts\Project\jsDestinos.js" />
     <Content Include="Scripts\Project\jsDetalleVenta.js" />
@@ -481,6 +489,7 @@
     <Content Include="Views\Venta\DetalleVenta.cshtml" />
     <Content Include="Views\Venta\RegistraUsuarios.cshtml" />
     <Content Include="Views\Venta\Pago.cshtml" />
+    <Content Include="Views\Perfil\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

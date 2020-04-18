@@ -27,7 +27,6 @@ namespace CapaDatos
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<TO_Blog> TO_Blog { get; set; }
         public virtual DbSet<TO_Destino> TO_Destino { get; set; }
         public virtual DbSet<TO_DetalleDestinos> TO_DetalleDestinos { get; set; }
         public virtual DbSet<TO_Experiencias> TO_Experiencias { get; set; }
@@ -39,6 +38,9 @@ namespace CapaDatos
         public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Costo> TO_Costo { get; set; }
+        public virtual DbSet<TO_Blog> TO_Blog { get; set; }
+        public virtual DbSet<TO_Encuesta> TO_Encuesta { get; set; }
+        public virtual DbSet<TO_EncuestaResp> TO_EncuestaResp { get; set; }
     
         public virtual int spdEliminaCosto(Nullable<int> nvSalida, Nullable<int> nvDestino, Nullable<int> nvHabitacion)
         {
@@ -143,7 +145,7 @@ namespace CapaDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaCosto", moCostoParameter, inDestinoParameter, inSalidaParameter, inHabitacParameter, nvTipoPerParameter);
         }
     
-        public virtual int spiInsertaDestino(string nvDestino, string nvTitulo, string nvSubt, string nvDesc, Nullable<bool> bPrincipal)
+        public virtual int spiInsertaDestino(string nvDestino, string nvTitulo, string nvSubt, string nvDesc, string nvRecom, string nvItineraDes, string nvGuia, Nullable<bool> bPrincipal)
         {
             var nvDestinoParameter = nvDestino != null ?
                 new ObjectParameter("nvDestino", nvDestino) :
@@ -161,11 +163,23 @@ namespace CapaDatos
                 new ObjectParameter("nvDesc", nvDesc) :
                 new ObjectParameter("nvDesc", typeof(string));
     
+            var nvRecomParameter = nvRecom != null ?
+                new ObjectParameter("nvRecom", nvRecom) :
+                new ObjectParameter("nvRecom", typeof(string));
+    
+            var nvItineraDesParameter = nvItineraDes != null ?
+                new ObjectParameter("nvItineraDes", nvItineraDes) :
+                new ObjectParameter("nvItineraDes", typeof(string));
+    
+            var nvGuiaParameter = nvGuia != null ?
+                new ObjectParameter("nvGuia", nvGuia) :
+                new ObjectParameter("nvGuia", typeof(string));
+    
             var bPrincipalParameter = bPrincipal.HasValue ?
                 new ObjectParameter("bPrincipal", bPrincipal) :
                 new ObjectParameter("bPrincipal", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaDestino", nvDestinoParameter, nvTituloParameter, nvSubtParameter, nvDescParameter, bPrincipalParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spiInsertaDestino", nvDestinoParameter, nvTituloParameter, nvSubtParameter, nvDescParameter, nvRecomParameter, nvItineraDesParameter, nvGuiaParameter, bPrincipalParameter);
         }
     
         public virtual int spiInsertaDetalleDestino(Nullable<int> idDestino, string nvRuta, string nvDescripción, Nullable<bool> bActivo)

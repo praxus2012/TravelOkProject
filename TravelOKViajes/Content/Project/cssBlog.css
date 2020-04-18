@@ -1,20 +1,56 @@
-﻿#liBlo{
-    border-top-style:solid;
+﻿
+.dvPublicacion{
+margin-bottom: 50px;
 }
 
-#dvIzq{
-    float:left;
+.divImagen {
+    margin-top: 20px;
+    margin-left: 10px;
 }
 
-#dvIzq p{
-    font-size:2rem;
+.divTitulo {
+    text-align: center;
+
+}
+
+.dvValues {
+    justify-content: center
 }
 
 
-#dvDer{
-    float: right;
+.titDest {
+    margin-top: 1rem !important;
+    margin-bottom: 2rem !important;
+    font-style: italic;
+    text-align: center;
+    width: 25rem;
+    height: 6rem;
 }
 
-#dvDer,#dvIzq{
-    margin-top:2rem;
+.modalTitulo{
+    font-size:30px;
+}
+
+#detalle {
+    max-width: 70%;
+    height: 60%;
+    background-color: white;
+}
+
+.modalAutor{
+    padding-left: 20px;
+
+}
+
+.modalFecha {
+    padding-left: 20px;
+}
+
+
+
+@media (max-width: 503px) {
+    .titDest {
+        width: 15rem;
+        height: 6rem;
+    }
 }

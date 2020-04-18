@@ -58,7 +58,8 @@ $(document).on('click', '#btnRegistro', function () {
         && $('#inCumple').val() != ''
         && $('#inPais').val() != ''
         && $('#inEstado').val() != ''
-        && $('#inMuni').val() != '') {
+        && $('#inTelEmerg').val() != ''
+        && $('#inParentesco').val() != '') {
         if ($('#inCorreo').val() == $('#inCorreo2').val()
             && $('#inContra').val() == $('#inContra2').val()
             && $('#inTel').val() == $('#inTel2').val()
@@ -72,13 +73,15 @@ $(document).on('click', '#btnRegistro', function () {
                 FechNac: $('#inCumple').val(),
                 Pais: $('#inPais').val(),
                 Estado: $('#inEstado').val(),
-                Municipio: $('#inMuni').val(),
+                Municipio: null,
                 Telefono: $('#inTel').val(),
-                Activo: true
+                Activo: true,
+                TelefonoEmerg: $('#inTelEmerg').val(),
+                ParentescoTelEmerg: $('#inParentesco').val()
             };
             Registro(Usr);
         } else {
-            MensajeAdvertencia('Error en confirmar correo, contrasenia o telefono');
+            MensajeAdvertencia('Error en confirmar correo, contraseña o telefono');
             OcultaCarga();
         }
     } else {

@@ -10,16 +10,17 @@
 namespace CapaDatos
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class spsObtieneDestinoDet1_Result
+    public partial class TO_EncuestaResp
     {
-        public int idViaje { get; set; }
-        public string sTitulo { get; set; }
-        public string sSubTit { get; set; }
-        public string sDescrip { get; set; }
-        public string sRutaImg { get; set; }
-        public string sIntin { get; set; }
-        public string sGuia { get; set; }
-        public string sRec { get; set; }
+        public int IdResEnc { get; set; }
+        public string NombrePersona { get; set; }
+        public int IdPregunta { get; set; }
+        public string nvRespuesta { get; set; }
+        public Nullable<System.DateTime> dtFechaEncuesta { get; set; }
+        public Nullable<System.DateTime> dtFechaViaje { get; set; }
+    
+        public virtual TO_Encuesta TO_Encuesta { get; set; }
     }
 }
