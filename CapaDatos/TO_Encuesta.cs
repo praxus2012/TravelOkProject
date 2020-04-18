@@ -12,29 +12,19 @@ namespace CapaDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class TO_Usuario
+    public partial class TO_Encuesta
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TO_Usuario()
+        public TO_Encuesta()
         {
-            this.TO_Viajeros = new HashSet<TO_Viajeros>();
+            this.TO_EncuestaResp = new HashSet<TO_EncuestaResp>();
         }
     
-        public string Correo { get; set; }
-        public string Contra { get; set; }
-        public string Nombre { get; set; }
-        public string Apellidos { get; set; }
-        public string Genero { get; set; }
-        public Nullable<System.DateTime> FechNac { get; set; }
-        public string Pais { get; set; }
-        public string Estado { get; set; }
-        public string Municipio { get; set; }
-        public string Telefono { get; set; }
-        public Nullable<bool> Activo { get; set; }
-        public string TelefonoEmerg { get; set; }
-        public string ParentescoTelEmerg { get; set; }
+        public int IdPregunta { get; set; }
+        public string nvPregunta { get; set; }
+        public Nullable<int> iTipoPreg { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TO_Viajeros> TO_Viajeros { get; set; }
+        public virtual ICollection<TO_EncuestaResp> TO_EncuestaResp { get; set; }
     }
 }

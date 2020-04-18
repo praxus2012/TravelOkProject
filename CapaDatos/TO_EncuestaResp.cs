@@ -12,13 +12,15 @@ namespace CapaDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class TO_Blog
+    public partial class TO_EncuestaResp
     {
-        public int idBlog { get; set; }
-        public string nvTitulo { get; set; }
-        public string nvTexto { get; set; }
-        public Nullable<System.DateTime> dtFechaSubida { get; set; }
-        public Nullable<int> Activo { get; set; }
-        public string imgBlog { get; set; }
+        public int IdResEnc { get; set; }
+        public string NombrePersona { get; set; }
+        public int IdPregunta { get; set; }
+        public string nvRespuesta { get; set; }
+        public Nullable<System.DateTime> dtFechaEncuesta { get; set; }
+        public Nullable<System.DateTime> dtFechaViaje { get; set; }
+    
+        public virtual TO_Encuesta TO_Encuesta { get; set; }
     }
 }

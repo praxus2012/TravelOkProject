@@ -3,6 +3,11 @@
     MuestraCarga();
 });
 
+$(document).on('click', 'a', function () {
+
+    MuestraCarga();
+});
+
 function MuestraCarga() {
     $(window).scrollTop(0);
     $('html').css('overflow', 'hidden');

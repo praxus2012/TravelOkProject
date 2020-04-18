@@ -159,6 +159,7 @@
     <Compile Include="Controllers\EncuestaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogueoController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\VentaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -484,6 +485,7 @@
     <Content Include="Views\Venta\DetalleVenta.cshtml" />
     <Content Include="Views\Venta\RegistraUsuarios.cshtml" />
     <Content Include="Views\Venta\Pago.cshtml" />
+    <Content Include="Views\Perfil\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -26,6 +26,9 @@ namespace TravelOKViajes.Controllers
 			{
 				CD_Destinos cdDestino = new CD_Destinos();
 				List<TO_Destino> lsDestinos = new List<TO_Destino>();
+                CD_Encuesta cdEncuesta = new CD_Encuesta();
+                List<TO_Encuesta> lsEncuesta = new List<TO_Encuesta>();
+                lsEncuesta = cdEncuesta.fnlsObtienePreguntas();
 				lsDestinos = cdDestino.lsObtieneDestinos();
 				if (lsDestinos.Count > 0)
 				{
@@ -35,6 +38,12 @@ namespace TravelOKViajes.Controllers
 													  new JProperty("Destino", d.Destino)
 													));
 					resultado["LsDestinos"] = arDestinos;
+                    resultado["LsEncuesta"] = new JArray(from p in lsEncuesta
+                                                         select new JObject(
+                                                             new JProperty("IdPregunta", p.IdPregunta),
+                                                             new JProperty("nvPregunta", p.nvPregunta),
+                                                             new JProperty("iTipoPreg", p.iTipoPreg)
+                                                         ));
 					resultado["Exito"] = true;
 				}
 			}

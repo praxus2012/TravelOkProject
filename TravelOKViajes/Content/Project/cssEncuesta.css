@@ -1,26 +1,27 @@
-﻿.c1 {
+﻿.c-1 {
     background-image: url('../../Img/Encuesta/C0.png');    
 }
 
-.c1, .c2, .c3, .c4, .c5 {
+.c-1, .c-2, .c-3, .c-4, .c-5 {
     background-size: contain;
     width: 3rem;
     margin: 0 auto;
+    border-radius: 1.5rem;
 }
 
-.c2 {
+.c-2 {
     background-image: url('../../Img/Encuesta/C1.png');
 }
 
-.c3 {
+.c-3 {
     background-image: url('../../Img/Encuesta/C2.png');
 }
 
-.c4 {
+.c-4 {
     background-image: url('../../Img/Encuesta/C3.png');
 }
 
-.c5 {
+.c-5 {
     background-image: url('../../Img/Encuesta/C4.png');
 }
 
