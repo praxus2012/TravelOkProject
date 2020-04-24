@@ -34,7 +34,7 @@
                 @Html.ActionLink("VIAJEROS", "Comunidad", "Home", new { @class = "nav-item nav-link" }, new { @class = "nav-item nav-link" })
                 @if (Session["UserName"] != null)
                 {
-                    <div id="dvPersona">Bienvenido @Session["UserName"].ToString()</div>
+                    @Html.ActionLink("Bienvenido "+ @Session["UserName"].ToString(), "Index", "Perfil", new { @class = "nav-item nav-link" }, new { @class = "nav-item nav-link" })
                 }
                 else
                 {

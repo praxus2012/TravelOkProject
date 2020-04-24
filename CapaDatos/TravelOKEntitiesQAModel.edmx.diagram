@@ -8,8 +8,6 @@
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Blog" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Destino" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_DetalleDestinos" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Encuesta" Width="1.5" PointX="11.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_EncuestaResp" Width="1.5" PointX="14" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Experiencias" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Habitaciones" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Salida" Width="1.5" PointX="6" PointY="11.625" IsExpanded="true" />
@@ -23,7 +21,6 @@
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_DetDestinos_Destinos" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Destino" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Destino" ManuallyRouted="false" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_EncuestaResp_TO_Encuesta" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Habitaciones" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Salida" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Salida" ManuallyRouted="false" />
@@ -31,6 +28,10 @@
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Viajes" ManuallyRouted="false" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Viajes" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Encuesta" Width="1.5" PointX="0.75" PointY="13.25" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_EncuestaResp" Width="1.5" PointX="3" PointY="12.75" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_EncuestaResp_TO_Destino" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_EncuestaResp_TO_Encuesta" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

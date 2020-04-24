@@ -20,6 +20,7 @@ namespace CapaDatos
             this.TO_Experiencias = new HashSet<TO_Experiencias>();
             this.TO_DetalleDestinos = new HashSet<TO_DetalleDestinos>();
             this.TO_Viajes = new HashSet<TO_Viajes>();
+            this.TO_EncuestaResp = new HashSet<TO_EncuestaResp>();
         }
     
         public int IdViaje { get; set; }
@@ -41,5 +42,7 @@ namespace CapaDatos
         public virtual TO_Costo TO_Costo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TO_Viajes> TO_Viajes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TO_EncuestaResp> TO_EncuestaResp { get; set; }
     }
 }

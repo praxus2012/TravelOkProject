@@ -30,8 +30,6 @@ namespace CapaDatos
         public virtual DbSet<TO_Blog> TO_Blog { get; set; }
         public virtual DbSet<TO_Destino> TO_Destino { get; set; }
         public virtual DbSet<TO_DetalleDestinos> TO_DetalleDestinos { get; set; }
-        public virtual DbSet<TO_Encuesta> TO_Encuesta { get; set; }
-        public virtual DbSet<TO_EncuestaResp> TO_EncuestaResp { get; set; }
         public virtual DbSet<TO_Experiencias> TO_Experiencias { get; set; }
         public virtual DbSet<TO_Habitaciones> TO_Habitaciones { get; set; }
         public virtual DbSet<TO_Salida> TO_Salida { get; set; }
@@ -41,6 +39,8 @@ namespace CapaDatos
         public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Costo> TO_Costo { get; set; }
+        public virtual DbSet<TO_Encuesta> TO_Encuesta { get; set; }
+        public virtual DbSet<TO_EncuestaResp> TO_EncuestaResp { get; set; }
     
         public virtual int spdEliminaCosto(Nullable<int> nvSalida, Nullable<int> nvDestino, Nullable<int> nvHabitacion)
         {

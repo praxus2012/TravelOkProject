@@ -17,10 +17,12 @@ namespace CapaDatos
         public int IdResEnc { get; set; }
         public string NombrePersona { get; set; }
         public int IdPregunta { get; set; }
+        public int IdDestino { get; set; }
         public string nvRespuesta { get; set; }
         public Nullable<System.DateTime> dtFechaEncuesta { get; set; }
         public Nullable<System.DateTime> dtFechaViaje { get; set; }
     
+        public virtual TO_Destino TO_Destino { get; set; }
         public virtual TO_Encuesta TO_Encuesta { get; set; }
     }
 }

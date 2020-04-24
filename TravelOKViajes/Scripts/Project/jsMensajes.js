@@ -4,7 +4,9 @@ function MensajeError(mensaje) {
         'Ha ocurrido un error',
         mensaje,
         'error'
-    );
+    ).then((result) => {
+        window.location.href = "/Home/Index";
+    });
 }
 
 
@@ -12,8 +14,12 @@ function MensajeAdvertencia(mensaje) {
     Swal.fire(
         'Advertencia',
         mensaje,
-        'warning'
-    );
+        'warning',
+    ).then((result) => {
+        if (result.value) {
+            OcultaCarga();
+        }
+    });
 }
 
 

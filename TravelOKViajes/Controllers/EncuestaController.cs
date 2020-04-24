@@ -51,76 +51,28 @@ namespace TravelOKViajes.Controllers
             return Content(resultado.ToString());
         }
 
-        // GET: Encuesta/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Encuesta/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Encuesta/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult RecibeEncuesta(List<TO_EncuestaResp> SalidaRes)
         {
+            var resultado = new JObject();
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                CD_Encuesta cdEncuesta = new CD_Encuesta();
+                if (cdEncuesta.fnbInsertaEncuesta(SalidaRes))
+                {
+                    resultado["Exito"] = true;
+                }
+                else
+                {
+                    resultado["Exito"] = false;
+                }
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                resultado["Exito"] = false;
             }
-        }
-
-        // GET: Encuesta/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Encuesta/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Encuesta/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Encuesta/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return Content(resultado.ToString());
         }
     }
 }

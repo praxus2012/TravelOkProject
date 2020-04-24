@@ -15,5 +15,24 @@ namespace CapaDatos
                 return context.TO_Encuesta.ToList();
             }
         }
+
+        public bool fnbInsertaEncuesta(List<TO_EncuestaResp> lsEncuestaRes)
+        {
+            try
+            {
+                using (var context = new TravelOKEntitiesQA())
+                {
+                    foreach (TO_EncuestaResp oEncRes in lsEncuestaRes)
+                    {
+                        context.TO_EncuestaResp.Add(oEncRes);
+                    }
+                    context.SaveChanges();
+                    return true;
+                }
+            }catch(Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
