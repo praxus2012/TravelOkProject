@@ -45,3 +45,42 @@ li {
 .card-title{
     font-size:2.25rem;
 }
+
+
+.contenido {
+  
+    width: 1550px;
+    height: 500px;
+}
+
+
+.mision {
+    text-align: center;
+    float:left;
+    width: 387px;
+    height: 150px;
+
+}
+
+.vision {
+    text-align: center;
+    float: left;
+    width: 387px;
+    height: 150px;
+
+}
+
+.valores {
+    float: right;
+    width: 776px;
+    height: 500px;
+    background: black;
+}
+
+.final {
+    text-align: center;
+ }
+
+ul{
+    padding-left:10px;
+}
