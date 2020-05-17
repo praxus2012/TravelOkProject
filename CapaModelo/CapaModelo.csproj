@@ -45,6 +45,7 @@
     <Compile Include="cmBlog.cs" />
     <Compile Include="cmComunidad.cs" />
     <Compile Include="cmCostos.cs" />
+    <Compile Include="cmDeudaViajeros.cs" />
     <Compile Include="cmHabitacion.cs" />
     <Compile Include="cmPago.cs" />
     <Compile Include="cmPersonasViaje.cs" />

@@ -63,6 +63,7 @@
     <Compile Include="CD_Destinos.cs" />
     <Compile Include="CD_DetVenta.cs" />
     <Compile Include="CD_Encuesta.cs" />
+    <Compile Include="CD_Perfil.cs" />
     <Compile Include="CD_Salida.cs" />
     <Compile Include="Administrador\CDA_Usuario.cs" />
     <Compile Include="CD_SelecVen.cs" />
