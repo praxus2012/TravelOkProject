@@ -27,6 +27,7 @@ namespace CapaDatos
         public Nullable<decimal> CostoTotal { get; set; }
         public Nullable<decimal> Pagado { get; set; }
         public Nullable<decimal> Deuda { get; set; }
+        public byte[] Pago { get; set; }
     
         public virtual TO_Usuario TO_Usuario { get; set; }
         public virtual TO_Viajes TO_Viajes { get; set; }

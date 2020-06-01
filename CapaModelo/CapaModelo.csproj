@@ -47,6 +47,7 @@
     <Compile Include="cmCostos.cs" />
     <Compile Include="cmDeudaViajeros.cs" />
     <Compile Include="cmHabitacion.cs" />
+    <Compile Include="cmInsertaPago.cs" />
     <Compile Include="cmPago.cs" />
     <Compile Include="cmPersonasViaje.cs" />
     <Compile Include="cmSalida.cs" />

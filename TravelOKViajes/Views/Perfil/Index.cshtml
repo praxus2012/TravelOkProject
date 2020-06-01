@@ -2,26 +2,16 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<script src="~/Scripts/Project/jsPerfil.js"></script>
 <h2 id="hBienv">Bienvenido </h2>
 
 <div class="container col-12">
-    <div class="row col-12">
+    <div class="row col-12 mb-5">
         Aqui podra realizar la actualizacion de sus pagos, suba sus bauchers correspondientes.
     </div>
-    <div class="row col-12">
-        <div class="card">
-            <div class="card-header">
-                Cancun - 12/06/2020
-            </div>
-            <div class="card-body">
-                <p>Usted tiene un adeudo de :</p>
-                <p>Seleccione el archivo con el pago correspondiente</p>
-                <input type="file"
-                       id="Arch" name="Archivo"
-                       accept="image/png, image/jpeg" placeholder="Subir Archivo">
-                <footer class="blockquote-footer">Se evaluara la informacion y se cambiara el estatus del pago.</footer>
-            </div>
-        </div>
+    <div class="row col-12" id="dvDeudas">
     </div>
 </div>
+
+<input type="hidden" id="urlInicialPerfil" value="@Url.Action("InicialPerfil","Perfil")" />
+<input type="hidden" id="urlInsertaPago" value="@Url.Action("InsertaPago","Perfil")" />

@@ -30,17 +30,17 @@ namespace CapaDatos
         public virtual DbSet<TO_Blog> TO_Blog { get; set; }
         public virtual DbSet<TO_Destino> TO_Destino { get; set; }
         public virtual DbSet<TO_DetalleDestinos> TO_DetalleDestinos { get; set; }
+        public virtual DbSet<TO_Encuesta> TO_Encuesta { get; set; }
+        public virtual DbSet<TO_EncuestaResp> TO_EncuestaResp { get; set; }
         public virtual DbSet<TO_Experiencias> TO_Experiencias { get; set; }
         public virtual DbSet<TO_Habitaciones> TO_Habitaciones { get; set; }
         public virtual DbSet<TO_Salida> TO_Salida { get; set; }
         public virtual DbSet<TO_Transporte> TO_Transporte { get; set; }
         public virtual DbSet<TO_Usuario> TO_Usuario { get; set; }
-        public virtual DbSet<TO_Viajeros> TO_Viajeros { get; set; }
         public virtual DbSet<TO_Viajes> TO_Viajes { get; set; }
         public virtual DbSet<TOA_Usuario> TOA_Usuario { get; set; }
         public virtual DbSet<TO_Costo> TO_Costo { get; set; }
-        public virtual DbSet<TO_Encuesta> TO_Encuesta { get; set; }
-        public virtual DbSet<TO_EncuestaResp> TO_EncuestaResp { get; set; }
+        public virtual DbSet<TO_Viajeros> TO_Viajeros { get; set; }
     
         public virtual int spdEliminaCosto(Nullable<int> nvSalida, Nullable<int> nvDestino, Nullable<int> nvHabitacion)
         {
@@ -413,6 +413,15 @@ namespace CapaDatos
                 new ObjectParameter("nvCont", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spVerificaUsuario_Result>("spVerificaUsuario", nvUsuParameter, nvContParameter);
+        }
+    
+        public virtual ObjectResult<spsObtInfoDeudaViajero_Result> spsObtInfoDeudaViajero(string idUsuario)
+        {
+            var idUsuarioParameter = idUsuario != null ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spsObtInfoDeudaViajero_Result>("spsObtInfoDeudaViajero", idUsuarioParameter);
         }
     }
 }
