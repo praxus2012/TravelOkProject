@@ -132,7 +132,8 @@ function successInsertaComunidad(data) {
         $('#inArchivo').val('');
         $(".rate").rate("getValue");
 
-        MensajeExito("Gracias por sus comentarios.");
+    MensajeExito("Gracias por sus comentarios.");
+    location.reload();
        // CargaInicial();
        // OcultaCarga();
    // } else {
