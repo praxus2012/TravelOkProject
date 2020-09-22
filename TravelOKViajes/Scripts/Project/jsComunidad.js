@@ -133,7 +133,7 @@ function successInsertaComunidad(data) {
         $(".rate").rate("getValue");
 
     MensajeExito("Gracias por sus comentarios.");
-    location.reload();
+    window.location.href = "/Home/Comunidad";
        // CargaInicial();
        // OcultaCarga();
    // } else {

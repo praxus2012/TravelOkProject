@@ -162,7 +162,7 @@ function successRecupFechVta(data) {
         $.each(data.LsFechaVta, function (i) {
             var fecha = data.LsFechaVta[i].dtFecha;
       
-            var $nuevaFecha = fecha.toString().slice(0,9);
+            var $nuevaFecha = fecha.toString().slice(0,10);
 
             $('#selFechas')
                 .append($("<option></option>")
