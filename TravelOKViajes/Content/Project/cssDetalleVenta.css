@@ -2,3 +2,8 @@
     margin-top: 2rem;
     margin-left: 1rem;
 }
+@media (max-width: 767px) {
+    .imgH img {
+        margin-left: 0rem !important;
+    }
+}

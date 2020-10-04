@@ -8,6 +8,17 @@ $(document).on('click', 'a', function () {
     MuestraCarga();
 });
 
+$(document).on('click', '#afb', function () {
+    OcultaCarga();
+});
+
+$(document).on('click', '#aig', function () {
+    OcultaCarga();
+});
+$(document).on('click', '#awp', function () {
+    OcultaCarga();
+});
+
 function MuestraCarga() {
     $(window).scrollTop(0);
     $('html').css('overflow', 'hidden');

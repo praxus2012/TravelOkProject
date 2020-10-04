@@ -58,6 +58,12 @@ namespace TravelOKViajes.Controllers
             var resultado = new JObject();
             try
             {
+                if(DatosPago.sNomArch== "undefined")
+                {
+                    resultado["Exito"] = false;
+                    resultado["Mensaje"] = "No ha seleccionado ningún archivo";
+                    return Content(resultado.ToString());
+                }
                 DatosPago.idUsuario = Session["UserID"].ToString();
                 foreach (string _fileName in Request.Files)
                 {

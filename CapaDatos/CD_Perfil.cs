@@ -52,6 +52,8 @@ namespace CapaDatos
                 return true;
             }catch(Exception ex)
             {
+                string esx = ex.Message;
+                string inner = ex.InnerException.Message;
                 return false;
                 throw ex;
             }

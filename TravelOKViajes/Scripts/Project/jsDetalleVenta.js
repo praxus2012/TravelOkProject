@@ -173,7 +173,7 @@ function successObtienePropuestas(data) {
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
                 '<div class="col-md-4 imgH">' +
-                '<img src="http://www.hotelelparque.com/wp-content/uploads/2017/11/habitacion-sencilla-fomeque.jpg" class="card-img col-12 m-0" alt="...">' +
+                '<img src="https://lh5.googleusercontent.com/IARhSTBuiGMWYupbhE3ktRtR-ix-wV6j5XEEWWPgJ0f6k_YzA5jPz9qMB4mfWVxpprNBQ4r5jww3q5oiw0UK=w1920-h842-rw" class="card-img col-12" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +
                 '<div class="card-body cb-1">';
@@ -193,7 +193,7 @@ function successObtienePropuestas(data) {
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
                 '<div class="col-md-4 imgH">' +
-                '<img src="https://cdn.easy-rez.com/production/hotels/a5ef0afdd823b3a0448bc3198a285aee/uploads/.rooms/th_0752692001531761234.jpg" class="card-img col-12 m-0" alt="...">' +
+                '<img src="https://lh5.googleusercontent.com/KD0YGyVlR2m-3IrOip_a7-lbi2sopW0hO0tOK4e4_6O23PJm_K7tKUrJC1cfmJvEVhJ919F-guJF_8mzAmDZ=w1920-h475" class="card-img col-12" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +
                 '<div class="card-body cb-2">';
@@ -213,7 +213,7 @@ function successObtienePropuestas(data) {
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
                 '<div class="col-md-4 imgH">' +
-                '<img src="https://www.hotelveracruz.com.mx/uploads/galeriahabitaciones/estandar-sencilla-hotel-veracruz-centro-b_UQkqZsm.jpg" class="card-img col-12 m-0" alt="...">' +
+                '<img src="https://lh6.googleusercontent.com/c5vMzy0xw-Dt9TikGn0d1d1EJoyR1Rgl_OS07O63oqGXbEiuZLF0qDRXjABKAFP6mZPnsi0zl5CeawUdlyKi=w1920-h475" class="card-img col-12" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +
                 '<div class="card-body cb-3">';
@@ -234,7 +234,7 @@ function successObtienePropuestas(data) {
                 '<div class="card mb-3" style="max-width: 540px;">' +
                 '<div class="row no-gutters">' +
                 '<div class="col-md-4 imgH">' +
-                '<img src="http://www.hotelelparque.com/wp-content/uploads/2017/11/habitacion-sencilla-fomeque.jpg" class="card-img col-12 m-0" alt="...">' +
+                '<img src="https://lh5.googleusercontent.com/IARhSTBuiGMWYupbhE3ktRtR-ix-wV6j5XEEWWPgJ0f6k_YzA5jPz9qMB4mfWVxpprNBQ4r5jww3q5oiw0UK=w1920-h842-rw" class="card-img col-12" alt="...">' +
                 '</div>' +
                 '<div class="col-md-8">' +
                 '<div class="card-body cb-1">';
