@@ -27,6 +27,8 @@ function GeneraRegistros() {
 }
 
 
+
+
 $(document).on('click', '#btnContinuar', function () {
     var bCorrecto = true;
     for (var i = 0; i < asientosTot; i++) {

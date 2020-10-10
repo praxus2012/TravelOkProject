@@ -81,10 +81,8 @@
                 <div class="row dvTot ml-3 mb-3">
                     Su total es de : @ViewData["dCosto"];
                 </div>
-                <form action="/procesar-pago" method="POST" class="ml-3">
-                    <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
-                            data-preference-id="@preference.Id">
-                    </script>
+                <form class="ml-3">
+                    <button class="btn btn-primary" id="btnPagar">Pagar</button>
                 </form>
             </div>
         </div>
@@ -107,6 +105,98 @@
             </div>
         </div>
     </div>
+
 </div>
+
+
+
+
+<!-- Inicio modal datos pago-->
+<div id="modalDatosPago" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Datos de la tarjeta</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+
+                    <div>
+                        <label for="numTarjeta">Numero de tarjeta</label>
+                        <input type="text" style="text-transform: uppercase" class="form-control form-control-rounded" name="numTarjeta" id="idnumTarjeta" type="number" data-validation="custom required" required />
+                        <!--    <span class="error text-danger" id="nombreModalerror">Favor de completar este campo</span>-->
+                    </div>
+                    <br>
+                    <div>
+                        <label for="tipo">Tipo</label>
+                        <select class="form-control form-control-rounded" name="tipo" id="idTipoTarjeta">
+                            <option value="0">Selecciona una opción</option>
+                            <option value="visa">Visa</option>
+                            <option value="mastercard">MasterCard</option>
+                        </select>
+                        <!--   <span class="error text-danger" id="AppPatModalerror">Favor de completar este campo</span>-->
+                    </div>
+                    <br>
+                    <div>
+                        <label for="mesVencimiento">Mes de vencimiento</label>
+                        <select class="form-control form-control-rounded" name="mesVencimiento" id="idmesVencimiento">
+                            <option value="0" selected>Selecciona una opción</option>
+                            <option value="01" selected>01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="añoVencimiento">Año de vencimiento</label>
+                        <select class="form-control form-control-rounded" name="añoVencimiento" id="idañoVencimiento">
+                            <option value="0" selected>Selecciona una opción</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                            <option value="2031">2031</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="codigoSeguridad">Código de seguridad</label>
+                        <input type="password" class="form-control form-control-rounded" name="codigoSeguridad" id="idcodigoSeguridad" type="number" data-validation="custom required" required />
+                        <!--    <span class="error text-danger" id="nombreModalerror">Favor de completar este campo</span>-->
+                    </div>
+                    <br>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnEnviarDatosTarjeta">Pagar ahora</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin modal servidores por nombre -->
+
+
+
+
 <script src="~/Scripts/Project/jsPago.js"></script>
 <script type="text/javascript" src="https://js.openpay.mx/openpay.v1.min.js"></script>
+<input type="hidden" id="urlDatosTarjeta" value="@Url.Action("EnviarDatosTarjeta","Venta")" />

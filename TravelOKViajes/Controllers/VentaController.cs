@@ -314,6 +314,7 @@ namespace TravelOKViajes.Controllers
         {
             return View();
         }
+
         public ActionResult Pago()
         {
             if (Session["UserName"] == null)
@@ -321,24 +322,24 @@ namespace TravelOKViajes.Controllers
                 return RedirectToAction("TravelInicio", "Logueo");
             }
             decimal dCosto = Decimal.Parse(Session["dCosto"].ToString());
-     //       if (MercadoPago.SDK.AccessToken == "" || MercadoPago.SDK.AccessToken == null)
-     //       {
-                MercadoPago.SDK.AccessToken = "TEST-6582260809137792-022623-28a70b40031661378673091a2e5e2645-38792279";
-     //       }
-                Preference preference = new Preference();
-                preference.Items.Add(new Item()
-                {
-                    Title = "Viaje",
-                    Quantity = 1,
-                    CurrencyId = CurrencyId.MXN,
-                    UnitPrice = (decimal)1,
-                    Id = Session["UserID"].ToString()
-                });
-                preference.Save();
-                ViewData["pref"] = preference;
+
                 ViewData["dCosto"] = dCosto;
                
             return View();
         }
+
+        [HttpPost]
+        public ActionResult EnviarDatosTarjeta()
+        {
+
+            //YA LLEGA EL MÉTODO, SÓLO RECIBIR DATOS Y PROCESAR PAGO
+
+          
+            return Content("a");
+
+        }
+
+
+
     }
 }
