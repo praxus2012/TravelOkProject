@@ -58,6 +58,9 @@ function enviarDatosTarjeta() {
 
     var url = $('#urlDatosTarjeta').val();
 
+
+
+
     $.ajax({
         url: url,
 
