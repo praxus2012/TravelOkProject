@@ -181,6 +181,11 @@
     color: #ffffff;
     margin-top: -18rem;
 }
+
+
+#paypal-button-container {
+    text-align: center;
+}
 @font-face {
     font-family: 'Cocomat Light-trial';
     src: url('../../fonts/Cocomat Light-trial.ttf') format('truetype');

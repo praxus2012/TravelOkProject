@@ -256,7 +256,10 @@ function successObtienePropuestas(data) {
         MensajeAdvertencia('Ocurrió un problema al cargar la información');
         OcultaCarga();
     }
+
 }
+
+
 
 function formatCurrency(number) {
     if (number == "") return;
@@ -275,6 +278,8 @@ function GeneraClick() {
         sessionStorage.setItem("Adulto", $('#inAdultos').val() == '' ? 0 : $('#inAdultos').val());
         sessionStorage.setItem("Nino", $('#inNinos').val() == '' ? 0 : $('#inNinos').val());
         sessionStorage.setItem("OpHab", $(this).attr('id'));
+        console.log($('#p-' + $(this).attr('id').split('-')[1]).text());
+        sessionStorage.setItem("Tot", $('#p-' + $(this).attr('id').split('-')[1]).text().replace('$', '').replace(',', ''));
         window.location.href = '/Venta/Index';
     });
 }

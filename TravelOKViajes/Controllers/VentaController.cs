@@ -329,8 +329,9 @@ namespace TravelOKViajes.Controllers
         }
 
         [HttpPost]
-        public ActionResult EnviarDatosTarjeta()
+        public ActionResult EnviarDatosTarjeta(cmTarjeta oTarj)
         {
+
 
             //YA LLEGA EL MÉTODO, SÓLO RECIBIR DATOS Y PROCESAR PAGO
 
