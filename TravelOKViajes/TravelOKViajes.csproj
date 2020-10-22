@@ -423,8 +423,6 @@
     <Content Include="fonts\Cocomat Light-trial.ttf" />
     <Content Include="fonts\Cocomat Ultralight-trial.ttf" />
     <Content Include="Img\ImgDestDetalle\Huasteca Potosina\Huasteca-Itinerario-CDMX-PUE Septiembre.pdf" />
-    <Content Include="Documentos\CONTRATO-EJEMPLO.doc" />
-    <Content Include="Documentos\PASE-DE-ABORDAR-1-1-EJEMPLO.doc" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -497,6 +495,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Documentos\" />
     <Folder Include="Img\Fondos\" />
     <Folder Include="Img\ImgDestDetalle\Tepoztlán\" />
     <Folder Include="Models\" />

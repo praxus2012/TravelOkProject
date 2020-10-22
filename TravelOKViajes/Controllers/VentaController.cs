@@ -329,7 +329,7 @@ namespace TravelOKViajes.Controllers
         }
 
         [HttpPost]
-        public ActionResult EnviarDatosTarjeta(cmTarjeta oTarj)
+        public ActionResult EnviarDatosTarjeta()
         {
 
 
