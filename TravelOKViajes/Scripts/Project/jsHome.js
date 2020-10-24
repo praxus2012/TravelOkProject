@@ -167,9 +167,24 @@ function successRecupFechVta(data) {
             $('#selFechas')
                 .append($("<option></option>")
                     .attr("value", data.LsFechaVta[i].IdVenta)
-                    .text($nuevaFecha));
+                    .text(convertirFecha($nuevaFecha)));
+
         });
     }
+
+
+}
+
+
+function convertirFecha(fechaSinFormato) {
+
+    let fechaNueva = "";
+
+    let fechaDividida = fechaSinFormato.split("-");
+
+    fechaNueva = fechaDividida[2] + "-" + fechaDividida[1] + "-" + fechaDividida[0];
+
+    return fechaNueva;
 
 
 }

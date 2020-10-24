@@ -115,12 +115,12 @@ function successRecupFechVta(data) {
 
             var fecha = data.LsFechaVta[i].dtFecha;
 
-            var $nuevaFecha = fecha.toString().slice(0, 9);
+            var $nuevaFecha = fecha.toString().slice(0, 10);
 
             $('#selFechas')
                 .append($("<option></option>")
                     .attr("value", data.LsFechaVta[i].IdVenta)
-                    .text($nuevaFecha));
+                    .text(convertirFecha($nuevaFecha)));
         });
 
         if (sessionStorage.getItem("Fecha") != null) {
@@ -282,4 +282,18 @@ function GeneraClick() {
         sessionStorage.setItem("Tot", $('#p-' + $(this).attr('id').split('-')[1]).text().replace('$', '').replace(',', ''));
         window.location.href = '/Venta/Index';
     });
+}
+
+
+function convertirFecha(fechaSinFormato) {
+
+    let fechaNueva = "";
+
+    let fechaDividida = fechaSinFormato.split("-");
+
+    fechaNueva = fechaDividida[2] + "-" + fechaDividida[1] + "-" + fechaDividida[0];
+
+    return fechaNueva;
+
+
 }
