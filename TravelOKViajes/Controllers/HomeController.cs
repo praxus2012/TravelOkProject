@@ -22,8 +22,8 @@ namespace TravelOKViajes.Controllers
         {
             CD_Viajeros oViajeros = new CD_Viajeros();
             oViajeros.LimpiaViajeros();
-            clsCorreo test = new clsCorreo();
-            test.pruebaCorreo();
+            //clsCorreo test = new clsCorreo();
+            //test.pruebaCorreo();
             return View();
         }
 
@@ -131,6 +131,8 @@ namespace TravelOKViajes.Controllers
         //
         public ActionResult Destinos()
         {
+            CD_Viajeros oViajeros = new CD_Viajeros();
+            oViajeros.LimpiaViajeros();
             return View();
         }
 
@@ -152,6 +154,8 @@ namespace TravelOKViajes.Controllers
         [HttpGet]
         public ActionResult InicioDestinos()
         {
+            CD_Viajeros oViajeros = new CD_Viajeros();
+            oViajeros.LimpiaViajeros();
             var resultado = new JObject();
             try
             {
