@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TravelOKViajes.General;
 
 namespace TravelOKViajes.Controllers
 {
@@ -19,6 +20,10 @@ namespace TravelOKViajes.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            CD_Viajeros oViajeros = new CD_Viajeros();
+            oViajeros.LimpiaViajeros();
+            clsCorreo test = new clsCorreo();
+            test.pruebaCorreo();
             return View();
         }
 

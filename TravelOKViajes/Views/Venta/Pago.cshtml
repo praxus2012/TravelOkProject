@@ -79,7 +79,7 @@
 
                 </div>
                 <div class="row dvTot ml-3 mb-3">
-                    Su total es de : @ViewData["dCosto"];
+                    Su total es de : @ViewData["dCosto"];                    
                 </div>
                 <form class="ml-3">
                     <div id="paypal-button-container"></div>
@@ -203,4 +203,5 @@
 <script src="~/Scripts/Project/jsPago.js"></script>
 <script type="text/javascript" src="https://js.openpay.mx/openpay.v1.min.js"></script>
 
-<input type="hidden" id="urlDatosTarjeta" value="@Url.Action("EnviarDatosTarjeta","Venta")" />
+<input type="hidden" id="urlConfirmarPago" value="@Url.Action("ConfirmarPago","Venta")" />
+<input type="hidden" id="urlConfirmarPago2" value="@Url.Action("ConfirmarPago2","Venta")" />

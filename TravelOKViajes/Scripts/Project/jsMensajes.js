@@ -42,3 +42,23 @@ function MensajeExitoPago(mensaje) {
         window.location.href = "/Home/Index";
     });
 }
+
+function MensajeExitoPago2(mensaje) {
+    Swal.fire(
+        'Completado',
+        mensaje,
+        'success'
+    ).then((result) => {
+        var url = $('#urlConfirmarPago2').val();
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            success: function (response) {
+                window.location.href = "/Home/Index";
+            }
+        });
+    });
+}

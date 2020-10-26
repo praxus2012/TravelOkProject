@@ -29,7 +29,9 @@ namespace CapaDatos
                             CostoTotal = oViajero.dCostoTotal,
                             Edad = oViajero.iEdad,
                             FechaRegistro = DateTime.Now,
-                            Telefono = oViajero.sTelefono
+                            Telefono = oViajero.sTelefono,
+                            Pagado = 0,
+                            Confirmado = false
                         });
                     }
                     contexto.SaveChanges();
@@ -39,6 +41,68 @@ namespace CapaDatos
                 }
             }
             return bCorrecto;
+        }
+
+        public bool ConfirmarViaje(string sUsuario)
+        {
+            bool bCorrecto = true;
+            using (var contexto = new TravelOKEntitiesQA())
+            {
+                try
+                {
+                    List<TO_Viajeros> lsViajeros = contexto.TO_Viajeros.Where(via => via.IdUsuario.Equals(sUsuario)
+                     && via.Confirmado == false).ToList();
+                    foreach(TO_Viajeros viajero in lsViajeros)
+                    {
+                        viajero.Confirmado = true;
+                    }
+                    contexto.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    bCorrecto = false;
+                }
+            }
+            return bCorrecto;
+        }
+        public bool ConfirmarViaje(string sUsuario, decimal dPago)
+        {
+            bool bCorrecto = true;
+            using (var contexto = new TravelOKEntitiesQA())
+            {
+                try
+                {
+                    List<TO_Viajeros> lsViajeros = contexto.TO_Viajeros.Where(via => via.IdUsuario.Equals(sUsuario)
+                     && via.Confirmado == false).ToList();
+                    foreach (TO_Viajeros viajero in lsViajeros)
+                    {
+                        viajero.Pagado = dPago;
+                        viajero.Confirmado = true;
+                    }
+                    contexto.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    bCorrecto = false;
+                }
+            }
+            return bCorrecto;
+        }
+
+        public void LimpiaViajeros()
+        {
+            using (var contexto = new TravelOKEntitiesQA())
+            {
+                try
+                {
+                    List<TO_Viajeros> lsViajeros = contexto.TO_Viajeros.Where(via => via.Confirmado == false).ToList();
+                    contexto.TO_Viajeros.RemoveRange(lsViajeros);
+                    contexto.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                }
+            }
         }
 
         public List<cmPersonasViaje> ObtenerViajeros(TO_Viajes oViajes)

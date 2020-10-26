@@ -14,35 +14,6 @@ $(document).on('click', '.btn-link', function () {
 });
 
 
-$("#btnPagar").click(function (e) {
-    e.preventDefault();
-    $("#modalDatosPago").modal();
-});
-
-$("#btnEnviarDatosTarjeta").click(function (e) {
-    console.log(2);
-
-    if (verificarCamposTarjeta()) {
-
-        MensajeAdvertencia("Debe completar todos los campos para proceder con el pago");
-
-    } else {
-        enviarDatosTarjeta();
-    }
-});
-
-
-function verificarCamposTarjeta() {
-
-    let camposVacios = false;
-
-    if ($("#idnumTarjeta").val().trim() == "" || $("#idTipoTarjeta").val() == 0 || $("#idmesVencimiento").val() == 0 || $("#idañoVencimiento").val() == 0 || $("#idcodigoSeguridad").val().trim() == "") {
-        camposVacios = true;
-    }
-        
-
-    return camposVacios;
-}
 
 paypal.Buttons({
     createOrder: function (data, actions) {
@@ -60,7 +31,7 @@ paypal.Buttons({
         return actions.order.capture().then(function (details) {
             // This function shows a transaction success message to your buyer.
             OcultaCarga();
-            MensajeExito('Pago completado ' + details.payer.name.given_name);
+            MensajeExitoPago2('Pago completado ' + details.payer.name.given_name);
         });
     },
     onError: function (err) {
@@ -71,35 +42,29 @@ paypal.Buttons({
 }).render('#paypal-button-container');
   //This function displays Smart Payment Buttons on your web page.
 
-function enviarDatosTarjeta() {
 
-    var url = $('#urlDatosTarjeta').val();
+$(document).on('click', '.btRe', function () {
+    ConfirmarPago();      
+});
+
+function ConfirmarPago() {
+    var url = $('#urlConfirmarPago').val();
     $.ajax({
         url: url,
-
-        data: {
-            numeroTarjeta: $("#idnumTarjeta").val(),
-            tipoTarjeta: $("#idTipoTarjeta").val(),
-            mesVencimiento: $("#idmesVencimiento").val(),
-            anioVencimiento: $("#idañoVencimiento").val(),
-            codigoSeguridad: $("#idcodigoSeguridad").val()
-        },
-        type: 'POST',
+        type: 'GET',
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
         async: false,
         success: function (response) {
-         
-
+            successConfirmaPago()
         }
     });
-
 }
 
-
-
-
-
-$(document).on('click', '.btRe', function () {
-    MensajeExitoPago('Se ha realizado su apartado con exito, cualquier cancelacion con el equipo travel');    
-});
+function successConfirmaPago(data) {
+    if (data.Exito) {
+        MensajeExitoPago('Se ha realizado su apartado con exito, cualquier cancelacion con el equipo travel');
+    } else {
+        MensajeError('Ha ocurrido un error inesperado, consulte con el equipo travel, la información se encuentra disponible en la sección de contacto')
+    }
+}

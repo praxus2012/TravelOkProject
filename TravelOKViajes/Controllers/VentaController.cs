@@ -328,19 +328,45 @@ namespace TravelOKViajes.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult EnviarDatosTarjeta()
+        [HttpGet]
+        public ActionResult ConfirmarPago()
         {
-
-
-            //YA LLEGA EL MÉTODO, SÓLO RECIBIR DATOS Y PROCESAR PAGO
-
-          
-            return Content("a");
+            JObject resultado = new JObject();
+            try
+            {
+                CD_Viajeros cdViajeros = new CD_Viajeros();
+                if (cdViajeros.ConfirmarViaje(Session["UserID"].ToString()))
+                {                   
+                    resultado["Exito"] = true;
+                }
+            }
+            catch (Exception x)
+            {
+                resultado["Exito"] = false;
+            }
+            return Content(resultado.ToString());
 
         }
 
+        [HttpGet]
+        public ActionResult ConfirmarPago2()
+        {
+            JObject resultado = new JObject();
+            try
+            {
+                CD_Viajeros cdViajeros = new CD_Viajeros();
+                if (cdViajeros.ConfirmarViaje(Session["UserID"].ToString(), decimal.Parse(Session["dCosto"].ToString())))
+                {
+                    resultado["Exito"] = true;
+                }
+            }
+            catch (Exception x)
+            {
+                resultado["Exito"] = false;
+            }
+            return Content(resultado.ToString());
 
+        }
 
     }
 }

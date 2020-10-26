@@ -17,7 +17,7 @@
           <Property Name="imgBlog" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'DB_A5E781_TravelOk.dbo.TO_Costo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TO_Costo">
           <Key>
             <PropertyRef Name="IdDestino" />
@@ -163,6 +163,7 @@ advertencia 6002: La tabla o vista 'DB_A5E781_TravelOk.dbo.TO_Costo' no tiene de
           <Property Name="Pagado" Type="money" />
           <Property Name="Deuda" Type="money" StoreGeneratedPattern="Computed" />
           <Property Name="Pago" Type="varbinary(max)" />
+          <Property Name="Confirmado" Type="bit" />
         </EntityType>
         <EntityType Name="TO_Viajes">
           <Key>
@@ -1152,6 +1153,7 @@ advertencia 6002: La tabla o vista 'DB_A5E781_TravelOk.dbo.TO_Costo' no tiene de
           <Property Name="Pagado" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Deuda" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="Pago" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Confirmado" Type="Boolean" />
           <NavigationProperty Name="TO_Usuario" Relationship="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Usuario" FromRole="TO_Viajeros" ToRole="TO_Usuario" />
           <NavigationProperty Name="TO_Viajes" Relationship="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Viajes" FromRole="TO_Viajeros" ToRole="TO_Viajes" />
         </EntityType>
@@ -1531,6 +1533,7 @@ advertencia 6002: La tabla o vista 'DB_A5E781_TravelOk.dbo.TO_Costo' no tiene de
           <EntitySetMapping Name="TO_Viajeros">
             <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Viajeros">
               <MappingFragment StoreEntitySet="TO_Viajeros">
+                <ScalarProperty Name="Confirmado" ColumnName="Confirmado" />
                 <ScalarProperty Name="Pago" ColumnName="Pago" />
                 <ScalarProperty Name="Deuda" ColumnName="Deuda" />
                 <ScalarProperty Name="Pagado" ColumnName="Pagado" />

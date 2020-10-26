@@ -29,10 +29,10 @@
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Salida" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Transporte" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Viajes" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Viajeros" Width="1.5" PointX="5.25" PointY="2.875" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Viajeros" Width="1.5" PointX="5.25" PointY="2.75" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Usuario" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Viajes" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

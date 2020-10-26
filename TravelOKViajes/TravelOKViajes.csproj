@@ -162,6 +162,7 @@
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\VentaController.cs" />
     <Compile Include="General\clsConsumeApi.cs" />
+    <Compile Include="General\clsCorreo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
