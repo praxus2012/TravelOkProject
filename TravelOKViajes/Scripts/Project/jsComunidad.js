@@ -95,19 +95,7 @@ $(document).on("click", "#btnComparte", function (e) {
 
 function InsertaComunidad(datosComunidad) {
     var url = $('#urlInsertaComunidad').val();
-    /*$.ajax({
-        url: url,
-        type: "POST",
-        data: JSON.stringify({ Comunidad }),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        success: successInsertaComunidad,
-        error: function (xmlHttpRequest, textStatus, errorThrown) {
-            //MensajeError(data.Mensaje);
-            MensajeError('Ha ocurrido un error inesperado');
-        }
-    });*/
+
     $.ajax({
         url: url,
         data: datosComunidad,
@@ -132,7 +120,7 @@ function successInsertaComunidad(data) {
         $('#inArchivo').val('');
         $(".rate").rate("getValue");
 
-    MensajeExito("Gracias por sus comentarios.");
+//    MensajeExito("Gracias por sus comentarios.");
     window.location.href = "/Home/Comunidad";
        // CargaInicial();
        // OcultaCarga();

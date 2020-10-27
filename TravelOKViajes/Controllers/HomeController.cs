@@ -22,8 +22,8 @@ namespace TravelOKViajes.Controllers
         {
             CD_Viajeros oViajeros = new CD_Viajeros();
             oViajeros.LimpiaViajeros();
-            //clsCorreo test = new clsCorreo();
-            //test.pruebaCorreo();
+//            clsCorreo test = new clsCorreo();
+//            test.pruebaCorreo();
             return View();
         }
 

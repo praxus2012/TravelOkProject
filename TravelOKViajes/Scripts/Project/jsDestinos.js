@@ -36,7 +36,7 @@ function successObtieneDestinos(data) {
                     '</div>');
         });
         $('.dvDestino').click(function () {
-            MuestraCarga();
+            //MuestraCarga();
             ObtieneDestinoDet(Destino = { idViaje: $(this).children().attr('alt').split('-')[1] });
         });
     } else {
@@ -115,6 +115,10 @@ function successObtieneDestinosDet(data) {
 $(document).on('click', '.btnRes', function () {
     sessionStorage.setItem("DestinoDes", destDesc);
     window.location.href = '/Venta/DetalleVenta';
+});
+
+$(document).on('click', '#wbtn', function () {
+    window.open('https://wa.me/5212223602031', '_blank');
 });
 
 //$(document).on('click', '.dvHuas', function (e) {

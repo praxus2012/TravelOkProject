@@ -233,6 +233,7 @@
     <Content Include="Img\iconos\tel.png" />
     <Content Include="Img\iconos\ub.png" />
     <Content Include="Img\iconos\wp.png" />
+    <Content Include="Img\imagenHotel.jpg" />
     <Content Include="Img\ImgDestDetalle\Acapulco\AC1.png" />
     <Content Include="Img\ImgDestDetalle\Acapulco\AC2.png" />
     <Content Include="Img\ImgDestDetalle\Acapulco\AC3.png" />
