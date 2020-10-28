@@ -22,8 +22,13 @@ namespace TravelOKViajes.Controllers
         {
             CD_Viajeros oViajeros = new CD_Viajeros();
             oViajeros.LimpiaViajeros();
-//            clsCorreo test = new clsCorreo();
-//            test.pruebaCorreo();
+
+/*            string correo = "irdevelo@gmail.com";
+
+
+
+            clsCorreo test = new clsCorreo();
+            test.pruebaCorreo(correo);*/
             return View();
         }
 
@@ -302,9 +307,23 @@ namespace TravelOKViajes.Controllers
         public JsonResult obtenerPublicaciones()
         {
            List<cmBlog> listaPublicaciones = new List<cmBlog>();
-
+            
            CD_Blog blog = new CD_Blog();
             listaPublicaciones = blog.lsObtenerListaBlog();
+
+            TO_Usuario usuarioObtenido = new TO_Usuario();
+            CD_Usuario objetoUsuario = new CD_Usuario();
+
+            //COMIENZA EL ENVÍO DEL CORREO
+            usuarioObtenido = objetoUsuario.fnObtenerDatosUsuario(Session["UserID"].ToString());
+
+            clsCorreo test = new clsCorreo();
+            test.pruebaCorreo(Session["UserID"].ToString(), usuarioObtenido.Nombre,usuarioObtenido.Apellidos,usuarioObtenido.Telefono);
+
+
+            //TERMINA EL ENVÍO DEL CORREO
+
+            //            System.Diagnostics.Debug.WriteLine(Session["UserID"].ToString() + "-----***************************");
 
             return Json(new { publicaciones = listaPublicaciones }, JsonRequestBehavior.AllowGet);
 

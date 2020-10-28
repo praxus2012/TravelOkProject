@@ -9,9 +9,20 @@ namespace TravelOKViajes.General
 {
     public class clsCorreo
     {
-        public void pruebaCorreo()
+        public void pruebaCorreo(string correo, string nombre,string apellidos, string telefono)
         {
             string valor = "test";
+//            string nombreCliente = "***";
+//            string telefono = "***";
+
+            string cantidadPagada = "test";
+            string tourViaje = "test";
+            string numeroViajeros = "test";
+            string fechaSalida = "test";
+            string montoPagado = "test";
+            string montoLetra = "test";
+
+
             string texto = "";
             texto = "<html>";
             texto = texto + "<body><style>body{min-width: 1308px;}#dvimg{background-image:url(https://scontent.fjal2-1.fna.fbcdn.net/v/t1.0-9/69538116_2184383068525054_5218256411326152704_n.png?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeEvcxU1mPyZatD-6Kd2PmQn5Kv2i40-TZXkq_aLjT5NlZmZ19YuRnGODSEnNjrqrH8&_nc_ohc=qNN1SOdeDpAAX8PUpJu&_nc_ht=scontent.fjal2-1.fna&oh=f9ca4560a5e454501d8366be7aafb354&oe=5FBCCE74);";
@@ -32,7 +43,7 @@ namespace TravelOKViajes.General
             texto = texto + "</style><section id=seRecibo style=width:1000px><div id=dvTit><div id=tit><h2>Recibo de pago Travel ok</h2></div><div id=dvimg style=background-image:url(https://scontent.fjal2-1.fna.fbcdn.net/v/t1.0-9/69538116_2184383068525054_5218256411326152704_n.png?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeEvcxU1mPyZatD-6Kd2PmQn5Kv2i40-TZXkq_aLjT5NlZmZ19YuRnGODSEnNjrqrH8&_nc_ohc=qNN1SOdeDpAAX8PUpJu&_nc_ht=scontent.fjal2-1.fna&oh=f9ca4560a5e454501d8366be7aafb354&oe=5FBCCE74)></div></div><div><div><ul id=dvfec><li>Fecha</li><li>21/10/2020</li></ul></div>";
             texto = texto + "<div id=dvtb><ul><li><ul><li><div class=un>Cliente</div></li><li><div class=dos>" + valor + "</div></li></ul>";
             texto = texto + "</li><li><ul><li><div class=un>Concepto</div></li><li><div class=dos>Pago de viaje</div></li></ul></li><li><ul><li><div class=un>Celular de contacto</div>";
-            texto = texto + "</li><li><div class=dos>" + valor + "</div></li></ul></li><li><ul><li><div class=un>Email</div></li><li><div class=dos>" + valor + "</div></li></ul></li>";
+            texto = texto + "</li><li><div class=dos>" + valor + "</div></li></ul></li><li><ul><li><div class=un>Email</div></li><li><div class=dos>" + correo + "</div></li></ul></li>";
             texto = texto + "<li><ul><li><div class=un>Tour</div></li><li><div class=dos>" + valor + "</div></li></ul></li><li><ul><li><div class=un>Número de viajeros</div></li><li>";
             texto = texto + "<div class=dos>" + valor + "</div></li></ul></li><li><ul><li><div class=un>Fecha de Salida</div></li><li><div class=dos>" + valor + "</div></li></ul></li><li><ul><li>";
             texto = texto + "<div class=un>Lugar de Salida</div></li><li><div class=dos>" + valor + "</div></li></ul></li><li><ul><li><div class=un>Monto de la operación</div></li><li>";
@@ -43,8 +54,8 @@ namespace TravelOKViajes.General
             SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
             var mail = new MailMessage();
             mail.From = new MailAddress("a.066@hotmail.com");
-            mail.To.Add("ecolio@uv.mx");
-            mail.Subject = "Test Mail - 1";
+            mail.To.Add(correo);
+            mail.Subject = "Confirmación de Pago";
             mail.IsBodyHtml = true;
             mail.Body = texto;
             SmtpServer.Port = 587;

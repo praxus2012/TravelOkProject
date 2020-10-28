@@ -10,6 +10,7 @@ using MercadoPago;
 using MercadoPago.Resources;
 using MercadoPago.DataStructures.Preference;
 using MercadoPago.Common;
+using TravelOKViajes.General;
 
 namespace TravelOKViajes.Controllers
 {
@@ -339,6 +340,12 @@ namespace TravelOKViajes.Controllers
                 {                   
                     resultado["Exito"] = true;
                 }
+
+
+//                clsCorreo test = new clsCorreo();
+//                test.pruebaCorreo(Session["UserID"].ToString());
+
+
             }
             catch (Exception x)
             {
@@ -359,6 +366,10 @@ namespace TravelOKViajes.Controllers
                 {
                     resultado["Exito"] = true;
                 }
+
+//                clsCorreo test = new clsCorreo();
+//                test.pruebaCorreo(Session["UserID"].ToString());
+
             }
             catch (Exception x)
             {

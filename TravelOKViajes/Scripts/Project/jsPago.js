@@ -31,7 +31,7 @@ paypal.Buttons({
         return actions.order.capture().then(function (details) {
             // This function shows a transaction success message to your buyer.
             OcultaCarga();
-            MensajeExitoPago2('Pago completado ' + details.payer.name.given_name);
+            MensajeExitoPago2('Pago completado ');
         });
     },
     onError: function (err) {
