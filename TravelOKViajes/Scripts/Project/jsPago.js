@@ -48,23 +48,45 @@ $(document).on('click', '.btRe', function () {
 });
 
 function ConfirmarPago() {
+
+    let adultos = sessionStorage.getItem("Adulto");
+    let ninos = sessionStorage.getItem("Nino");
+
+    adultos = parseInt(adultos);
+    ninos = parseInt(ninos);
+
+    var datosCorreo = {
+        numeroViajeros: adultos + ninos,
+        fechaSalida: parseInt(sessionStorage.getItem("Fecha")),
+        lugarSalida: parseInt(sessionStorage.getItem("Salida")),
+        montoOperacion: sessionStorage.getItem("Tot")
+    };
+
+
     var url = $('#urlConfirmarPago').val();
     $.ajax({
         url: url,
         type: 'GET',
+        data: datosCorreo,
+//        data: {
+//            'adultos': adultos,
+//
+  //      },
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
         async: false,
         success: function (response) {
-            successConfirmaPago()
+            successConfirmaPago(response)
         }
     });
 }
 
 function successConfirmaPago(data) {
+   
     if (data.Exito) {
         MensajeExitoPago('Se ha realizado su apartado con exito, cualquier cancelacion con el equipo travel');
     } else {
         MensajeError('Ha ocurrido un error inesperado, consulte con el equipo travel, la información se encuentra disponible en la sección de contacto')
     }
+    
 }

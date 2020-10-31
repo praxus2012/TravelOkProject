@@ -88,5 +88,32 @@ sTitulo = des.sTitulo
             }
             return Destino;
         }
+
+
+
+        public TO_Destino obtenerNombreDestino(int idDestino)
+        {
+
+            TO_Destino ODestino = null;
+
+            using (var Contexto = new TravelOKEntitiesQA())
+            {
+
+                var destinoEncontrado = Contexto.TO_Destino.First(p => p.IdViaje == idDestino);
+
+                ODestino = new TO_Destino()
+                {
+                     Destino = destinoEncontrado.Destino,
+                     
+
+                };
+
+            }
+
+            return ODestino;
+
+
+        }
+
     }
 }

@@ -53,5 +53,33 @@ namespace CapaDatos
                 return LsDesVenta;
             }
         }
+
+
+        public TO_Viajes obtenerViaje(int idViaje)
+        {
+
+            TO_Viajes viaje = null;
+
+            using (var Contexto = new TravelOKEntitiesQA())
+            {
+
+                var viajeEncontrado = Contexto.TO_Viajes.First(p => p.IdViaje == idViaje);
+
+                viaje = new TO_Viajes()
+                {
+                    Id_Destino = viajeEncontrado.Id_Destino,
+                    dtFechaSalida = viajeEncontrado.dtFechaSalida
+
+                };
+
+
+
+            }
+
+            return viaje;
+
+        }
+
+
     }
 }

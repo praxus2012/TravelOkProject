@@ -9,19 +9,18 @@ namespace TravelOKViajes.General
 {
     public class clsCorreo
     {
-        public void pruebaCorreo(string correo, string nombre,string apellidos, string telefono)
+        public void pruebaCorreo(string correo, string nombre,string apellidos, string telefono,int numeroViajeros,float montoOperacion, string nombreCiudadSalida, string destino, string fechaSalida)
         {
-            string valor = "test";
-//            string nombreCliente = "***";
-//            string telefono = "***";
+       
+            string nombreCliente = nombre+" "+apellidos;
 
-            string cantidadPagada = "test";
+      /*      string cantidadPagada = "test";
             string tourViaje = "test";
             string numeroViajeros = "test";
             string fechaSalida = "test";
             string montoPagado = "test";
             string montoLetra = "test";
-
+            */
 
             string texto = "";
             texto = "<html>";
@@ -40,14 +39,14 @@ namespace TravelOKViajes.General
             texto = texto + "#x_dvfec>li{display: block;width: 80%;}#x_dvtb>ul>li>ul>li{display: inline;}.x_un{width: 200px;padding-left: 2rem;line-height: 2rem;height: 2rem;float: left;font-weight: bold;";
             texto = texto + "background-color: #787878;margin-bottom: 10px;color: #ffffff;}.x_dos{width: 650px;height: 2rem;text-align: center;line-height: 2rem;float: right;background-color: #D7D7D7;";
             texto = texto + "margin-bottom: 10px;}p{clear: both;}#x_dvFoot{margin-top: 2rem;text-align: center;}#x_dvFoot>ul>li{display: block;}#x_dvIz{float: left;font-weight: bold; margin-left: 8%;}";
-            texto = texto + "</style><section id=seRecibo style=width:1000px><div id=dvTit><div id=tit><h2>Recibo de pago Travel ok</h2></div><div id=dvimg style=background-image:url(https://scontent.fjal2-1.fna.fbcdn.net/v/t1.0-9/69538116_2184383068525054_5218256411326152704_n.png?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeEvcxU1mPyZatD-6Kd2PmQn5Kv2i40-TZXkq_aLjT5NlZmZ19YuRnGODSEnNjrqrH8&_nc_ohc=qNN1SOdeDpAAX8PUpJu&_nc_ht=scontent.fjal2-1.fna&oh=f9ca4560a5e454501d8366be7aafb354&oe=5FBCCE74)></div></div><div><div><ul id=dvfec><li>Fecha</li><li>21/10/2020</li></ul></div>";
-            texto = texto + "<div id=dvtb><ul><li><ul><li><div class=un>Cliente</div></li><li><div class=dos>" + valor + "</div></li></ul>";
+            texto = texto + "</style><section id=seRecibo style=width:1000px><div id=dvTit><div id=tit><h2>Recibo de pago Travel ok</h2></div><div id=dvimg style=background-image:url(https://scontent.fjal2-1.fna.fbcdn.net/v/t1.0-9/69538116_2184383068525054_5218256411326152704_n.png?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeEvcxU1mPyZatD-6Kd2PmQn5Kv2i40-TZXkq_aLjT5NlZmZ19YuRnGODSEnNjrqrH8&_nc_ohc=qNN1SOdeDpAAX8PUpJu&_nc_ht=scontent.fjal2-1.fna&oh=f9ca4560a5e454501d8366be7aafb354&oe=5FBCCE74)></div></div><div><div></div>";
+            texto = texto + "<div id=dvtb><ul><li><ul><li><div class=un>Cliente</div></li><li><div class=dos>" + nombreCliente + "</div></li></ul>";
             texto = texto + "</li><li><ul><li><div class=un>Concepto</div></li><li><div class=dos>Pago de viaje</div></li></ul></li><li><ul><li><div class=un>Celular de contacto</div>";
-            texto = texto + "</li><li><div class=dos>" + valor + "</div></li></ul></li><li><ul><li><div class=un>Email</div></li><li><div class=dos>" + correo + "</div></li></ul></li>";
-            texto = texto + "<li><ul><li><div class=un>Tour</div></li><li><div class=dos>" + valor + "</div></li></ul></li><li><ul><li><div class=un>Número de viajeros</div></li><li>";
-            texto = texto + "<div class=dos>" + valor + "</div></li></ul></li><li><ul><li><div class=un>Fecha de Salida</div></li><li><div class=dos>" + valor + "</div></li></ul></li><li><ul><li>";
-            texto = texto + "<div class=un>Lugar de Salida</div></li><li><div class=dos>" + valor + "</div></li></ul></li><li><ul><li><div class=un>Monto de la operación</div></li><li>";
-            texto = texto + "<div class=dos>" + valor + "</div></li></ul></li><li><ul><li><div class=un>Monto con letra</div></li><li><div class=dos>" + valor + "</div></li></ul></li></ul></div>";
+            texto = texto + "</li><li><div class=dos>" + telefono + "</div></li></ul></li><li><ul><li><div class=un>Correo</div></li><li><div class=dos>" + correo + "</div></li></ul></li>";
+            texto = texto + "<li><ul><li><div class=un>Tour</div></li><li><div class=dos>" + nombreCiudadSalida+"-"+destino + "</div></li></ul></li><li><ul><li><div class=un>Número de viajeros</div></li><li>";
+            texto = texto + "<div class=dos>" + numeroViajeros + "</div></li></ul></li><li><ul><li><div class=un>Fecha de Salida</div></li><li><div class=dos>" + fechaSalida + "</div></li></ul></li><li><ul><li>";
+            texto = texto + "<div class=un>Lugar de Salida</div></li><li><div class=dos>" + nombreCiudadSalida + "</div></li></ul></li><li><ul><li><div class=un>Monto de la operación</div></li><li>";
+            texto = texto + "<div class=dos>" + montoOperacion + "</div></li></ul><ul></ul></div>";
             texto = texto + "<p></p><div id=dvFoot><ul id=dvIz><li>Delfino Valenzuela 430</li><li>Col. Rafael Lucio, Xalapa, Ver.</li><li>Servicio.travelok@outlook.com</li><li>Telefono 228 290 0192</li>";
             texto = texto + "<li>Facebook: traveelok</li></ul><ul id=dvDer><li>Muchas gracias por su pago.</li><li id=dvFirm></li><li><u>Antony Alan García García</u></li><li>Gerente General</li>";
             texto = texto + "</ul></div></section></body></html>";
@@ -65,4 +64,18 @@ namespace TravelOKViajes.General
             SmtpServer.Send(mail);
         }
     }
+
+
+    public class DatosCorreo
+    {
+
+        public string tour { get; set; }
+        public int numeroViajeros { get; set; }
+        public int fechaSalida { get; set; }
+        public int lugarSalida { get; set; }
+        public float montoOperacion { get; set; }
+
+
+    }
+
 }

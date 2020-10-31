@@ -311,14 +311,17 @@ namespace TravelOKViajes.Controllers
            CD_Blog blog = new CD_Blog();
             listaPublicaciones = blog.lsObtenerListaBlog();
 
-            TO_Usuario usuarioObtenido = new TO_Usuario();
-            CD_Usuario objetoUsuario = new CD_Usuario();
+
 
             //COMIENZA EL ENVÍO DEL CORREO
-            usuarioObtenido = objetoUsuario.fnObtenerDatosUsuario(Session["UserID"].ToString());
 
-            clsCorreo test = new clsCorreo();
-            test.pruebaCorreo(Session["UserID"].ToString(), usuarioObtenido.Nombre,usuarioObtenido.Apellidos,usuarioObtenido.Telefono);
+            //            TO_Usuario usuarioObtenido = new TO_Usuario();
+            //            CD_Usuario objetoUsuario = new CD_Usuario();
+
+            //usuarioObtenido = objetoUsuario.fnObtenerDatosUsuario(Session["UserID"].ToString());
+
+            //clsCorreo test = new clsCorreo();
+            //test.pruebaCorreo(Session["UserID"].ToString(), usuarioObtenido.Nombre,usuarioObtenido.Apellidos,usuarioObtenido.Telefono);
 
 
             //TERMINA EL ENVÍO DEL CORREO
