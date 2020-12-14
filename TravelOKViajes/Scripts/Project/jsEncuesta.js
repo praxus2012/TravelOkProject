@@ -50,37 +50,70 @@ function GeneraClick() {
 }
 
 $('#btnSend').click(function (e) {
-    var cont = 1;
-    if (pregMult == 0) {
-        while (totPreg > 0) {
-            if ($('#txRes' + cont).val() != null) {
-                preguntas = preguntas + '|' + cont;
-                respuestas = respuestas + '|' + $('#txRes' + cont).val();
-                totPreg--;
-            } 
-            cont++;
-        }
-        var lsPreguntas = preguntas.split('|');
-        var lsRespuestas = respuestas.split('|');
-        var SalidaRes = [];
-        $.each(lsPreguntas, function (i) {
-            var Respuesta = {
-                NombrePersona: $('#inNom').val(),
-                IdPregunta: lsPreguntas[i],
-                IdDestino: $("#selDestinos option:selected").val(),
-                nvRespuesta: lsRespuestas[i],
-                dtFechaEncuesta: $('#lbFecha').text(),
-                dtFechaViaje: $('#inFechaViaje').val()
-            };
-            SalidaRes.push(Respuesta);
-        });
-        EnviaRespuesta(SalidaRes);
 
+    if (!validaCamposVacios()) {
+
+        if (validarNombre()) {
+        var cont = 1;
+        if (pregMult == 0) {
+            while (totPreg > 0) {
+                if ($('#txRes' + cont).val() != null) {
+                    preguntas = preguntas + '|' + cont;
+                    respuestas = respuestas + '|' + $('#txRes' + cont).val();
+                    totPreg--;
+                }
+                cont++;
+            }
+            var lsPreguntas = preguntas.split('|');
+            var lsRespuestas = respuestas.split('|');
+            var SalidaRes = [];
+            $.each(lsPreguntas, function (i) {
+                var Respuesta = {
+                    NombrePersona: $('#inNom').val(),
+                    IdPregunta: lsPreguntas[i],
+                    IdDestino: $("#selDestinos option:selected").val(),
+                    nvRespuesta: lsRespuestas[i],
+                    dtFechaEncuesta: $('#lbFecha').text(),
+                    dtFechaViaje: $('#inFechaViaje').val()
+                };
+                SalidaRes.push(Respuesta);
+            });
+            EnviaRespuesta(SalidaRes);
+
+        } else {
+            MensajeAdvertencia("Debe contestar las preguntas de opción múltiple");
+            } 
+
+        } else {
+            MensajeAdvertencia("El campo de nombre sobrepasa los caracteres permitidos");
+        }
     } else {
-        MensajeAdvertencia("Debe contestar las preguntas de opción múltiple");
-        
+        MensajeAdvertencia("Debe completar todos los campos");
     }
 });
+
+function validaCamposVacios() {
+
+    let existenCamposVacios = false;
+
+    if ($("#inNom").val() == "" || $("#inFechaViaje").val() == "" || $("#inFechaViaje").val() == 0 ) {
+        existenCamposVacios = true;
+    }
+
+    return existenCamposVacios;
+
+}
+
+function validarNombre() {
+    let nombreCorrecto = true;
+
+    if ($("#inNom").val().length > 50) {
+        nombreCorrecto = false;
+    }
+
+    return nombreCorrecto;
+
+}
 
 
 
@@ -121,6 +154,7 @@ function sucessEnviaRespuesta(data) {
 $(document).ready(function () {
     Inicial();
     ObtenerFecha();
+
 });
 
 function Inicial() {

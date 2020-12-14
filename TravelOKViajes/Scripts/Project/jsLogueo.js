@@ -45,6 +45,44 @@ function sucessIniciaSesion(data) {
 }
 
 
+
+
+$(document).ready(function () {
+
+
+    $('#inTel').on('keydown keypress', function (e) {
+        if (e.key.length === 1) {
+            if ($(this).val().length < 12 && !isNaN(parseFloat(e.key))) {
+                $(this).val($(this).val() + e.key);
+
+            }
+            return false;
+        }
+    });
+
+    $('#inTel2').on('keydown keypress', function (e) {
+        if (e.key.length === 1) {
+            if ($(this).val().length < 12 && !isNaN(parseFloat(e.key))) {
+                $(this).val($(this).val() + e.key);
+
+            }
+            return false;
+        }
+    });
+
+    $('#inTelEmerg').on('keydown keypress', function (e) {
+        if (e.key.length === 1) {
+            if ($(this).val().length < 12 && !isNaN(parseFloat(e.key))) {
+                $(this).val($(this).val() + e.key);
+
+            }
+            return false;
+        }
+    });
+
+
+});
+
 $(document).on('click', '#btnRegistro', function () {
     if ($('#inCorreo').val() != ''
         && $('#inCorreo2').val() != ''

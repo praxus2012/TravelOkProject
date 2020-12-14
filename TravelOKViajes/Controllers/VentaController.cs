@@ -10,6 +10,7 @@ using MercadoPago;
 using MercadoPago.Resources;
 using MercadoPago.DataStructures.Preference;
 using MercadoPago.Common;
+using TravelOKViajes.General;
 
 namespace TravelOKViajes.Controllers
 {
@@ -329,7 +330,7 @@ namespace TravelOKViajes.Controllers
         }
 
         [HttpGet]
-        public ActionResult ConfirmarPago()
+        public ActionResult ConfirmarPago(DatosCorreo datosCorreo)
         {
             JObject resultado = new JObject();
             try
@@ -339,6 +340,41 @@ namespace TravelOKViajes.Controllers
                 {                   
                     resultado["Exito"] = true;
                 }
+
+
+                //                clsCorreo test = new clsCorreo();
+                //                test.pruebaCorreo(Session["UserID"].ToString());
+
+                //EMPIEZA EL ENVÍO DEL CORREO
+
+
+                TO_Usuario usuarioObtenido = new TO_Usuario();
+                CD_Usuario objetoUsuario = new CD_Usuario();
+
+                TO_Salida objetoSalida = new TO_Salida();
+                CD_Salida salida = new CD_Salida();
+
+
+                TO_Viajes objetoViaje = new TO_Viajes();
+                CD_Viajes viajes = new CD_Viajes();
+
+                objetoViaje = viajes.obtenerViaje(datosCorreo.fechaSalida);
+
+
+                TO_Destino objetoDestino = new TO_Destino();
+                CD_Destinos destino = new CD_Destinos();
+
+                usuarioObtenido = objetoUsuario.fnObtenerDatosUsuario(Session["UserID"].ToString());
+                objetoSalida = salida.obtenerNombreSalida(datosCorreo.lugarSalida);
+                objetoDestino = destino.obtenerNombreDestino(objetoViaje.Id_Destino);
+
+                clsCorreo test = new clsCorreo();
+                test.pruebaCorreo(Session["UserID"].ToString(), usuarioObtenido.Nombre, usuarioObtenido.Apellidos, usuarioObtenido.Telefono, datosCorreo.numeroViajeros, datosCorreo.montoOperacion, objetoSalida.Ciudad, objetoDestino.Destino, objetoViaje.dtFechaSalida.ToString());
+
+
+                //TERMINA EL ENVÍO DEL CORREO
+
+
             }
             catch (Exception x)
             {
@@ -349,7 +385,7 @@ namespace TravelOKViajes.Controllers
         }
 
         [HttpGet]
-        public ActionResult ConfirmarPago2()
+        public ActionResult ConfirmarPago2(DatosCorreo datosCorreo)
         {
             JObject resultado = new JObject();
             try
@@ -357,8 +393,40 @@ namespace TravelOKViajes.Controllers
                 CD_Viajeros cdViajeros = new CD_Viajeros();
                 if (cdViajeros.ConfirmarViaje(Session["UserID"].ToString(), decimal.Parse(Session["dCosto"].ToString())))
                 {
+
                     resultado["Exito"] = true;
                 }
+
+                //EMPIEZA EL ENVÍO DEL CORREO
+
+
+                TO_Usuario usuarioObtenido = new TO_Usuario();
+                CD_Usuario objetoUsuario = new CD_Usuario();
+
+                TO_Salida objetoSalida = new TO_Salida();
+                CD_Salida salida = new CD_Salida();
+
+
+                TO_Viajes objetoViaje = new TO_Viajes();
+                CD_Viajes viajes = new CD_Viajes();
+
+                objetoViaje = viajes.obtenerViaje(datosCorreo.fechaSalida);
+
+
+                TO_Destino objetoDestino = new TO_Destino();
+                CD_Destinos destino = new CD_Destinos();
+
+                usuarioObtenido = objetoUsuario.fnObtenerDatosUsuario(Session["UserID"].ToString());
+                objetoSalida = salida.obtenerNombreSalida(datosCorreo.lugarSalida);
+                objetoDestino = destino.obtenerNombreDestino(objetoViaje.Id_Destino);
+
+                clsCorreo test = new clsCorreo();
+                test.pruebaCorreo(Session["UserID"].ToString(), usuarioObtenido.Nombre, usuarioObtenido.Apellidos, usuarioObtenido.Telefono,datosCorreo.numeroViajeros,datosCorreo.montoOperacion,objetoSalida.Ciudad, objetoDestino.Destino, objetoViaje.dtFechaSalida.ToString());
+
+
+                //TERMINA EL ENVÍO DEL CORREO
+
+
             }
             catch (Exception x)
             {

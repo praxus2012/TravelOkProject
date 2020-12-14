@@ -40,5 +40,38 @@ namespace CapaDatos
             }
             return lsSalidas;
         }
+
+        public TO_Salida obtenerNombreSalida(int idSalida)
+        {
+
+            TO_Salida Osalida = null;
+
+            using (var Contexto = new TravelOKEntitiesQA())
+            {
+
+       
+/*                    var salida = Contexto.TO_Usuario.First(p => p.Correo == correo);
+                    datosUsuario = new TO_Usuario()
+                    {
+                        Nombre = usuario.Nombre,
+                        Apellidos = usuario.Apellidos,
+                        Telefono = usuario.Telefono
+                    };
+                    */
+
+                var salida = Contexto.TO_Salida.First(p => p.IdSalida == idSalida);
+
+                Osalida = new TO_Salida()
+                {
+                    Ciudad = salida.Ciudad
+
+                };
+
+            }
+
+            return Osalida;
+
+        }
+
     }
 }

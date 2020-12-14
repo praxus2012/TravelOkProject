@@ -70,5 +70,38 @@ namespace CapaDatos
                     return null;
             }
         }
+
+
+        public TO_Usuario fnObtenerDatosUsuario(string correo)
+        {
+            bool existeProducto = false;
+            TO_Usuario datosUsuario = null;
+
+            using (var Contexto = new TravelOKEntitiesQA())
+            {
+                int iExiste = Contexto.TO_Usuario.Where(p => p.Correo == correo).Count();
+
+                if (iExiste > 0)
+                {
+                    existeProducto = true;
+                }
+
+                if (existeProducto)
+                {
+                    var usuario = Contexto.TO_Usuario.First(p => p.Correo == correo);
+                    datosUsuario = new TO_Usuario()
+                    {
+                    Nombre = usuario.Nombre,
+                    Apellidos = usuario.Apellidos,
+                    Telefono = usuario.Telefono
+                    };
+                }
+            }
+
+            return datosUsuario;
+        }
+
+
+
     }
 }
