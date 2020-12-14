@@ -55,11 +55,18 @@
     clear: both;
 }
 
-
+.PLinea{
+    display:none;
+}
 
 #liQui > a {
     width: 13rem;
 }
+
+.btn,a{
+    cursor:pointer !important;
+}
+
 
 .linini {
     width: 9rem;

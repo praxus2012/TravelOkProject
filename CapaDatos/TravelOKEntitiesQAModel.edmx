@@ -174,6 +174,8 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
           <Property Name="Id_Salida" Type="int" Nullable="false" />
           <Property Name="dtFechaSalida" Type="datetime" />
           <Property Name="IdTransporte" Type="int" />
+          <Property Name="dtFechaLleg" Type="datetime" />
+          <Property Name="iRelacion" Type="int" />
         </EntityType>
         <EntityType Name="TOA_Usuario">
           <Key>
@@ -661,7 +663,6 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
           <EntitySet Name="TO_Salida" EntityType="TravelOKEntitiesQAModel.TO_Salida" />
           <EntitySet Name="TO_Transporte" EntityType="TravelOKEntitiesQAModel.TO_Transporte" />
           <EntitySet Name="TO_Usuario" EntityType="TravelOKEntitiesQAModel.TO_Usuario" />
-          <EntitySet Name="TO_Viajes" EntityType="TravelOKEntitiesQAModel.TO_Viajes" />
           <EntitySet Name="TOA_Usuario" EntityType="TravelOKEntitiesQAModel.TOA_Usuario" />
           <EntitySet Name="TO_Costo" EntityType="TravelOKEntitiesQAModel.TO_Costo" />
           <AssociationSet Name="FK__TO_Experi__IdDes__5AEE82B9" Association="TravelOKEntitiesQAModel.FK__TO_Experi__IdDes__5AEE82B9">
@@ -680,10 +681,6 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
             <End Role="TO_Destino" EntitySet="TO_Destino" />
             <End Role="TO_EncuestaResp" EntitySet="TO_EncuestaResp" />
           </AssociationSet>
-          <AssociationSet Name="FK_TO_Viajes_TO_Destino" Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Destino">
-            <End Role="TO_Destino" EntitySet="TO_Destino" />
-            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
-          </AssociationSet>
           <AssociationSet Name="FK_TO_EncuestaResp_TO_Encuesta" Association="TravelOKEntitiesQAModel.FK_TO_EncuestaResp_TO_Encuesta">
             <End Role="TO_Encuesta" EntitySet="TO_Encuesta" />
             <End Role="TO_EncuestaResp" EntitySet="TO_EncuestaResp" />
@@ -696,18 +693,6 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
             <End Role="TO_Salida" EntitySet="TO_Salida" />
             <End Role="TO_Costo" EntitySet="TO_Costo" />
           </AssociationSet>
-          <AssociationSet Name="FK_TO_Viajes_TO_Salida" Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Salida">
-            <End Role="TO_Salida" EntitySet="TO_Salida" />
-            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Viajes_TO_Transporte" Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Transporte">
-            <End Role="TO_Transporte" EntitySet="TO_Transporte" />
-            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TO_Costo_TO_Viajes" Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Viajes">
-            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
-            <End Role="TO_Costo" EntitySet="TO_Costo" />
-          </AssociationSet>
           <FunctionImport Name="spsObtInfoDeudaViajero" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtInfoDeudaViajero_Result)">
           <Parameter Name="idUsuario" Mode="In" Type="String" />
           </FunctionImport>
@@ -716,9 +701,26 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
             <End Role="TO_Usuario" EntitySet="TO_Usuario" />
             <End Role="TO_Viajeros" EntitySet="TO_Viajeros" />
           </AssociationSet>
+          <EntitySet Name="TO_Viajes" EntityType="TravelOKEntitiesQAModel.TO_Viajes" />
+          <AssociationSet Name="FK_TO_Viajes_TO_Destino" Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Destino">
+            <End Role="TO_Destino" EntitySet="TO_Destino" />
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Viajes_TO_Salida" Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Salida">
+            <End Role="TO_Salida" EntitySet="TO_Salida" />
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Viajes_TO_Transporte" Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Transporte">
+            <End Role="TO_Transporte" EntitySet="TO_Transporte" />
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+          </AssociationSet>
           <AssociationSet Name="FK_TO_Viajeros_TO_Viajes" Association="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Viajes">
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
             <End Role="TO_Viajeros" EntitySet="TO_Viajeros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TO_Costo_TO_Viajes" Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Viajes">
+            <End Role="TO_Viajes" EntitySet="TO_Viajes" />
+            <End Role="TO_Costo" EntitySet="TO_Costo" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
@@ -950,21 +952,6 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
           <Property Name="ParentescoTelEmerg" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TO_Viajeros" Relationship="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Usuario" FromRole="TO_Usuario" ToRole="TO_Viajeros" />
         </EntityType>
-        <EntityType Name="TO_Viajes">
-          <Key>
-            <PropertyRef Name="IdViaje" />
-          </Key>
-          <Property Name="IdViaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Destino" Type="Int32" Nullable="false" />
-          <Property Name="Id_Salida" Type="Int32" Nullable="false" />
-          <Property Name="dtFechaSalida" Type="DateTime" Precision="3" />
-          <Property Name="IdTransporte" Type="Int32" />
-          <NavigationProperty Name="TO_Destino" Relationship="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Destino" FromRole="TO_Viajes" ToRole="TO_Destino" />
-          <NavigationProperty Name="TO_Salida" Relationship="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Salida" FromRole="TO_Viajes" ToRole="TO_Salida" />
-          <NavigationProperty Name="TO_Transporte" Relationship="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Transporte" FromRole="TO_Viajes" ToRole="TO_Transporte" />
-          <NavigationProperty Name="TO_Costo" Relationship="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Viajes" FromRole="TO_Viajes" ToRole="TO_Costo" />
-          <NavigationProperty Name="TO_Viajeros" Relationship="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Viajes" FromRole="TO_Viajes" ToRole="TO_Viajeros" />
-        </EntityType>
         <EntityType Name="TOA_Usuario">
           <Key>
             <PropertyRef Name="nvUsuario" />
@@ -1043,18 +1030,6 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TO_Viajes_TO_Destino">
-          <End Type="TravelOKEntitiesQAModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
-          <End Type="TravelOKEntitiesQAModel.TO_Viajes" Role="TO_Viajes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Destino">
-              <PropertyRef Name="IdViaje" />
-            </Principal>
-            <Dependent Role="TO_Viajes">
-              <PropertyRef Name="Id_Destino" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TO_EncuestaResp_TO_Encuesta">
           <End Type="TravelOKEntitiesQAModel.TO_Encuesta" Role="TO_Encuesta" Multiplicity="1" />
           <End Type="TravelOKEntitiesQAModel.TO_EncuestaResp" Role="TO_EncuestaResp" Multiplicity="*" />
@@ -1088,42 +1063,6 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
             </Principal>
             <Dependent Role="TO_Costo">
               <PropertyRef Name="IdSalida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TO_Viajes_TO_Salida">
-          <End Type="TravelOKEntitiesQAModel.TO_Salida" Role="TO_Salida" Multiplicity="1" />
-          <End Type="TravelOKEntitiesQAModel.TO_Viajes" Role="TO_Viajes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Salida">
-              <PropertyRef Name="IdSalida" />
-            </Principal>
-            <Dependent Role="TO_Viajes">
-              <PropertyRef Name="Id_Salida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TO_Viajes_TO_Transporte">
-          <End Type="TravelOKEntitiesQAModel.TO_Transporte" Role="TO_Transporte" Multiplicity="0..1" />
-          <End Type="TravelOKEntitiesQAModel.TO_Viajes" Role="TO_Viajes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Transporte">
-              <PropertyRef Name="IdTransporte" />
-            </Principal>
-            <Dependent Role="TO_Viajes">
-              <PropertyRef Name="IdTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TO_Costo_TO_Viajes">
-          <End Type="TravelOKEntitiesQAModel.TO_Viajes" Role="TO_Viajes" Multiplicity="0..1" />
-          <End Type="TravelOKEntitiesQAModel.TO_Costo" Role="TO_Costo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO_Viajes">
-              <PropertyRef Name="IdViaje" />
-            </Principal>
-            <Dependent Role="TO_Costo">
-              <PropertyRef Name="IdViaje" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1169,6 +1108,59 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TO_Viajes">
+          <Key>
+            <PropertyRef Name="IdViaje" />
+          </Key>
+          <Property Name="IdViaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Destino" Type="Int32" Nullable="false" />
+          <Property Name="Id_Salida" Type="Int32" Nullable="false" />
+          <Property Name="dtFechaSalida" Type="DateTime" Precision="3" />
+          <Property Name="IdTransporte" Type="Int32" />
+          <Property Name="dtFechaLleg" Type="DateTime" Precision="3" />
+          <Property Name="iRelacion" Type="Int32" />
+          <NavigationProperty Name="TO_Destino" Relationship="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Destino" FromRole="TO_Viajes" ToRole="TO_Destino" />
+          <NavigationProperty Name="TO_Salida" Relationship="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Salida" FromRole="TO_Viajes" ToRole="TO_Salida" />
+          <NavigationProperty Name="TO_Transporte" Relationship="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Transporte" FromRole="TO_Viajes" ToRole="TO_Transporte" />
+          <NavigationProperty Name="TO_Viajeros" Relationship="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Viajes" FromRole="TO_Viajes" ToRole="TO_Viajeros" />
+          <NavigationProperty Name="TO_Costo" Relationship="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Viajes" FromRole="TO_Viajes" ToRole="TO_Costo" />
+        </EntityType>
+        <Association Name="FK_TO_Viajes_TO_Destino">
+          <End Type="TravelOKEntitiesQAModel.TO_Destino" Role="TO_Destino" Multiplicity="1" />
+          <End Type="TravelOKEntitiesQAModel.TO_Viajes" Role="TO_Viajes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Destino">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Viajes">
+              <PropertyRef Name="Id_Destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Viajes_TO_Salida">
+          <End Type="TravelOKEntitiesQAModel.TO_Salida" Role="TO_Salida" Multiplicity="1" />
+          <End Type="TravelOKEntitiesQAModel.TO_Viajes" Role="TO_Viajes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Salida">
+              <PropertyRef Name="IdSalida" />
+            </Principal>
+            <Dependent Role="TO_Viajes">
+              <PropertyRef Name="Id_Salida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Viajes_TO_Transporte">
+          <End Type="TravelOKEntitiesQAModel.TO_Transporte" Role="TO_Transporte" Multiplicity="0..1" />
+          <End Type="TravelOKEntitiesQAModel.TO_Viajes" Role="TO_Viajes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Transporte">
+              <PropertyRef Name="IdTransporte" />
+            </Principal>
+            <Dependent Role="TO_Viajes">
+              <PropertyRef Name="IdTransporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TO_Viajeros_TO_Viajes">
           <End Type="TravelOKEntitiesQAModel.TO_Viajes" Role="TO_Viajes" Multiplicity="0..1" />
           <End Type="TravelOKEntitiesQAModel.TO_Viajeros" Role="TO_Viajeros" Multiplicity="*" />
@@ -1177,6 +1169,18 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
               <PropertyRef Name="IdViaje" />
             </Principal>
             <Dependent Role="TO_Viajeros">
+              <PropertyRef Name="IdViaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TO_Costo_TO_Viajes">
+          <End Type="TravelOKEntitiesQAModel.TO_Viajes" Role="TO_Viajes" Multiplicity="0..1" />
+          <End Type="TravelOKEntitiesQAModel.TO_Costo" Role="TO_Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO_Viajes">
+              <PropertyRef Name="IdViaje" />
+            </Principal>
+            <Dependent Role="TO_Costo">
               <PropertyRef Name="IdViaje" />
             </Dependent>
           </ReferentialConstraint>
@@ -1479,17 +1483,6 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TO_Viajes">
-            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Viajes">
-              <MappingFragment StoreEntitySet="TO_Viajes">
-                <ScalarProperty Name="IdTransporte" ColumnName="IdTransporte" />
-                <ScalarProperty Name="dtFechaSalida" ColumnName="dtFechaSalida" />
-                <ScalarProperty Name="Id_Salida" ColumnName="Id_Salida" />
-                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
-                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TOA_Usuario">
             <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TOA_Usuario">
               <MappingFragment StoreEntitySet="TOA_Usuario">
@@ -1548,6 +1541,19 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
                 <ScalarProperty Name="Folio" ColumnName="Folio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TO_Viajes">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Viajes">
+              <MappingFragment StoreEntitySet="TO_Viajes">
+                <ScalarProperty Name="iRelacion" ColumnName="iRelacion" />
+                <ScalarProperty Name="dtFechaLleg" ColumnName="dtFechaLleg" />
+                <ScalarProperty Name="IdTransporte" ColumnName="IdTransporte" />
+                <ScalarProperty Name="dtFechaSalida" ColumnName="dtFechaSalida" />
+                <ScalarProperty Name="Id_Salida" ColumnName="Id_Salida" />
+                <ScalarProperty Name="Id_Destino" ColumnName="Id_Destino" />
+                <ScalarProperty Name="IdViaje" ColumnName="IdViaje" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

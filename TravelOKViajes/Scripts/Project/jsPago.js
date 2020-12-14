@@ -51,12 +51,13 @@ function ConfirmarPago() {
     var url = $('#urlConfirmarPago').val();
     $.ajax({
         url: url,
-        type: 'GET',
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",        
         async: false,
-        success: function (response) {
-            successConfirmaPago()
+        success: successConfirmaPago,
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
+            MensajeError(data.Mensaje);
         }
     });
 }

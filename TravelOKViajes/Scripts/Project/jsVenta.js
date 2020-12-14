@@ -25,7 +25,9 @@ $(document).on('click', '#btnContinuar', function () {
     }
     OcultaCarga();
 });
-
+/*
+ * Recuperación del autobús
+ */
 function GeneraAutobus() {
     var detVenta = {
         idVenta: sessionStorage.getItem("Fecha")

@@ -24,7 +24,7 @@ function IniciaSesion(Usr) {
         async: true,
         success: sucessIniciaSesion,
         error: function (xmlHttpRequest, textStatus, errorThrown) {
-            MensajeError('Error al Loguearse');
+            MensajeErrorBase('Error al Loguearse');
             OcultaCarga();
         }
     });
@@ -39,7 +39,7 @@ function sucessIniciaSesion(data) {
         }
         OcultaCarga();
     } else {
-        MensajeError(data.Mensaje);
+        MensajeErrorBase(data.Mensaje);
         OcultaCarga();
     }
 }
@@ -111,7 +111,7 @@ function sucessRegistro(data) {
     if (data.Exito) {
         window.location.href = '/Home/Index';
     } else {
-        MensajeError(data.Mensaje);
+        MensajeErrorBase(data.Mensaje);
         OcultaCarga();
     }
 }

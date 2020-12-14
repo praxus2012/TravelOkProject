@@ -1,3 +1,11 @@
+function MensajeErrorBase(mensaje) {
+    Swal.fire(
+        'Ha ocurrido un error',
+        mensaje,
+        'error'
+    );
+}
+
 
 function MensajeError(mensaje) {
     Swal.fire(

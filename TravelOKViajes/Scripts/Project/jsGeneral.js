@@ -19,6 +19,10 @@ $(document).on('click', '#awp', function () {
     OcultaCarga();
 });
 
+$(document).on('click', '.close', function () {
+    OcultaCarga();
+});
+
 function MuestraCarga() {
     $(window).scrollTop(0);
     $('html').css('overflow', 'hidden');

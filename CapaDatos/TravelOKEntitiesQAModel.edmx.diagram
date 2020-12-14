@@ -15,23 +15,23 @@
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Salida" Width="1.5" PointX="0.75" PointY="3.875" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Transporte" Width="1.5" PointX="0.75" PointY="15.625" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Usuario" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Viajes" Width="1.5" PointX="3" PointY="6.125" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TOA_Usuario" Width="1.5" PointX="7.75" PointY="4.875" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Costo" Width="1.5" PointX="6" PointY="10.125" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK__TO_Experi__IdDes__5AEE82B9" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_DetDestinos_Destinos" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Destino" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_EncuestaResp_TO_Destino" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Destino" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_EncuestaResp_TO_Encuesta" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Habitaciones" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Salida" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Salida" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Transporte" />
-        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Viajes" />
         <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Viajeros" Width="1.5" PointX="5.25" PointY="2.75" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Usuario" />
+        <EntityTypeShape EntityType="TravelOKEntitiesQAModel.TO_Viajes" Width="1.5" PointX="3.375" PointY="6.25" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Destino" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Salida" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajes_TO_Transporte" />
         <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Viajeros_TO_Viajes" />
+        <AssociationConnector Association="TravelOKEntitiesQAModel.FK_TO_Costo_TO_Viajes" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

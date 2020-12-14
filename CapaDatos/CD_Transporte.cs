@@ -58,7 +58,14 @@ namespace CapaDatos
         {
             using (var contexto = new TravelOKEntitiesQA())
             {
-                return contexto.TO_Viajeros.Where(v => v.IdViaje == idViaje).Select(v => v.Asiento).ToList();
+                return (from TO_Viajeros vjr in contexto.TO_Viajeros
+                        where vjr.IdViaje == idViaje
+                        select vjr.Asiento
+                        ).Union(
+                            (from TO_Viajes v1 in contexto.TO_Viajes
+                             join TO_Viajeros via in contexto.TO_Viajeros on v1.IdViaje equals via.IdViaje
+                             where v1.iRelacion == (contexto.TO_Viajes.Where(v2=>v2.IdViaje==idViaje).Select(v2=>v2.iRelacion)).FirstOrDefault() 
+                             && v1.IdViaje != idViaje select via.Asiento)).ToList();
             }
         }
     }
