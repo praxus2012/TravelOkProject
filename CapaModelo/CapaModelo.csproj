@@ -51,6 +51,7 @@
     <Compile Include="cmPago.cs" />
     <Compile Include="cmPersonasViaje.cs" />
     <Compile Include="cmSalida.cs" />
+    <Compile Include="cmTranspCat.cs" />
     <Compile Include="cmTransporte.cs" />
     <Compile Include="cmVentaDet.cs" />
     <Compile Include="cmCarruselDestino.cs" />

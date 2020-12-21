@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Agregar Viaje
+                </button>
+            </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <label>Importante: Al dar de alta un viaje se debe dar de alta todos los lugares de donde se sale, así como los 
+                horarios y fecha de los mismos, dando click en el botón mismo viaje diferente salida</label>
+                <form class="form-group f1 mt-3">
+                    <div id="diISalida1">Salida</div>
+                    <select class="form-control" id="selISalidaCost1">
+                        <option value="0">Selecciona de donde salimos</option>
+                    </select>
+                    <div id="diIDestino">Destino</div>
+                    <select class="form-control" id="selIDestinosCost">
+                        <option value="0">Selecciona a donde vamos</option>
+                    </select>
+                    <div id="diTransporte">Transporte</div>
+                    <select class="form-control" id="selTransporte">
+                        <option value="0">Selecciona el transporte adecuado</option>
+                    </select>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-5">
+                                <div id="diIFechas1">Fecha de Salida</div>
+                                <input type="date" id="fISalida1" />
+                                <div id="diIhoras1">Hora de Salida</div>
+                                <input type="time" id="hISalida1" />
+                            </div>
+                            <div class="col-5">
+                                <div id="diIFechar1">Fecha de Regreso</div>
+                                <input type="date" id="fIRegreso1" />
+                                <div id="diIhorar1">Hora de Regreso</div>
+                                <input type="time" id="hIRegreso1" />
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div id="dvIot" class="mt-5">
+                        <div class="container" id="dvIotras">
+                        </div>
+                    </div>
+                    <div id="btnAgregarSalida" class="btn btn-primary mt-3">Mismo viaje otra salida</div>
+                    <div id="btnInsertaViaje" class="btn btn-primary mt-3">Insertar</div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Actualizar viaje
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                <form class="form-group">
+                    <div id="diViajes">Viajes</div>
+                    <select class="form-control" id="selViaje">
+                        <option value="0">Seleccione el viaje a modificar</option>
+                    </select>
+                    <div id="diISalida1">Salida</div>
+                    <select class="form-control" id="selISalidaCost1">
+                        <option value="0">Selecciona de donde salimos</option>
+                    </select>
+                    <div id="diIDestino">Destino</div>
+                    <select class="form-control" id="selIDestinosCost">
+                        <option value="0">Selecciona a donde vamos</option>
+                    </select>
+                    <div id="diTransporte">Transporte</div>
+                    <select class="form-control" id="selTransporte">
+                        <option value="0">Selecciona el transporte adecuado</option>
+                    </select>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-5">
+                                <div id="diMFechas1">Fecha de Salida</div>
+                                <input type="date" id="fMSalida1" />
+                                <div id="diMhoras1">Hora de Salida</div>
+                                <input type="time" id="hMSalida1" />
+                            </div>
+                            <div class="col-5">
+                                <div id="diMFechar1">Fecha de Regreso</div>
+                                <input type="date" id="fRegreso1" />
+                                <div id="diMhorar1">Hora de Regreso</div>
+                                <input type="time" id="hMRegreso1" />
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div id="dvMotras" class="mt-5">
+                        <div id="diMSalida2">Salida</div>
+                        <select class="form-control" id="selMSalidaCost2">
+                            <option value="0">Selecciona de donde salimos</option>
+                        </select>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-5">
+                                    <div id="diMFecha2">Fecha de Salida</div>
+                                    <input type="date" id="fMSalida2" />
+                                    <div id="diMhoras2">Hora de Salida</div>
+                                    <input type="time" id="hMSalida2" />
+                                </div>
+                                <div class="col-5">
+                                    <div id="diMFechar2">Fecha de Regreso</div>
+                                    <input type="date" id="fMRegreso2" />
+                                    <div id="diMhorar2">Hora de Regreso</div>
+                                    <input type="time" id="hMRegreso2" />
+                                </div>
+                            </div>
+                        </div>
+                        <hr id="s2" />
+                    </div>
+                    <div id="btnModifViaje" class="btn btn-primary">Modificar</div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Eliminar Viaje
+                </button>
+            </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+                <form class="form-group">
+                    <div id="diEViajes">Viajes</div>
+                    <select class="form-control" id="selEViaje">
+                        <option value="0">Seleccione el viaje a eliminar</option>
+                    </select>
+                    <div id="btnEliminaViaje" class="btn btn-primary mt-3">Confirmar eliminación</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/Project/jsViajes.js"></script>
+
+
+<input type="hidden" id="urlObtSalidaI" value="@Url.Action("ObtieneSaalidas","Salidas")" />
+<input type="hidden" id="urlObtDestinoI" value="@Url.Action("InicialDestinos","Destinos")" />
+<input type="hidden" id="urlObtDestinoI" value="@Url.Action("ObtieneTransportes","Transporte")" />
+
+<input type="hidden" id="urlObtDestinoI" value="@Url.Action("InsertaViaje","Viajes")" />
+<input type="hidden" id="urlObtDestinoI" value="@Url.Action("ActualizaViaje","Viajes")" />
+<input type="hidden" id="urlObtDestinoI" value="@Url.Action("BorrarViaje","Viajes")" />
+

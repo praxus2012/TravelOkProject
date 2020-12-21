@@ -18,7 +18,7 @@ namespace TravelOkAdmin.Controllers
             if (Session["Usuario"] != null)
                 return View();
             else
-                return RedirectToAction("Login", "Index");
+                return RedirectToAction("Index", "Login");
         }
 
         public ActionResult Carrusel()

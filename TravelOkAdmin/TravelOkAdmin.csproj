@@ -130,7 +130,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SalidasController.cs" />
+    <Compile Include="Controllers\TransporteController.cs" />
     <Compile Include="Controllers\VentasController.cs" />
+    <Compile Include="Controllers\ViajesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -195,6 +197,7 @@
     <Content Include="Scripts\Project\jsMensajes.js" />
     <Content Include="Scripts\Project\jsSalida.js" />
     <Content Include="Scripts\Project\jsVentas.js" />
+    <Content Include="Scripts\Project\jsViajes.js" />
     <Content Include="Scripts\Project\libs\classie.js" />
     <Content Include="Scripts\Project\libs\imagesloaded.pkgd.min.js" />
     <Content Include="Scripts\Project\jsCostos.js" />
@@ -225,10 +228,12 @@
     <Content Include="Views\Salidas\Index.cshtml" />
     <Content Include="Views\Costos\Index.cshtml" />
     <Content Include="Views\Ventas\Index.cshtml" />
+    <Content Include="Views\Viajes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Transporte\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -54,6 +54,24 @@ namespace CapaDatos
             }
         }
 
+        public List<cmTranspCat> fnlsObtieneTransportes()
+        {
+            using (var contexto = new TravelOKEntitiesQA())
+            {
+                List<cmTranspCat> lsTrans = new List<cmTranspCat>();
+
+                lsTrans =contexto.TO_Transporte
+                        .Select(tran => new cmTranspCat
+                        {
+                            idTransporte = tran.IdTransporte,
+                            sNomTransp = tran.nvNombre,
+                            iNumAsientos = (int)tran.NumAsientos
+                        })
+                        .ToList();
+                return lsTrans;
+            }
+        }
+
         public List<int?> fnlsObtieneOcupados(int idViaje)
         {
             using (var contexto = new TravelOKEntitiesQA())

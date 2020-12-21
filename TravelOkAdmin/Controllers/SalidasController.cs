@@ -18,13 +18,11 @@ namespace TravelOkAdmin.Controllers
             if (Session["Usuario"] != null)
                 return View();
             else
-                return RedirectToAction("Login", "Index");
+                return RedirectToAction("Index", "Login");
         }
 
         public ActionResult ObtieneSaalidas()
         {
-
-
             var resultado = new JObject();
             CD_Salida cdSalida = new CD_Salida();
             List<TO_Salida> lsSalidas = new List<TO_Salida>();
