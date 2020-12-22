@@ -111,6 +111,9 @@
     <Compile Include="spsObtLugarSalViajesDest_Result.cs">
       <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="spsObtViajeros_Result.cs">
+      <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="spVerificaUsuario_Result.cs">
       <DependentUpon>TravelOKEntitiesQAModel.tt</DependentUpon>
     </Compile>

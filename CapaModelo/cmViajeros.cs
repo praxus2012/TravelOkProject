@@ -16,13 +16,16 @@ namespace CapaModelo
         public string sApellido { get; set; }
         public string sCorreo { get; set; }
         public int iEdad { get; set; }
-        public int iAsiento { get; set; }
+        public int? iAsiento { get; set; }
         public string sTelefono { get; set; }
-        public DateTime dtFechaRegistro { get; set; }
+        public DateTime? dtFechaRegistro { get; set; }
         public decimal  dCostoTotal { get; set; }
         public string sOpcionTour { get; set; }
         public decimal dPagado { get; set; }
         public decimal dDeuda { get; set; }
+        public DateTime? dtFechaSalida { get; set; }
+
+
 
     }
 }

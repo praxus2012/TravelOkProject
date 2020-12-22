@@ -11,10 +11,16 @@ namespace CapaDatos
 {
     using System;
     
-    public partial class spsObtieneCarrusel_Result
+    public partial class spsObtViajeros_Result
     {
-        public int Id_Detalle { get; set; }
+        public string NombreAsistente { get; set; }
+        public string ApAsistente { get; set; }
+        public string IdUsuario { get; set; }
+        public Nullable<int> Asiento { get; set; }
+        public string Telefono { get; set; }
+        public Nullable<System.DateTime> FechaRegistro { get; set; }
         public string Destino { get; set; }
-        public string nvRutaArchivo { get; set; }
+        public string Ciudad { get; set; }
+        public Nullable<System.DateTime> dtFechaSalida { get; set; }
     }
 }

@@ -9,6 +9,37 @@ namespace CapaDatos
 {
     public class CD_Viajeros
     {
+
+        public int ObtieneIdViaje()
+        {
+            return 0;
+        }
+
+        public List<cmViajeros> fnlsObtieneTablaViajeros(int idViaje)
+        {
+            
+            using (var contexto = new TravelOKEntitiesQA())
+            {
+                List<cmViajeros> LsViajeros = new List<cmViajeros>();
+                LsViajeros = (from salida in contexto.spsObtViajeros(idViaje)
+                              select new cmViajeros
+                              {
+                                  sNombre = salida.NombreAsistente,
+                                  sApellido = salida.ApAsistente,
+                                  idUsuario = salida.IdUsuario,
+                                  iAsiento = salida.Asiento,
+                                  sTelefono = salida.Telefono,
+                                  dtFechaRegistro = salida.FechaRegistro,
+                                  sDestino = salida.Destino,
+                                  sSalida = salida.Ciudad,
+                                  dtFechaSalida = salida.dtFechaSalida
+                              }).ToList();
+                return LsViajeros;
+            } 
+            
+        } 
+
+
         public bool InsertaViajeros(List<cmViajeros> oViajeros)
         {
             bool bCorrecto = true;

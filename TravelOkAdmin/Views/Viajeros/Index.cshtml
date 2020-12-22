@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/Project/jsViajeros.js"></script>
+
+<body>
+
+    <!-- CARD MENU DE SELECCION DE VIAJES-->
+    <div class="my-5">
+        <div class="card">
+            <div class="card-header">
+                Identificar Viaje
+            </div>
+            <div class="card-body">
+                <div id="viajerosMenu" class="container col-12">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <select class="form-control" id="selSalida">
+                                <option value="0">Salida</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <select class="form-control" id="selDestinos">
+                                <option value="0">Destino</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <select class="form-control" id="selFechas">
+                                <option value="0">Fechas</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <button onclick="botonMostrarViajeros()" type="button" class="btn btn-outline-info col-12">Mostrar Viajeros</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARD , DESPLIEGE TABLA DE VIAJEROS-->
+    <div class="card" style="display:none" id="listaViajeros">
+        <div class="card-header">
+            Lista De Viajeros
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr class="text-center">
+                        <th scope="col">Viajero</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Asiento</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Fecha Registro</th>
+                        <th scope="col">Destino</th>
+                        <th scope="col">Salida</th>
+                        <th scope="col">Fecha Salida</th>
+                    </tr>
+                </thead>
+                <tbody id="contenidoTablaViajeros">
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+    <input type="hidden" id="urlRecuperaSalida" value="@Url.Action("RecuperaSalida","Viajeros")" />
+    <input type="hidden" id="urlRecuperaDestinos" value="@Url.Action("RecuperaDestinos","Viajeros")" />
+    <input type="hidden" id="urlRecuperaFechas" value="@Url.Action("RecuperaFechas","Viajeros")" />
+    <input type="hidden" id="urlObtieneTablaViajeros" value="@Url.Action("ObtieneTablaViajeros","Viajeros")" />
+</body>

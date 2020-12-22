@@ -16,8 +16,8 @@
           <Property Name="Activo" Type="int" />
           <Property Name="imgBlog" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A67A56_travelok.dbo.TO_Costo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TO_Costo">
           <Key>
             <PropertyRef Name="IdDestino" />
@@ -452,6 +452,9 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
           <Parameter Name="Total" Type="int" Mode="In" />
           <Parameter Name="Decremento" Type="int" Mode="In" />
         </Function>
+        <Function Name="spsObtViajeros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idViaje" Type="int" Mode="In" />
+        </Function>
         <Function Name="spuActualizaHabitaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdTipoHab" Type="int" Mode="In" />
           <Parameter Name="nvDescripcion" Type="nvarchar" Mode="In" />
@@ -722,6 +725,9 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
             <End Role="TO_Viajes" EntitySet="TO_Viajes" />
             <End Role="TO_Costo" EntitySet="TO_Costo" />
           </AssociationSet>
+          <FunctionImport Name="spsObtViajeros" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtViajeros_Result)">
+            <Parameter Name="idViaje" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
           <Property Type="Int32" Name="IdExp" Nullable="false" />
@@ -1185,6 +1191,17 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="spsObtViajeros_Result">
+          <Property Type="String" Name="NombreAsistente" Nullable="true" />
+          <Property Type="String" Name="ApAsistente" Nullable="true" />
+          <Property Type="String" Name="IdUsuario" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="Asiento" Nullable="true" />
+          <Property Type="String" Name="Telefono" Nullable="true" />
+          <Property Type="DateTime" Name="FechaRegistro" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Destino" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="dtFechaSalida" Nullable="true" Precision="23" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1557,6 +1574,21 @@ advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spsObtViajeros" FunctionName="TravelOKEntitiesQAModel.Store.spsObtViajeros">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravelOKEntitiesQAModel.spsObtViajeros_Result">
+                <ScalarProperty Name="NombreAsistente" ColumnName="NombreAsistente" />
+                <ScalarProperty Name="ApAsistente" ColumnName="ApAsistente" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Asiento" ColumnName="Asiento" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="dtFechaSalida" ColumnName="dtFechaSalida" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
