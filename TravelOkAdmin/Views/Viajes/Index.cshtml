@@ -14,19 +14,21 @@
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
-                <label>Importante: Al dar de alta un viaje se debe dar de alta todos los lugares de donde se sale, así como los 
-                horarios y fecha de los mismos, dando click en el botón mismo viaje diferente salida</label>
+                <label>
+                    Importante: Al dar de alta un viaje se debe dar de alta todos los lugares de donde se sale, así como los
+                    horarios y fecha de los mismos, dando click en el botón mismo viaje diferente salida
+                </label>
                 <form class="form-group f1 mt-3">
                     <div id="diISalida1">Salida</div>
-                    <select class="form-control" id="selISalidaCost1">
+                    <select class="form-control" id="selISalidaVia1">
                         <option value="0">Selecciona de donde salimos</option>
                     </select>
                     <div id="diIDestino">Destino</div>
-                    <select class="form-control" id="selIDestinosCost">
+                    <select class="form-control" id="selIDestinosVia">
                         <option value="0">Selecciona a donde vamos</option>
                     </select>
                     <div id="diTransporte">Transporte</div>
-                    <select class="form-control" id="selTransporte">
+                    <select class="form-control" id="selTransporteI">
                         <option value="0">Selecciona el transporte adecuado</option>
                     </select>
                     <div class="container">
@@ -143,6 +145,12 @@
                     <select class="form-control" id="selEViaje">
                         <option value="0">Seleccione el viaje a eliminar</option>
                     </select>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="inActivos">
+                        <label class="form-check-label" for="inActivos">
+                            Solo Próximos
+                        </label>
+                    </div>
                     <div id="btnEliminaViaje" class="btn btn-primary mt-3">Confirmar eliminación</div>
                 </form>
             </div>
@@ -150,14 +158,17 @@
     </div>
 </div>
 
+
 <script src="~/Scripts/Project/jsViajes.js"></script>
 
 
 <input type="hidden" id="urlObtSalidaI" value="@Url.Action("ObtieneSaalidas","Salidas")" />
 <input type="hidden" id="urlObtDestinoI" value="@Url.Action("InicialDestinos","Destinos")" />
-<input type="hidden" id="urlObtDestinoI" value="@Url.Action("ObtieneTransportes","Transporte")" />
+<input type="hidden" id="urlObtieneTransportesI" value="@Url.Action("ObtieneTransportes","Transporte")" />
+<input type="hidden" id="urlObtieneViajElimina" value="@Url.Action("ObtieneViajElimina","Viajes")" />
+<input type="hidden" id="urlObtieneViajEliminaA" value="@Url.Action("ObtieneViajEliminaA","Viajes")" />
 
-<input type="hidden" id="urlObtDestinoI" value="@Url.Action("InsertaViaje","Viajes")" />
-<input type="hidden" id="urlObtDestinoI" value="@Url.Action("ActualizaViaje","Viajes")" />
-<input type="hidden" id="urlObtDestinoI" value="@Url.Action("BorrarViaje","Viajes")" />
+<input type="hidden" id="urlInsertarViaje" value="@Url.Action("InsertarViaje","Viajes")" />
+<input type="hidden" id="urlActualizaViaje" value="@Url.Action("ActualizaViaje","Viajes")" />
+<input type="hidden" id="urlBorrarViaje" value="@Url.Action("BorrarViaje","Viajes")" />
 

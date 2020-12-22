@@ -16,7 +16,7 @@ namespace TravelOkAdmin.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public ActionResult ObtieneTransportes()
         {
             var resultado = new JObject();
