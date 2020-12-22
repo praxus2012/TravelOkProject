@@ -253,9 +253,9 @@ $(document).on("click", "#btnInsertaViaje", function (e) {
         };
         lsViajes.push(Viaje);
     } else {
-        var counter = localstorage.getItem("counter");
+        var counter = localStorage.getItem("counter");
         var count = 1;
-        while (count < counter) {
+        while (count <= counter) {
             if ($('#dv' + count).length > 0 || count==1) {
                 var Viaje = {
                     Id_Destino: $('#selIDestinosVia').val(),
@@ -292,8 +292,58 @@ function LLamaInsertaViaje(lsViajes) {
 
 function SuccessLLamaInsertaViaje(data) {
     if (data.Exito) {
-        MensajeExito('Se ha agregado el viaje correctamente');        
+        MensajeExito('Se ha agregado el viaje correctamente');
+        if ($('#inActivos:checked').length > 0) {
+            ObtieneViajesElimA();
+        } else {
+            ObtieneViajesElim();
+        }
     } else {
         MensajeError('Algo ha salido mal, intentelo mas tarde.');
     }
+}
+
+$(document).on('click', '#btnEliminaViaje', function (e) {
+    LLamaEliminaViaje($('#selEViaje').val());
+});
+
+
+function LLamaEliminaViaje(idViaje) {
+    var url = $('#urlBorrarViaje').val();
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: JSON.stringify({ idViaje }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        success: SuccessLLamaEliminaViaje,
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
+            MensajeError('Problema al eliminar el registro, favor de acudir con un asistente');
+        }
+    });
+}
+
+
+function SuccessLLamaEliminaViaje(data) {
+    if (data.Exito) {
+        MensajeExito('Se ha eliminado el viaje correctamente');
+        
+        if ($('#inActivos:checked').length>0) {
+            ObtieneViajesElimA();
+        } else {
+            ObtieneViajesElim();
+        }
+        
+    } else {
+        MensajeError('Algo ha salido mal, intentelo mas tarde.');
+    }
+}
+
+function limpiaInserta() {
+    $('#dvIotras').empty();
+    localStorage.clear();
+    $('#selISalidaVia1').val(0);
+    $('#selIDestinosVia').val(0);
+    $('#selTransporteI').val(0);
 }

@@ -14,10 +14,10 @@ namespace TravelOkAdmin.Controllers
         // GET: Ventas
         public ActionResult Index()
         {
-            if (Session["Usuario"] != null)
+            //if (Session["Usuario"] != null)
                 return View();
-            else
-                return RedirectToAction("Login", "Index");
+            /*else
+                return RedirectToAction("Login", "Index");*/
         }
 
         public ActionResult GeneraTabla(TO_Viajes oViaje)

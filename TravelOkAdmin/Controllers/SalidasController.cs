@@ -15,10 +15,10 @@ namespace TravelOkAdmin.Controllers
         // GET: Salidas
         public ActionResult Index()
         {
-            if (Session["Usuario"] != null)
+            //if (Session["Usuario"] != null)
                 return View();
-            else
-                return RedirectToAction("Index", "Login");
+            /*else
+                return RedirectToAction("Index", "Login");*/
         }
 
         public ActionResult ObtieneSaalidas()

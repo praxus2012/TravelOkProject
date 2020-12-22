@@ -90,7 +90,9 @@ namespace CapaDatos
                     if (lsViajes.Count > 0)
                     {
                         if (Contexto.TO_Viajes.Where(v => v.iRelacion != null).Count() > 0 && lsViajes.Count>1)
-                            lsViajes = lsViajes.Select(lv => { lv.iRelacion = (Contexto.TO_Viajes.Max(v => v.iRelacion)); return lv; }).ToList();
+                            lsViajes = lsViajes.Select(lv => { lv.iRelacion = (Contexto.TO_Viajes.Max(v => v.iRelacion+1)); return lv; }).ToList();
+                        else
+                            lsViajes = lsViajes.Select(lv => { lv.iRelacion = 1; return lv; }).ToList();
                     }
                     Contexto.TO_Viajes.AddRange(lsViajes);
                     Contexto.SaveChanges();

@@ -10,10 +10,10 @@ namespace TravelOkAdmin.Controllers
     {
         public ActionResult Index()
         {
-            if (Session["Usuario"] == null)
+           /* if (Session["Usuario"] == null)
             {
                 RedirectToAction("Index", "Login");
-            }
+            }*/
             return View();
         }
 
