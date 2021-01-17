@@ -16,8 +16,8 @@
           <Property Name="Activo" Type="int" />
           <Property Name="imgBlog" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_A67A56_travelok.dbo.TO_Costo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_A67A56_travelok.dbo.TO_Costo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TO_Costo">
           <Key>
             <PropertyRef Name="IdDestino" />
@@ -656,7 +656,6 @@ warning 6002: The table/view 'DB_A67A56_travelok.dbo.TO_Costo' does not have a p
             <Parameter Name="nvUsu" Mode="In" Type="String" />
             <Parameter Name="nvCont" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="TO_Blog" EntityType="TravelOKEntitiesQAModel.TO_Blog" />
           <EntitySet Name="TO_Destino" EntityType="TravelOKEntitiesQAModel.TO_Destino" />
           <EntitySet Name="TO_DetalleDestinos" EntityType="TravelOKEntitiesQAModel.TO_DetalleDestinos" />
           <EntitySet Name="TO_Encuesta" EntityType="TravelOKEntitiesQAModel.TO_Encuesta" />
@@ -726,8 +725,9 @@ warning 6002: The table/view 'DB_A67A56_travelok.dbo.TO_Costo' does not have a p
             <End Role="TO_Costo" EntitySet="TO_Costo" />
           </AssociationSet>
           <FunctionImport Name="spsObtViajeros" ReturnType="Collection(TravelOKEntitiesQAModel.spsObtViajeros_Result)">
-            <Parameter Name="idViaje" Mode="In" Type="Int32" />
+          <Parameter Name="idViaje" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="TO_Blog" EntityType="TravelOKEntitiesQAModel.TO_Blog" />
           </EntityContainer>
         <ComplexType Name="spObtieneComunidad_Result">
           <Property Type="Int32" Name="IdExp" Nullable="false" />
@@ -816,17 +816,6 @@ warning 6002: The table/view 'DB_A67A56_travelok.dbo.TO_Costo' does not have a p
           <Property Type="DateTime" Name="dtFecAct" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="Activo" Nullable="true" />
         </ComplexType>
-        <EntityType Name="TO_Blog">
-          <Key>
-            <PropertyRef Name="idBlog" />
-          </Key>
-          <Property Name="idBlog" Type="Int32" Nullable="false" />
-          <Property Name="nvTitulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="nvTexto" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <Property Name="dtFechaSubida" Type="DateTime" Precision="3" />
-          <Property Name="Activo" Type="Int32" />
-          <Property Name="imgBlog" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="TO_Destino">
           <Key>
             <PropertyRef Name="IdViaje" />
@@ -1202,6 +1191,17 @@ warning 6002: The table/view 'DB_A67A56_travelok.dbo.TO_Costo' does not have a p
           <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="250" />
           <Property Type="DateTime" Name="dtFechaSalida" Nullable="true" Precision="23" />
         </ComplexType>
+        <EntityType Name="TO_Blog">
+          <Key>
+            <PropertyRef Name="idBlog" />
+          </Key>
+          <Property Name="idBlog" Type="Int32" Nullable="false" />
+          <Property Name="nvTitulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nvTexto" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="dtFechaSubida" Type="DateTime" Precision="3" />
+          <Property Name="Activo" Type="Int32" />
+          <Property Name="imgBlog" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1363,18 +1363,6 @@ warning 6002: The table/view 'DB_A67A56_travelok.dbo.TO_Costo' does not have a p
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="TO_Blog">
-            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Blog">
-              <MappingFragment StoreEntitySet="TO_Blog">
-                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
-                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
-                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
-                <ScalarProperty Name="idBlog" ColumnName="idBlog" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TO_Destino">
             <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Destino">
               <MappingFragment StoreEntitySet="TO_Destino">
@@ -1589,6 +1577,18 @@ warning 6002: The table/view 'DB_A67A56_travelok.dbo.TO_Costo' does not have a p
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="TO_Blog">
+            <EntityTypeMapping TypeName="TravelOKEntitiesQAModel.TO_Blog">
+              <MappingFragment StoreEntitySet="TO_Blog">
+                <ScalarProperty Name="imgBlog" ColumnName="imgBlog" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="dtFechaSubida" ColumnName="dtFechaSubida" />
+                <ScalarProperty Name="nvTexto" ColumnName="nvTexto" />
+                <ScalarProperty Name="nvTitulo" ColumnName="nvTitulo" />
+                <ScalarProperty Name="idBlog" ColumnName="idBlog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

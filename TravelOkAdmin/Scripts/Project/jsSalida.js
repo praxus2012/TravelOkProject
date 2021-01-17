@@ -8,20 +8,12 @@ function Inicial() {
     ObtieneSalidasModif();
 }
 
-function ObtieneSalidas() {
-    var url = $('#urlDestinoInicial').val();
-    $.ajax({
-        url: url,
-        type: "GET",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        success: successObtieneSaalidas,
-        error: function (xmlHttpRequest, textStatus, errorThrown) {
-            MensajeError(data.Mensaje);
-        }
-    });
+const ObtieneSalidas = async () => {
+    const url = $('#urlDestinoInicial').val();
+    const data = await fetch(url).then(res => res.json()).catch(err => MensajeError(err.Message));
+    successObtieneSaalidas(data);
 }
+
 function successObtieneSaalidas(data) {
     if (data.Exito) {
         var valact = 0;

@@ -8,15 +8,13 @@ namespace CapaDatos
 {
     public class CD_Salida
     {
+        private TravelOKEntitiesQA contexto = new TravelOKEntitiesQA();
         public List<TO_Salida> lsObtieneSalidas()
         {
             List<TO_Salida> lsSalidas = new List<TO_Salida>();
            // using(var contexto = new TravelOKEntities())//Local
-            using (var contexto = new TravelOKEntitiesQA())//QA
-            {
-                lsSalidas = contexto.TO_Salida.Where(sal => sal.bActivo==true).ToList();
-            }
-            return lsSalidas;
+           lsSalidas = contexto.TO_Salida.Where(sal => sal.bActivo==true).ToList();
+           return lsSalidas;
         }
         public List<TO_Salida> lsObtieneSalidasViajes()
         {
