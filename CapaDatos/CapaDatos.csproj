@@ -68,6 +68,7 @@
     <Compile Include="Administrador\CDA_Usuario.cs" />
     <Compile Include="CD_SelecVen.cs" />
     <Compile Include="CD_Transporte.cs" />
+    <Compile Include="CD_Usuario.cs" />
     <Compile Include="CD_Viajeros.cs" />
     <Compile Include="CD_Viajes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

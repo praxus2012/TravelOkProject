@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    public class CD_Usuario
+    public class CDA_Usuario
     {
         public TOA_Usuario tusChecarUsuario(TOA_Usuario user)
         {
