@@ -37,7 +37,7 @@
                     <option value="0">Seleccione la Salida que deseas modificar</option>
                 </select>
                 <div class="mt-3 d-none" id="dvMSalida">
-                    <input type="text" id="inMSalida" class="form-control" placeholder="Nuevo nombre de Salida" />
+                    <input type="text" id="inMSalida" name="" class="form-control" placeholder="Nuevo nombre de Salida" />
                     <div id="btnMdifCiudad" class="btn mt-3 btn-primary">Modificar Ciudad</div>
                 </div>
                 
@@ -64,10 +64,11 @@
         </div>
     </div>
 </div>
-<script src="~/Scripts/Project/jsSalida.js"></script>
+
 <link href="~/Content/Project/cssSalida.css" rel="stylesheet" />
 
 <input type="hidden" id="urlDestinoInicial" value="@Url.Action("ObtieneSaalidas","Salidas")" />
 <input type="hidden" id="urlSalidaInserta" value="@Url.Action("InsertaSalida","Salidas")" />
 <input type="hidden" id="urlSalidaEliminaId" value="@Url.Action("EliminaSalidaId","Salidas")" />
 <input type="hidden" id="urlSalidaModif" value="@Url.Action("ModificarSalida","Salidas")" />
+<script src="~/Scripts/Project/jsSalida.js"></script>

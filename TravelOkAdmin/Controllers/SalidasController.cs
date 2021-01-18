@@ -70,6 +70,8 @@ namespace TravelOkAdmin.Controllers
             }
             return Content(resultado.ToString());
         }
+
+        [HttpPost]
         public ActionResult InsertaSalida(string sSalida)
         {
             var resultado = new JObject();

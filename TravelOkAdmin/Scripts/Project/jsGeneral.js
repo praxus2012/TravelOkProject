@@ -11,3 +11,32 @@
     var newDate = new Date(n + "T" + time);
     return newDate;
 }
+
+const customFetch = async (url, metodo, body) => {
+    const requestInfo = {
+        method: metodo,
+        headers: { 'Content-Type': 'application/json; charset=utf-8' }
+    };
+    requestInfo.body = metodo === 'POST' ? JSON.stringify({ body }) : null;
+    return await fetch(url).then(res => res.json()).catch(err => MensajeError(err.Message));
+}
+
+const renderCombo = async (datos, referenciaHTML, id, text) => {
+    referenciaHTML.options.length = 0;
+    if (datos.length > 0) {
+        const fragment = document.createDocumentFragment();
+        const opt = document.createElement('option');
+        opt.value = '';
+        opt.text = 'Seleccionar';
+        fragment.appendChild(opt);
+
+        for (let i = 0; i < datos.length; i++) {
+            const opt = document.createElement('option');
+            opt.value = datos[i][id];
+            opt.text = datos[i][text];
+
+            fragment.appendChild(opt);
+        }
+        referenciaHTML.appendChild(fragment);
+    }
+}

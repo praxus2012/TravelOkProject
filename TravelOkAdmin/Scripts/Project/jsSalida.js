@@ -1,62 +1,53 @@
-﻿$(document).ready(function () {
-    Inicial();
-});
-
-
-function Inicial() {
-    ObtieneSalidas();
-    ObtieneSalidasModif();
-}
+﻿const btnAgregar = document.getElementById('btnAgregarSal');
+const inSalida = document.getElementById('inSalida');
+const urlSalidaInserta = document.getElementById('urlSalidaInserta').value;
+const urlDestinoInicial = document.getElementById('urlDestinoInicial').value;
+//const formSesion = document.getElementById('formSesion');
 
 const ObtieneSalidas = async () => {
-    const url = $('#urlDestinoInicial').val();
-    const data = await fetch(url).then(res => res.json()).catch(err => MensajeError(err.Message));
+    const data = await customFetch(urlDestinoInicial, 'GET');
     successObtieneSaalidas(data);
 }
 
 function successObtieneSaalidas(data) {
     if (data.Exito) {
-        var valact = 0;
-        $.each(data.LsSalidas, function (i) {
-            $('#selSalida')
-                .append($("<option></option>")
-                    .attr("value", data.LsSalidas[i].Salida)
-                    .text(data.LsSalidas[i].Ciudad));
-
-        });
+        const selSalida = document.getElementById('selSalida');
+        renderCombo(data.LsSalidas, selSalida, 'Salida', 'Ciudad');
     } else {
         MensajeError('Ha ocurrido un error inesperado');
     }
 }
 
+
+//formSesion.addEventListener('submit', async function (ev) {
+//    ev.preventDefault();
+//    const formdata = new FormData(this);
+//    let data = {};
+//    formdata.forEach(function (value, key) {
+//        data[key] = value;
+//    });
+//    const respuesta = await customFetch(api_route, data);
+//    if (respuesta.Success) {
+//        
+//    } else {
+//        
+//    }
+//});
+
 //-- Agregar
 
-
-
-$(document).on('click', '#btnAgregarSal', function (e) {
-    if ($('#inSalida').val() === "") {
+btnAgregar.addEventListener('click', () => {
+    if (inSalida.value === "") {
         MensajeAdvertencia("No has ingresado una salida");
     } else {
-        var Ciudad = $('#inSalida').val();
-        LlamaInsertaSalida(Ciudad);
+        LlamaInsertaSalida(inSalida.value);
     }
-});
+})
 
 
-function LlamaInsertaSalida(sSalida) {
-    var url = $('#urlSalidaInserta').val();
-    $.ajax({
-        url: url,
-        data: JSON.stringify({ sSalida }),
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        success: SuccessLlamadaInsertaSalida,
-        Advertencia: function (xmlHttpRequest, textStatus, errorThrown) {
-            alert("error ", data.Mensaje, "verificar info");
-        }
-    });
+const LlamaInsertaSalida = async (sSalida) => {
+    const request = await customFetch(urlSalidaInserta, 'POST', { ssalida: sSalida });
+    SuccessLlamadaInsertaSalida(request);
 }
 
 function SuccessLlamadaInsertaSalida(data) {
@@ -75,43 +66,23 @@ function SuccessLlamadaInsertaSalida(data) {
 
 //-- Modificar
 
-function ObtieneSalidasModif() {
-    var url = $('#urlDestinoInicial').val();
-    $.ajax({
-        url: url,
-        type: "GET",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: true,
-        success: successObtieneSaalidasModif,
-        error: function (xmlHttpRequest, textStatus, errorThrown) {
-            MensajeError(data.Mensaje);
-        }
-    });
+const ObtieneSalidasModif = async () => {
+    const request = await customFetch(urlDestinoInicial, 'GET');
+    successObtieneSaalidasModif(request);
 }
+
 function successObtieneSaalidasModif(data) {
     if (data.Exito) {
-        var valact = 0;
-        $.each(data.LsSalidas, function (i) {
-            $('#selSalidaM')
-                .append($("<option></option>")
-                    .attr("value", data.LsSalidas[i].Salida)
-                    .text(data.LsSalidas[i].Ciudad));
-
-        });
+        const selSalidaM = document.getElementById('selSalidaM');
+        renderCombo(data.LsSalidas, selSalidaM, 'Salida', 'Ciudad');
     } else {
         MensajeError('Ha ocurrido un error inesperado');
     }
 }
 
 $('#selSalidaM').on('change', function (e) {
-
     $('#inMSalida').val($("#selSalidaM option:selected").text());
-
     $('#dvMSalida').removeClass("d-none");
-
-   
-
 });
 
 $(document).on('click', '#btnMdifCiudad', function (e) {
@@ -194,3 +165,5 @@ function SuccessLlamadaEliminaSalidaId(data) {
 
 }
 
+ObtieneSalidas();
+ObtieneSalidasModif();
